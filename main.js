@@ -26,8 +26,7 @@ const STATUS = {
   INVALID_LENGTH: 'guess m/ 2 exactly #e "*s"',
   INVALID_CHARS: 'guess 3ta9s 9valid "*s"',
   WIN: ',,y ,,w96',
-  LOSE: 'sorry game ov]',
-  LOCKED: 'game f9i%$ 9put lock$'
+  LOSE: 'sorry game ov]'
 };
 
 function setStatus(message) {
@@ -37,6 +36,8 @@ function setStatus(message) {
 /* ---------------- Mapping Loader ---------------- */
 
 async function loadMapping() {
+  setStatus('load9g braille map');
+
   const response = await fetch("braille-ascii-map.json");
   const data = await response.json();
 
@@ -47,6 +48,13 @@ async function loadMapping() {
   }
 
   mappingReady = true;
+
+  const input = document.getElementById("guess-input");
+  const button = document.getElementById("submit-btn");
+
+  input.disabled = false;
+  button.disabled = false;
+  input.focus();
 }
 
 /* ---------------- Utilities ---------------- */
@@ -117,13 +125,10 @@ function endGame() {
 
   document.getElementById("guess-input").disabled = true;
   document.getElementById("submit-btn").disabled = true;
-
-  setStatus(STATUS.LOCKED);
 }
 
 function submitGuess() {
-  if (gameOver) return;
-  if (!mappingReady) return;
+  if (gameOver || !mappingReady) return;
 
   const input = document.getElementById("guess-input");
   const guess = input.value;
@@ -190,5 +195,4 @@ input.addEventListener("keydown", (e) => {
   }
 });
 
-input.focus();
 loadMapping();
