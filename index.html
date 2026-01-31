@@ -19,10 +19,6 @@
       outline: none;
     }
 
-    #status {
-      margin-top: 1em;
-    }
-
     #guess-input {
       width: 6ch;
     }
@@ -36,10 +32,18 @@
     <div id="header">correct guess wr;g</div>
   </div>
 
+  <!-- Visually hidden, screen-reader/Braille-only live region -->
   <div
     id="status"
     aria-live="polite"
     aria-atomic="true"
+    style="
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    "
   ></div>
 
   <div id="controls">
@@ -48,11 +52,12 @@
       id="guess-input"
       type="text"
       maxlength="5"
+      disabled
       autocomplete="off"
       autocapitalize="off"
       spellcheck="false"
     />
-    <button id="submit-btn">submit</button>
+    <button id="submit-btn" disabled>submit</button>
   </div>
 
   <script src="main.js"></script>
