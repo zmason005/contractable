@@ -2,46 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>braille wordle</title>
+  <title>Braille Wordle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     body {
       font-family: monospace;
     }
 
-    .row {
+    #game-board {
+      margin-top: 1em;
       white-space: pre;
+    }
+
+    .row {
+      outline: none;
     }
 
     #status {
       margin-top: 1em;
     }
 
-    input[type="text"] {
+    #guess-input {
       width: 6ch;
     }
   </style>
 </head>
+
 <body>
+  <h1>Braille Wordle</h1>
 
-<h1>braille wordle</h1>
+  <div id="game-board">
+    <div id="header">correct guess wr;g</div>
+  </div>
 
-<div id="board">
-  <div class="row" id="header">correct guess wr;g</div>
-</div>
+  <div
+    id="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
 
-<form id="guess-form">
-  <input
-    id="guess-input"
-    type="text"
-    maxlength="5"
-    autocomplete="off"
-    aria-label="guess #a"
-  />
-  <button type="submit">submit</button>
-</form>
+  <div id="controls">
+    <label for="guess-input">guess</label>
+    <input
+      id="guess-input"
+      type="text"
+      maxlength="5"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+    />
+    <button id="submit-btn">submit</button>
+  </div>
 
-<div id="status" aria-live="polite"></div>
-
-<script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
