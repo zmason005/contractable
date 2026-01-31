@@ -11,6 +11,7 @@ const MAX_GUESSES = 6;
 
 let asciiToDots = {};
 let dotsToAscii = {};
+let mappingReady = false;
 
 let currentGuess = 0;
 let gameOver = false;
@@ -24,11 +25,9 @@ let wrongDots   = Array(5).fill("000000");
 const STATUS = {
   INVALID_LENGTH: 'guess m/ 2 exactly #e "*s"',
   INVALID_CHARS: 'guess 3ta9s 9valid "*s"',
-  RECORDED: 'guess record$',
   WIN: ',,y ,,w96',
   LOSE: 'sorry game ov]',
-  LOCKED: 'game f9i%$ 9put lock$',
-  RELOAD: 'reload page to play ag'
+  LOCKED: 'game f9i%$ 9put lock$'
 };
 
 function setStatus(message) {
@@ -46,6 +45,8 @@ async function loadMapping() {
   for (const [ascii, dots] of Object.entries(data)) {
     dotsToAscii[dots] = ascii;
   }
+
+  mappingReady = true;
 }
 
 /* ---------------- Utilities ---------------- */
@@ -122,6 +123,7 @@ function endGame() {
 
 function submitGuess() {
   if (gameOver) return;
+  if (!mappingReady) return;
 
   const input = document.getElementById("guess-input");
   const guess = input.value;
@@ -161,19 +163,16 @@ function submitGuess() {
 
   currentGuess++;
   input.value = "";
-  setStatus(STATUS.RECORDED);
 
   if (guess === WORD_OF_THE_DAY) {
     setStatus(STATUS.WIN);
     endGame();
-    setStatus(STATUS.RELOAD);
     return;
   }
 
   if (currentGuess >= MAX_GUESSES) {
     setStatus(STATUS.LOSE);
     endGame();
-    setStatus(STATUS.RELOAD);
   }
 }
 
