@@ -1,111 +1,195 @@
-(() => {
-  const WORD_LENGTH = 5;
-  const MAX_GUESSES = 6;
-  const BRAILLE_BASE = 0x2800;
+"use strict";
 
-  const input = document.getElementById("guess-input");
-  const submitBtn = document.getElementById("submit-btn");
-  const rowsDiv = document.getElementById("rows");
-  const srStatus = document.getElementById("sr-status");
+/*
+  Security Note:
+  This file does not evaluate user input as code.
+  All input is length-checked and character-validated.
+*/
 
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+const WORD_OF_THE_DAY = "a6ect"; // test word (ascii)
+const MAX_GUESSES = 6;
 
-  let currentRow = 0;
-  let gameOver = false;
+let asciiToDots = {};
+let dotsToAscii = {};
 
-  // Example target (Unicode Braille, 5 cells)
-  // Replace with your real word-of-the-day loader
-  const target = "⠗⠥⠆⠝⠽";
+let currentGuess = 0;
+let gameOver = false;
 
-  const correctDots = Array(WORD_LENGTH).fill(0);
-  const wrongDots = Array(WORD_LENGTH).fill(0);
+// per-position persistent fields
+let correctDots = Array(5).fill("000000");
+let wrongDots   = Array(5).fill("000000");
 
-  function brailleMask(ch) {
-    return ch.charCodeAt(0) - BRAILLE_BASE;
+/* ---------------- Status Messages (ASCII Braille) ---------------- */
+
+const STATUS = {
+  INVALID_LENGTH: 'guess m/ 2 exactly #e "*s"',
+  INVALID_CHARS: 'guess 3ta9s 9valid "*s"',
+  RECORDED: 'guess record$',
+  WIN: ',,y ,,w96',
+  LOSE: 'sorry game ov]',
+  LOCKED: 'game f9i%$ 9put lock$',
+  RELOAD: 'reload page to play ag'
+};
+
+function setStatus(message) {
+  document.getElementById("status").textContent = message;
+}
+
+/* ---------------- Mapping Loader ---------------- */
+
+async function loadMapping() {
+  const response = await fetch("braille-ascii-map.json");
+  const data = await response.json();
+
+  asciiToDots = data;
+
+  for (const [ascii, dots] of Object.entries(data)) {
+    dotsToAscii[dots] = ascii;
   }
+}
 
-  function brailleChar(mask) {
-    return String.fromCharCode(BRAILLE_BASE + mask);
+/* ---------------- Utilities ---------------- */
+
+function asciiStringToDotsArray(str) {
+  return [...str].map(ch => asciiToDots[ch] || null);
+}
+
+function dotsArrayToAsciiString(arr) {
+  return arr.map(d => dotsToAscii[d] || " ").join("");
+}
+
+function guessLabel(index) {
+  if (index < 5) {
+    return `#${String.fromCharCode(97 + index)}`;
   }
+  return "f9al guess";
+}
 
-  function renderRow(guess) {
-    let correct = "";
-    let wrong = "";
+/* ---------------- Row Formatting ---------------- */
 
-    for (let i = 0; i < WORD_LENGTH; i++) {
-      correct += brailleChar(correctDots[i]);
-      wrong += brailleChar(wrongDots[i]);
-    }
+function formatRow({ guessIndex, correct, guess, wrong }) {
+  const label = guessLabel(guessIndex);
+  return `${label} ${correct} ${guess} ${wrong}`;
+}
 
-    const row = document.createElement("div");
-    row.textContent = `${correct} ${guess} ${wrong}`;
-    rowsDiv.appendChild(row);
-  }
+/* ---------- Row Format Self-Test (Dev Guardrail) ---------- */
+(function rowFormatSelfTest() {
+  const EMPTY = "-----";
 
-  function speak(text) {
-    srStatus.textContent = "";
-    srStatus.textContent = text;
-  }
-
-  function endGame(win) {
-    gameOver = true;
-    input.disabled = true;
-    submitBtn.disabled = true;
-    speak(win ? "win" : "lose");
-  }
-
-  function submitGuess() {
-    if (gameOver) return;
-
-    const guess = input.value;
-
-    if (guess.length !== WORD_LENGTH) {
-      // Silent failure by design (no mystery speech)
-      return;
-    }
-
-    for (let i = 0; i < WORD_LENGTH; i++) {
-      const gMask = brailleMask(guess[i]);
-      const tMask = brailleMask(target[i]);
-
-      correctDots[i] |= gMask & tMask;
-      wrongDots[i] |= gMask & ~tMask;
-    }
-
-    renderRow(guess);
-
-    if (guess === target) {
-      endGame(true);
-      return;
-    }
-
-    currentRow++;
-    if (currentRow >= MAX_GUESSES) {
-      endGame(false);
-      return;
-    }
-
-    input.value = "";
-    input.focus();
-  }
-
-  // Canonical submission path
-  submitBtn.addEventListener("click", submitGuess);
-
-  // Ignore Enter on iOS (VoiceOver intercepts it anyway)
-  input.addEventListener("keydown", e => {
-    if (isIOS) return;
-    if (e.key === "Enter") {
-      submitGuess();
-    }
+  const test = formatRow({
+    guessIndex: 0,
+    correct: EMPTY,
+    guess: "about",
+    wrong: EMPTY
   });
 
-  // Enable game once loaded
-  function init() {
-    input.disabled = false;
-    submitBtn.disabled = false;
-    input.focus();
+  const parts = test.split(" ");
+
+  console.assert(parts.length === 4,
+    "Row must contain exactly 4 space-separated fields");
+  console.assert(parts[1].length === 5,
+    "Correct field must be exactly 5 cells wide");
+  console.assert(parts[2].length === 5,
+    "Guess field must be exactly 5 cells wide");
+  console.assert(parts[3].length === 5,
+    "wr;g field must be exactly 5 cells wide");
+})();
+
+/* ---------------- Rendering ---------------- */
+
+function renderRow(text) {
+  const board = document.getElementById("game-board");
+
+  const row = document.createElement("div");
+  row.className = "row";
+  row.tabIndex = -1;
+  row.textContent = text;
+
+  board.appendChild(row);
+  row.focus();
+}
+
+/* ---------------- Game Logic ---------------- */
+
+function endGame() {
+  gameOver = true;
+
+  document.getElementById("guess-input").disabled = true;
+  document.getElementById("submit-btn").disabled = true;
+
+  setStatus(STATUS.LOCKED);
+}
+
+function submitGuess() {
+  if (gameOver) return;
+
+  const input = document.getElementById("guess-input");
+  const guess = input.value;
+
+  if (guess.length !== 5) {
+    setStatus(STATUS.INVALID_LENGTH);
+    return;
   }
 
-  init();
-})();
+  if (![...guess].every(ch => asciiToDots.hasOwnProperty(ch))) {
+    setStatus(STATUS.INVALID_CHARS);
+    return;
+  }
+
+  const guessDots = asciiStringToDotsArray(guess);
+  const targetDots = asciiStringToDotsArray(WORD_OF_THE_DAY);
+
+  for (let i = 0; i < 5; i++) {
+    const g = parseInt(guessDots[i], 2);
+    const t = parseInt(targetDots[i], 2);
+
+    correctDots[i] =
+      (parseInt(correctDots[i], 2) | (g & t))
+        .toString(2).padStart(6, "0");
+
+    wrongDots[i] =
+      (parseInt(wrongDots[i], 2) | (g & ~t))
+        .toString(2).padStart(6, "0");
+  }
+
+  renderRow(formatRow({
+    guessIndex: currentGuess,
+    correct: dotsArrayToAsciiString(correctDots),
+    guess,
+    wrong: dotsArrayToAsciiString(wrongDots)
+  }));
+
+  currentGuess++;
+  input.value = "";
+  setStatus(STATUS.RECORDED);
+
+  if (guess === WORD_OF_THE_DAY) {
+    setStatus(STATUS.WIN);
+    endGame();
+    setStatus(STATUS.RELOAD);
+    return;
+  }
+
+  if (currentGuess >= MAX_GUESSES) {
+    setStatus(STATUS.LOSE);
+    endGame();
+    setStatus(STATUS.RELOAD);
+  }
+}
+
+/* ---------------- Init ---------------- */
+
+const input = document.getElementById("guess-input");
+const button = document.getElementById("submit-btn");
+
+button.addEventListener("click", submitGuess);
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    submitGuess();
+  }
+});
+
+input.focus();
+loadMapping();
