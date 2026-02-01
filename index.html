@@ -19,10 +19,6 @@
       outline: none;
     }
 
-    #status {
-      margin-top: 1em;
-    }
-
     #guess-input {
       width: 6ch;
     }
@@ -32,15 +28,9 @@
 <body>
   <h1>Braille Wordle</h1>
 
-  <div id="game-board">
+  <div id="game-board" aria-live="polite">
     <div id="header">correct guess wr;g</div>
   </div>
-
-  <div
-    id="status"
-    aria-live="polite"
-    aria-atomic="true"
-  ></div>
 
   <div id="controls">
     <label for="guess-input">guess</label>
