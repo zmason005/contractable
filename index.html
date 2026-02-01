@@ -15,12 +15,16 @@
       white-space: pre;
     }
 
-    #controls {
+    .row {
+      outline: none;
+    }
+
+    #status {
       margin-top: 1em;
     }
 
     #guess-input {
-      width: 8ch;
+      width: 6ch;
     }
   </style>
 </head>
@@ -29,22 +33,13 @@
   <h1>Braille Wordle</h1>
 
   <div id="game-board">
-    <div>correct guess wr;g</div>
-    <div id="rows"></div>
+    <div id="header">correct guess wr;g</div>
   </div>
 
-  <!-- Screen-reader-only announcement region -->
   <div
-    id="sr-status"
+    id="status"
     aria-live="polite"
     aria-atomic="true"
-    style="
-      position: absolute;
-      left: -9999px;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    "
   ></div>
 
   <div id="controls">
@@ -52,13 +47,12 @@
     <input
       id="guess-input"
       type="text"
+      maxlength="5"
       autocomplete="off"
       autocapitalize="off"
       spellcheck="false"
-      maxlength="5"
-      disabled
     />
-    <button id="submit-btn" disabled>submit</button>
+    <button id="submit-btn">submit</button>
   </div>
 
   <script src="main.js"></script>
