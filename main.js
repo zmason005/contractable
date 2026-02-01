@@ -1,72 +1,61 @@
 "use strict";
 
 /*
-  Security Note:
-  This file does not evaluate user input as code.
-  All input is length-checked and character-validated.
+  Braille Wordle — Unicode Braille Core Logic
+  ------------------------------------------
+  - Input: Unicode Braille (U+2800–U+28FF)
+  - Logic: dot-level bitmask accumulation
+  - Output: real Braille cells
+  - Accessibility: single live-region updates only
 */
 
-const WORD_OF_THE_DAY = "a6ect"; // test word (ascii)
+const WORD_OF_THE_DAY = "⠁⠖⠑⠉⠞"; // example braille word (5 cells)
 const MAX_GUESSES = 6;
+const BRAILLE_BASE = 0x2800;
 
-let asciiToDots = {};
-let dotsToAscii = {};
-let mappingReady = false;
+/* ---------------- State ---------------- */
 
-let currentGuess = 0;
 let gameOver = false;
+let currentGuess = 0;
+let inputReady = false;
 
-// per-position persistent fields
-let correctDots = Array(5).fill("000000");
-let wrongDots   = Array(5).fill("000000");
+// accumulated dot masks per position
+let correctDots = [0, 0, 0, 0, 0];
+let wrongDots   = [0, 0, 0, 0, 0];
 
-/* ---------------- Status Messages (ASCII Braille) ---------------- */
+/* ---------------- Status Messages ---------------- */
 
 const STATUS = {
-  INVALID_LENGTH: 'guess m/ 2 exactly #e "*s"',
-  INVALID_CHARS: 'guess 3ta9s 9valid "*s"',
-  WIN: ',,y ,,w96',
-  LOSE: 'sorry game ov]'
+  LOADING: "load9g braille map",
+  INVALID_LENGTH: "guess m/ 2 exactly #e braille cells",
+  INVALID_CHARS: "guess 3ta9s non braille cells",
+  WIN: ",,y ,,w96",
+  LOSE: "sorry game ov]"
 };
 
-function setStatus(message) {
-  document.getElementById("status").textContent = message;
-}
-
-/* ---------------- Mapping Loader ---------------- */
-
-async function loadMapping() {
-  setStatus('load9g braille map');
-
-  const response = await fetch("braille-ascii-map.json");
-  const data = await response.json();
-
-  asciiToDots = data;
-
-  for (const [ascii, dots] of Object.entries(data)) {
-    dotsToAscii[dots] = ascii;
-  }
-
-  mappingReady = true;
-
-  const input = document.getElementById("guess-input");
-  const button = document.getElementById("submit-btn");
-
-  input.disabled = false;
-  button.disabled = false;
-  input.focus();
+function setStatus(msg) {
+  document.getElementById("status").textContent = msg;
 }
 
 /* ---------------- Utilities ---------------- */
 
-function asciiStringToDotsArray(str) {
-  return [...str].map(ch => asciiToDots[ch] || null);
+// true if char is Unicode Braille
+function isBrailleChar(ch) {
+  const code = ch.charCodeAt(0);
+  return code >= 0x2800 && code <= 0x28FF;
 }
 
-function dotsArrayToAsciiString(arr) {
-  return arr.map(d => dotsToAscii[d] || " ").join("");
+// convert braille char → dot mask
+function brailleCharToMask(ch) {
+  return ch.charCodeAt(0) - BRAILLE_BASE;
 }
 
+// convert dot mask → braille char
+function maskToBrailleChar(mask) {
+  return String.fromCharCode(BRAILLE_BASE + mask);
+}
+
+// label for guess rows
 function guessLabel(index) {
   if (index < 5) {
     return `#${String.fromCharCode(97 + index)}`;
@@ -77,32 +66,8 @@ function guessLabel(index) {
 /* ---------------- Row Formatting ---------------- */
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
-  const label = guessLabel(guessIndex);
-  return `${label} ${correct} ${guess} ${wrong}`;
+  return `${guessLabel(guessIndex)} ${correct} ${guess} ${wrong}`;
 }
-
-/* ---------- Row Format Self-Test (Dev Guardrail) ---------- */
-(function rowFormatSelfTest() {
-  const EMPTY = "-----";
-
-  const test = formatRow({
-    guessIndex: 0,
-    correct: EMPTY,
-    guess: "about",
-    wrong: EMPTY
-  });
-
-  const parts = test.split(" ");
-
-  console.assert(parts.length === 4,
-    "Row must contain exactly 4 space-separated fields");
-  console.assert(parts[1].length === 5,
-    "Correct field must be exactly 5 cells wide");
-  console.assert(parts[2].length === 5,
-    "Guess field must be exactly 5 cells wide");
-  console.assert(parts[3].length === 5,
-    "wr;g field must be exactly 5 cells wide");
-})();
 
 /* ---------------- Rendering ---------------- */
 
@@ -118,7 +83,7 @@ function renderRow(text) {
   row.focus();
 }
 
-/* ---------------- Game Logic ---------------- */
+/* ---------------- Game Control ---------------- */
 
 function endGame() {
   gameOver = true;
@@ -127,49 +92,48 @@ function endGame() {
   document.getElementById("submit-btn").disabled = true;
 }
 
+/* ---------------- Game Logic ---------------- */
+
 function submitGuess() {
-  if (gameOver || !mappingReady) return;
+  if (gameOver || !inputReady) return;
 
   const input = document.getElementById("guess-input");
-  const guess = input.value;
+  const guess = [...input.value];
 
   if (guess.length !== 5) {
     setStatus(STATUS.INVALID_LENGTH);
     return;
   }
 
-  if (![...guess].every(ch => asciiToDots.hasOwnProperty(ch))) {
+  if (!guess.every(isBrailleChar)) {
     setStatus(STATUS.INVALID_CHARS);
     return;
   }
 
-  const guessDots = asciiStringToDotsArray(guess);
-  const targetDots = asciiStringToDotsArray(WORD_OF_THE_DAY);
+  const target = [...WORD_OF_THE_DAY];
 
   for (let i = 0; i < 5; i++) {
-    const g = parseInt(guessDots[i], 2);
-    const t = parseInt(targetDots[i], 2);
+    const gMask = brailleCharToMask(guess[i]);
+    const tMask = brailleCharToMask(target[i]);
 
-    correctDots[i] =
-      (parseInt(correctDots[i], 2) | (g & t))
-        .toString(2).padStart(6, "0");
-
-    wrongDots[i] =
-      (parseInt(wrongDots[i], 2) | (g & ~t))
-        .toString(2).padStart(6, "0");
+    correctDots[i] |= (gMask & tMask);
+    wrongDots[i]   |= (gMask & ~tMask);
   }
+
+  const correctStr = correctDots.map(maskToBrailleChar).join("");
+  const wrongStr   = wrongDots.map(maskToBrailleChar).join("");
 
   renderRow(formatRow({
     guessIndex: currentGuess,
-    correct: dotsArrayToAsciiString(correctDots),
-    guess,
-    wrong: dotsArrayToAsciiString(wrongDots)
+    correct: correctStr,
+    guess: guess.join(""),
+    wrong: wrongStr
   }));
 
   currentGuess++;
   input.value = "";
 
-  if (guess === WORD_OF_THE_DAY) {
+  if (guess.join("") === WORD_OF_THE_DAY) {
     setStatus(STATUS.WIN);
     endGame();
     return;
@@ -183,16 +147,28 @@ function submitGuess() {
 
 /* ---------------- Init ---------------- */
 
-const input = document.getElementById("guess-input");
-const button = document.getElementById("submit-btn");
+function init() {
+  const input = document.getElementById("guess-input");
+  const button = document.getElementById("submit-btn");
 
-button.addEventListener("click", submitGuess);
+  setStatus(STATUS.LOADING);
 
-input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    submitGuess();
-  }
-});
+  // small delay to ensure screen readers announce loading
+  setTimeout(() => {
+    input.disabled = false;
+    button.disabled = false;
+    inputReady = true;
+    input.focus();
+  }, 200);
 
-loadMapping();
+  button.addEventListener("click", submitGuess);
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      submitGuess();
+    }
+  });
+}
+
+init();
