@@ -19,8 +19,12 @@
       outline: none;
     }
 
+    #controls {
+      margin-top: 1em;
+    }
+
     #guess-input {
-      width: 6ch;
+      width: 8ch;
     }
   </style>
 </head>
@@ -32,7 +36,7 @@
     <div id="header">correct guess wr;g</div>
   </div>
 
-  <!-- Visually hidden, screen-reader/Braille-only live region -->
+  <!-- Visually hidden live region for screen readers / Braille displays -->
   <div
     id="status"
     aria-live="polite"
@@ -51,11 +55,12 @@
     <input
       id="guess-input"
       type="text"
-      maxlength="5"
-      disabled
+      inputmode="none"
       autocomplete="off"
       autocapitalize="off"
       spellcheck="false"
+      maxlength="5"
+      disabled
     />
     <button id="submit-btn" disabled>submit</button>
   </div>
