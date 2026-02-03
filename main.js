@@ -1,7 +1,10 @@
 "use strict";
 
 /*
-  Debug build: surfaces unmapped characters via aria-live
+  Debug build (safe):
+  Writes character diagnostics to a <p> element
+  Does not use aria-live
+  Does not affect focus or submit behavior
 */
 
 const WORD_OF_THE_DAY = "a6ect"; // test word (ascii)
@@ -39,34 +42,33 @@ function dotsArrayToAsciiString(arr) {
   return arr.map(d => dotsToAscii[d] || " ").join("");
 }
 
-function debugOutput(lines) {
-  const dbg = document.getElementById("debug");
-  dbg.textContent = lines.join("\n");
+function setDebug(text) {
+  const p = document.getElementById("debug-output");
+  if (p) p.textContent = text;
 }
 
 function validateGuess(str) {
   if (str.length !== 5) {
-    debugOutput([`debug: invalid length ${str.length}`]);
+    setDebug(`debug: invalid length ${str.length}`);
     return false;
   }
 
-  const report = [];
-
+  let lines = [];
   let valid = true;
 
   [...str].forEach((ch, i) => {
     const cp = "U+" + ch.codePointAt(0).toString(16).toUpperCase();
     const ok = asciiToDots.hasOwnProperty(ch);
 
-    report.push(
-      `index ${i} ${ch} ${cp} ${ok ? "ok" : "NOT MAPPED"}`
+    lines.push(
+      `index ${i}: ${ch} ${cp} ${ok ? "ok" : "NOT MAPPED"}`
     );
 
     if (!ok) valid = false;
   });
 
   if (!valid) {
-    debugOutput(["debug:", ...report]);
+    setDebug(lines.join(" | "));
   }
 
   return valid;
@@ -115,6 +117,8 @@ function submitGuess() {
     return;
   }
 
+  setDebug(""); // clear debug on success
+
   const guessDots = asciiStringToDotsArray(guess);
   const targetDots = asciiStringToDotsArray(WORD_OF_THE_DAY);
 
@@ -133,8 +137,6 @@ function submitGuess() {
       (parseInt(wrongDots[i], 2) | wrong)
         .toString(2).padStart(6, "0");
   }
-
-  debugOutput([]); // clear debug on success
 
   renderRow(formatRow({
     guessIndex: currentGuess,
