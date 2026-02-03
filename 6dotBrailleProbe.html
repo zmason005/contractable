@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Braille 6-Dot Input Probe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1>Braille 6-Dot Input Probe</h1>
+
+  <p>
+    Type using your Braille display (6-key braille).  
+    This page shows the exact ASCII and Unicode code points received.
+  </p>
+
+  <label for="input">input</label>
+  <input
+    id="input"
+    type="text"
+    autocomplete="off"
+    autocapitalize="off"
+    spellcheck="false"
+  />
+
+  <pre id="output"></pre>
+
+  <script>
+    const input = document.getElementById("input");
+    const output = document.getElementById("output");
+
+    function inspect(str) {
+      if (!str) {
+        output.textContent = "";
+        return;
+      }
+
+      const lines = [...str].map((ch, i) => {
+        const cp = "U+" + ch.codePointAt(0).toString(16).toUpperCase();
+        return `index ${i}: '${ch}' ${cp}`;
+      });
+
+      output.textContent = lines.join("\n");
+    }
+
+    input.addEventListener("input", () => {
+      inspect(input.value);
+    });
+
+    input.focus();
+  </script>
+</body>
+</html>
