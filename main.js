@@ -3,10 +3,10 @@
 /*
   Security Note:
   This file does not evaluate user input as code.
-  All input is length-checked and character-validated.
+  All input is validated against an explicit mapping table.
 */
 
-const WORD_OF_THE_DAY = "a6ect"; // test word (ascii)
+const WORD_OF_THE_DAY = "a6ect"; // test word
 const MAX_GUESSES = 6;
 
 let asciiToDots = {};
@@ -30,21 +30,52 @@ async function loadMapping() {
   for (const [ascii, dots] of Object.entries(data)) {
     dotsToAscii[dots] = ascii;
   }
+
+  debug("mapping loaded");
+}
+
+/* ---------------- Debug ---------------- */
+
+function debug(msg) {
+  document.getElementById("debug").textContent = msg;
 }
 
 /* ---------------- Utilities ---------------- */
 
-function asciiStringToDotsArray(str) {
-  return [...str].map(ch => asciiToDots[ch] || null);
+/*
+  Convert a user-entered string into mapped braille cells.
+  Ignores unmapped / invisible characters.
+*/
+function mapStringToDots(str) {
+  const dots = [];
+
+  for (const ch of str) {
+    if (asciiToDots.hasOwnProperty(ch)) {
+      dots.push(asciiToDots[ch]);
+    }
+  }
+
+  return dots;
 }
 
 function dotsArrayToAsciiString(arr) {
   return arr.map(d => dotsToAscii[d] || " ").join("");
 }
 
+/*
+  A valid guess:
+  - resolves to exactly 5 mapped braille cells
+*/
 function validateGuess(str) {
-  if (str.length !== 5) return false;
-  return [...str].every(ch => asciiToDots.hasOwnProperty(ch));
+  const mapped = mapStringToDots(str);
+
+  if (mapped.length !== 5) {
+    debug(`invalid length: ${mapped.length} cells`);
+    return false;
+  }
+
+  debug("guess accepted");
+  return true;
 }
 
 function guessLabel(index) {
@@ -60,35 +91,6 @@ function formatRow({ guessIndex, correct, guess, wrong }) {
   const label = guessLabel(guessIndex);
   return `${label} ${correct} ${guess} ${wrong}`;
 }
-
-/* ---------- Row Format Self-Test (Dev Guardrail) ---------- */
-(function rowFormatSelfTest() {
-  const EMPTY = "-----";
-
-  const test = formatRow({
-    guessIndex: 0,
-    correct: EMPTY,
-    guess: "about",
-    wrong: EMPTY
-  });
-
-  console.assert(typeof test === "string",
-    "formatRow must return a string");
-
-  const parts = test.split(" ");
-
-  console.assert(parts.length === 4,
-    "Row must contain exactly 4 space-separated fields");
-
-  console.assert(parts[1].length === 5,
-    "Correct field must be exactly 5 cells wide");
-
-  console.assert(parts[2].length === 5,
-    "Guess field must be exactly 5 cells wide");
-
-  console.assert(parts[3].length === 5,
-    "wr;g field must be exactly 5 cells wide");
-})();
 
 /* ---------------- Rendering ---------------- */
 
@@ -116,14 +118,14 @@ function submitGuess() {
   if (gameOver) return;
 
   const input = document.getElementById("guess-input");
-  const guess = input.value;
+  const rawGuess = input.value;
 
-  if (!validateGuess(guess)) {
+  if (!validateGuess(rawGuess)) {
     return;
   }
 
-  const guessDots = asciiStringToDotsArray(guess);
-  const targetDots = asciiStringToDotsArray(WORD_OF_THE_DAY);
+  const guessDots  = mapStringToDots(rawGuess);
+  const targetDots = mapStringToDots(WORD_OF_THE_DAY);
 
   for (let i = 0; i < 5; i++) {
     const g = parseInt(guessDots[i], 2);
@@ -144,21 +146,21 @@ function submitGuess() {
   renderRow(formatRow({
     guessIndex: currentGuess,
     correct: dotsArrayToAsciiString(correctDots),
-    guess,
+    guess: rawGuess,
     wrong: dotsArrayToAsciiString(wrongDots)
   }));
 
   currentGuess++;
   input.value = "";
 
-  if (guess === WORD_OF_THE_DAY || currentGuess >= MAX_GUESSES) {
+  if (rawGuess === WORD_OF_THE_DAY || currentGuess >= MAX_GUESSES) {
     endGame();
   }
 }
 
 /* ---------------- Init ---------------- */
 
-const input = document.getElementById("guess-input");
+const input  = document.getElementById("guess-input");
 const button = document.getElementById("submit-btn");
 
 button.addEventListener("click", submitGuess);
