@@ -1,10 +1,9 @@
 "use strict";
 
 /*
-  Debug build (safe):
-  Writes character diagnostics to a <p> element
-  Does not use aria-live
-  Does not affect focus or submit behavior
+  Security Note:
+  This file does not evaluate user input as code.
+  All input is length-checked and character-validated.
 */
 
 const WORD_OF_THE_DAY = "a6ect"; // test word (ascii)
@@ -16,6 +15,7 @@ let dotsToAscii = {};
 let currentGuess = 0;
 let gameOver = false;
 
+// per-position persistent fields
 let correctDots = Array(5).fill("000000");
 let wrongDots   = Array(5).fill("000000");
 
@@ -42,36 +42,9 @@ function dotsArrayToAsciiString(arr) {
   return arr.map(d => dotsToAscii[d] || " ").join("");
 }
 
-function setDebug(text) {
-  const p = document.getElementById("debug-output");
-  if (p) p.textContent = text;
-}
-
 function validateGuess(str) {
-  if (str.length !== 5) {
-    setDebug(`debug: invalid length ${str.length}`);
-    return false;
-  }
-
-  let lines = [];
-  let valid = true;
-
-  [...str].forEach((ch, i) => {
-    const cp = "U+" + ch.codePointAt(0).toString(16).toUpperCase();
-    const ok = asciiToDots.hasOwnProperty(ch);
-
-    lines.push(
-      `index ${i}: ${ch} ${cp} ${ok ? "ok" : "NOT MAPPED"}`
-    );
-
-    if (!ok) valid = false;
-  });
-
-  if (!valid) {
-    setDebug(lines.join(" | "));
-  }
-
-  return valid;
+  if (str.length !== 5) return false;
+  return [...str].every(ch => asciiToDots.hasOwnProperty(ch));
 }
 
 function guessLabel(index) {
@@ -81,11 +54,43 @@ function guessLabel(index) {
   return "f9al guess";
 }
 
-/* ---------------- Rendering ---------------- */
+/* ---------------- Row Formatting ---------------- */
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
-  return `${guessLabel(guessIndex)} ${correct} ${guess} ${wrong}`;
+  const label = guessLabel(guessIndex);
+  return `${label} ${correct} ${guess} ${wrong}`;
 }
+
+/* ---------- Row Format Self-Test (Dev Guardrail) ---------- */
+(function rowFormatSelfTest() {
+  const EMPTY = "-----";
+
+  const test = formatRow({
+    guessIndex: 0,
+    correct: EMPTY,
+    guess: "about",
+    wrong: EMPTY
+  });
+
+  console.assert(typeof test === "string",
+    "formatRow must return a string");
+
+  const parts = test.split(" ");
+
+  console.assert(parts.length === 4,
+    "Row must contain exactly 4 space-separated fields");
+
+  console.assert(parts[1].length === 5,
+    "Correct field must be exactly 5 cells wide");
+
+  console.assert(parts[2].length === 5,
+    "Guess field must be exactly 5 cells wide");
+
+  console.assert(parts[3].length === 5,
+    "wr;g field must be exactly 5 cells wide");
+})();
+
+/* ---------------- Rendering ---------------- */
 
 function renderRow(rowText) {
   const board = document.getElementById("game-board");
@@ -116,8 +121,6 @@ function submitGuess() {
   if (!validateGuess(guess)) {
     return;
   }
-
-  setDebug(""); // clear debug on success
 
   const guessDots = asciiStringToDotsArray(guess);
   const targetDots = asciiStringToDotsArray(WORD_OF_THE_DAY);
