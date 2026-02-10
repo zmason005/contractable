@@ -1,67 +1,66 @@
 # Contributing to Braille Wordle
+Thank you for your interest in Braille Wordle. This project has strong architectural and accessibility constraints. Please read carefully before contributing.
 
-Thank you for your interest in contributing to **Braille Wordle**.
+Philosophy
 
-This project prioritizes **Braille-first accessibility**. Contributions that undermine this principle will not be accepted.
+Braille Wordle is:
 
----
+Braille-first
 
-## 🧭 Guiding Principles
+Accessibility-driven
 
-1. **Braille is primary**
-   - Do not introduce letter-based logic into gameplay
-   - Braille dots, not letters, determine correctness
+Intentionally minimal
 
-2. **Accessibility is non-negotiable**
-   - No color-only feedback
-   - No mouse-only interactions
-   - Screen reader compatibility must be preserved
+Contributions that add complexity without improving braille usability will not be accepted.
 
-3. **Simplicity over cleverness**
-   - Prefer readable, explicit logic
-   - Avoid abstractions that obscure dot-level behavior
+Feature Lock
 
----
+Version 1 behavior is locked. This includes:
 
-## 🛠️ Types of Contributions Welcome
+Input format
 
-- Bug fixes
-- Accessibility improvements
-- Braille input method enhancements
-- Documentation improvements
-- Usability feedback from Braille users
+Mapping model
 
----
+Status messages
 
-## 🚫 Contributions Not Accepted (Without Discussion)
+Focus behavior
 
-- Visual-only UI features
-- Letter-based hints (green/yellow/gray)
-- Game mechanics that rely on sighted assumptions
-- Automatic Braille contraction expansion (v1)
+Game flow
 
----
+Bug fixes are welcome. Feature changes require a version proposal.
 
-## 📋 How to Contribute
+What We Welcome
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test with screen readers and/or Braille displays if applicable
-5. Submit a pull request with a clear description
+Bug fixes
 
----
+Documentation improvements
 
-## 🧪 Testing Expectations
+Accessibility testing feedback
 
-If your change affects gameplay or accessibility:
+Code clarity improvements that do not alter behavior
 
-- Describe how it was tested
-- Indicate assistive technology used (if any)
-- Note any known limitations
+What We Do Not Accept
 
----
+New status messages
 
-## 💬 Questions
+Visual-only features
 
-If you are unsure whether a contribution fits the project goals, open an issue first.
+Additional ARIA announcements
+
+Unicode braille input
+
+Silent behavior changes
+
+How to Contribute
+
+Fork the repository
+
+Create a clearly named branch
+
+Make your changes
+
+Document your reasoning
+
+Submit a pull request
+
+Accessibility impact must be explained in every PR.
