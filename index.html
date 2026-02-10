@@ -23,10 +23,9 @@
       width: 6ch;
     }
 
-    #debug {
+    #status {
       margin-top: 1em;
-      border-top: 1px solid #999;
-      padding-top: 0.5em;
+      white-space: pre;
     }
   </style>
 </head>
@@ -42,6 +41,7 @@
     <input
       id="guess-input"
       type="text"
+      maxlength="5"
       autocomplete="off"
       autocapitalize="off"
       spellcheck="false"
@@ -49,8 +49,8 @@
     <button id="submit-btn">submit</button>
   </div>
 
-  <!-- removable diagnostics -->
-  <div id="debug"></div>
+  <!-- Status messages (win / lose only) -->
+  <div id="status" aria-live="polite"></div>
 
   <script src="main.js"></script>
 </body>
