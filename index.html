@@ -24,6 +24,15 @@
       outline: none;
     }
 
+    #controls {
+      margin-top: 1em;
+    }
+
+    #guess-label {
+      display: block;
+      margin-bottom: 0.25em;
+    }
+
     #guess-input {
       width: 6ch;
     }
@@ -33,14 +42,22 @@
 <body>
   <h1>Braille Wordle</h1>
 
-  <!-- Win / Lose status (empty during play) -->
-  <div id="status" tabindex="-1"></div>
+  <!-- Win / Lose status -->
+  <div
+    id="status"
+    role="status"
+    tabindex="-1"
+  ></div>
 
   <div id="game-board" aria-live="polite">
     <div id="header">correct guess wr;g</div>
   </div>
 
   <div id="controls">
+    <label id="guess-label" for="guess-input">
+      guess txt
+    </label>
+
     <input
       id="guess-input"
       type="text"
