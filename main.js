@@ -37,7 +37,22 @@ async function loadMapping() {
 function setStatus(msg) {
   const status = document.getElementById("status");
   status.textContent = msg;
-  status.focus();
+
+  setTimeout(() => {
+    status.focus();
+  }, 0);
+}
+
+/* ---------------- Guess Label ---------------- */
+
+function updateGuessLabel() {
+  const label = document.getElementById("guess-label");
+
+  if (currentGuess === MAX_GUESSES - 1) {
+    label.textContent = "f9al guess txt";
+  } else {
+    label.textContent = "guess txt";
+  }
 }
 
 /* ---------------- Utilities ---------------- */
@@ -63,10 +78,10 @@ function validateGuess(str) {
 }
 
 function guessLabel(index) {
-  if (index < 5) {
+  if (index < 6) {
     return `#${String.fromCharCode(97 + index)}`;
   }
-  return "f9al guess";
+  return "";
 }
 
 /* ---------------- Row Formatting ---------------- */
@@ -139,6 +154,8 @@ function submitGuess() {
   currentGuess++;
   input.value = "";
 
+  updateGuessLabel();
+
   if (rawGuess === WORD_OF_THE_DAY) {
     setStatus(",,y ,,w96");
     endGame();
@@ -146,7 +163,7 @@ function submitGuess() {
   }
 
   if (currentGuess >= MAX_GUESSES) {
-    setStatus(`,sorry" ^w 0 ${WORD_OF_THE_DAY}`);
+    setStatus(`,sory1 ! ~w 0 ${WORD_OF_THE_DAY}`);
     endGame();
   }
 }
@@ -165,5 +182,6 @@ input.addEventListener("keydown", (e) => {
   }
 });
 
+updateGuessLabel();
 input.focus();
 loadMapping();
