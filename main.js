@@ -1,27 +1,13 @@
 "use strict";
 
 /*
-  Braille Wordle — Core Game Logic
-
-  STATUS MESSAGE POLICY (LOCKED)
-  -----------------------------
-  This game emits status messages ONLY for:
-    • win condition
-    • loss condition
-
-  No status messages are produced for invalid or partial input.
-  This avoids VoiceOver chatter and prevents interaction with
-  invisible Unicode characters injected by assistive technology.
-
-  braille-ascii-map.json is the single source of truth.
+  Security Note:
+  This file does not evaluate user input as code.
+  All input is validated against an explicit mapping table.
 */
 
-/* ---------------- Configuration ---------------- */
-
-const WORD_OF_THE_DAY = "a6ect"; // test word (ascii)
+const WORD_OF_THE_DAY = "a6ect"; // test word
 const MAX_GUESSES = 6;
-
-/* ---------------- State ---------------- */
 
 let asciiToDots = {};
 let dotsToAscii = {};
@@ -49,13 +35,9 @@ async function loadMapping() {
 /* ---------------- Status Helpers ---------------- */
 
 function setStatus(msg) {
-  const el = document.getElementById("status");
-  if (el) el.textContent = msg;
-}
-
-function clearStatus() {
-  const el = document.getElementById("status");
-  if (el) el.textContent = "";
+  const status = document.getElementById("status");
+  status.textContent = msg;
+  status.focus();
 }
 
 /* ---------------- Utilities ---------------- */
@@ -156,9 +138,6 @@ function submitGuess() {
 
   currentGuess++;
   input.value = "";
-  clearStatus();
-
-  /* -------- Win / Lose Status Wiring -------- */
 
   if (rawGuess === WORD_OF_THE_DAY) {
     setStatus(",,y ,,w96");
