@@ -1,86 +1,65 @@
-# Braille Wordle
+Braille Wordle
 
-**Braille Wordle** is an accessibility-first word game inspired by *Wordle*, designed **from the ground up for Braille readers**.
+Braille Wordle is a braille-first word game designed specifically for braille display users. Unlike visual-first games with accessibility layered on later, this project treats braille as the primary interface, with ASCII acting only as an interchange format.
 
-Unlike visual adaptations of Wordle, this game operates entirely on **Braille dot patterns**, using Unicode Braille characters as both input and output. Gameplay logic is based on **dot-level correctness**, not letters or colors.
+The game uses Grade 2 Braille logic, supports contractions via a mapping table, and prioritizes predictable screen reader behavior over visual polish.
 
-> Braille dots are the truth.
+Design Principles
 
----
+Braille-first, not screen-first
 
-## 🎯 Project Goals
+ASCII is an interchange format, not a user-facing abstraction
 
-- Create a word game that is **natively usable** with:
-  - Screen readers
-  - Refreshable Braille displays
-  - Keyboard-only input
-- Reinforce **Braille literacy** through meaningful interaction
-- Avoid visual metaphors (e.g., green/yellow tiles)
-- Treat Braille as a **primary representation**, not an accommodation
+Predictable focus movement is more important than visual animation
 
----
+Silence is better than surprise
 
-## 🧠 How It Works
+Accessibility behavior is part of game logic, not decoration
 
-- Each puzzle has a fixed-length Braille word (Unicode Braille characters)
-- Players submit guesses using Braille input
-- For each cell:
-  - Correct dots are retained
-  - Incorrect dots are removed
-- Correct dots **persist across guesses**
-- The puzzle is solved when all dots match exactly
+How It Works
 
-All comparisons are done at the **dot (bitmask) level**.
+All user input is lowercase ASCII originating from a braille display
 
----
+A single mapping file (braille-ascii-map.json) defines valid symbols
 
-## ♿ Accessibility
+Input is converted into braille dot patterns for comparison
 
-- No reliance on color, shape, or visual layout
-- Fully usable with:
-  - Screen readers
-  - Refreshable Braille displays
-  - Keyboard navigation
-- Uses Unicode Braille (`U+2800`–`U+28FF`)
-- Live feedback announced via ARIA regions
+The game compares dot overlap, not letters
 
-See [`accessibility.md`](accessibility.md) for details.
+Exactly two status messages exist: win and lose
 
----
+Status Messages
 
-## 🧪 Project Status
+Win: ,,y ,,w96
 
-This repository currently contains a **minimal playable prototype** intended to:
+Lose: ,sory1 ! ~w 0 <word>
 
-- Validate the core Braille-based mechanic
-- Support early user testing
-- Serve as a reference implementation
+Status messages:
 
-This is **not** a finished game.
+Appear only at game conclusion
 
----
+Are announced once
 
-## 🚀 Running the Prototype
+Receive programmatic focus
 
-No build tools required.
+Project Status
 
-1. Clone or download the repository
-2. Open `index.html` in a browser
-3. Use a Braille keyboard or Braille display to enter guesses
+This repository represents Braille Wordle v1.
 
----
+Core gameplay, accessibility behavior, focus handling, and messaging are feature-locked. New ideas belong in a future version.
 
-## 📜 License
+Files
 
-MIT License — see [`LICENSE`](LICENSE)
+index.html – Minimal UI and accessibility scaffolding
 
----
+main.js – Game logic and accessibility behavior
 
-## 🤝 Contributing
+braille-ascii-map.json – Single source of truth for symbols
 
-Contributions are welcome, especially from:
-- Braille readers
-- Accessibility professionals
-- Assistive technology users
+accessibility.md – Accessibility design decisions
 
-Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before submitting changes.
+CONTRIBUTING.md – Contribution guidelines
+
+License
+
+MIT License. See LICENSE.md.
