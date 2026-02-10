@@ -10,6 +10,11 @@
       font-family: monospace;
     }
 
+    #status {
+      margin-top: 0.5em;
+      white-space: pre;
+    }
+
     #game-board {
       margin-top: 1em;
       white-space: pre;
@@ -22,16 +27,14 @@
     #guess-input {
       width: 6ch;
     }
-
-    #status {
-      margin-top: 1em;
-      white-space: pre;
-    }
   </style>
 </head>
 
 <body>
   <h1>Braille Wordle</h1>
+
+  <!-- Win / Lose status (empty during play) -->
+  <div id="status" tabindex="-1"></div>
 
   <div id="game-board" aria-live="polite">
     <div id="header">correct guess wr;g</div>
@@ -41,16 +44,12 @@
     <input
       id="guess-input"
       type="text"
-      maxlength="5"
       autocomplete="off"
       autocapitalize="off"
       spellcheck="false"
     />
     <button id="submit-btn">submit</button>
   </div>
-
-  <!-- Status messages (win / lose only) -->
-  <div id="status" aria-live="polite"></div>
 
   <script src="main.js"></script>
 </body>
