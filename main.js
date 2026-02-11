@@ -49,9 +49,9 @@ function updateGuessLabel() {
   const label = document.getElementById("guess-label");
 
   if (currentGuess === MAX_GUESSES - 1) {
-    label.textContent = "f9al guess txt";
+    label.textContent = "f9al guess ";
   } else {
-    label.textContent = "guess txt";
+    label.textContent = "guess";
   }
 }
 
@@ -163,7 +163,7 @@ function submitGuess() {
   }
 
   if (currentGuess >= MAX_GUESSES) {
-    setStatus(`,sory1 ! ~w 0 ${WORD_OF_THE_DAY}`);
+    setStatus(`,sorry1 ! ~w 0 ${WORD_OF_THE_DAY}`);
     endGame();
   }
 }
