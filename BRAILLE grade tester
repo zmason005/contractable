@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braille Grade Sync Tester</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        #editor {
+            width: 100%;
+            height: 150px;
+            border: 2px solid #333;
+            padding: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .status-panel { background: #f0f0f0; padding: 10px; border-radius: 5px; }
+        .mode-tag { font-weight: bold; color: #0066cc; }
+        /* Visually hidden but active for Screen Readers */
+        .sr-only {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0,0,0,0);
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Braille Grade Detector</h1>
+    <p>Type <strong>shadow</strong> (G1), <strong>⠱⠁⠙⠪</strong> (G2), or <strong>%ad{</strong> (8-Dot).</p>
+
+    <div id="editor" contenteditable="true" role="textbox" aria-multiline="true"></div>
+
+    <div id="braille-mirror" class="sr-only" aria-live="polite">
+        <span id="output-dots" aria-braillelabel=""></span>
+    </div>
+
+    <div class="status-panel">
+        <p>Detected Mode: <span id="mode-display" class="mode-tag">Waiting for input...</span></p>
+        <p>Raw Buffer: <code id="buffer-display">[]</code></p>
+    </div>
+
+    <script>
+        const editor = document.getElementById('editor');
+        const modeDisplay = document.getElementById('mode-display');
+        const bufferDisplay = document.getElementById('buffer-display');
+        const outputDots = document.getElementById('output-dots');
+
+        editor.addEventListener('input', (e) => {
+            const text = editor.innerText.trim();
+            
+            // 1. Logic for Detection
+            let mode = "Grade 1 (Uncontracted)";
+            let dotsToFeedback = text;
+
+            if (text.includes('%ad{')) {
+                mode = "8-Dot Computer Braille";
+                // We overwrite the braille label with the exact 8-dot symbols
+                dotsToFeedback = "%ad{"; 
+            } else if (text.includes('⠱⠁⠙⠪')) {
+                mode = "Grade 2 (Contracted)";
+                dotsToFeedback = "⠱⠁⠙⠪";
+            }
+
+            // 2. Update the UI
+            modeDisplay.textContent = mode;
+            bufferDisplay.textContent = `[${text}]`;
+
+            // 3. THE MAGIC: Update ARIA Braille Label
+            // This forces the Braille display to stay in sync with the detected grade
+            outputDots.setAttribute('aria-braillelabel', dotsToFeedback);
+            
+            // Provide an ARIA description so the user hears the mode change
+            editor.setAttribute('aria-brailleroledescription', mode);
+        });
+
+        // Focus the editor on load
+        window.onload = () => editor.focus();
+    </script>
+</body>
+</html>
