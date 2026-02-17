@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode Hex Detector</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        input:focus {
+            border-color: #007AFF;
+            outline: none;
+        }
+        #output-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            border-top: 1px solid #eee;
+        }
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #fafafa;
+            font-family: monospace;
+        }
+        .char { font-weight: bold; color: #007AFF; font-size: 1.1rem; }
+        .hex { color: #666; }
+        .btn-clear {
+            background: #ff3b30;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            float: right;
+        }
+        .btn-clear:hover { background: #d32f2f; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Unicode Detector</h2>
+    <p>Type below to see the hex values:</p>
+    
+    <input type="text" id="brailleInput" placeholder="Start typing..." autofocus>
+    
+    <button class="btn-clear" onclick="clearList()">Clear List</button>
+    <div style="clear: both;"></div>
+
+    <ul id="output-list">
+        </ul>
+</div>
+
+<script>
+    const inputField = document.getElementById('brailleInput');
+    const outputList = document.getElementById('output-list');
+
+    inputField.addEventListener('input', (e) => {
+        // We look at the last character entered
+        const val = e.target.value;
+        if (val.length > 0) {
+            const lastChar = val.slice(-1);
+            addCharacterToList(lastChar);
+        }
+    });
+
+    function addCharacterToList(char) {
+        // Convert to Hex and format as U+XXXX
+        const hexCode = "U+" + char.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0');
+        
+        const li = document.createElement('li');
+        li.className = 'list-item';
+        li.innerHTML = `
+            <span class="char">${char === ' ' ? '(space)' : char}</span>
+            <span class="hex">${hexCode}</span>
+        `;
+        
+        // Add to the top of the list so newest is visible
+        outputList.prepend(li);
+    }
+
+    function clearList() {
+        outputList.innerHTML = '';
+        inputField.value = '';
+        inputField.focus();
+    }
+</script>
+
+</body>
+</html>
