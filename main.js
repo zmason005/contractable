@@ -6,11 +6,13 @@
   All input is validated against an explicit mapping table.
 */
 
-const WORD_OF_THE_DAY = "a6ect"; // test word
 const MAX_GUESSES = 6;
 
 let asciiToDots = {};
 let dotsToAscii = {};
+
+let dailyWords = [];
+let WORD_OF_THE_DAY = "";
 
 let currentGuess = 0;
 let gameOver = false;
@@ -30,6 +32,32 @@ async function loadMapping() {
   for (const [ascii, dots] of Object.entries(data)) {
     dotsToAscii[dots] = ascii;
   }
+}
+
+/* ---------------- Daily Word Loader ---------------- */
+
+async function loadDailyWords() {
+  const response = await fetch("daily-words.json");
+  const data = await response.json();
+
+  dailyWords = Object
+    .keys(data)
+    .sort((a, b) => Number(a) - Number(b))
+    .map(key => data[key]);
+
+  selectWordOfTheDay();
+}
+
+function selectWordOfTheDay() {
+  const epoch = new Date("2026-01-01");
+  const today = new Date();
+
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const dayNumber = Math.floor((today - epoch) / msPerDay);
+
+  const index = dayNumber % dailyWords.length;
+
+  WORD_OF_THE_DAY = dailyWords[index].ascii;
 }
 
 /* ---------------- Status Helpers ---------------- */
@@ -163,7 +191,8 @@ function submitGuess() {
   }
 
   if (currentGuess >= MAX_GUESSES) {
-    setStatus(`,sorry1 ! ~w 0 ${WORD_OF_THE_DAY}`);
+    const todays = dailyWords.find(w => w.ascii === WORD_OF_THE_DAY);
+    setStatus(`,sorry1 ! ~w 0 ${todays.print}`);
     endGame();
   }
 }
@@ -182,6 +211,12 @@ input.addEventListener("keydown", (e) => {
   }
 });
 
-updateGuessLabel();
-input.focus();
-loadMapping();
+async function init() {
+  await loadMapping();
+  await loadDailyWords();
+
+  updateGuessLabel();
+  input.focus();
+}
+
+init();
