@@ -24,7 +24,16 @@ let wrongDots   = Array(5).fill("000000");
 /* ---------------- Mapping Loader ---------------- */
 
 async function loadMapping() {
+
+  console.log("Loading braille mapping...");
+
   const response = await fetch("braille-ascii-map.json");
+
+  if (!response.ok) {
+    console.error("Failed to load braille-ascii-map.json");
+    return;
+  }
+
   const data = await response.json();
 
   asciiToDots = data;
@@ -32,12 +41,23 @@ async function loadMapping() {
   for (const [ascii, dots] of Object.entries(data)) {
     dotsToAscii[dots] = ascii;
   }
+
+  console.log("Mapping loaded:", Object.keys(asciiToDots).length, "entries");
 }
 
 /* ---------------- Daily Word Loader ---------------- */
 
 async function loadDailyWords() {
+
+  console.log("Loading daily word list...");
+
   const response = await fetch("daily-words.json");
+
+  if (!response.ok) {
+    console.error("Failed to load daily-words.json");
+    return;
+  }
+
   const data = await response.json();
 
   dailyWords = Object
@@ -45,25 +65,55 @@ async function loadDailyWords() {
     .sort((a, b) => Number(a) - Number(b))
     .map(key => data[key]);
 
+  console.log("Daily words loaded:", dailyWords.length);
+
   selectWordOfTheDay();
 }
 
 function selectWordOfTheDay() {
+
+  if (dailyWords.length === 0) {
+    console.error("Word list is empty.");
+    return;
+  }
+
   const epoch = new Date("2026-01-01");
   const today = new Date();
 
   const msPerDay = 1000 * 60 * 60 * 24;
-  const dayNumber = Math.floor((today - epoch) / msPerDay);
 
-  const index = dayNumber % dailyWords.length;
+  const dayNumber =
+    Math.floor((today - epoch) / msPerDay);
+
+  const index =
+    dayNumber % dailyWords.length;
+
+  console.log("Day number:", dayNumber);
+  console.log("Word index:", index);
 
   WORD_OF_THE_DAY = dailyWords[index].ascii;
+
+  console.log("Word of the day (ascii):", WORD_OF_THE_DAY);
+
+  const dots = mapStringToDots(WORD_OF_THE_DAY);
+
+  console.log("Word dot mapping:", dots);
+
+  if (dots.length !== 5) {
+    console.error(
+      "Word does not map to 5 cells:",
+      WORD_OF_THE_DAY,
+      dots
+    );
+  }
 }
 
 /* ---------------- Status Helpers ---------------- */
 
 function setStatus(msg) {
+
   const status = document.getElementById("status");
+
   status.textContent = msg;
 
   setTimeout(() => {
@@ -74,6 +124,7 @@ function setStatus(msg) {
 /* ---------------- Guess Label ---------------- */
 
 function updateGuessLabel() {
+
   const label = document.getElementById("guess-label");
 
   if (currentGuess === MAX_GUESSES - 1) {
@@ -86,75 +137,116 @@ function updateGuessLabel() {
 /* ---------------- Utilities ---------------- */
 
 function mapStringToDots(str) {
+
   const dots = [];
 
   for (const ch of str) {
+
     if (asciiToDots.hasOwnProperty(ch)) {
       dots.push(asciiToDots[ch]);
+    } else {
+      console.warn("Unmapped character:", ch);
     }
+
   }
 
   return dots;
 }
 
 function dotsArrayToAsciiString(arr) {
-  return arr.map(d => dotsToAscii[d] || " ").join("");
+
+  return arr
+    .map(d => dotsToAscii[d] || " ")
+    .join("");
 }
 
 function validateGuess(str) {
-  return mapStringToDots(str).length === 5;
+
+  const mapped = mapStringToDots(str);
+
+  console.log("Guess mapping:", str, mapped);
+
+  return mapped.length === 5;
 }
 
 function guessLabel(index) {
+
   if (index < 6) {
     return `#${String.fromCharCode(97 + index)}`;
   }
+
   return "";
 }
 
 /* ---------------- Row Formatting ---------------- */
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
+
   const label = guessLabel(guessIndex);
+
   return `${label} ${correct} ${guess} ${wrong}`;
 }
 
 /* ---------------- Rendering ---------------- */
 
 function renderRow(rowText) {
-  const board = document.getElementById("game-board");
+
+  const board =
+    document.getElementById("game-board");
 
   const row = document.createElement("div");
+
   row.className = "row";
   row.tabIndex = -1;
   row.textContent = rowText;
 
   board.appendChild(row);
+
   row.focus();
 }
 
 /* ---------------- Game Logic ---------------- */
 
 function endGame() {
+
   gameOver = true;
-  document.getElementById("guess-input").disabled = true;
-  document.getElementById("submit-btn").disabled = true;
+
+  document
+    .getElementById("guess-input")
+    .disabled = true;
+
+  document
+    .getElementById("submit-btn")
+    .disabled = true;
 }
 
 function submitGuess() {
+
   if (gameOver) return;
 
-  const input = document.getElementById("guess-input");
+  const input =
+    document.getElementById("guess-input");
+
   const rawGuess = input.value;
 
   if (!validateGuess(rawGuess)) {
+    console.warn("Invalid guess:", rawGuess);
     return;
   }
 
   const guessDots  = mapStringToDots(rawGuess);
   const targetDots = mapStringToDots(WORD_OF_THE_DAY);
 
+  if (targetDots.length !== 5) {
+    console.error(
+      "Target word invalid:",
+      WORD_OF_THE_DAY
+    );
+    return;
+  }
+
   for (let i = 0; i < 5; i++) {
+
     const g = parseInt(guessDots[i], 2);
     const t = parseInt(targetDots[i], 2);
 
@@ -180,245 +272,81 @@ function submitGuess() {
   }));
 
   currentGuess++;
+
   input.value = "";
 
   updateGuessLabel();
 
   if (rawGuess === WORD_OF_THE_DAY) {
+
     setStatus(",,y ,,w96");
+
     endGame();
+
     return;
   }
 
   if (currentGuess >= MAX_GUESSES) {
-    const todays = dailyWords.find(w => w.ascii === WORD_OF_THE_DAY);
-    setStatus(`,sorry1 ! ~w 0 ${todays.print}`);
+
+    const todays =
+      dailyWords.find(
+        w => w.ascii === WORD_OF_THE_DAY
+      );
+
+    setStatus(
+      `,sorry1 ! ~w 0 ${todays.print}`
+    );
+
     endGame();
   }
 }
 
 /* ---------------- Init ---------------- */
 
-const input  = document.getElementById("guess-input");
-const button = document.getElementById("submit-btn");
+const input  =
+  document.getElementById("guess-input");
 
-button.addEventListener("click", submitGuess);
+const button =
+  document.getElementById("submit-btn");
 
-input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    submitGuess();
+button.addEventListener(
+  "click",
+  submitGuess
+);
+
+input.addEventListener(
+  "keydown",
+  (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      submitGuess();
+    }
   }
-});
+);
 
 async function init() {
+
+  console.log("Game initialization starting...");
+
   await loadMapping();
+
   await loadDailyWords();
 
+  console.log(
+    "Daily words loaded:",
+    dailyWords.length
+  );
+
+  console.log(
+    "Word of the day:",
+    WORD_OF_THE_DAY
+  );
+
   updateGuessLabel();
+
   input.focus();
+
+  console.log("Initialization complete.");
 }
 
 init();
-
-/* =====================================================
-   TEMPORARY DIAGNOSTIC MODE
-   Braille Wordle JSON Loader Debugger
-   Remove after troubleshooting
-   ===================================================== */
-
-const DEBUG = true;
-
-function debugLog(...msg) {
-  if (DEBUG) console.log("[BRAILLE WORDLE DEBUG]", ...msg);
-}
-
-function debugError(...msg) {
-  console.error("[BRAILLE WORDLE ERROR]", ...msg);
-}
-
-function debugWarn(...msg) {
-  console.warn("[BRAILLE WORDLE WARNING]", ...msg);
-}
-
-
-/* -----------------------------------------------------
-   1. LOAD DAILY WORD FILE
------------------------------------------------------ */
-
-async function loadDailyWords() {
-
-  debugLog("Starting JSON load...");
-
-  let response;
-
-  try {
-    response = await fetch("daily-words.json");
-  } catch (err) {
-    debugError("Fetch failed:", err);
-    return null;
-  }
-
-  debugLog("Fetch response status:", response.status);
-
-  if (!response.ok) {
-    debugError("JSON file failed to load.");
-    debugError("Check file path and server permissions.");
-    return null;
-  }
-
-  let words;
-
-  try {
-    words = await response.json();
-  } catch (err) {
-    debugError("JSON parsing failed.");
-    debugError(err);
-    return null;
-  }
-
-  debugLog("JSON loaded successfully.");
-  debugLog("Total words:", words.length);
-
-  if (!Array.isArray(words)) {
-    debugError("JSON structure invalid: expected an array.");
-    return null;
-  }
-
-  if (words.length === 0) {
-    debugError("Word list is empty.");
-    return null;
-  }
-
-  debugLog("First 5 entries:");
-
-  words.slice(0,5).forEach((w,i)=>{
-    debugLog(i, w);
-  });
-
-  return words;
-}
-
-
-/* -----------------------------------------------------
-   2. DAY INDEX CALCULATION CHECK
------------------------------------------------------ */
-
-function calculateDayIndex(wordCount) {
-
-  const epoch = new Date("2024-01-01"); // adjust if needed
-  const today = new Date();
-
-  const msPerDay = 86400000;
-
-  const daysSinceEpoch =
-    Math.floor((today - epoch) / msPerDay);
-
-  debugLog("Days since epoch:", daysSinceEpoch);
-
-  const dayIndex = daysSinceEpoch % wordCount;
-
-  debugLog("Calculated day index:", dayIndex);
-
-  return dayIndex;
-}
-
-
-/* -----------------------------------------------------
-   3. VALIDATE WORD ENTRY
------------------------------------------------------ */
-
-function validateWordEntry(entry, index) {
-
-  if (!entry.print)
-    debugWarn("Missing PRINT word at index", index);
-
-  if (!entry.ascii)
-    debugWarn("Missing ASCII word at index", index);
-
-  if (entry.ascii && entry.ascii.length !== 5) {
-    debugWarn(
-      "ASCII word length not 5",
-      index,
-      entry.ascii,
-      entry.ascii.length
-    );
-  }
-
-  if (entry.ascii) {
-
-    const badChars =
-      entry.ascii.match(/[^a-z]/g);
-
-    if (badChars) {
-      debugWarn(
-        "Non-lowercase ASCII detected",
-        index,
-        entry.ascii,
-        badChars
-      );
-    }
-  }
-}
-
-
-/* -----------------------------------------------------
-   4. SELECT DAILY ANSWER
------------------------------------------------------ */
-
-async function loadAnswer() {
-
-  const words = await loadDailyWords();
-
-  if (!words) {
-    debugError("Cannot continue without word list.");
-    return null;
-  }
-
-  words.forEach(validateWordEntry);
-
-  const dayIndex = calculateDayIndex(words.length);
-
-  const entry = words[dayIndex];
-
-  debugLog("Selected entry:", entry);
-
-  if (!entry) {
-    debugError("Entry undefined at index", dayIndex);
-    return null;
-  }
-
-  const answer = entry.ascii;
-
-  debugLog("Selected ASCII answer:", answer);
-
-  if (!answer) {
-    debugError("ASCII answer missing.");
-  }
-
-  if (answer && answer.length !== 5) {
-    debugWarn("Answer length not 5:", answer);
-  }
-
-  return answer;
-}
-
-
-/* -----------------------------------------------------
-   5. RUN DIAGNOSTIC TEST
------------------------------------------------------ */
-
-(async function runDiagnostics(){
-
-  debugLog("Running startup diagnostics...");
-
-  const answer = await loadAnswer();
-
-  if (!answer) {
-    debugError("Answer generation failed.");
-    return;
-  }
-
-  debugLog("Final resolved answer:", answer);
-
-})();
