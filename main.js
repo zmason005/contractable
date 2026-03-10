@@ -1,5 +1,13 @@
 "use strict";
 
+/* =====================================================
+   BRAILLE WORDLE DEBUG BUILD
+   If you see this alert, the new file loaded correctly
+===================================================== */
+
+alert("Braille Wordle debug build loaded");
+console.log("Braille Wordle debug build running");
+
 /*
   Security Note:
   This file does not evaluate user input as code.
@@ -17,7 +25,6 @@ let WORD_OF_THE_DAY = "";
 let currentGuess = 0;
 let gameOver = false;
 
-// per-position persistent fields
 let correctDots = Array(5).fill("000000");
 let wrongDots   = Array(5).fill("000000");
 
@@ -25,7 +32,7 @@ let wrongDots   = Array(5).fill("000000");
 
 async function loadMapping() {
 
-  console.log("Loading braille mapping...");
+  console.log("Loading braille-ascii-map.json");
 
   const response = await fetch("braille-ascii-map.json");
 
@@ -42,14 +49,14 @@ async function loadMapping() {
     dotsToAscii[dots] = ascii;
   }
 
-  console.log("Mapping loaded:", Object.keys(asciiToDots).length, "entries");
+  console.log("Mapping loaded:", Object.keys(asciiToDots).length);
 }
 
 /* ---------------- Daily Word Loader ---------------- */
 
 async function loadDailyWords() {
 
-  console.log("Loading daily word list...");
+  console.log("Loading daily-words.json");
 
   const response = await fetch("daily-words.json");
 
@@ -65,7 +72,7 @@ async function loadDailyWords() {
     .sort((a, b) => Number(a) - Number(b))
     .map(key => data[key]);
 
-  console.log("Daily words loaded:", dailyWords.length);
+  console.log("Words loaded:", dailyWords.length);
 
   selectWordOfTheDay();
 }
@@ -73,14 +80,14 @@ async function loadDailyWords() {
 function selectWordOfTheDay() {
 
   if (dailyWords.length === 0) {
-    console.error("Word list is empty.");
+    console.error("Word list empty");
     return;
   }
 
   const epoch = new Date("2026-01-01");
   const today = new Date();
 
-  const msPerDay = 1000 * 60 * 60 * 24;
+  const msPerDay = 86400000;
 
   const dayNumber =
     Math.floor((today - epoch) / msPerDay);
@@ -93,17 +100,17 @@ function selectWordOfTheDay() {
 
   WORD_OF_THE_DAY = dailyWords[index].ascii;
 
-  console.log("Word of the day (ascii):", WORD_OF_THE_DAY);
+  console.log("Word of the day:", WORD_OF_THE_DAY);
 
-  const dots = mapStringToDots(WORD_OF_THE_DAY);
+  const mapped = mapStringToDots(WORD_OF_THE_DAY);
 
-  console.log("Word dot mapping:", dots);
+  console.log("Mapped cells:", mapped);
 
-  if (dots.length !== 5) {
+  if (mapped.length !== 5) {
     console.error(
       "Word does not map to 5 cells:",
       WORD_OF_THE_DAY,
-      dots
+      mapped
     );
   }
 }
@@ -128,7 +135,7 @@ function updateGuessLabel() {
   const label = document.getElementById("guess-label");
 
   if (currentGuess === MAX_GUESSES - 1) {
-    label.textContent = "f9al guess ";
+    label.textContent = "final guess";
   } else {
     label.textContent = "guess";
   }
@@ -191,8 +198,7 @@ function formatRow({ guessIndex, correct, guess, wrong }) {
 
 function renderRow(rowText) {
 
-  const board =
-    document.getElementById("game-board");
+  const board = document.getElementById("game-board");
 
   const row = document.createElement("div");
 
@@ -211,21 +217,15 @@ function endGame() {
 
   gameOver = true;
 
-  document
-    .getElementById("guess-input")
-    .disabled = true;
-
-  document
-    .getElementById("submit-btn")
-    .disabled = true;
+  document.getElementById("guess-input").disabled = true;
+  document.getElementById("submit-btn").disabled = true;
 }
 
 function submitGuess() {
 
   if (gameOver) return;
 
-  const input =
-    document.getElementById("guess-input");
+  const input = document.getElementById("guess-input");
 
   const rawGuess = input.value;
 
@@ -238,10 +238,7 @@ function submitGuess() {
   const targetDots = mapStringToDots(WORD_OF_THE_DAY);
 
   if (targetDots.length !== 5) {
-    console.error(
-      "Target word invalid:",
-      WORD_OF_THE_DAY
-    );
+    console.error("Target word invalid:", WORD_OF_THE_DAY);
     return;
   }
 
@@ -279,7 +276,7 @@ function submitGuess() {
 
   if (rawGuess === WORD_OF_THE_DAY) {
 
-    setStatus(",,y ,,w96");
+    setStatus("You win!");
 
     endGame();
 
@@ -293,9 +290,7 @@ function submitGuess() {
         w => w.ascii === WORD_OF_THE_DAY
       );
 
-    setStatus(
-      `,sorry1 ! ~w 0 ${todays.print}`
-    );
+    setStatus(`Sorry, the word was ${todays.print}`);
 
     endGame();
   }
@@ -303,50 +298,33 @@ function submitGuess() {
 
 /* ---------------- Init ---------------- */
 
-const input  =
-  document.getElementById("guess-input");
+const input  = document.getElementById("guess-input");
+const button = document.getElementById("submit-btn");
 
-const button =
-  document.getElementById("submit-btn");
+button.addEventListener("click", submitGuess);
 
-button.addEventListener(
-  "click",
-  submitGuess
-);
-
-input.addEventListener(
-  "keydown",
-  (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      submitGuess();
-    }
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    submitGuess();
   }
-);
+});
 
 async function init() {
 
-  console.log("Game initialization starting...");
+  console.log("Initializing game");
 
   await loadMapping();
-
   await loadDailyWords();
 
-  console.log(
-    "Daily words loaded:",
-    dailyWords.length
-  );
-
-  console.log(
-    "Word of the day:",
-    WORD_OF_THE_DAY
-  );
+  console.log("Daily words loaded:", dailyWords.length);
+  console.log("Word of the day:", WORD_OF_THE_DAY);
 
   updateGuessLabel();
 
   input.focus();
 
-  console.log("Initialization complete.");
+  console.log("Initialization complete");
 }
 
 init();
