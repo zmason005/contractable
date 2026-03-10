@@ -220,3 +220,205 @@ async function init() {
 }
 
 init();
+
+/* =====================================================
+   TEMPORARY DIAGNOSTIC MODE
+   Braille Wordle JSON Loader Debugger
+   Remove after troubleshooting
+   ===================================================== */
+
+const DEBUG = true;
+
+function debugLog(...msg) {
+  if (DEBUG) console.log("[BRAILLE WORDLE DEBUG]", ...msg);
+}
+
+function debugError(...msg) {
+  console.error("[BRAILLE WORDLE ERROR]", ...msg);
+}
+
+function debugWarn(...msg) {
+  console.warn("[BRAILLE WORDLE WARNING]", ...msg);
+}
+
+
+/* -----------------------------------------------------
+   1. LOAD DAILY WORD FILE
+----------------------------------------------------- */
+
+async function loadDailyWords() {
+
+  debugLog("Starting JSON load...");
+
+  let response;
+
+  try {
+    response = await fetch("daily-words.json");
+  } catch (err) {
+    debugError("Fetch failed:", err);
+    return null;
+  }
+
+  debugLog("Fetch response status:", response.status);
+
+  if (!response.ok) {
+    debugError("JSON file failed to load.");
+    debugError("Check file path and server permissions.");
+    return null;
+  }
+
+  let words;
+
+  try {
+    words = await response.json();
+  } catch (err) {
+    debugError("JSON parsing failed.");
+    debugError(err);
+    return null;
+  }
+
+  debugLog("JSON loaded successfully.");
+  debugLog("Total words:", words.length);
+
+  if (!Array.isArray(words)) {
+    debugError("JSON structure invalid: expected an array.");
+    return null;
+  }
+
+  if (words.length === 0) {
+    debugError("Word list is empty.");
+    return null;
+  }
+
+  debugLog("First 5 entries:");
+
+  words.slice(0,5).forEach((w,i)=>{
+    debugLog(i, w);
+  });
+
+  return words;
+}
+
+
+/* -----------------------------------------------------
+   2. DAY INDEX CALCULATION CHECK
+----------------------------------------------------- */
+
+function calculateDayIndex(wordCount) {
+
+  const epoch = new Date("2024-01-01"); // adjust if needed
+  const today = new Date();
+
+  const msPerDay = 86400000;
+
+  const daysSinceEpoch =
+    Math.floor((today - epoch) / msPerDay);
+
+  debugLog("Days since epoch:", daysSinceEpoch);
+
+  const dayIndex = daysSinceEpoch % wordCount;
+
+  debugLog("Calculated day index:", dayIndex);
+
+  return dayIndex;
+}
+
+
+/* -----------------------------------------------------
+   3. VALIDATE WORD ENTRY
+----------------------------------------------------- */
+
+function validateWordEntry(entry, index) {
+
+  if (!entry.print)
+    debugWarn("Missing PRINT word at index", index);
+
+  if (!entry.ascii)
+    debugWarn("Missing ASCII word at index", index);
+
+  if (entry.ascii && entry.ascii.length !== 5) {
+    debugWarn(
+      "ASCII word length not 5",
+      index,
+      entry.ascii,
+      entry.ascii.length
+    );
+  }
+
+  if (entry.ascii) {
+
+    const badChars =
+      entry.ascii.match(/[^a-z]/g);
+
+    if (badChars) {
+      debugWarn(
+        "Non-lowercase ASCII detected",
+        index,
+        entry.ascii,
+        badChars
+      );
+    }
+  }
+}
+
+
+/* -----------------------------------------------------
+   4. SELECT DAILY ANSWER
+----------------------------------------------------- */
+
+async function loadAnswer() {
+
+  const words = await loadDailyWords();
+
+  if (!words) {
+    debugError("Cannot continue without word list.");
+    return null;
+  }
+
+  words.forEach(validateWordEntry);
+
+  const dayIndex = calculateDayIndex(words.length);
+
+  const entry = words[dayIndex];
+
+  debugLog("Selected entry:", entry);
+
+  if (!entry) {
+    debugError("Entry undefined at index", dayIndex);
+    return null;
+  }
+
+  const answer = entry.ascii;
+
+  debugLog("Selected ASCII answer:", answer);
+
+  if (!answer) {
+    debugError("ASCII answer missing.");
+  }
+
+  if (answer && answer.length !== 5) {
+    debugWarn("Answer length not 5:", answer);
+  }
+
+  return answer;
+}
+
+
+/* -----------------------------------------------------
+   5. RUN DIAGNOSTIC TEST
+----------------------------------------------------- */
+
+(async function runDiagnostics(){
+
+  debugLog("Running startup diagnostics...");
+
+  const answer = await loadAnswer();
+
+  if (!answer) {
+    debugError("Answer generation failed.");
+    return;
+  }
+
+  debugLog("Final resolved answer:", answer);
+
+})();
