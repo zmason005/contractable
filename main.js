@@ -35,7 +35,7 @@ let wrongDots   = Array(5).fill("000000");
  * Returns a closure that yields the next float in [0, 1) on each call.
  */
 function mulberry32(seed) {
-  seed = seed >>> 0;           // coerce to unsigned 32-bit
+  seed = seed >>> 0;
   return function () {
     seed = (seed + 0x6D2B79F5) >>> 0;
     let z = seed;
@@ -62,16 +62,10 @@ function deterministicShuffle(arr, seed) {
 /**
  * Enforce the rule that no two consecutive words share the same first character.
  * `prevLastChar` is the last character of the previous cycle (or null for cycle 0).
- *
- * Strategy: single forward pass; whenever a collision is found, scan forward for
- * the nearest word with a different first character and swap it in.
- * If no valid swap exists (very unlikely given 1772 diverse words), the word is
- * left in place rather than crashing.
  */
 function applyFirstCharConstraint(arr, prevLastChar = null) {
   const a = arr.slice();
 
-  // Handle cycle boundary: a[0] must differ from prevLastChar
   if (prevLastChar !== null && a[0][0] === prevLastChar) {
     for (let j = 1; j < a.length; j++) {
       if (a[j][0] !== prevLastChar) {
@@ -81,7 +75,6 @@ function applyFirstCharConstraint(arr, prevLastChar = null) {
     }
   }
 
-  // Forward pass for the rest of the array
   for (let i = 1; i < a.length; i++) {
     if (a[i][0] === a[i - 1][0]) {
       for (let j = i + 1; j < a.length; j++) {
@@ -98,9 +91,6 @@ function applyFirstCharConstraint(arr, prevLastChar = null) {
 
 /**
  * Build one full cycle's word list (1772 words, shuffled + constrained).
- * `cycleIndex` 0 = the first 1772-day block starting on START_DATE_MS.
- * The seed is derived from START_DATE_MS + cycleIndex so each cycle is
- * different but reproducible.
  */
 function buildCycle(cycleIndex, prevLastChar = null) {
   const seed = (START_DATE_MS + cycleIndex) >>> 0;
@@ -118,8 +108,6 @@ function getWordForDayIndex(dayIndex) {
 
   let prevLastChar = null;
   if (cycleIndex > 0) {
-    // We need the last word of the previous cycle to enforce the boundary rule.
-    // Build the previous cycle (it's fast — just math, no I/O).
     const prevCycle = buildCycle(cycleIndex - 1, null);
     prevLastChar = prevCycle[prevCycle.length - 1][0];
   }
@@ -136,13 +124,12 @@ function todayDayIndex() {
   return Math.floor((nowUTC - START_DATE_MS) / 86400000);
 }
 
-/* ── Loader ───────────────────────────────────────────────────────────────── */
+/* ── Loaders ──────────────────────────────────────────────────────────────── */
 
 async function loadDailyWords() {
   const response = await fetch("Daily-words.json");
   const data     = await response.json();
 
-  // Extract ascii values in entry order (keys "1" through "1772")
   const total = Object.keys(data).length;
   allWords = [];
   for (let i = 1; i <= total; i++) {
@@ -211,8 +198,8 @@ function formatRow({ guessIndex, correct, guess, wrong }) {
 function renderRow(rowText) {
   const board = document.getElementById("game-board");
   const row   = document.createElement("div");
-  row.className  = "row";
-  row.tabIndex   = -1;
+  row.className   = "row";
+  row.tabIndex    = -1;
   row.textContent = rowText;
   board.appendChild(row);
   row.focus();
@@ -222,8 +209,8 @@ function renderRow(rowText) {
 
 function endGame() {
   gameOver = true;
-  document.getElementById("guess-input").disabled  = true;
-  document.getElementById("submit-btn").disabled   = true;
+  document.getElementById("guess-input").disabled = true;
+  document.getElementById("submit-btn").disabled  = true;
 }
 
 function submitGuess() {
