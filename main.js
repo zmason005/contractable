@@ -1,4 +1,4 @@
-"use strict";
+ÿ"use strict";
 
 /*
 Security Note:
