@@ -127,7 +127,7 @@ function todayDayIndex() {
 /* ── Loaders ──────────────────────────────────────────────────────────────── */
 
 async function loadDailyWords() {
-  const response = await fetch("Daily-words.json");
+  const response = await fetch("daily-words.json");
   const data     = await response.json();
 
   const total = Object.keys(data).length;
@@ -138,7 +138,7 @@ async function loadDailyWords() {
 }
 
 async function loadMapping() {
-  const response = await fetch("Braille-ascii-map.json");
+  const response = await fetch("braille-ascii-map.json");
   const data     = await response.json();
 
   asciiToDots = data;
