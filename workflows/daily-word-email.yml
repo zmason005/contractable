@@ -1,0 +1,49 @@
+name: Daily Word Email
+
+on:
+  schedule:
+    # 05:00 UTC = 00:00 Eastern Standard Time (UTC-5)
+    # During EDT (UTC-4, mid-Mar to early Nov) this fires at 01:00 ET.
+    # Adjust to 04:00 UTC if you want midnight EDT instead.
+    - cron: "0 5 * * *"
+  workflow_dispatch: # also allows manual trigger from the Actions tab
+
+jobs:
+  send-daily-word:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Compute today's word
+        id: word
+        run: |
+          OUTPUT=$(node email-daily-word/get-daily-word.js)
+          echo "json=$OUTPUT" >> "$GITHUB_OUTPUT"
+          PRINT=$(echo "$OUTPUT" | node -e "process.stdin.resume();let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>console.log(JSON.parse(d).print))")
+          ASCII=$(echo "$OUTPUT" | node -e "process.stdin.resume();let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>console.log(JSON.parse(d).ascii))")
+          echo "print=$PRINT" >> "$GITHUB_OUTPUT"
+          echo "ascii=$ASCII" >> "$GITHUB_OUTPUT"
+
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          to: ${{ secrets.MAIL_TO }}
+          from: Contractable <${{ secrets.MAIL_USERNAME }}>
+          subject: ",,3tractable — today's word"
+          body: |
+            today's word: ${{ steps.word.outputs.print }}
+            ascii form:   ${{ steps.word.outputs.ascii }}
+
+            good luck!
