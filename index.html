@@ -4,60 +4,35 @@
   <meta charset="UTF-8" />
   <title>Contractable</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <style>
-    body {
-      font-family: monospace;
-    }
-
-    #status {
-      margin-top: 0.5em;
-      white-space: pre;
-    }
-
-    #game-board {
-      margin-top: 1em;
-      white-space: pre;
-    }
-
-    .row {
-      outline: none;
-    }
-
-    #controls {
-      margin-top: 1em;
-    }
-
-    #guess-label {
-      display: block;
-      margin-bottom: 0.25em;
-    }
-
-    #guess-input {
-      width: 6ch;
+    body { font-family: monospace; padding: 10px; }
+    #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
+    #game-board { margin-top: 1em; white-space: pre; }
+    .row { outline: none; margin-bottom: 2px; }
+    #controls { margin-top: 1em; }
+    #guess-label { display: block; margin-bottom: 0.25em; }
+    #guess-input { width: 10ch; font-size: 16px; } /* 16px prevents iOS zoom on focus */
+    #debug-log { 
+      margin-top: 2em; 
+      font-size: 0.8em; 
+      color: red; 
+      border-top: 1px solid #ccc; 
+      padding-top: 10px;
     }
   </style>
 </head>
-
 <body>
+
   <h1>,,3tractable</h1>
 
-  <!-- Win / Lose status -->
-  <div
-    id="status"
-    role="status"
-    tabindex="-1"
-  ></div>
+  <div id="status" role="status" tabindex="-1"></div>
 
   <div id="game-board" aria-live="polite">
     <div id="header">correct guess wr;g</div>
   </div>
 
   <div id="controls">
-    <label id="guess-label" for="guess-input">
-      guess
-    </label>
-
+    <label id="guess-label" for="guess-input">guess</label>
     <input
       id="guess-input"
       type="text"
@@ -67,6 +42,8 @@
     />
     <button id="submit-btn">submit</button>
   </div>
+
+  <div id="debug-log"></div>
 
   <script src="main.js"></script>
 </body>
