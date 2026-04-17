@@ -133,7 +133,7 @@ return cycle[position];
 /* ── Loaders ──────────────────────────────────────────────────────────────── */
 
 async function loadDailyWords() {
-const response = await fetch(“Daily-words.json”);
+const response = await fetch(“daily-words.json”);
 const data     = await response.json();
 
 const total = Object.keys(data).length;
@@ -144,7 +144,7 @@ allWords.push(data[String(i)].ascii);
 }
 
 async function loadMapping() {
-const response = await fetch(“Braille-ascii-map.json”);
+const response = await fetch(“braille-ascii-map.json”);
 const data     = await response.json();
 
 asciiToDots = data;
@@ -274,13 +274,7 @@ endGame();
 /* ── Init ─────────────────────────────────────────────────────────────────── */
 
 async function init() {
-try {
 await Promise.all([loadMapping(), loadDailyWords()]);
-} catch (err) {
-setStatus(“failed to load game data.”);
-console.error(err);
-return;
-}
 
 WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
 
