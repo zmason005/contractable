@@ -7,8 +7,8 @@
   <style>
     /* Global Page Canvas Layout */
     body { 
-      font-family: monospace; 
-      padding: 10px; 
+      font-family: sans-serif; /* System default fallback to cleanly render Unicode Braille blocks */
+      padding: 15px; 
       background-color: #000000; /* Pure black background */
       color: #ffffff;            /* Stark white global text */
     }
@@ -16,17 +16,19 @@
     /* 
       Centralized Structural Column: 
       Calculates layout width based on exactly 20 braille characters + 2 padding units.
-      Centers the entire app horizontally on any desktop, tablet, or phone view.
+      Enlarges typography globally so dot matrices are instantly readable.
     */
     .app-container {
       max-width: 22ch;
       margin: 0 auto;
       box-sizing: border-box;
+      font-size: 28px; /* Globally enlarged for visual clarity of Braille cells */
     }
     
     h1 {
       margin-top: 0.5em;
       margin-bottom: 0.5em;
+      font-size: 1.2em; /* Explicitly scales heading relative to the new base size */
     }
     
     #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
@@ -35,46 +37,59 @@
     
     .row { outline: none; margin-bottom: 2px; }
     
-    #controls { margin-top: 1.5em; }
+    #controls { 
+      margin-top: 1.5em; 
+    }
     
-    #guess-label { display: block; margin-bottom: 0.5em; }
+    /* 
+      Inherits system Braille-capable font stacks rather than forcing standard typewriter monospace,
+      allowing "⠛⠥⠑⠎⠎" to render correctly without crashing or throwing fallbacks.
+    */
+    #guess-label { 
+      display: block; 
+      margin-bottom: 0.5em; 
+      font-size: 0.9em;
+    }
     
-    /* Integrated Dark Theme Text Input */
+    /* Isolated Text Input for standard keyboard entry legibility */
     #guess-input { 
+      font-family: monospace; /* Kept standard typewriter font so typed text remains readable */
       width: 10ch; 
-      font-size: 16px; /* Prevents iOS mobile zoom on focus */
+      font-size: 16px; /* High-contrast balance + prevents iOS mobile zoom on focus */
       background-color: #000000; 
       color: #ffffff; 
-      border: 1px solid #ffffff; /* Sharp white border */
-      padding: 4px;
+      border: 1px solid #ffffff; 
+      padding: 6px;
       vertical-align: middle;
     }
     
-    /* New Style: High-Contrast Amber Outlined Action Button */
+    /* High-Contrast Amber Outlined Action Button with explicit Unicode text targeting */
     #submit-btn {
-      background-color: #000000; /* Pure black interior fill */
-      color: #ffffff;            /* Crisp white text inside */
+      font-family: sans-serif; /* Allows button text to render Unicode Braille cleanly */
+      background-color: #000000; 
+      color: #ffffff;            
       border: 2px solid #FFC107; /* High-visibility Amber outline border */
-      padding: 4px 12px;
+      padding: 4px 14px;
       font-weight: bold;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 18px; /* Slightly scaled up to keep Braille characters legible inside button bounds */
       vertical-align: middle;
-      margin-left: 4px;
+      margin-left: 6px;
       box-sizing: border-box;
     }
 
     #submit-btn:hover {
-      background-color: rgba(255, 193, 7, 0.15); /* Subtle amber background tint on hover */
+      background-color: rgba(255, 193, 7, 0.15); /* Translucent amber feedback overlay */
     }
 
     /* Left completely untouched per instruction */
     #debug-log { 
       margin-top: 2em; 
-      font-size: 0.8em; 
+      font-size: 0.6em; 
       color: red; 
       border-top: 1px solid #ccc; 
       padding-top: 10px;
+      font-family: monospace;
     }
   </style>
 </head>
