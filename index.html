@@ -9,8 +9,24 @@
     body { 
       font-family: monospace; 
       padding: 10px; 
-      background-color: #000000; /* Pure black background for high contrast */
-      color: #ffffff;            /* Global text color set to stark white */
+      background-color: #000000; /* Pure black background */
+      color: #ffffff;            /* Stark white global text */
+    }
+
+    /* 
+      Centralized Structural Column: 
+      Calculates layout width based on exactly 20 braille characters + 2 padding units.
+      Centers the entire app horizontally on any desktop, tablet, or phone view.
+    */
+    .app-container {
+      max-width: 22ch;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    
+    h1 {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
     }
     
     #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
@@ -19,9 +35,9 @@
     
     .row { outline: none; margin-bottom: 2px; }
     
-    #controls { margin-top: 1em; }
+    #controls { margin-top: 1.5em; }
     
-    #guess-label { display: block; margin-bottom: 0.25em; }
+    #guess-label { display: block; margin-bottom: 0.5em; }
     
     /* Integrated Dark Theme Text Input */
     #guess-input { 
@@ -29,23 +45,27 @@
       font-size: 16px; /* Prevents iOS mobile zoom on focus */
       background-color: #000000; 
       color: #ffffff; 
-      border: 1px solid #ffffff; /* Sharp white border definition */
+      border: 1px solid #ffffff; /* Sharp white border */
       padding: 4px;
+      vertical-align: middle;
     }
     
-    /* Option 1: High-Visibility Accessible Action Button */
+    /* New Style: High-Contrast Amber Outlined Action Button */
     #submit-btn {
-      background-color: #FFC107; /* High-contrast Amber / Safety Yellow */
-      color: #000000;            /* Hard black text ensuring optimal contrast ratio */
-      border: none;
-      padding: 5px 12px;
+      background-color: #000000; /* Pure black interior fill */
+      color: #ffffff;            /* Crisp white text inside */
+      border: 2px solid #FFC107; /* High-visibility Amber outline border */
+      padding: 4px 12px;
       font-weight: bold;
       cursor: pointer;
       font-size: 14px;
+      vertical-align: middle;
+      margin-left: 4px;
+      box-sizing: border-box;
     }
 
     #submit-btn:hover {
-      background-color: #FFA000; /* Slightly deeper gold for visual interaction feedback */
+      background-color: rgba(255, 193, 7, 0.15); /* Subtle amber background tint on hover */
     }
 
     /* Left completely untouched per instruction */
@@ -60,27 +80,32 @@
 </head>
 <body>
 
-  <h1>,,3tractable</h1>
+  <!-- Layout wrapper constraint columns to 22 characters max width -->
+  <div class="app-container">
 
-  <div id="status" role="status" tabindex="-1"></div>
+    <h1>⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</h1>
 
-  <div id="game-board" aria-live="polite">
-    <div id="header">correct guess wr;g</div>
+    <div id="status" role="status" tabindex="-1"></div>
+
+    <div id="game-board" aria-live="polite">
+      <div id="header">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</div>
+    </div>
+
+    <div id="controls">
+      <label id="guess-label" for="guess-input">⠛⠥⠑⠎⠎</label>
+      <input
+        id="guess-input"
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+      <button id="submit-btn">⠎⠥⠃⠍⠊⠞</button>
+    </div>
+
+    <div id="debug-log"></div>
+
   </div>
-
-  <div id="controls">
-    <label id="guess-label" for="guess-input">guess</label>
-    <input
-      id="guess-input"
-      type="text"
-      autocomplete="off"
-      autocapitalize="off"
-      spellcheck="false"
-    />
-    <button id="submit-btn">submit</button>
-  </div>
-
-  <div id="debug-log"></div>
 
   <script src="main.js"></script>
 </body>
