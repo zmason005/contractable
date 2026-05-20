@@ -5,13 +5,50 @@
   <title>Contractable</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: monospace; padding: 10px; }
+    /* Global Page Canvas Layout */
+    body { 
+      font-family: monospace; 
+      padding: 10px; 
+      background-color: #000000; /* Pure black background for high contrast */
+      color: #ffffff;            /* Global text color set to stark white */
+    }
+    
     #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
+    
     #game-board { margin-top: 1em; white-space: pre; }
+    
     .row { outline: none; margin-bottom: 2px; }
+    
     #controls { margin-top: 1em; }
+    
     #guess-label { display: block; margin-bottom: 0.25em; }
-    #guess-input { width: 10ch; font-size: 16px; } /* 16px prevents iOS zoom on focus */
+    
+    /* Integrated Dark Theme Text Input */
+    #guess-input { 
+      width: 10ch; 
+      font-size: 16px; /* Prevents iOS mobile zoom on focus */
+      background-color: #000000; 
+      color: #ffffff; 
+      border: 1px solid #ffffff; /* Sharp white border definition */
+      padding: 4px;
+    }
+    
+    /* Option 1: High-Visibility Accessible Action Button */
+    #submit-btn {
+      background-color: #FFC107; /* High-contrast Amber / Safety Yellow */
+      color: #000000;            /* Hard black text ensuring optimal contrast ratio */
+      border: none;
+      padding: 5px 12px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #submit-btn:hover {
+      background-color: #FFA000; /* Slightly deeper gold for visual interaction feedback */
+    }
+
+    /* Left completely untouched per instruction */
     #debug-log { 
       margin-top: 2em; 
       font-size: 0.8em; 
