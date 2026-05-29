@@ -1,1 +1,139 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contractable</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Global Page Canvas Layout */
+    body { 
+      font-family: sans-serif; /* System fallback to cleanly render Unicode Braille blocks */
+      padding: 15px; 
+      background-color: #000000; /* Pure black background */
+      color: #ffffff;            /* Stark white global text */
+    }
+
+    /* 
+      Centralized Structural Column: 
+      Calculates layout width based on exactly 20 braille characters + 2 padding units.
+      Enlarges typography globally so dot matrices are instantly readable.
+    */
+    .app-container {
+      max-width: 22ch;
+      margin: 0 auto;
+      box-sizing: border-box;
+      font-size: 28px; /* Globally enlarged for visual clarity of Braille cells */
+    }
+    
+    h1 {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      font-size: 1.2em; /* Explicitly scales heading relative to the new base size */
+    }
+    
+    #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
+    
+    #game-board { margin-top: 1em; white-space: pre; }
+    
+    .row { outline: none; margin-bottom: 2px; }
+    
+    #controls { 
+      margin-top: 1.5em; 
+    }
+    
+    /* Inherits system Braille font stacks for clean rendering */
+    #guess-label { 
+      display: block; 
+      margin-bottom: 0.5em; 
+      font-size: 0.9em;
+    }
+    
+    /* Isolated Text Input for standard keyboard entry legibility */
+    #guess-input { 
+      font-family: monospace; /* Kept standard typewriter font so typed text remains readable */
+      width: 10ch; 
+      font-size: 16px; /* High-contrast balance + prevents iOS mobile zoom on focus */
+      background-color: #000000; 
+      color: #ffffff; 
+      border: 1px solid #ffffff; 
+      padding: 6px;
+      vertical-align: middle;
+    }
+    
+    /* High-Contrast Amber Outlined Action Button with explicit Unicode text targeting */
+    #submit-btn {
+      font-family: sans-serif; /* Allows button text to render Unicode Braille cleanly */
+      background-color: #000000; 
+      color: #ffffff;            
+      border: 2px solid #FFC107; /* High-visibility Amber outline border */
+      padding: 4px 14px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 18px; /* Scaled up to keep Braille characters legible inside button bounds */
+      vertical-align: middle;
+      margin-left: 6px;
+      box-sizing: border-box;
+    }
+
+    #submit-btn:hover {
+      background-color: rgba(255, 193, 7, 0.15); /* Translucent amber feedback overlay */
+    }
+
+    /* Left completely untouched per instruction */
+    #debug-log { 
+      margin-top: 2em; 
+      font-size: 0.6em; 
+      color: red; 
+      border-top: 1px solid #ccc; 
+      padding-top: 10px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Layout wrapper constraint columns to 22 characters max width -->
+  <div class="app-container">
+
+    <!-- Title with spoken and tactile ARIA streams -->
+    <h1 
+      aria-label="Contractable" 
+      aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</h1>
+
+    <!-- Contextualized container label for live updates -->
+    <div id="status" role="status" aria-label="Status Messages" tabindex="-1"></div>
+
+    <div id="game-board" aria-live="polite">
+      <div 
+        id="header" 
+        aria-label="correct guess wrong" 
+        aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</div>
+    </div>
+
+    <div id="controls">
+      <label 
+        id="guess-label" 
+        for="guess-input" 
+        aria-label="Guess" 
+        aria-braillelabel="⠛⠥⠑⠎⠎">⠛⠥⠑⠎⠎</label>
+      <input
+        id="guess-input"
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+      <button 
+        id="submit-btn" 
+        aria-label="Submit" 
+        aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
+    </div>
+
+    <div id="debug-log"></div>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
 
