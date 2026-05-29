@@ -1,35 +1,27 @@
 "use strict";
 
-/* Security Note: This file does not evaluate user input as code.
-   All data input is translated safely via strict indexing lookups. */
-
 const MAX_GUESSES = 6;
-// Day 0 anchor epoch constant point tracking = 2026-03-25 UTC midnight
-const START_DATE_MS = 1774396800000;
+const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 
-/* ── Universal Multi-Mode Conversion Matrices ───────────────────────────── */
-let unicodeToBits = {};
-let brailleAsciiToBits = {};
-let printAsciiToBits = {};
-let bitsToUnicode = {};
-
-let WORD_OF_THE_DAY = ""; // Target active secret 5-cell game sequence string
-let allWords = [];        // Loaded reference vocabulary array containing entry rows
+let WORD_OF_THE_DAY = "";
+let allWords = [];
+let asciiToDots = {};
+let dotsToAscii = {};
 let currentGuess = 0;
 let gameOver = false;
 
-// Per-cell state arrays initialized to standard empty 8-bit tracking masks
-let correctDots = Array(5).fill("00000000");
-let wrongDots = Array(5).fill("00000000");
+let correctDots = Array(5).fill("000000");
+let wrongDots = Array(5).fill("000000");
 
-// Direct debug communication window for local device screening diagnostics
+// Helper to log errors directly to the screen on iPhone
 function mobileLog(msg) {
   const log = document.getElementById("debug-log");
   if (log) log.textContent += msg + "\n";
   console.error(msg);
 }
 
-/* ── PRNG Engine Logic & Seed Distribution ────────────────────────────── */
+/* ── PRNG & Logic ────────────────────────────────────────────────────────── */
+
 function mulberry32(seed) {
   seed = seed >>> 0;
   return function() {
@@ -46,253 +38,197 @@ function deterministicShuffle(arr, seed) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
-    const temp = a[i];
-    a[i] = a[j];
-    a[j] = temp;
+    [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
 }
 
-function getDayIndex() {
-  const now = Date.now();
-  const delta = now - START_DATE_MS;
-  if (delta < 0) return 0;
-  return Math.floor(delta / (1000 * 60 * 60 * 24));
-}
-
-/* ── Mapping Compilation & Setup Routines ──────────────────────────────── */
-async function loadMapping() {
-  try {
-    const response = await fetch("brlunicode-mapping.json");
-    if (!response.ok) throw new Error("Unified table asset file could not be read.");
-    const mappingArray = await response.json();
-    
-    unicodeToBits = {};
-    brailleAsciiToBits = {};
-    printAsciiToBits = {};
-    bitsToUnicode = {};
-    
-    mappingArray.forEach(row => {
-      const mask = row.bitmask;
-      
-      // 1. Direct Visual Unicode string indices parsing loop
-      if (row.unicodeChar) {
-        unicodeToBits[row.unicodeChar] = mask;
-      }
-      
-      // 2. 6-dot Classical Braille ASCII keyboard layout mapping configuration 
-      if (row.brailleAscii) {
-        brailleAsciiToBits[row.brailleAscii] = mask;
-      }
-      
-      // 3. Print mapping with case-insensitive protection insurance 
-      if (row.printAscii) {
-        printAsciiToBits[row.printAscii] = mask;
-        printAsciiToBits[row.printAscii.toLowerCase()] = mask;
-      }
-      
-      // 4. Inverse translation resolution (Mask -> Unified Display Character)
-      bitsToUnicode[mask] = row.unicodeChar;
-      // Graceful fallback option mapping for stripped 6-bit input structures
-      bitsToUnicode[mask.slice(-6)] = row.unicodeChar;
-    });
-  } catch (e) {
-    mobileLog("Initialization Matrix Generation Faulted: " + e.message);
-    throw e;
-  }
-}
-
-// Multi-mode cascading character analyzer logic routing safely
-function getBitmaskFromChar(char) {
-  if (!char) return "00000000";
-  
-  // Cascades: Unicode -> Braille ASCII Table Layout Key -> Standard Alphabetic Latin Print Character
-  const mask = unicodeToBits[char] || brailleAsciiToBits[char] || printAsciiToBits[char];
-  if (mask) return mask;
-  
-  // Return clean zero tracking bit state array if an invalid or unmapped value occurs
-  return "00000000";
-}
-
-async function init() {
-  try {
-    await loadMapping();
-    
-    const response = await fetch("daily-word2.json");
-    if (!response.ok) throw new Error("Failed to pull active game dictionary manifest array.");
-    const rawWords = await response.json();
-    
-    if (!rawWords || rawWords.length === 0) {
-      throw new Error("Target master list dictionary array evaluated as clear or corrupted.");
-    }
-    
-    // Process list to ensure alignment over tracking references
-    allWords = rawWords;
-    
-    const dayIndex = getDayIndex();
-    const shuffleSeed = 10432; 
-    const shuffled = deterministicShuffle(allWords, shuffleSeed);
-    
-    const wordObj = shuffled[dayIndex % shuffled.length];
-    
-    // Assign the game target to the true 5-character Unicode braille sequence string directly
-    WORD_OF_THE_DAY = wordObj.brlunicode;
-    
-    setupGrid();
-    setupInputHandling();
-    
-    const status = document.getElementById("status");
-    if (status) status.textContent = "Application loaded successfully. Focus target entry row field active.";
-  } catch (err) {
-    mobileLog("Critical Startup Failure sequence triggered: " + err.message);
-    const status = document.getElementById("status");
-    if (status) status.textContent = "Critical operational table reading error. Check connection properties.";
-  }
-}
-
-/* ── DOM Layout Interacting Generation Setup ──────────────────────────── */
-function setupGrid() {
-  const board = document.getElementById("game-board");
-  if (!board) return;
-  board.innerHTML = "";
-  
-  for (let r = 0; r < MAX_GUESSES; r++) {
-    const rowEl = document.createElement("div");
-    rowEl.className = "board-row";
-    rowEl.id = `row-${r}`;
-    rowEl.setAttribute("role", "text");
-    rowEl.setAttribute("tabindex", "-1");
-    
-    for (let c = 0; c < 5; c++) {
-      const cellEl = document.createElement("div");
-      cellEl.className = "board-cell";
-      cellEl.id = `cell-${r}-${c}`;
-      cellEl.setAttribute("aria-hidden", "true");
-      rowEl.appendChild(cellEl);
-    }
-    board.appendChild(rowEl);
-  }
-}
-
-function setupInputHandling() {
-  const input = document.getElementById("guess-input");
-  const form = document.getElementById("guess-form");
-  if (!input || !form) return;
-  
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (gameOver) return;
-    
-    const val = input.value || "";
-    // Note: The input sequence can contain mix matched shapes depending on screen reader parameters
-    if (Array.from(val).length !== 5) {
-      showError("Invalid: Must be 5 Braille chars.");
-      return;
-    }
-    
-    submitGuess(val);
-    input.value = "";
-  });
-}
-
-function showError(msg) {
-  const alertContainer = document.getElementById("custom-alert-container");
-  const alertText = document.getElementById("custom-alert-text");
-  if (!alertContainer || !alertText) return;
-  
-  alertText.textContent = msg;
-  alertContainer.classList.remove("hidden-alert");
-  
-  // ARIA live region fallback safety tracking declaration trigger
-  const status = document.getElementById("status");
-  if (status) status.textContent = `Alert popup warning: ${msg}`;
-  
-  setTimeout(() => {
-    alertContainer.classList.add("hidden-alert");
-  }, 4000);
-}
-
-/* ── Universal Binary Match Logic Core Execution ───────────────────────── */
-function submitGuess(guessString) {
-  const guessChars = Array.from(guessString);
-  const targetChars = Array.from(WORD_OF_THE_DAY);
-  
-  const rowEl = document.getElementById(`row-${currentGuess}`);
-  if (!rowEl) return;
-  
-  // Convert full matching columns cleanly over to unified bitmask verification strings
-  const guessMasks = guessChars.map(c => getBitmaskFromChar(c));
-  const targetMasks = targetChars.map(c => getBitmaskFromChar(c));
-  
-  const evaluations = Array(5).fill("absent");
-  const targetAllocated = Array(5).fill(false);
-  const guessAllocated = Array(5).fill(false);
-  
-  // Pass 1: True exact cell equality verification matching check loop ("correct")
-  for (let i = 0; i < 5; i++) {
-    if (guessMasks[i] === targetMasks[i]) {
-      evaluations[i] = "correct";
-      targetAllocated[i] = true;
-      guessAllocated[i] = true;
-      correctDots[i] = guessMasks[i]; 
-    }
-  }
-  
-  // Pass 2: Position displacement indexing loops checking verification states ("present")
-  for (let i = 0; i < 5; i++) {
-    if (guessAllocated[i]) continue;
-    for (let j = 0; j < 5; j++) {
-      if (!targetAllocated[j] && guessMasks[i] === targetMasks[j]) {
-        evaluations[i] = "present";
-        targetAllocated[j] = true;
+function applyFirstCharConstraint(arr, prevLastChar = null) {
+  const a = arr.slice();
+  if (prevLastChar !== null && a[0][0] === prevLastChar) {
+    for (let j = 1; j < a.length; j++) {
+      if (a[j][0] !== prevLastChar) {
+        [a[0], a[j]] = [a[j], a[0]];
         break;
       }
     }
   }
-  
-  // Update visual and accessible DOM layout matrix interface trees safely
-  let unicodeOutputWord = "";
-  for (let i = 0; i < 5; i++) {
-    const cell = document.getElementById(`cell-${currentGuess}-${i}`);
-    // Resolve true visual Unicode dot cell glyph representation out to UI container elements
-    const uniformVisualGlyph = bitsToUnicode[guessMasks[i]] || guessChars[i];
-    unicodeOutputWord += uniformVisualGlyph;
-    
-    if (cell) {
-      cell.textContent = uniformVisualGlyph;
-      cell.classList.add(evaluations[i]);
+  for (let i = 1; i < a.length; i++) {
+    if (a[i][0] === a[i - 1][0]) {
+      for (let j = i + 1; j < a.length; j++) {
+        if (a[j][0] !== a[i - 1][0]) {
+          [a[i], a[j]] = [a[j], a[i]];
+          break;
+        }
+      }
     }
   }
-  
-  // Generate unified spatial location tracking identifiers for clear hardware reading execution
-  let speechOutputString = "";
-  for (let i = 0; i < 5; i++) {
-    speechOutputString += `${guessChars[i]} is evaluated as ${evaluations[i]}. `;
+  return a;
+}
+
+function buildCycle(cycleIndex, prevLastChar = null) {
+  const seed = (START_DATE_MS + cycleIndex) >>> 0;
+  const shuffled = deterministicShuffle(allWords, seed);
+  return applyFirstCharConstraint(shuffled, prevLastChar);
+}
+
+function getWordForDayIndex(dayIndex) {
+  const cycleIndex = Math.floor(dayIndex / 1772);
+  const position = dayIndex % 1772;
+  let prevLastChar = null;
+  if (cycleIndex > 0) {
+    const prevCycle = buildCycle(cycleIndex - 1, null);
+    prevLastChar = prevCycle[prevCycle.length - 1][0];
   }
-  
-  rowEl.setAttribute("aria-braillelabel", unicodeOutputWord);
-  rowEl.setAttribute("aria-label", `Guess row entry level ${currentGuess + 1}: ${speechOutputString}`);
-  
-  // Move user reading focus point directly over current guess cell array layer
-  rowEl.focus();
-  
-  // Verify aggregate evaluation check loop values to verify winning configuration state
-  const isWin = evaluations.every(v => v === "correct");
-  const status = document.getElementById("status");
-  
-  if (isWin) {
-    gameOver = true;
-    if (status) status.textContent = `,,y ,,w96. Puzzle solved in row configuration index ${currentGuess + 1}.`;
-    return;
-  }
-  
-  currentGuess++;
-  
-  if (currentGuess >= MAX_GUESSES) {
-    gameOver = true;
-    if (status) status.textContent = `,sorry1 ! ~w 0 ${WORD_OF_THE_DAY}`;
-    return;
+  const cycle = buildCycle(cycleIndex, prevLastChar);
+  return cycle[position];
+}
+
+function todayDayIndex() {
+  const nowUTC = Date.now();
+  return Math.floor((nowUTC - START_DATE_MS) / 86400000);
+}
+
+/* ── Loaders ──────────────────────────────────────────────────────────────── */
+
+async function loadDailyWords() {
+  try {
+    const response = await fetch("daily-words.json");
+    if (!response.ok) throw new Error("Could not find daily-words.json");
+    const data = await response.json();
+    allWords = Object.values(data).map(item => item.ascii);
+  } catch (e) {
+    mobileLog("Daily Words Error: " + e.message);
   }
 }
 
-document.addEventListener("DOMContentLoaded", init);
+async function loadMapping() {
+  try {
+    const response = await fetch("braille-ascii-map.json");
+    if (!response.ok) throw new Error("Could not find braille-ascii-map.json");
+    asciiToDots = await response.json();
+    for (const [ascii, dots] of Object.entries(asciiToDots)) {
+      dotsToAscii[dots] = ascii;
+    }
+  } catch (e) {
+    mobileLog("Mapping Error: " + e.message);
+  }
+}
+
+/* ── UI & Game Logic ─────────────────────────────────────────────────────── */
+
+function setStatus(msg) {
+  const status = document.getElementById("status");
+  status.textContent = msg;
+  setTimeout(() => { status.focus(); }, 0);
+}
+
+function updateGuessLabel() {
+  const label = document.getElementById("guess-label");
+  label.textContent = (currentGuess === MAX_GUESSES - 1) ? "f9al guess" : "guess";
+}
+
+function mapStringToDots(str) {
+  const dots = [];
+  for (const ch of str) {
+    if (asciiToDots[ch]) {
+      dots.push(asciiToDots[ch]);
+    }
+  }
+  return dots;
+}
+
+function dotsArrayToAsciiString(arr) {
+  return arr.map(d => dotsToAscii[d] ?? " ").join("");
+}
+
+function formatRow({ guessIndex, correct, guess, wrong }) {
+  const label = guessIndex < 6 ? `#${String.fromCharCode(97 + guessIndex)}` : "";
+  return `${label} ${correct} ${guess} ${wrong}`;
+}
+
+function renderRow(rowText) {
+  const board = document.getElementById("game-board");
+  const row = document.createElement("div");
+  row.className = "row";
+  row.tabIndex = -1;
+  row.textContent = rowText;
+  board.appendChild(row);
+  row.focus();
+}
+
+function submitGuess() {
+  if (gameOver) return;
+
+  const input = document.getElementById("guess-input");
+  const rawGuess = input.value;
+  const guessDots = mapStringToDots(rawGuess);
+
+  if (guessDots.length !== 5) {
+    setStatus("Invalid: Must be 5 Braille chars.");
+    return;
+  }
+
+  const targetDots = mapStringToDots(WORD_OF_THE_DAY);
+
+  for (let i = 0; i < 5; i++) {
+    const g = parseInt(guessDots[i], 2);
+    const t = parseInt(targetDots[i], 2);
+
+    const overlap = g & t;
+    const wrong = g & ~t;
+
+    correctDots[i] = (parseInt(correctDots[i], 2) | overlap)
+      .toString(2).padStart(6, "0");
+
+    wrongDots[i] = (parseInt(wrongDots[i], 2) | wrong)
+      .toString(2).padStart(6, "0");
+  }
+
+  renderRow(formatRow({
+    guessIndex: currentGuess,
+    correct: dotsArrayToAsciiString(correctDots),
+    guess: rawGuess,
+    wrong: dotsArrayToAsciiString(wrongDots),
+  }));
+
+  currentGuess++;
+  input.value = "";
+  updateGuessLabel();
+
+  if (rawGuess === WORD_OF_THE_DAY) {
+    setStatus(",,y ,,w96");
+    gameOver = true;
+  } else if (currentGuess >= MAX_GUESSES) {
+    setStatus(`,sorry1 ! ~w 0 ${WORD_OF_THE_DAY}`);
+    gameOver = true;
+  }
+}
+
+async function init() {
+  await Promise.all([loadMapping(), loadDailyWords()]);
+
+  if (allWords.length > 0) {
+    WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
+    // Clear debug if everything loaded
+    document.getElementById("debug-log").textContent = ""; 
+  } else {
+    mobileLog("Critical: No words loaded. Check JSON files.");
+  }
+
+  const input = document.getElementById("guess-input");
+  const button = document.getElementById("submit-btn");
+
+  button.addEventListener("click", submitGuess);
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      submitGuess();
+    }
+  });
+
+  updateGuessLabel();
+  input.focus();
+}
+
+init().catch(e => mobileLog("Init Error: " + e.message));
