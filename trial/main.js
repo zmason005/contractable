@@ -18,6 +18,9 @@ let wrongDots = Array(5).fill("00000000");
 const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄⠄⡳⠭⠴⠴⠆⠂⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠒⠙⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
 const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
 
+// Maps row numeric indices to strict Braille Unicode row prefixes
+const ROW_NUMERIC_PREFIXES = ["⠼⠁", "⠼⠃", "⠼⠉", "⠼⠙", "⠼⠑", "⠼⠋"];
+
 // Helper to log errors directly to the screen on iPhone
 function mobileLog(msg) {
   const log = document.getElementById("debug-log");
@@ -170,8 +173,9 @@ function stringToUnicodeSymbols(str) {
 }
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
-  const label = guessIndex < 6 ? `#${String.fromCharCode(97 + guessIndex)}` : "";
-  // Elements are bound with explicit U+2800 tokens to eliminate spatial layout errors
+  // Grab the specific Braille numeric cell from our mapping array
+  const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "";
+  // Appends 1 clean Braille space cell (\u2800) right after the guess number indicator
   return `${label}\u2800${correct}\u2800${guess}\u2800${wrong}`;
 }
 
