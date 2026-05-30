@@ -3,10 +3,10 @@
 const MAX_GUESSES = 6;
 const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 
-let WORD_OF_THE_DAY = "";
-let allWords = [];
-let asciiToDots = {};
-let dotsToAscii = {};
+let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
+let allWords = [];          // Array of objects from daily-word2.json
+let asciiToDots = {};       // Maps both print letters and Unicode Braille to binary dot strings
+let dotsToAscii = {};       // Maps binary dot strings to literal Unicode Braille characters
 let currentGuess = 0;
 let gameOver = false;
 
@@ -45,18 +45,18 @@ function deterministicShuffle(arr, seed) {
 
 function applyFirstCharConstraint(arr, prevLastChar = null) {
   const a = arr.slice();
-  if (prevLastChar !== null && a[0][0] === prevLastChar) {
+  if (prevLastChar !== null && a[0].print[0] === prevLastChar) {
     for (let j = 1; j < a.length; j++) {
-      if (a[j][0] !== prevLastChar) {
+      if (a[j].print[0] !== prevLastChar) {
         [a[0], a[j]] = [a[j], a[0]];
         break;
       }
     }
   }
   for (let i = 1; i < a.length; i++) {
-    if (a[i][0] === a[i - 1][0]) {
+    if (a[i].print[0] === a[i - 1].print[0]) {
       for (let j = i + 1; j < a.length; j++) {
-        if (a[j][0] !== a[i - 1][0]) {
+        if (a[j].print[0] !== a[i - 1].print[0]) {
           [a[i], a[j]] = [a[j], a[i]];
           break;
         }
@@ -73,12 +73,13 @@ function buildCycle(cycleIndex, prevLastChar = null) {
 }
 
 function getWordForDayIndex(dayIndex) {
-  const cycleIndex = Math.floor(dayIndex / 1772);
-  const position = dayIndex % 1772;
+  const listSize = allWords.length || 1; // Fallback protection against an empty word bank
+  const cycleIndex = Math.floor(dayIndex / listSize);
+  const position = dayIndex % listSize;
   let prevLastChar = null;
   if (cycleIndex > 0) {
     const prevCycle = buildCycle(cycleIndex - 1, null);
-    prevLastChar = prevCycle[prevCycle.length - 1][0];
+    prevLastChar = prevCycle[prevCycle.length - 1].print[0];
   }
   const cycle = buildCycle(cycleIndex, prevLastChar);
   return cycle[position];
@@ -93,10 +94,10 @@ function todayDayIndex() {
 
 async function loadDailyWords() {
   try {
-    const response = await fetch("daily-words.json");
-    if (!response.ok) throw new Error("Could not find daily-words.json");
-    const data = await response.json();
-    allWords = Object.values(data).map(item => item.ascii);
+    const response = await fetch("daily-word2.json");
+    if (!response.ok) throw new Error("Could not find daily-word2.json");
+    // Preserve the raw array of objects for internal multi-property matching
+    allWords = await response.json();
   } catch (e) {
     mobileLog("Daily Words Error: " + e.message);
   }
@@ -104,12 +105,28 @@ async function loadDailyWords() {
 
 async function loadMapping() {
   try {
-    const response = await fetch("braille-ascii-map.json");
-    if (!response.ok) throw new Error("Could not find braille-ascii-map.json");
-    asciiToDots = await response.json();
-    for (const [ascii, dots] of Object.entries(asciiToDots)) {
-      dotsToAscii[dots] = ascii;
-    }
+    const response = await fetch("brlunicode-mapping.json");
+    if (!response.ok) throw new Error("Could not find brlunicode-mapping.json");
+    const data = await response.json();
+    
+    asciiToDots = {};
+    dotsToAscii = {};
+    
+    data.forEach(item => {
+      // Normalize your 8-bit mask string down to the lower 6 dots for the layout matrix
+      const sixDotMask = item.bitmask.slice(-6);
+      
+      // Bind both string presentations to the matching binary mask
+      if (item.printAscii) {
+        asciiToDots[item.printAscii.toLowerCase()] = sixDotMask;
+      }
+      if (item.unicodeChar) {
+        asciiToDots[item.unicodeChar] = sixDotMask;
+      }
+      
+      // Enforce raw Braille Unicode characters for game board rendering rows
+      dotsToAscii[sixDotMask] = item.unicodeChar || "⠀";
+    });
   } catch (e) {
     mobileLog("Mapping Error: " + e.message);
   }
@@ -131,15 +148,16 @@ function updateGuessLabel() {
 function mapStringToDots(str) {
   const dots = [];
   for (const ch of str) {
-    if (asciiToDots[ch]) {
-      dots.push(asciiToDots[ch]);
+    const lowerCh = ch.toLowerCase();
+    if (asciiToDots[lowerCh]) {
+      dots.push(asciiToDots[lowerCh]);
     }
   }
   return dots;
 }
 
 function dotsArrayToAsciiString(arr) {
-  return arr.map(d => dotsToAscii[d] ?? " ").join("");
+  return arr.map(d => dotsToAscii[d] ?? "⠀").join("");
 }
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
@@ -158,18 +176,28 @@ function renderRow(rowText) {
 }
 
 function submitGuess() {
-  if (gameOver) return;
+  if (gameOver || !WORD_OF_THE_DAY) return;
 
   const input = document.getElementById("guess-input");
-  const rawGuess = input.value;
-  const guessDots = mapStringToDots(rawGuess);
+  const rawGuess = input.value.trim();
+  const lowerGuess = rawGuess.toLowerCase();
+
+  const targetPrint = WORD_OF_THE_DAY.print.toLowerCase();
+  const targetUnicode = WORD_OF_THE_DAY.brlunicode;
+
+  // Verify input against both columns (handles literal Unicode entries and iOS auto-translated print strings)
+  const isMatch = (lowerGuess === targetPrint || rawGuess === targetUnicode);
+
+  // If the user matches via print text, evaluate the dot layouts using the Unicode twin row
+  const referenceGuessString = isMatch ? targetUnicode : rawGuess;
+  const guessDots = mapStringToDots(referenceGuessString);
 
   if (guessDots.length !== 5) {
     setStatus("Invalid: Must be 5 Braille chars.");
     return;
   }
 
-  const targetDots = mapStringToDots(WORD_OF_THE_DAY);
+  const targetDots = mapStringToDots(targetUnicode);
 
   for (let i = 0; i < 5; i++) {
     const g = parseInt(guessDots[i], 2);
@@ -196,11 +224,11 @@ function submitGuess() {
   input.value = "";
   updateGuessLabel();
 
-  if (rawGuess === WORD_OF_THE_DAY) {
+  if (isMatch) {
     setStatus(",,y ,,w96");
     gameOver = true;
   } else if (currentGuess >= MAX_GUESSES) {
-    setStatus(`,sorry1 ! ~w 0 ${WORD_OF_THE_DAY}`);
+    setStatus(`,sorry1 ! ~w 0 ${targetUnicode}`);
     gameOver = true;
   }
 }
@@ -210,8 +238,9 @@ async function init() {
 
   if (allWords.length > 0) {
     WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
-    // Clear debug if everything loaded
-    document.getElementById("debug-log").textContent = ""; 
+    // Clear debug container if tracking components load successfully
+    const debugLog = document.getElementById("debug-log");
+    if (debugLog) debugLog.textContent = ""; 
   } else {
     mobileLog("Critical: No words loaded. Check JSON files.");
   }
