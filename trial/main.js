@@ -14,6 +14,10 @@ let gameOver = false;
 let correctDots = Array(5).fill("00000000");
 let wrongDots = Array(5).fill("00000000");
 
+// End game custom Braille Unicode messaging
+const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄⠄⡳⠭⠴⠴⠆⠂⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠒⠙⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
+const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
+
 // Helper to log errors directly to the screen on iPhone
 function mobileLog(msg) {
   const log = document.getElementById("debug-log");
@@ -113,7 +117,6 @@ async function loadMapping() {
     dotsToAscii = {};
     
     data.forEach(item => {
-      // Retain the exact full 8-bit mask layout directly from the JSON
       const fullBitmask = item.bitmask;
       
       if (item.printAscii) {
@@ -123,7 +126,7 @@ async function loadMapping() {
         asciiToDots[item.unicodeChar] = fullBitmask;
       }
       
-      dotsToAscii[fullBitmask] = item.unicodeChar || " ";
+      dotsToAscii[fullBitmask] = item.unicodeChar || "\u2800";
     });
   } catch (e) {
     mobileLog("Mapping Error: " + e.message);
@@ -155,20 +158,21 @@ function mapStringToDots(str) {
 }
 
 function dotsArrayToAsciiString(arr) {
-  return arr.map(d => dotsToAscii[d] ?? " ").join("");
+  return arr.map(d => dotsToAscii[d] ?? "\u2800").join("");
 }
 
 function stringToUnicodeSymbols(str) {
   return Array.from(str).map(ch => {
     const lowerCh = ch.toLowerCase();
     const dots = asciiToDots[lowerCh];
-    return dotsToAscii[dots] || " ";
+    return dotsToAscii[dots] || "\u2800";
   }).join("");
 }
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
   const label = guessIndex < 6 ? `#${String.fromCharCode(97 + guessIndex)}` : "";
-  return `${label} ${correct} ${guess} ${wrong}`;
+  // Elements are bound with explicit U+2800 tokens to eliminate spatial layout errors
+  return `${label}\u2800${correct}\u2800${guess}\u2800${wrong}`;
 }
 
 function renderRow(rowText) {
@@ -204,14 +208,12 @@ function submitGuess() {
   const targetDots = mapStringToDots(targetUnicode);
 
   for (let i = 0; i < 5; i++) {
-    // Bitwise operators resolve against standard base-2 integers derived from the 8-bit string
     const g = parseInt(guessDots[i], 2);
     const t = parseInt(targetDots[i], 2);
 
     const overlap = g & t;
     const wrong = g & ~t;
 
-    // Pad state strings out to a full 8 characters to maintain strict alignment bounds
     correctDots[i] = (parseInt(correctDots[i], 2) | overlap)
       .toString(2).padStart(8, "0");
 
@@ -233,10 +235,10 @@ function submitGuess() {
   updateGuessLabel();
 
   if (isMatch) {
-    setStatus(",,y ,,w96");
+    setStatus(WIN_STATUS_MESSAGE);
     gameOver = true;
   } else if (currentGuess >= MAX_GUESSES) {
-    setStatus(`,sorry1 ! ~w 0 ${targetUnicode}`);
+    setStatus(LOSE_STATUS_MESSAGE);
     gameOver = true;
   }
 }
