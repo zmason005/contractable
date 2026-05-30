@@ -5,13 +5,14 @@ const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 
 let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
 let allWords = [];          // Array of objects from daily-word2.json
-let asciiToDots = {};       // Maps both print letters and Unicode Braille to binary dot strings
-let dotsToAscii = {};       // Maps binary dot strings to literal Unicode Braille characters
+let asciiToDots = {};       // Maps both print letters and Unicode Braille to 8-bit binary strings
+let dotsToAscii = {};       // Maps 8-bit binary strings to literal Unicode Braille characters
 let currentGuess = 0;
 let gameOver = false;
 
-let correctDots = Array(5).fill("000000");
-let wrongDots = Array(5).fill("000000");
+// Initialized to full 8-bit strings to match the strict 8-bit mapping data
+let correctDots = Array(5).fill("00000000");
+let wrongDots = Array(5).fill("00000000");
 
 // Helper to log errors directly to the screen on iPhone
 function mobileLog(msg) {
@@ -112,16 +113,17 @@ async function loadMapping() {
     dotsToAscii = {};
     
     data.forEach(item => {
-      const sixDotMask = item.bitmask.slice(-6);
+      // Retain the exact full 8-bit mask layout directly from the JSON
+      const fullBitmask = item.bitmask;
       
       if (item.printAscii) {
-        asciiToDots[item.printAscii.toLowerCase()] = sixDotMask;
+        asciiToDots[item.printAscii.toLowerCase()] = fullBitmask;
       }
       if (item.unicodeChar) {
-        asciiToDots[item.unicodeChar] = sixDotMask;
+        asciiToDots[item.unicodeChar] = fullBitmask;
       }
       
-      dotsToAscii[sixDotMask] = item.unicodeChar || "⠀";
+      dotsToAscii[fullBitmask] = item.unicodeChar || " ";
     });
   } catch (e) {
     mobileLog("Mapping Error: " + e.message);
@@ -153,15 +155,14 @@ function mapStringToDots(str) {
 }
 
 function dotsArrayToAsciiString(arr) {
-  return arr.map(d => dotsToAscii[d] ?? "⠀").join("");
+  return arr.map(d => dotsToAscii[d] ?? " ").join("");
 }
 
-// Converts standard print characters cleanly to their raw Braille Unicode symbols
 function stringToUnicodeSymbols(str) {
   return Array.from(str).map(ch => {
     const lowerCh = ch.toLowerCase();
     const dots = asciiToDots[lowerCh];
-    return dotsToAscii[dots] || "⠀";
+    return dotsToAscii[dots] || " ";
   }).join("");
 }
 
@@ -203,20 +204,21 @@ function submitGuess() {
   const targetDots = mapStringToDots(targetUnicode);
 
   for (let i = 0; i < 5; i++) {
+    // Bitwise operators resolve against standard base-2 integers derived from the 8-bit string
     const g = parseInt(guessDots[i], 2);
     const t = parseInt(targetDots[i], 2);
 
     const overlap = g & t;
     const wrong = g & ~t;
 
+    // Pad state strings out to a full 8 characters to maintain strict alignment bounds
     correctDots[i] = (parseInt(correctDots[i], 2) | overlap)
-      .toString(2).padStart(6, "0");
+      .toString(2).padStart(8, "0");
 
     wrongDots[i] = (parseInt(wrongDots[i], 2) | wrong)
-      .toString(2).padStart(6, "0");
+      .toString(2).padStart(8, "0");
   }
 
-  // Convert the current row's display column sequence strictly to Braille Unicode symbols
   const unicodeGuessDisplay = stringToUnicodeSymbols(referenceGuessString);
 
   renderRow(formatRow({
