@@ -73,7 +73,7 @@ function buildCycle(cycleIndex, prevLastChar = null) {
 }
 
 function getWordForDayIndex(dayIndex) {
-  const listSize = allWords.length || 1; // Fallback protection against an empty word bank
+  const listSize = allWords.length || 1; 
   const cycleIndex = Math.floor(dayIndex / listSize);
   const position = dayIndex % listSize;
   let prevLastChar = null;
@@ -96,7 +96,6 @@ async function loadDailyWords() {
   try {
     const response = await fetch("daily-word2.json");
     if (!response.ok) throw new Error("Could not find daily-word2.json");
-    // Preserve the raw array of objects for internal multi-property matching
     allWords = await response.json();
   } catch (e) {
     mobileLog("Daily Words Error: " + e.message);
@@ -113,10 +112,8 @@ async function loadMapping() {
     dotsToAscii = {};
     
     data.forEach(item => {
-      // Normalize your 8-bit mask string down to the lower 6 dots for the layout matrix
       const sixDotMask = item.bitmask.slice(-6);
       
-      // Bind both string presentations to the matching binary mask
       if (item.printAscii) {
         asciiToDots[item.printAscii.toLowerCase()] = sixDotMask;
       }
@@ -124,7 +121,6 @@ async function loadMapping() {
         asciiToDots[item.unicodeChar] = sixDotMask;
       }
       
-      // Enforce raw Braille Unicode characters for game board rendering rows
       dotsToAscii[sixDotMask] = item.unicodeChar || "⠀";
     });
   } catch (e) {
@@ -160,6 +156,15 @@ function dotsArrayToAsciiString(arr) {
   return arr.map(d => dotsToAscii[d] ?? "⠀").join("");
 }
 
+// Converts standard print characters cleanly to their raw Braille Unicode symbols
+function stringToUnicodeSymbols(str) {
+  return Array.from(str).map(ch => {
+    const lowerCh = ch.toLowerCase();
+    const dots = asciiToDots[lowerCh];
+    return dotsToAscii[dots] || "⠀";
+  }).join("");
+}
+
 function formatRow({ guessIndex, correct, guess, wrong }) {
   const label = guessIndex < 6 ? `#${String.fromCharCode(97 + guessIndex)}` : "";
   return `${label} ${correct} ${guess} ${wrong}`;
@@ -185,10 +190,8 @@ function submitGuess() {
   const targetPrint = WORD_OF_THE_DAY.print.toLowerCase();
   const targetUnicode = WORD_OF_THE_DAY.brlunicode;
 
-  // Verify input against both columns (handles literal Unicode entries and iOS auto-translated print strings)
   const isMatch = (lowerGuess === targetPrint || rawGuess === targetUnicode);
 
-  // If the user matches via print text, evaluate the dot layouts using the Unicode twin row
   const referenceGuessString = isMatch ? targetUnicode : rawGuess;
   const guessDots = mapStringToDots(referenceGuessString);
 
@@ -213,10 +216,13 @@ function submitGuess() {
       .toString(2).padStart(6, "0");
   }
 
+  // Convert the current row's display column sequence strictly to Braille Unicode symbols
+  const unicodeGuessDisplay = stringToUnicodeSymbols(referenceGuessString);
+
   renderRow(formatRow({
     guessIndex: currentGuess,
     correct: dotsArrayToAsciiString(correctDots),
-    guess: rawGuess,
+    guess: unicodeGuessDisplay,
     wrong: dotsArrayToAsciiString(wrongDots),
   }));
 
@@ -238,7 +244,6 @@ async function init() {
 
   if (allWords.length > 0) {
     WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
-    // Clear debug container if tracking components load successfully
     const debugLog = document.getElementById("debug-log");
     if (debugLog) debugLog.textContent = ""; 
   } else {
