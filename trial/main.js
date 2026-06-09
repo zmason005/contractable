@@ -172,11 +172,24 @@ function stringToUnicodeSymbols(str) {
   }).join("");
 }
 
+/* ── Modified Row Formatting Matrix ────────────────────────────────────────── */
+
 function formatRow({ guessIndex, correct, guess, wrong }) {
-  // Grab the specific Braille numeric cell from our mapping array
-  const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "";
-  // Appends 1 clean Braille space cell (\u2800) right after the guess number indicator
-  return `${label}\u2800${correct}\u2800${guess}\u2800${wrong}`;
+  // Grab the specific 2-cell Braille numeric prefix (e.g., "⠼⠁")
+  const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "⠠⠠"; 
+  
+  // Construct Column 1: Label (2ch) + Padding space (1ch) + Correct matrix (5ch) = 8ch
+  const column1 = `${label}\u2800${correct}`; 
+  
+  // Explicit intermediate spacing gutters
+  const space1 = "\u2800";
+  const space2 = "\u2800";
+  
+  // End safety margin to fill out the remaining width up to 22ch boundary limit
+  const endMargin = "\u2800\u2800";
+
+  // Assemble the immutable 22-character tracking string
+  return `${column1}${space1}${guess}${space2}${wrong}${endMargin}`;
 }
 
 function renderRow(rowText) {
