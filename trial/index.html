@@ -1,22 +1,26 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Contractable</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* Prevent arbitrary text zooming mechanics in iOS Safari */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
     /* Global Page Canvas Layout */
     body { 
-      font-family: sans-serif; /* System fallback to cleanly render Unicode Braille blocks */
+      font-family: sans-serif; 
       padding: 15px; 
       background-color: #000000; /* Pure black background */
       color: #ffffff;            /* Stark white global text */
     }
 
-    /* 
-      Centralized Structural Column: 
+    /* Centralized Structural Column: 
       Calculates layout width based on exactly 20 braille characters + 2 padding units.
-      Enlarges typography globally so dot matrices are instantly readable.
     */
     .app-container {
       max-width: 22ch;
@@ -28,20 +32,46 @@
     h1 {
       margin-top: 0.5em;
       margin-bottom: 0.5em;
-      font-size: 1.2em; /* Explicitly scales heading relative to the new base size */
+      font-size: 1.2em;
     }
     
     #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
     
-    #game-board { margin-top: 1em; white-space: pre; }
+    /* Hardened Visual Grid Layout (8ch / 1ch / 5ch / 1ch / 5ch / 2ch) */
+    #game-board { 
+      margin-top: 1em; 
+      white-space: pre;
+      width: 22ch;
+      box-sizing: border-box;
+      font-family: "Apple Braille", "Courier New", monospace;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0;
+      padding: 8px 0;
+      
+      /* Pure CSS gradient columns mapping directly to typographic ch units */
+      background: linear-gradient(
+        to right,
+        #1a1a1a 0ch,  #1a1a1a 8ch,  /* c1: Correct (8ch wide) */
+        #000000 8ch,  #000000 9ch,  /* s1: Gutter (1ch wide) */
+        #262626 9ch,  #262626 14ch, /* c2: Guess (5ch wide) */
+        #000000 14ch, #000000 15ch, /* s2: Gutter (1ch wide) */
+        #1f1f1f 15ch, #1f1f1f 20ch, /* c3: Wrong (5ch wide) */
+        #000000 20ch, #000000 22ch  /* Tail Margin (2ch wide) */
+      );
+    }
     
-    .row { outline: none; margin-bottom: 2px; }
+    /* Rows inherit monospaced font geometry to align with parent columns */
+    .row { 
+      outline: none; 
+      margin-bottom: 2px; 
+      font-family: "Apple Braille", "Courier New", monospace;
+      letter-spacing: 0;
+    }
     
     #controls { 
       margin-top: 1.5em; 
     }
     
-    /* Inherits system Braille font stacks for clean rendering */
     #guess-label { 
       display: block; 
       margin-bottom: 0.5em; 
@@ -50,9 +80,9 @@
     
     /* Isolated Text Input for standard keyboard entry legibility */
     #guess-input { 
-      font-family: monospace; /* Kept standard typewriter font so typed text remains readable */
+      font-family: monospace; 
       width: 10ch; 
-      font-size: 16px; /* High-contrast balance + prevents iOS mobile zoom on focus */
+      font-size: 16px; /* Blocks iOS mobile zoom on focus */
       background-color: #000000; 
       color: #ffffff; 
       border: 1px solid #ffffff; 
@@ -60,26 +90,25 @@
       vertical-align: middle;
     }
     
-    /* High-Contrast Amber Outlined Action Button with explicit Unicode text targeting */
+    /* High-Contrast Amber Outlined Action Button */
     #submit-btn {
-      font-family: sans-serif; /* Allows button text to render Unicode Braille cleanly */
+      font-family: sans-serif; 
       background-color: #000000; 
       color: #ffffff;            
-      border: 2px solid #FFC107; /* High-visibility Amber outline border */
+      border: 2px solid #FFC107; 
       padding: 4px 14px;
       font-weight: bold;
       cursor: pointer;
-      font-size: 18px; /* Scaled up to keep Braille characters legible inside button bounds */
+      font-size: 18px; 
       vertical-align: middle;
       margin-left: 6px;
       box-sizing: border-box;
     }
 
     #submit-btn:hover {
-      background-color: rgba(255, 193, 7, 0.15); /* Translucent amber feedback overlay */
+      background-color: rgba(255, 193, 7, 0.15);
     }
 
-    /* Left completely untouched per instruction */
     #debug-log { 
       margin-top: 2em; 
       font-size: 0.6em; 
@@ -92,41 +121,23 @@
 </head>
 <body>
 
-  <!-- Layout wrapper constraint columns to 22 characters max width -->
   <div class="app-container">
 
-    <!-- Title with spoken and tactile ARIA streams -->
-    <h1 
-      aria-label="Contractable" 
-      aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</h1>
+    <h1 aria-label="Contractable" aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</h1>
 
-    <!-- Contextualized container label for live updates -->
     <div id="status" role="status" aria-label="Status Messages" tabindex="-1"></div>
 
     <div id="game-board" aria-live="polite">
       <div 
         id="header" 
         aria-label="correct guess wrong" 
-        aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</div>
+        aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">⠉⠕⠗⠗⠑⠉⠞⠀⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛⠀⠀⠀</div>
     </div>
 
     <div id="controls">
-      <label 
-        id="guess-label" 
-        for="guess-input" 
-        aria-label="Guess" 
-        aria-braillelabel="⠛⠥⠑⠎⠎">⠛⠥⠑⠎⠎</label>
-      <input
-        id="guess-input"
-        type="text"
-        autocomplete="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
-      <button 
-        id="submit-btn" 
-        aria-label="Submit" 
-        aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
+      <label id="guess-label" for="guess-input" aria-label="Guess" aria-braillelabel="⠛⠥⠑⠎⠎">⠛⠥⠑⠎⠎</label>
+      <input id="guess-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" />
+      <button id="submit-btn" aria-label="Submit" aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
     </div>
 
     <div id="debug-log"></div>
