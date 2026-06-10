@@ -173,9 +173,7 @@ function stringToUnicodeSymbols(str) {
 }
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
-  // Grab the specific Braille numeric cell from our mapping array
   const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "";
-  // Appends 1 clean Braille space cell (\u2800) right after the guess number indicator
   return `${label}\u2800${correct}\u2800${guess}\u2800${wrong}`;
 }
 
@@ -184,7 +182,17 @@ function renderRow(rowText) {
   const row = document.createElement("div");
   row.className = "row";
   row.tabIndex = -1;
-  row.textContent = rowText;
+  
+  // Set explicit hardware pass-through attributes on the primary container row block
+  row.setAttribute("aria-braillelabel", rowText);
+  row.setAttribute("aria-label", `Row ${currentGuess + 1}`);
+
+  // Mask the visual layout node to keep screen readers from repeating characters
+  const visualWrapper = document.createElement("span");
+  visualWrapper.setAttribute("aria-hidden", "true");
+  visualWrapper.textContent = rowText;
+  
+  row.appendChild(visualWrapper);
   board.appendChild(row);
   row.focus();
 }
