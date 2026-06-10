@@ -3,33 +3,35 @@
 const MAX_GUESSES = 6;
 const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 
-let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
-let allWords = [];          // Array of objects from daily-word2.json
-let asciiToDots = {};       // Maps both print letters and Unicode Braille to 8-bit binary strings
-let dotsToAscii = {};       // Maps 8-bit binary strings to literal Unicode Braille characters
-let currentGuess = 0;
+let WORD_OF_THE_DAY = null; // Shape: { id, print, brlunicode }
+let allWords = []; 
+let asciiToDots = {}; 
+let dotsToAscii = {}; 
+let currentGuess = 0; 
 let gameOver = false;
 
-// Initialized to full 8-bit strings to match the strict 8-bit mapping data
-let correctDots = Array(5).fill("00000000");
-let wrongDots = Array(5).fill("00000000");
+let correctDots = Array(5).fill("00000000"); 
+let wrongDots = Array(5).fill("00000000"); 
 
-// End game custom Braille Unicode messaging
-const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄⠄⡳⠭⠴⠴⠆⠂⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠒⠙⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
-const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
+const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⠠⠽⠕⠥⠠⠺⠊⠝⠖"; 
+const LOSE_STATUS_MESSAGE = "⠠⠎⠕⠗⠗⠽⠖"; 
 
-// Maps row numeric indices to strict Braille Unicode row prefixes
-const ROW_NUMERIC_PREFIXES = ["⠼⠁", "⠼⠃", "⠼⠉", "⠼⠙", "⠼⠑", "⠼⠋"];
+const ROW_NUMERIC_PREFIXES = [
+  "⠼⠁", // Row 1
+  "⠼⠃", // Row 2
+  "⠼⠉", // Row 3
+  "⠼⠙", // Row 4
+  "⠼⠑", // Row 5
+  "⠼⠋"  // Row 6
+];
 
-// Helper to log errors directly to the screen on iPhone
 function mobileLog(msg) {
   const log = document.getElementById("debug-log");
   if (log) log.textContent += msg + "\n";
   console.error(msg);
 }
 
-/* ── PRNG & Logic ────────────────────────────────────────────────────────── */
-
+/* ── PRNG & Game Index Core ──────────────────────────────────────────────── */
 function mulberry32(seed) {
   seed = seed >>> 0;
   return function() {
@@ -41,243 +43,184 @@ function mulberry32(seed) {
   };
 }
 
-function deterministicShuffle(arr, seed) {
+function getWordForDayIndex(wordsArray, dayIndex) {
+  if (!wordsArray || wordsArray.length === 0) return null;
+  const seed = dayIndex + 1000; 
   const rng = mulberry32(seed);
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(rng() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+  const randomIndex = Math.floor(rng() * wordsArray.length);
+  return wordsArray[randomIndex];
 }
 
-function applyFirstCharConstraint(arr, prevLastChar = null) {
-  const a = arr.slice();
-  if (prevLastChar !== null && a[0].print[0] === prevLastChar) {
-    for (let j = 1; j < a.length; j++) {
-      if (a[j].print[0] !== prevLastChar) {
-        [a[0], a[j]] = [a[j], a[0]];
-        break;
-      }
-    }
-  }
-  for (let i = 1; i < a.length; i++) {
-    if (a[i].print[0] === a[i - 1].print[0]) {
-      for (let j = i + 1; j < a.length; j++) {
-        if (a[j].print[0] !== a[i - 1].print[0]) {
-          [a[i], a[j]] = [a[j], a[i]];
-          break;
-        }
-      }
-    }
-  }
-  return a;
-}
-
-function buildCycle(cycleIndex, prevLastChar = null) {
-  const seed = (START_DATE_MS + cycleIndex) >>> 0;
-  const shuffled = deterministicShuffle(allWords, seed);
-  return applyFirstCharConstraint(shuffled, prevLastChar);
-}
-
-function getWordForDayIndex(dayIndex) {
-  const listSize = allWords.length || 1; 
-  const cycleIndex = Math.floor(dayIndex / listSize);
-  const position = dayIndex % listSize;
-  let prevLastChar = null;
-  if (cycleIndex > 0) {
-    const prevCycle = buildCycle(cycleIndex - 1, null);
-    prevLastChar = prevCycle[prevCycle.length - 1].print[0];
-  }
-  const cycle = buildCycle(cycleIndex, prevLastChar);
-  return cycle[position];
-}
-
-function todayDayIndex() {
-  const nowUTC = Date.now();
-  return Math.floor((nowUTC - START_DATE_MS) / 86400000);
-}
-
-/* ── Loaders ──────────────────────────────────────────────────────────────── */
-
-async function loadDailyWords() {
-  try {
-    const response = await fetch("daily-word2.json");
-    if (!response.ok) throw new Error("Could not find daily-word2.json");
-    allWords = await response.json();
-  } catch (e) {
-    mobileLog("Daily Words Error: " + e.message);
-  }
-}
-
-async function loadMapping() {
-  try {
-    const response = await fetch("brlunicode-mapping.json");
-    if (!response.ok) throw new Error("Could not find brlunicode-mapping.json");
-    const data = await response.json();
-    
-    asciiToDots = {};
-    dotsToAscii = {};
-    
-    data.forEach(item => {
-      const fullBitmask = item.bitmask;
-      
-      if (item.printAscii) {
-        asciiToDots[item.printAscii.toLowerCase()] = fullBitmask;
-      }
-      if (item.unicodeChar) {
-        asciiToDots[item.unicodeChar] = fullBitmask;
-      }
-      
-      dotsToAscii[fullBitmask] = item.unicodeChar || "\u2800";
-    });
-  } catch (e) {
-    mobileLog("Mapping Error: " + e.message);
-  }
-}
-
-/* ── UI & Game Logic ─────────────────────────────────────────────────────── */
-
-function setStatus(msg) {
-  const status = document.getElementById("status");
-  status.textContent = msg;
-  setTimeout(() => { status.focus(); }, 0);
-}
-
-function updateGuessLabel() {
-  const label = document.getElementById("guess-label");
-  label.textContent = (currentGuess === MAX_GUESSES - 1) ? "f9al guess" : "guess";
-}
-
-function mapStringToDots(str) {
-  const dots = [];
-  for (const ch of str) {
-    const lowerCh = ch.toLowerCase();
-    if (asciiToDots[lowerCh]) {
-      dots.push(asciiToDots[lowerCh]);
-    }
-  }
-  return dots;
-}
-
-function dotsArrayToAsciiString(arr) {
-  return arr.map(d => dotsToAscii[d] ?? "\u2800").join("");
-}
-
-function stringToUnicodeSymbols(str) {
-  return Array.from(str).map(ch => {
-    const lowerCh = ch.toLowerCase();
-    const dots = asciiToDots[lowerCh];
-    return dotsToAscii[dots] || "\u2800";
-  }).join("");
-}
-
-/* ── Hardened Content Segment Formatting ──────────────────────────────────── */
-
+/* ── Unified Continuous String Row Generator ────────────────────────────── */
 function formatRow({ guessIndex, correct, guess, wrong }) {
-  // Grab the specific 2-cell Braille numeric prefix (e.g., "⠼⠁")
   const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "⠠⠠"; 
   
-  // Build row segments as explicit structural blocks with corresponding inline backgrounds
-  const htmlStr = `
-    <span class="c1-block">${label}\u2800${correct}</span><span class="s1-block">\u2800</span><span class="c2-block">${guess}</span><span class="s2-block">\u2800</span><span class="c3-block">${wrong}</span><span class="margin-block">\u2800\u2800</span>
-  `.trim();
+  // Maps exactly to our 22ch CSS background linear gradient columns:
+  // label (2ch) + space (1ch) + correct (5ch) + space (1ch) + guess (5ch) + space (1ch) + wrong (5ch) + padding (2ch)
+  const textPayload = `${label} ${correct} ${guess} ${wrong}  `;
 
-  return htmlStr;
+  return textPayload;
 }
 
-function renderRow(rowHtml) {
-  const board = document.getElementById("game-board");
-  const row = document.createElement("div");
-  row.className = "row";
-  row.tabIndex = -1;
-  row.innerHTML = rowHtml; /* Swapped to safely evaluate visual grid segments */
-  board.appendChild(row);
-  row.focus();
+function renderRow(containerId, rowData) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const rowDiv = document.createElement("div");
+  rowDiv.className = "row";
+  rowDiv.tabIndex = -1; 
+  
+  // Semantic announcement for assistive setups
+  rowDiv.setAttribute("aria-label", `Row ${rowData.guessIndex + 1}`);
+  
+  // Directly append the raw un-fragmented text string inside the container
+  rowDiv.textContent = formatRow(rowData);
+  container.appendChild(rowDiv);
+  
+  setTimeout(() => rowDiv.focus(), 50);
+}
+
+/* ── Validation & Dot Track Processing ────────────────────────────────────── */
+function mapStringToDots(str) {
+  let dots = [];
+  for (let i = 0; i < str.length; i++) {
+    const ch = str[i];
+    dots.push(asciiToDots[ch] || "00000000");
+  }
+  while (dots.length < 5) {
+    dots.push("00000000");
+  }
+  return dots.slice(0, 5);
+}
+
+function mapDotsToString(dotsArray) {
+  return dotsArray.map(dots => dotsToAscii[dots] || "⠀").join("");
 }
 
 function submitGuess() {
-  if (gameOver || !WORD_OF_THE_DAY) return;
+  if (gameOver) return;
 
-  const input = document.getElementById("guess-input");
-  const rawGuess = input.value.trim();
-  const lowerGuess = rawGuess.toLowerCase();
+  const inputEl = document.getElementById("guess-input");
+  const statusEl = document.getElementById("status");
+  if (!inputEl || !statusEl) return;
 
-  const targetPrint = WORD_OF_THE_DAY.print.toLowerCase();
-  const targetUnicode = WORD_OF_THE_DAY.brlunicode;
-
-  const isMatch = (lowerGuess === targetPrint || rawGuess === targetUnicode);
-
-  const referenceGuessString = isMatch ? targetUnicode : rawGuess;
-  const guessDots = mapStringToDots(referenceGuessString);
-
-  if (guessDots.length !== 5) {
-    setStatus("Invalid: Must be 5 Braille chars.");
+  const rawGuess = inputEl.value.trim();
+  
+  if (rawGuess.length !== 5) {
+    statusEl.textContent = "Invalid: Must be 5 Braille chars.";
     return;
   }
 
-  const targetDots = mapStringToDots(targetUnicode);
+  const guessDots = mapStringToDots(rawGuess);
+  const targetDots = mapStringToDots(WORD_OF_THE_DAY.brlunicode);
 
+  let exactMatchTracker = Array(5).fill(false);
+  let nextCorrectDots = [...correctDots];
+  let nextWrongDots = [...wrongDots];
+
+  // Evaluate Perfect Alignments (Correct Channel)
   for (let i = 0; i < 5; i++) {
-    const g = parseInt(guessDots[i], 2);
-    const t = parseInt(targetDots[i], 2);
-
-    const overlap = g & t;
-    const wrong = g & ~t;
-
-    correctDots[i] = (parseInt(correctDots[i], 2) | overlap)
-      .toString(2).padStart(8, "0");
-
-    wrongDots[i] = (parseInt(wrongDots[i], 2) | wrong)
-      .toString(2).padStart(8, "0");
-  }
-
-  const unicodeGuessDisplay = stringToUnicodeSymbols(referenceGuessString);
-
-  renderRow(formatRow({
-    guessIndex: currentGuess,
-    correct: dotsArrayToAsciiString(correctDots),
-    guess: unicodeGuessDisplay,
-    wrong: dotsArrayToAsciiString(wrongDots),
-  }));
-
-  currentGuess++;
-  input.value = "";
-  updateGuessLabel();
-
-  if (isMatch) {
-    setStatus(WIN_STATUS_MESSAGE);
-    gameOver = true;
-  } else if (currentGuess >= MAX_GUESSES) {
-    setStatus(LOSE_STATUS_MESSAGE);
-    gameOver = true;
-  }
-}
-
-async function init() {
-  await Promise.all([loadMapping(), loadDailyWords()]);
-
-  if (allWords.length > 0) {
-    WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
-    const debugLog = document.getElementById("debug-log");
-    if (debugLog) debugLog.textContent = ""; 
-  } else {
-    mobileLog("Critical: No words loaded. Check JSON files.");
-  }
-
-  const input = document.getElementById("guess-input");
-  const button = document.getElementById("submit-btn");
-
-  button.addEventListener("click", submitGuess);
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      submitGuess();
+    if (guessDots[i] === targetDots[i]) {
+      exactMatchTracker[i] = true;
+      nextCorrectDots[i] = guessDots[i];
     }
-  });
+  }
 
-  updateGuessLabel();
-  input.focus();
+  // Evaluate Inclusion Failures (Wrong Channel)
+  for (let i = 0; i < 5; i++) {
+    if (!exactMatchTracker[i]) {
+      if (!targetDots.includes(guessDots[i])) {
+        nextWrongDots[i] = guessDots[i];
+      }
+    }
+  }
+
+  correctDots = nextCorrectDots;
+  wrongDots = nextWrongDots;
+
+  const rowPayload = {
+    guessIndex: currentGuess,
+    correct: mapDotsToString(correctDots),
+    guess: rawGuess,
+    wrong: mapDotsToString(wrongDots)
+  };
+
+  renderRow("game-board", rowPayload);
+  currentGuess++;
+
+  inputEl.value = "";
+  statusEl.textContent = "";
+
+  // Verify State Resolution Rules
+  if (rawGuess === WORD_OF_THE_DAY.brlunicode) {
+    gameOver = true;
+    statusEl.textContent = WIN_STATUS_MESSAGE;
+    inputEl.disabled = true;
+    return;
+  }
+
+  if (currentGuess >= MAX_GUESSES) {
+    gameOver = true;
+    statusEl.textContent = `${LOSE_STATUS_MESSAGE} ${WORD_OF_THE_DAY.brlunicode}`;
+    inputEl.disabled = true;
+  }
 }
 
-init().catch(e => mobileLog("Init Error: " + e.message));
+/* ── Lifecycle Initialization ─────────────────────────────────────────────── */
+async function init() {
+  try {
+    const mapResponse = await fetch("brlunicode-mapping.json");
+    if (!mapResponse.ok) throw new Error("Failed to load brlunicode-mapping.json");
+    const mapData = await mapResponse.json();
+
+    mapData.forEach(item => {
+      const binaryStr = item.binary; 
+      const unicodeChar = item.brlunicode; 
+      const asciiChar = item.print;        
+
+      if (unicodeChar) {
+        asciiToDots[unicodeChar] = binaryStr;
+        dotsToAscii[binaryStr] = unicodeChar;
+      }
+      if (asciiChar) {
+        asciiToDots[asciiChar] = binaryStr;
+      }
+    });
+
+    const wordsResponse = await fetch("daily-word2.json");
+    if (!wordsResponse.ok) throw new Error("Failed to load daily-word2.json");
+    allWords = await wordsResponse.json();
+
+    if (allWords.length === 0) {
+      mobileLog("Critical: No words loaded. Check JSON files.");
+      return;
+    }
+
+    const now = Date.now();
+    const diffMs = now - START_DATE_MS;
+    const currentDayIndex = Math.max(0, Math.floor(diffMs / (1000 * 60 * 60 * 24)));
+
+    WORD_OF_THE_DAY = getWordForDayIndex(allWords, currentDayIndex);
+
+    if (!WORD_OF_THE_DAY) {
+      mobileLog("Mapping Error: Word tracking resolution failure.");
+      return;
+    }
+
+    // Bind Event Triggers
+    const submitBtn = document.getElementById("submit-btn");
+    const guessInput = document.getElementById("guess-input");
+
+    if (submitBtn) submitBtn.addEventListener("click", submitGuess);
+    if (guessInput) {
+      guessInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") submitGuess();
+      });
+    }
+
+  } catch (err) {
+    mobileLog(err.message);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", init);
