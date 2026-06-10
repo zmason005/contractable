@@ -174,6 +174,7 @@ function stringToUnicodeSymbols(str) {
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
   const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "";
+  // Flat text layout string separated by a standard un-contracted space cell
   return `${label}\u2800${correct}\u2800${guess}\u2800${wrong}`;
 }
 
@@ -183,11 +184,11 @@ function renderRow(rowText) {
   row.className = "row";
   row.tabIndex = -1;
   
-  // Set explicit hardware pass-through attributes on the primary container row block
+  // Directly broadcast row text data straight into the accessibility tree query
   row.setAttribute("aria-braillelabel", rowText);
   row.setAttribute("aria-label", `Row ${currentGuess + 1}`);
 
-  // Mask the visual layout node to keep screen readers from repeating characters
+  // Hide inner text node to block duplicating streams on physical pins
   const visualWrapper = document.createElement("span");
   visualWrapper.setAttribute("aria-hidden", "true");
   visualWrapper.textContent = rowText;
