@@ -10,12 +10,12 @@ let dotsToAscii = {};       // Maps 8-bit binary strings to literal Unicode Brai
 let currentGuess = 0;
 let gameOver = false;
 
-// Initialized to full 8-bit strings to match the strict 8-bit mapping data
-let correctDots = Array(5).fill("00000000");
-let wrongDots = Array(5).fill("00000000");
+// Initialized to actual numeric integers for safe, native bitwise accumulators
+let correctDots = Array(5).fill(0);
+let wrongDots = Array(5).fill(0);
 
 // End game custom Braille Unicode messaging
-const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄[...]
+const WIN_STATUS_MESSAGE = "⠠⠽⠕⠥⠀⠺⠕⠝⠖"; // Sample valid short braille block
 const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
 
 // Maps row numeric indices to strict Braille Unicode row prefixes
@@ -120,7 +120,7 @@ async function loadMapping() {
     dotsToAscii = {};
     
     data.forEach(item => {
-      const fullBitmask = item.bitmask;
+      const fullBitmask = item.bitmask; // expected as 8-char binary string like "01001100"
       
       if (item.printAscii) {
         asciiToDots[item.printAscii.toLowerCase()] = fullBitmask;
@@ -146,36 +146,40 @@ function setStatus(msg) {
 
 function updateGuessLabel() {
   const label = document.getElementById("guess-label");
-  label.textContent = (currentGuess === MAX_GUESSES - 1) ? "f9al guess" : "guess";
+  if (label) {
+    label.textContent = (currentGuess === MAX_GUESSES - 1) ? "f9al guess" : "guess";
+  }
 }
 
 function mapStringToDots(str) {
   const dots = [];
   for (const ch of str) {
-    const lowerCh = ch.toLowerCase();
-    if (asciiToDots[lowerCh]) {
-      dots.push(asciiToDots[lowerCh]);
+    // Check direct character first (important for Braille characters), then fallback to lowercase ASCII
+    let bitmask = asciiToDots[ch] || asciiToDots[ch.toLowerCase()];
+    if (bitmask) {
+      dots.push(bitmask);
     }
   }
   return dots;
 }
 
-function dotsArrayToAsciiString(arr) {
-  return arr.map(d => dotsToAscii[d] ?? "\u2800").join("");
+function intValueArrayToAsciiString(arr) {
+  return arr.map(val => {
+    const bitmaskString = val.toString(2).padStart(8, "0");
+    return dotsToAscii[bitmaskString] || "\u2800";
+  }).join("");
 }
 
 function stringToUnicodeSymbols(str) {
   return Array.from(str).map(ch => {
-    const lowerCh = ch.toLowerCase();
-    const dots = asciiToDots[lowerCh];
-    return dotsToAscii[dots] || "\u2800";
+    const bitmask = asciiToDots[ch] || asciiToDots[ch.toLowerCase()];
+    return dotsToAscii[bitmask] || "\u2800";
   }).join("");
 }
 
-/* ── Modified Row Formatting Matrix ────────────────────────────────────────── */
+/* ── Row Formatting Matrix ────────────────────────────────────────── */
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
-  // Grab the specific 2-cell Braille numeric prefix (e.g., "⠼⠁")
   const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "⠠⠠"; 
   
   // Construct Column 1: Label (2ch) + Padding space (1ch) + Correct matrix (5ch) = 8ch
@@ -188,12 +192,12 @@ function formatRow({ guessIndex, correct, guess, wrong }) {
   // End safety margin to fill out the remaining width up to 22ch boundary limit
   const endMargin = "\u2800\u2800";
 
-  // Assemble the immutable 22-character tracking string
   return `${column1}${space1}${guess}${space2}${wrong}${endMargin}`;
 }
 
 function renderRow(rowText) {
   const board = document.getElementById("game-board");
+  if (!board) return;
   const row = document.createElement("div");
   row.className = "row";
   row.tabIndex = -1;
@@ -207,13 +211,14 @@ function submitGuess() {
 
   const input = document.getElementById("guess-input");
   const rawGuess = input.value.trim();
-  const lowerGuess = rawGuess.toLowerCase();
+  if (!rawGuess) return;
 
   const targetPrint = WORD_OF_THE_DAY.print.toLowerCase();
   const targetUnicode = WORD_OF_THE_DAY.brlunicode;
 
-  const isMatch = (lowerGuess === targetPrint || rawGuess === targetUnicode);
+  const isMatch = (rawGuess.toLowerCase() === targetPrint || rawGuess === targetUnicode);
 
+  // Fall back to clean tracking conversion mapping rules
   const referenceGuessString = isMatch ? targetUnicode : rawGuess;
   const guessDots = mapStringToDots(referenceGuessString);
 
@@ -231,20 +236,18 @@ function submitGuess() {
     const overlap = g & t;
     const wrong = g & ~t;
 
-    correctDots[i] = (parseInt(correctDots[i], 2) | overlap)
-      .toString(2).padStart(8, "0");
-
-    wrongDots[i] = (parseInt(wrongDots[i], 2) | wrong)
-      .toString(2).padStart(8, "0");
+    // Correctly accumulate values inside clean integer bounds
+    correctDots[i] |= overlap;
+    wrongDots[i] |= wrong;
   }
 
   const unicodeGuessDisplay = stringToUnicodeSymbols(referenceGuessString);
 
   renderRow(formatRow({
     guessIndex: currentGuess,
-    correct: dotsArrayToAsciiString(correctDots),
+    correct: intValueArrayToAsciiString(correctDots),
     guess: unicodeGuessDisplay,
-    wrong: dotsArrayToAsciiString(wrongDots),
+    wrong: intValueArrayToAsciiString(wrongDots),
   }));
 
   currentGuess++;
@@ -274,16 +277,18 @@ async function init() {
   const input = document.getElementById("guess-input");
   const button = document.getElementById("submit-btn");
 
-  button.addEventListener("click", submitGuess);
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      submitGuess();
-    }
-  });
+  if (button && input) {
+    button.addEventListener("click", submitGuess);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        submitGuess();
+      }
+    });
+    input.focus();
+  }
 
   updateGuessLabel();
-  input.focus();
 }
 
 init().catch(e => mobileLog("Init Error: " + e.message));
