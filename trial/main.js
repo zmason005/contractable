@@ -51,11 +51,11 @@ function getWordForDayIndex(wordsArray, dayIndex) {
   return wordsArray[randomIndex];
 }
 
-/* ── Unified Continuous String Row Generator ────────────────────────────── */
+/* ── Unified String Generator ────────────────────────────────────────────── */
 function formatRow({ guessIndex, correct, guess, wrong }) {
   const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "⠠⠠"; 
   
-  // Maps exactly to our 22ch CSS background linear gradient columns:
+  // Creates exactly 22 string cells matching the width metrics:
   // label (2ch) + space (1ch) + correct (5ch) + space (1ch) + guess (5ch) + space (1ch) + wrong (5ch) + padding (2ch)
   const textPayload = `${label} ${correct} ${guess} ${wrong}  `;
 
@@ -70,10 +70,9 @@ function renderRow(containerId, rowData) {
   rowDiv.className = "row";
   rowDiv.tabIndex = -1; 
   
-  // Semantic announcement for assistive setups
   rowDiv.setAttribute("aria-label", `Row ${rowData.guessIndex + 1}`);
   
-  // Directly append the raw un-fragmented text string inside the container
+  // Directly append the solid, continuous text block inside the container
   rowDiv.textContent = formatRow(rowData);
   container.appendChild(rowDiv);
   
