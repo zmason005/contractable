@@ -34,9 +34,9 @@
       letter-spacing: 0;
     }
 
-    /* Unified Line Containers: Purely 1 element per line.
-       We map out the high-contrast columns using a CSS background gradient.
-       8ch (#1a1a1a) + 1ch (#00000) + 5ch (#262626) + 1ch (#00000) + 5ch (#1f1f1f) + 2ch (#00000) = 22ch total
+    /* Each line is strictly kept as a single text container element.
+      The visual high-contrast columns are drawn using a CSS linear gradient:
+      8ch (#1a1a1a) + 1ch (#000) + 5ch (#262626) + 1ch (#000) + 5ch (#1f1f1f) + 2ch (#000) = 22ch
     */
     #header, .row {
       display: block;
@@ -51,7 +51,6 @@
       box-sizing: border-box;
       outline: none;
       
-      /* Pure CSS Column Render */
       background: linear-gradient(to right,
         #1a1a1a 0ch,  #1a1a1a 8ch,
         #000000 8ch,  #000000 9ch,
@@ -66,7 +65,7 @@
       margin-bottom: 1em;
     }
 
-    /* Flexbox layout guarantees the input and button stay on a single horizontal axis */
+    /* Flexbox prevents form controls from wrapping onto separate lines on mobile screens */
     #controls { 
       margin-top: 1.5em; 
       display: flex;
