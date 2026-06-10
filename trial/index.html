@@ -13,17 +13,15 @@
 
     /* Global Page Canvas Layout */
     body { 
-      font-family: sans-serif; 
+      font-family: "Apple Braille", "Courier New", monospace; 
       padding: 15px; 
       background-color: #000000; /* Pure black background */
       color: #ffffff;            /* Stark white global text */
     }
 
-    /* Centralized Structural Column: 
-       Calculates layout width based on exactly 20 braille characters + 2 padding units.
-    */
+    /* Simple, Un-sectioned Layout Container */
     .app-container {
-      max-width: 22ch;
+      max-width: 30ch;
       margin: 0 auto;
       box-sizing: border-box;
       font-size: 28px; /* Globally enlarged for visual clarity of Braille cells */
@@ -37,34 +35,19 @@
     
     #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
     
-    /* Hardened Visual Grid Layout (8ch / 1ch / 5ch / 1ch / 5ch / 2ch) */
+    /* Simplified Game Board: No background columns, gradients, or custom width rules */
     #game-board { 
       margin-top: 1em; 
       white-space: pre;
-      width: 22ch;
       box-sizing: border-box;
-      font-family: "Apple Braille", "Courier New", monospace;
       font-variant-numeric: tabular-nums;
       letter-spacing: 0;
       padding: 8px 0;
-      
-      /* Pure CSS gradient columns mapping directly to typographic ch units */
-      background: linear-gradient(
-        to right,
-        #1a1a1a 0ch,  #1a1a1a 8ch,  /* c1: Correct (8ch wide) */
-        #000000 8ch,  #000000 9ch,  /* s1: Gutter (1ch wide) */
-        #262626 9ch,  #262626 14ch, /* c2: Guess (5ch wide) */
-        #000000 14ch, #000000 15ch, /* s2: Gutter (1ch wide) */
-        #1f1f1f 15ch, #1f1f1f 20ch, /* c3: Wrong (5ch wide) */
-        #000000 20ch, #000000 22ch  /* Tail Margin (2ch wide) */
-      );
     }
     
-    /* Rows inherit monospaced font geometry to align with parent columns */
     .row { 
       outline: none; 
       margin-bottom: 2px; 
-      font-family: "Apple Braille", "Courier New", monospace;
       letter-spacing: 0;
     }
     
@@ -78,7 +61,7 @@
       font-size: 0.9em;
     }
     
-    /* Isolated Text Input for standard keyboard entry legibility */
+    /* Text Input Box */
     #guess-input { 
       font-family: monospace; 
       width: 10ch; 
@@ -134,7 +117,7 @@
         id="header" 
         aria-label="Correct, Guess, Wrong" 
         aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">
-        <span aria-hidden="true">⠉⠕⠗⠗⠑⠞⠀⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛⠀⠀⠀</span>
+        <span aria-hidden="true">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</span>
       </div>
     </div>
 
