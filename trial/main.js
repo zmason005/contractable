@@ -15,7 +15,7 @@ let correctDots = Array(5).fill("00000000");
 let wrongDots = Array(5).fill("00000000");
 
 // End game custom Braille Unicode messaging
-const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄";
+const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄[...]
 const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
 
 // Maps row numeric indices to strict Braille Unicode row prefixes
@@ -28,7 +28,7 @@ function mobileLog(msg) {
   console.error(msg);
 }
 
-/* ── PRNG & Logic ─────────────────────────────────────────────────────────── */
+/* ── PRNG & Logic ─────────────────────────────────────────────────────────*/
 
 function mulberry32(seed) {
   seed = seed >>> 0;
@@ -172,26 +172,32 @@ function stringToUnicodeSymbols(str) {
   }).join("");
 }
 
-/* ── Hardened Content Segment Formatting ──────────────────────────────────── */
+/* ── Modified Row Formatting Matrix ────────────────────────────────────────── */
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
   // Grab the specific 2-cell Braille numeric prefix (e.g., "⠼⠁")
   const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "⠠⠠"; 
   
-  // Build row segments as explicit structural blocks with corresponding inline backgrounds
-  const htmlStr = `
-    <span class="c1-block">${label}\u2800${correct}</span><span class="s1-block">\u2800</span><span class="c2-block">${guess}</span><span class="s2-block">\u2800</span><span class="c3-block">${wrong}</span><span class="margin-block">\u2800</span>
-  `.trim();
+  // Construct Column 1: Label (2ch) + Padding space (1ch) + Correct matrix (5ch) = 8ch
+  const column1 = `${label}\u2800${correct}`; 
+  
+  // Explicit intermediate spacing gutters
+  const space1 = "\u2800";
+  const space2 = "\u2800";
+  
+  // End safety margin to fill out the remaining width up to 22ch boundary limit
+  const endMargin = "\u2800\u2800";
 
-  return htmlStr;
+  // Assemble the immutable 22-character tracking string
+  return `${column1}${space1}${guess}${space2}${wrong}${endMargin}`;
 }
 
-function renderRow(rowHtml) {
+function renderRow(rowText) {
   const board = document.getElementById("game-board");
   const row = document.createElement("div");
   row.className = "row";
   row.tabIndex = -1;
-  row.innerHTML = rowHtml; /* Swapped to safely evaluate visual grid segments */
+  row.textContent = rowText;
   board.appendChild(row);
   row.focus();
 }
