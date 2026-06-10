@@ -1,107 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Contractable</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    @font-face {
-      font-family: 'Swell Braille';
-      src: url('Swell-Braille.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
+    /* Prevent arbitrary text zooming mechanics in iOS Safari */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
-    body {
-      background-color: #000000;
-      color: #ffffff;
-      font-family: "Apple Braille", "Courier New", monospace;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
+    /* Global Page Canvas Layout */
+    body { 
+      font-family: sans-serif; 
+      padding: 15px; 
+      background-color: #000000; /* Pure black background */
+      color: #ffffff;            /* Stark white global text */
     }
 
+    /* Centralized Structural Column: 
+      Calculates layout width based on exactly 20 braille characters + 2 padding units.
+    */
     .app-container {
-      width: 22ch;
-      max-width: 100%;
+      max-width: 22ch;
+      margin: 0 auto;
+      box-sizing: border-box;
+      font-size: 28px; /* Globally enlarged for visual clarity of Braille cells */
     }
-
+    
     h1 {
-      font-family: 'Swell Braille', sans-serif;
-      font-size: 28px;
+      margin-top: 0.5em;
       margin-bottom: 0.5em;
-      letter-spacing: 0;
+      font-size: 1.2em;
     }
-
-    /* Unified Grid Coordinate Anchor */
-    #header, .row { 
-      position: relative;
-      display: block;
+    
+    #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
+    
+    /* Hardened Visual Grid Layout Wrapper */
+    #game-board { 
+      margin-top: 1em; 
       width: 22ch;
-      height: 1.2em;
-      margin-bottom: 2px;
+      box-sizing: border-box;
       font-family: "Apple Braille", "Courier New", monospace;
       font-variant-numeric: tabular-nums;
       letter-spacing: 0;
-      white-space: nowrap;
-      outline: none;
     }
-
-    /* Presentational Background Layer - Entirely Hidden from Screen Readers & Braille Displays */
-    .row-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 22ch;
-      height: 100%;
-      z-index: 1;
+    
+    /* Each row behaves as a unified horizontal layout strip */
+    #header, .row { 
       display: flex;
-    }
-
-    /* Columns mapped using strict character width metrics */
-    .bg-c1     { background-color: #1a1a1a; width: 8ch; display: inline-block; box-sizing: border-box; }
-    .bg-s1     { background-color: #000000; width: 1ch; display: inline-block; box-sizing: border-box; }
-    .bg-c2     { background-color: #262626; width: 5ch; display: inline-block; box-sizing: border-box; }
-    .bg-s2     { background-color: #000000; width: 1ch; display: inline-block; box-sizing: border-box; }
-    .bg-c3     { background-color: #1f1f1f; width: 5ch; display: inline-block; box-sizing: border-box; }
-    .bg-margin { background-color: #000000; width: 2ch; display: inline-block; box-sizing: border-box; }
-
-    /* Pure Text Data Channel - Natural character tracking prevents truncation bugs */
-    .row-text {
-      position: relative;
-      z-index: 2;
-      pointer-events: none;
+      outline: none; 
+      margin-bottom: 2px; 
       font-family: "Apple Braille", "Courier New", monospace;
-      white-space: pre;
+      letter-spacing: 0;
+      white-space: nowrap;
     }
 
-    #game-board {
-      margin-bottom: 1em;
-    }
-
-    /* Flexbox Engine to eradicate controls line wrapping */
+    /* Hardened Typographic Visual Columns (8ch / 1ch / 5ch / 1ch / 5ch / 2ch) */
+    .c1-block { background-color: #1a1a1a; width: 8ch; display: inline-block; box-sizing: border-box; }
+    .s1-block { background-color: #000000; width: 1ch; display: inline-block; box-sizing: border-box; }
+    .c2-block { background-color: #262626; width: 5ch; display: inline-block; box-sizing: border-box; }
+    .s2-block { background-color: #000000; width: 1ch; display: inline-block; box-sizing: border-box; }
+    .c3-block { background-color: #1f1f1f; width: 5ch; display: inline-block; box-sizing: border-box; }
+    .margin-block { background-color: #000000; width: 2ch; display: inline-block; box-sizing: border-box; }
+    
     #controls { 
       margin-top: 1.5em; 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 22ch;
-      box-sizing: border-box;
     }
-
+    
+    #guess-label { 
+      display: block; 
+      margin-bottom: 0.5em; 
+      font-size: 0.9em;
+    }
+    
+    /* Isolated Text Input for standard keyboard entry legibility */
     #guess-input { 
       font-family: monospace; 
-      flex-grow: 1;
-      width: 0; 
-      font-size: 16px; 
+      width: 10ch; 
+      font-size: 16px; /* Blocks iOS mobile zoom on focus */
       background-color: #000000; 
       color: #ffffff; 
       border: 1px solid #ffffff; 
       padding: 6px;
-      box-sizing: border-box;
+      vertical-align: middle;
     }
-
+    
+    /* High-Contrast Amber Outlined Action Button */
     #submit-btn {
       font-family: sans-serif; 
       background-color: #000000; 
@@ -111,58 +97,47 @@
       font-weight: bold;
       cursor: pointer;
       font-size: 18px; 
+      vertical-align: middle;
       margin-left: 6px;
       box-sizing: border-box;
-      flex-shrink: 0;
     }
 
-    #status {
-      margin-top: 1em;
-      font-family: 'Swell Braille', sans-serif;
-      font-size: 24px;
-      min-height: 1.2em;
+    #submit-btn:hover {
+      background-color: rgba(255, 193, 7, 0.15);
     }
 
     #debug-log { 
       margin-top: 2em; 
-      font-size: 0.65em; 
-      color: #ff6b6b; 
-      border-top: 1px solid #333333; 
+      font-size: 0.6em; 
+      color: red; 
+      border-top: 1px solid #ccc; 
       padding-top: 10px;
       font-family: monospace;
-      white-space: pre-wrap;
-    }
-
-    @media print {
-      #controls, #debug-log {
-        display: none !important;
-      }
     }
   </style>
 </head>
 <body>
+
   <div class="app-container">
-    <h1 aria-label="Contractable" aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠁⠃⠇⠑">⠉⠕⠗⠗⠑⠉⠞⠁⠃⠇⠑</h1>
-    
+
+    <h1 aria-label="Contractable" aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</h1>
+
+    <div id="status" role="status" aria-label="Status Messages" tabindex="-1"></div>
+
     <div id="game-board" aria-live="polite">
       <div id="header" aria-label="correct guess wrong" aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">
-        <div class="row-bg" aria-hidden="true">
-          <span class="bg-c1"></span><span class="bg-s1"></span>
-          <span class="bg-c2"></span><span class="bg-s2"></span>
-          <span class="bg-c3"></span><span class="bg-margin"></span>
-        </div>
-        <div class="row-text">⠉⠕⠗⠗⠑⠉⠞ ⠛⠥⠑⠎⠎ ⠺⠗⠰⠛  </div>
+        <span class="c1-block">⠉⠕⠗⠗⠑⠉⠞⠀</span><span class="s1-block">⠀</span><span class="c2-block">⠛⠥⠑⠎⠎</span><span class="s2-block">⠀</span><span class="c3-block">⠺⠗⠰⠛⠀</span><span class="margin-block">⠀⠀</span>
       </div>
     </div>
 
     <div id="controls">
-      <label for="guess-input" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Enter Guess</label>
-      <input type="text" id="guess-input" maxlength="5" placeholder="⠠⠠⠠⠠⠠" autocomplete="off" autofocus>
-      <button id="submit-btn">GO</button>
+      <label id="guess-label" for="guess-input" aria-label="Guess" aria-braillelabel="⠛⠥⠑⠎⠎">⠛⠥⠑⠎⠎</label>
+      <input id="guess-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" />
+      <button id="submit-btn" aria-label="Submit" aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
     </div>
 
-    <div id="status" role="region" aria-live="assertive"></div>
     <div id="debug-log"></div>
+
   </div>
 
   <script src="main.js"></script>
