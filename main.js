@@ -117,15 +117,35 @@ async function loadMapping() {
 
 /* ── UI & Game Logic ─────────────────────────────────────────────────────── */
 
-function setStatus(msg) {
+function setStatus(msgText, msgBraille) {
   const status = document.getElementById("status");
-  status.textContent = msg;
+  if (!status) return;
+
+  // Enforce strict lower-case format for screen readers on dynamic alerts
+  status.setAttribute("aria-label", msgText.toLowerCase());
+  
+  // Deliver the un-translated raw pin stream directly to Braille display devices
+  status.setAttribute("aria-braillelabel", msgBraille);
+  
+  // Write the visual Unicode symbols directly into the DOM tree container
+  status.textContent = msgBraille;
+  
   setTimeout(() => { status.focus(); }, 0);
 }
 
 function updateGuessLabel() {
   const label = document.getElementById("guess-label");
-  label.textContent = (currentGuess === MAX_GUESSES - 1) ? "f9al guess" : "guess";
+  if (!label) return;
+
+  if (currentGuess === MAX_GUESSES - 1) {
+    label.setAttribute("aria-label", "final guess");
+    label.setAttribute("aria-braillelabel", "⠋⠔⠁⠇⠀⠛⠥⠑⠎⠎");
+    label.textContent = "⠋⠔⠁⠇⠀⠛⠥⠑⠎⠎";
+  } else {
+    label.setAttribute("aria-label", "guess");
+    label.setAttribute("aria-braillelabel", "⠛⠥⠑⠎⠎");
+    label.textContent = "⠛⠥⠑⠎⠎";
+  }
 }
 
 function mapStringToDots(str) {
@@ -161,11 +181,14 @@ function submitGuess() {
   if (gameOver) return;
 
   const input = document.getElementById("guess-input");
+  if (!input) return;
+
   const rawGuess = input.value;
   const guessDots = mapStringToDots(rawGuess);
 
+  // Length Validation Checkpoint with Decoupled Response Strategy
   if (guessDots.length !== 5) {
-    setStatus("Invalid: Must be 5 Braille chars.");
+    setStatus("must be 5 braille characters", "⠠⠍⠌⠀⠆⠀⠼⠑⠀⠃⠗⠇⠀⠐⠡⠎");
     return;
   }
 
@@ -196,11 +219,12 @@ function submitGuess() {
   input.value = "";
   updateGuessLabel();
 
+  // End Game Win/Loss Routing
   if (rawGuess === WORD_OF_THE_DAY) {
-    setStatus(",,y ,,w96");
+    setStatus("you win!", "⠠⠠⠽⠀⠠⠠⠺⠔⠖");
     gameOver = true;
   } else if (currentGuess >= MAX_GUESSES) {
-    setStatus(`,sorry1 ! ~w 0 ${WORD_OF_THE_DAY}`);
+    setStatus("sorry, the word was " + WORD_OF_THE_DAY, "⠠⠎⠕⠗⠗⠽⠂⠀⠮⠀⠘⠺⠀⠴⠀" + WORD_OF_THE_DAY);
     gameOver = true;
   }
 }
@@ -210,8 +234,9 @@ async function init() {
 
   if (allWords.length > 0) {
     WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
-    // Clear debug if everything loaded
-    document.getElementById("debug-log").textContent = ""; 
+    // Clear debug container if files loaded clean
+    const debugLog = document.getElementById("debug-log");
+    if (debugLog) debugLog.textContent = ""; 
   } else {
     mobileLog("Critical: No words loaded. Check JSON files.");
   }
@@ -219,16 +244,18 @@ async function init() {
   const input = document.getElementById("guess-input");
   const button = document.getElementById("submit-btn");
 
-  button.addEventListener("click", submitGuess);
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      submitGuess();
-    }
-  });
+  if (button) button.addEventListener("click", submitGuess);
+  if (input) {
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        submitGuess();
+      }
+    });
+    input.focus();
+  }
 
   updateGuessLabel();
-  input.focus();
 }
 
 init().catch(e => mobileLog("Init Error: " + e.message));
