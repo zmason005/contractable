@@ -1,165 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Contractable</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* Base CSS Layout and Color Profiles */
-    body {
-      background-color: #000000;
-      color: #ffffff;
-      font-family: "Apple Braille", "Courier New", monospace;
-      font-size: clamp(1rem, min(2vw, 2vh), 1rem);
+    /* Prevent arbitrary text zooming mechanics in iOS Safari */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      /* Dynamic fluid baseline: scales smoothly with viewports */
+      font-size: calc(0.9rem + 0.3vw); 
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    /* Global Page Canvas Layout */
+    body { 
+      font-family: "Apple Braille", "Courier New", monospace; 
+      padding: 1.5vh 3vw; /* Fluid paddings bounded by viewport heights/widths */
+      background-color: #000000; /* Pure black background */
+      color: #ffffff;            /* Stark white global text */
       margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
+      width: 100%;
     }
 
+    /* THE MASTER APP CONTAINER
+       ======================================================================
+       Added 'text-align: center' here. This forces all inline children blocks 
+       (like headings, row text, and status blocks) to automatically align down 
+       the absolute central axis of the container across different viewports.
+    */
     .app-container {
-      width: 22ch;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
+      width: 100%;
+      max-width: 32ch; /* Safe maximum width bound mapped to character limits */
+      margin: 0 auto; /* Centers the block container horizontally on large screens */
+      font-size: clamp(1.3rem, 5vw, 1.75rem); /* Preserves large dots on small screens, limits upper range */
+      text-align: center; /* ALIGNMENT FIX: Centers headers, status text, and buttons down the central axis */
     }
-
+    
     h1 {
-      font-size: 1.2rem;
-      text-align: center;
-      margin: 0 0 20px 0;
-      word-break: break-all;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      font-size: 1.2em;
     }
-
-    #status {
-      min-height: 1.5em;
-      margin-bottom: 15px;
-      text-align: center;
-      font-size: 20px;
-      word-break: break-all;
+    
+    #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
+    
+    /* THE GAME BOARD CONTAINER
+       ======================================================================
+       CRITICAL GAP FIX: Changed 'white-space: pre' to 'white-space: pre-line'.
+       - 'pre' forces the browser to treat raw HTML indentations/tabs/line breaks 
+         as literal spacing, causing the unwanted vertical empty gap on screen.
+       - 'pre-line' collapses those accidental structural HTML code breaks into 
+         a single line, while still honoring explicit \n line breaks sent by JS.
+    */
+    #game-board { 
+      margin-top: 1em; 
+      white-space: pre-line; /* GAP FIX: Collapses raw HTML space/indentation gaps */
+      font-variant-numeric: tabular-nums; /* Keeps all numeric characters exactly uniform in width */
+      letter-spacing: 0; /* Lock letter spacing to preserve physical Braille tracking alignments */
+      padding: 0.1em 0; /* Tighter padding values to bring rows and header closer together */
+      width: 100%;
+      text-align: center; /* ALIGNMENT FIX: Forces dynamic rows injected inside to center standardly */
     }
-
-    #game-board {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 25px;
-      font-size: 1rem;
+    
+    .row { 
+      outline: none; 
+      margin-bottom: 0.15em; 
+      letter-spacing: 0;
     }
-
-    .row {
-      white-space: pre;
-      word-break: break-all;
+    
+    #controls { 
+      margin-top: 1.5em; 
+      width: 100%;
     }
-
-    #header {
-      font-size: 1rem;
-      margin-bottom: 12px;
-      white-space: pre;
-      word-break: break-all;
-      border-bottom: 1px solid #ffffff;
-      padding-bottom: 4px;
+    
+    #guess-label { 
+      display: block; 
+      margin-bottom: 0.5em; 
+      font-size: 0.9em;
     }
-
-    .controls {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    
+    /* Text Input Box */
+    #guess-input { 
+      font-family: monospace; 
+      width: 10ch; 
+      /* Bypasses iOS auto-zoom constraints smoothly using rem sizing */
+      font-size: 1rem; 
+      background-color: #000000; 
+      color: #ffffff; 
+      border: 0.08rem solid #ffffff; 
+      padding: 0.4em;
+      vertical-align: middle;
     }
-
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    label {
-      font-family: monospace;
-      font-size: 0.6rem;
-    }
-
-    input[type="text"] {
-      background-color: #000000;
-      color: #ffffff;
-      border: 1px solid #ffffff;
-      padding: 8px;
-      font-family: monospace;
-      font-size: 0.6rem;
-      border-radius: 0;
-    }
-
-    button {
-      background-color: #000000;
-      color: #ffffff;
-      border: 1px solid #ffffff;
-      padding: 10px;
-      font-family: monospace;
-      font-size: 0.75rem;
+    
+    /* High-Contrast Amber Outlined Action Button */
+    #submit-btn {
+      font-family: sans-serif; 
+      background-color: #000000; 
+      color: #ffffff;            
+      border: 0.125rem solid #FFC107; 
+      padding: 0.3em 1em;
+      font-weight: bold;
       cursor: pointer;
+      font-size: 1.1rem; 
+      vertical-align: middle;
+      margin-left: 0.4rem;
     }
 
-    #debug-log {
-      margin-top: 20px;
-      color: #ff4d4d;
+    #submit-btn:hover {
+      background-color: rgba(255, 193, 7, 0.15);
+    }
+
+    #debug-log { 
+      margin-top: 2em; 
+      font-size: 0.6em; 
+      color: #ff4d4d; /* High-contrast crimson optimized for pitch black surfaces */
+      border-top: 0.08rem solid #ccc; 
+      padding-top: 0.65rem;
       font-family: monospace;
-      font-size: 0.5rem;
-      white-space: pre-wrap;
-    }
-
-    /* Print View Accessibility Optimizations */
-    @media print {
-      .controls, #debug-log {
-        display: none !important;
-      }
+      width: 100%;
     }
   </style>
 </head>
 <body>
 
   <div class="app-container">
-    <h1 
-      aria-label="CONTRACTABLE" 
-      aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</h1>
 
-    <div 
-      id="status" 
-      role="status" 
-      aria-live="assertive" 
-      aria-label="status messages" 
-      aria-braillelabel=""></div>
+    <h1 aria-label="contractable" aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀">
+      <span aria-hidden="true">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</span>
+    </h1>
 
-    <div 
-      id="header" 
-      role="text"
-      aria-label="correct guess wrong" 
-      aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</div>
+    <div id="status" role="status" aria-label="status messages" tabindex="-1"></div>
 
-    <div id="game-board" role="log"></div>
+    <div id="game-board" aria-live="polite">
+      <div 
+        id="header" 
+        role="text"
+        aria-label="correct, guess, wrong"
+        aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</div>
+    </div>
 
-    <div class="controls">
-      <div class="input-group">
-        <label 
-          id="guess-label" 
-          for="guess-input" 
-          aria-hidden="true">⠛⠥⠑⠎⠎</label>
-        <input 
-          type="text" 
-          id="guess-input"
-          aria-label="guess"
-          aria-braillelabel="⠛⠥⠑⠎⠎"
-          autocapitalize="off" 
-          autocomplete="off" 
-          autocorrect="off" 
-          spellcheck="false">
-      </div>
-      
-      <button 
-        id="submit-btn" 
-        aria-label="submit" 
-        aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
+    <div id="controls">
+      <label id="guess-label" for="guess-input" aria-hidden="true">⠛⠥⠑⠎⠎</label>
+      <input 
+        id="guess-input" 
+        type="text" 
+        aria-label="guess"
+        aria-braillelabel="⠛⠥⠑⠎⠎"
+        autocomplete="off" 
+        autocapitalize="off" 
+        spellcheck="false" />
+      <button id="submit-btn" aria-label="submit" aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
     </div>
 
     <div id="debug-log"></div>
+
   </div>
 
   <script src="main.js"></script>
