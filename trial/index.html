@@ -9,22 +9,33 @@
     html {
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
+      /* Dynamic fluid baseline: scales smoothly with viewports */
+      font-size: calc(0.9rem + 0.3vw); 
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
     }
 
     /* Global Page Canvas Layout */
     body { 
       font-family: "Apple Braille", "Courier New", monospace; 
-      padding: 15px; 
+      padding: 1.5vh 3vw; /* Fluid paddings bounded by viewport heights/widths */
       background-color: #000000; /* Pure black background */
       color: #ffffff;            /* Stark white global text */
+      margin: 0;
+      width: 100%;
     }
 
-    /* Simple, Un-sectioned Layout Container */
+    /* Strategy 1: Viewport-Bounded Canvas Container */
     .app-container {
-      max-width: 30ch;
+      width: 100%;
+      max-width: 32ch; /* Safe maximum width bound mapped to character limits */
       margin: 0 auto;
-      box-sizing: border-box;
-      font-size: 28px; /* Globally enlarged for visual clarity of Braille cells */
+      
+      /* Fluid typography: preserves large dots on small screens, limits upper range */
+      font-size: clamp(1.3rem, 5vw, 1.75rem); 
     }
     
     h1 {
@@ -35,24 +46,25 @@
     
     #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
     
-    /* Simplified Game Board: No background columns, gradients, or custom width rules */
+    /* Simplified Game Board: Dynamic scaling container */
     #game-board { 
       margin-top: 1em; 
       white-space: pre;
-      box-sizing: border-box;
       font-variant-numeric: tabular-nums;
       letter-spacing: 0;
-      padding: 8px 0;
+      padding: 0.5em 0;
+      width: 100%;
     }
     
     .row { 
       outline: none; 
-      margin-bottom: 2px; 
+      margin-bottom: 0.15em; 
       letter-spacing: 0;
     }
     
     #controls { 
       margin-top: 1.5em; 
+      width: 100%;
     }
     
     #guess-label { 
@@ -65,11 +77,12 @@
     #guess-input { 
       font-family: monospace; 
       width: 10ch; 
-      font-size: 16px; /* Blocks iOS mobile zoom on focus */
+      /* Bypasses iOS auto-zoom constraints smoothly using rem sizing */
+      font-size: 1rem; 
       background-color: #000000; 
       color: #ffffff; 
-      border: 1px solid #ffffff; 
-      padding: 6px;
+      border: 0.08rem solid #ffffff; 
+      padding: 0.4em;
       vertical-align: middle;
     }
     
@@ -78,14 +91,13 @@
       font-family: sans-serif; 
       background-color: #000000; 
       color: #ffffff;            
-      border: 2px solid #FFC107; 
-      padding: 4px 14px;
+      border: 0.125rem solid #FFC107; 
+      padding: 0.3em 1em;
       font-weight: bold;
       cursor: pointer;
-      font-size: 18px; 
+      font-size: 1.1rem; 
       vertical-align: middle;
-      margin-left: 6px;
-      box-sizing: border-box;
+      margin-left: 0.4rem;
     }
 
     #submit-btn:hover {
@@ -95,10 +107,11 @@
     #debug-log { 
       margin-top: 2em; 
       font-size: 0.6em; 
-      color: red; 
-      border-top: 1px solid #ccc; 
-      padding-top: 10px;
+      color: #ff4d4d; /* High-contrast crimson optimized for pitch black surfaces */
+      border-top: 0.08rem solid #ccc; 
+      padding-top: 0.65rem;
       font-family: monospace;
+      width: 100%;
     }
   </style>
 </head>
