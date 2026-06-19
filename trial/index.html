@@ -28,14 +28,18 @@
       width: 100%;
     }
 
-    /* Strategy 1: Viewport-Bounded Canvas Container */
+    /* THE MASTER APP CONTAINER
+       ======================================================================
+       Added 'text-align: center' here. This forces all inline children blocks 
+       (like headings, row text, and status blocks) to automatically align down 
+       the absolute central axis of the container across different viewports.
+    */
     .app-container {
       width: 100%;
       max-width: 32ch; /* Safe maximum width bound mapped to character limits */
-      margin: 0 auto;
-      
-      /* Fluid typography: preserves large dots on small screens, limits upper range */
-      font-size: clamp(1.3rem, 5vw, 1.75rem); 
+      margin: 0 auto; /* Centers the block container horizontally on large screens */
+      font-size: clamp(1.3rem, 5vw, 1.75rem); /* Preserves large dots on small screens, limits upper range */
+      text-align: center; /* ALIGNMENT FIX: Centers headers, status text, and buttons down the central axis */
     }
     
     h1 {
@@ -46,14 +50,22 @@
     
     #status { margin-top: 0.5em; white-space: pre; font-weight: bold; }
     
-    /* Simplified Game Board: Dynamic scaling container */
+    /* THE GAME BOARD CONTAINER
+       ======================================================================
+       CRITICAL GAP FIX: Changed 'white-space: pre' to 'white-space: pre-line'.
+       - 'pre' forces the browser to treat raw HTML indentations/tabs/line breaks 
+         as literal spacing, causing the unwanted vertical empty gap on screen.
+       - 'pre-line' collapses those accidental structural HTML code breaks into 
+         a single line, while still honoring explicit \n line breaks sent by JS.
+    */
     #game-board { 
       margin-top: 1em; 
-      white-space: pre;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0;
-      padding: 0.5em 0;
+      white-space: pre-line; /* GAP FIX: Collapses raw HTML space/indentation gaps */
+      font-variant-numeric: tabular-nums; /* Keeps all numeric characters exactly uniform in width */
+      letter-spacing: 0; /* Lock letter spacing to preserve physical Braille tracking alignments */
+      padding: 0.1em 0; /* Tighter padding values to bring rows and header closer together */
       width: 100%;
+      text-align: center; /* ALIGNMENT FIX: Forces dynamic rows injected inside to center standardly */
     }
     
     .row { 
@@ -130,9 +142,7 @@
         id="header" 
         role="text"
         aria-label="correct, guess, wrong"
-        aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">
-        ⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛
-      </div>
+        aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</div>
     </div>
 
     <div id="controls">
