@@ -130,7 +130,8 @@
 
     <div 
       id="header" 
-      aria-label=“correct guess wrong" 
+      role="text"
+      aria-label="correct guess wrong" 
       aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</div>
 
     <div id="game-board" role="log"></div>
@@ -140,11 +141,13 @@
         <label 
           id="guess-label" 
           for="guess-input" 
-          aria-label="guess" 
-          aria-braillelabel="⠛⠥⠑⠎⠎">⠛⠥⠑⠎⠎</label>
+          aria-hidden="true">⠛⠥⠑⠎⠎</label>
         <input 
           type="text" 
-          id="guess-input"        autocapitalize="off" 
+          id="guess-input"
+          aria-label="guess"
+          aria-braillelabel="⠛⠥⠑⠎⠎"
+          autocapitalize="off" 
           autocomplete="off" 
           autocorrect="off" 
           spellcheck="false">
