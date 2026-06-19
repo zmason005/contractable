@@ -106,24 +106,33 @@
 
   <div class="app-container">
 
-    <h1 aria-label="Contractable" aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀">
+    <h1 aria-label="contractable" aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀">
       <span aria-hidden="true">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</span>
     </h1>
 
-    <div id="status" role="status" aria-label="Status Messages" tabindex="-1"></div>
+    <div id="status" role="status" aria-label="status messages" tabindex="-1"></div>
 
     <div id="game-board" aria-live="polite">
       <div 
         id="header" 
-        aria-label="Correct, Guess, Wrong">
+        role="text"
+        aria-label="correct, guess, wrong"
+        aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">
         ⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛
       </div>
     </div>
 
     <div id="controls">
-      <label id="guess-label" for="guess-input" aria-label="Guess" aria-braillelabel="⠛⠥⠑⠎⠎">⠛⠥⠑⠎⠎</label>
-      <input id="guess-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" />
-      <button id="submit-btn" aria-label="Submit" aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
+      <label id="guess-label" for="guess-input" aria-hidden="true">⠛⠥⠑⠎⠎</label>
+      <input 
+        id="guess-input" 
+        type="text" 
+        aria-label="guess"
+        aria-braillelabel="⠛⠥⠑⠎⠎"
+        autocomplete="off" 
+        autocapitalize="off" 
+        spellcheck="false" />
+      <button id="submit-btn" aria-label="submit" aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
     </div>
 
     <div id="debug-log"></div>
