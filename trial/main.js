@@ -10,9 +10,9 @@ let dotsToAscii = {};       // Maps 8-bit binary strings to literal Unicode Brai
 let currentGuess = 0;
 let gameOver = false;
 
-// Initialized to full 8-bit strings to match the strict 8-bit mapping data
-let correctDots = Array(5).fill("00000000");
-let wrongDots = Array(5).fill("00000000");
+// Track accumulated matching matrices as plain integers for fast compound bitwise operations
+let correctDots = Array(5).fill(0);
+let wrongDots = Array(5).fill(0);
 
 // End game custom Braille Unicode messaging
 const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄⠄⡳⠭⠴⠴⠆⠂⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠒⠙⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
@@ -174,7 +174,6 @@ function stringToUnicodeSymbols(str) {
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
   const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "";
-  // Flat text layout string separated by a standard un-contracted space cell
   return `${label}\u2800${correct}\u2800${guess}\u2800${wrong}`;
 }
 
@@ -184,11 +183,9 @@ function renderRow(rowText) {
   row.className = "row";
   row.tabIndex = -1;
   
-  // Directly broadcast row text data straight into the accessibility tree query
   row.setAttribute("aria-braillelabel", rowText);
   row.setAttribute("aria-label", `Row ${currentGuess + 1}`);
 
-  // Hide inner text node to block duplicating streams on physical pins
   const visualWrapper = document.createElement("span");
   visualWrapper.setAttribute("aria-hidden", "true");
   visualWrapper.textContent = rowText;
@@ -209,12 +206,12 @@ function submitGuess() {
   const targetUnicode = WORD_OF_THE_DAY.brlunicode;
 
   const isMatch = (lowerGuess === targetPrint || rawGuess === targetUnicode);
-
   const referenceGuessString = isMatch ? targetUnicode : rawGuess;
   const guessDots = mapStringToDots(referenceGuessString);
 
   if (guessDots.length !== 5) {
     setStatus("Invalid: Must be 5 Braille chars.");
+    input.value = ""; // Clear out input immediately so tactile users don't get trapped manually deleting
     return;
   }
 
@@ -224,23 +221,23 @@ function submitGuess() {
     const g = parseInt(guessDots[i], 2);
     const t = parseInt(targetDots[i], 2);
 
-    const overlap = g & t;
-    const wrong = g & ~t;
-
-    correctDots[i] = (parseInt(correctDots[i], 2) | overlap)
-      .toString(2).padStart(8, "0");
-
-    wrongDots[i] = (parseInt(wrongDots[i], 2) | wrong)
-      .toString(2).padStart(8, "0");
+    // Compound logical mask accumulations mapped over fast native numbers
+    correctDots[i] |= (g & t);
+    wrongDots[i] |= (g & ~t);
   }
 
-  const unicodeGuessDisplay = stringToUnicodeSymbols(referenceGuessString);
+  // Bypass redundant conversion mappings if the final match state signature is known
+  const unicodeGuessDisplay = isMatch ? targetUnicode : stringToUnicodeSymbols(referenceGuessString);
+
+  // Transform internal mathematical integers back to 8-bit binary strings for ASCII lookup pass
+  const correctStrings = correctDots.map(d => d.toString(2).padStart(8, "0"));
+  const wrongStrings = wrongDots.map(d => d.toString(2).padStart(8, "0"));
 
   renderRow(formatRow({
     guessIndex: currentGuess,
-    correct: dotsArrayToAsciiString(correctDots),
+    correct: dotsArrayToAsciiString(correctStrings),
     guess: unicodeGuessDisplay,
-    wrong: dotsArrayToAsciiString(wrongDots),
+    wrong: dotsArrayToAsciiString(wrongStrings),
   }));
 
   currentGuess++;
