@@ -3,31 +3,26 @@
 const MAX_GUESSES = 6;
 const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 
-let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
-let allWords = [];          // Array of objects from daily-word2.json
-let asciiToDots = {};       // Maps both print letters and Unicode Braille to 8-bit binary strings
-let dotsToAscii = {};       // Maps 8-bit binary strings to literal Unicode Braille characters
+let WORD_OF_THE_DAY = null; // Holds target object: { id, print, brlunicode }
+let allWords = [];          // Master array from daily-word2.json
+let asciiToDots = {};       // Maps print letters and Braille Unicode to 8-bit binary strings
+let dotsToAscii = {};       // Maps 8-bit binary strings to Braille Unicode symbols
+
 let currentGuess = 0;
 let gameOver = false;
 
-// Persistent metric tracking targets across rounds (Cumulative)
+// Trackers initialized as pure integers to leverage clean bitwise masks
 let correctDots = Array(5).fill(0);
+let wrongDots = Array(5).fill(0);
 
-// End game custom Braille Unicode messaging
-const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄⠄⡳⠭⠴⠴⠆⠂⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠒⠙⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
-const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
-
-// Maps row numeric indices to strict Braille Unicode row prefixes
-const ROW_NUMERIC_PREFIXES = ["⠼⠁", "⠼⠃", "⠼⠉", "⠼⠙", "⠼⠑", "⠼⠋"];
-
-// Helper to log errors directly to the screen on iPhone
+// Unified logger for debugging and device runtimes
 function mobileLog(msg) {
   const log = document.getElementById("debug-log");
   if (log) log.textContent += msg + "\n";
   console.error(msg);
 }
 
-/* ── PRNG & Logic ────────────────────────────────────────────────────────── */
+/* ── PRNG & DETERMINISTIC SHUFFLE ENGINE ────────────────────────────────── */
 
 function mulberry32(seed) {
   seed = seed >>> 0;
@@ -42,69 +37,93 @@ function mulberry32(seed) {
 
 function deterministicShuffle(arr, seed) {
   const rng = mulberry32(seed);
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
+  const shuffled = arr.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+    const temp = shuffled[i];
+    shuffled[i] = shuffled[j];
+    shuffled[j] = temp;
   }
-  return a;
-}
-
-function applyFirstCharConstraint(arr, prevLastChar = null) {
-  const a = arr.slice();
-  if (prevLastChar !== null && a[0].print[0] === prevLastChar) {
-    for (let j = 1; j < a.length; j++) {
-      if (a[j].print[0] !== prevLastChar) {
-        [a[0], a[j]] = [a[j], a[0]];
-        break;
-      }
-    }
-  }
-  for (let i = 1; i < a.length; i++) {
-    if (a[i].print[0] === a[i - 1].print[0]) {
-      for (let j = i + 1; j < a.length; j++) {
-        if (a[j].print[0] !== a[i - 1].print[0]) {
-          [a[i], a[j]] = [a[j], a[i]];
-          break;
-        }
-      }
-    }
-  }
-  return a;
-}
-
-function buildCycle(cycleIndex, prevLastChar = null) {
-  const seed = (START_DATE_MS + cycleIndex) >>> 0;
-  const shuffled = deterministicShuffle(allWords, seed);
-  return applyFirstCharConstraint(shuffled, prevLastChar);
+  return shuffled;
 }
 
 function getWordForDayIndex(dayIndex) {
-  const listSize = allWords.length || 1;
-  const cycleIndex = Math.floor(dayIndex / listSize);
-  const position = dayIndex % listSize;
-  let prevLastChar = null;
-  if (cycleIndex > 0) {
-    const prevCycle = buildCycle(cycleIndex - 1, null);
-    prevLastChar = prevCycle[prevCycle.length - 1].print[0];
+  if (allWords.length === 0) return null;
+  const shuffled = deterministicShuffle(allWords, 42139); // Stable structural seed
+  const safeIndex = dayIndex % shuffled.length;
+  return shuffled[safeIndex];
+}
+
+/* ── BIDIRECTIONAL TRANSLATION & DATA PARSING ───────────────────────────── */
+
+function mapStringToDots(str) {
+  const dotsArray = [];
+  for (let i = 0; i < str.length; i++) {
+    const ch = str[i];
+    // Check direct Unicode Braille key first, then fallback to lowercase letter mapping
+    if (asciiToDots[ch] !== undefined) {
+      dotsArray.push(asciiToDots[ch]);
+    } else if (asciiToDots[ch.toLowerCase()] !== undefined) {
+      dotsArray.push(asciiToDots[ch.toLowerCase()]);
+    } else {
+      dotsArray.push("00000000"); // Safe structural fallback mask
+    }
   }
-  const cycle = buildCycle(cycleIndex, prevLastChar);
-  return cycle[position];
+  return dotsArray;
 }
 
-function todayDayIndex() {
-  const nowUTC = Date.now();
-  return Math.floor((nowUTC - START_DATE_MS) / 86400000);
+function stringToUnicodeSymbols(str) {
+  let unicodeResult = "";
+  for (let i = 0; i < str.length; i++) {
+    const ch = str[i];
+    if (asciiToDots[ch] !== undefined) {
+      // If it's already a native Braille symbol, preserve it directly
+      unicodeResult += ch;
+    } else {
+      const lowerCh = ch.toLowerCase();
+      const dotBits = asciiToDots[lowerCh];
+      if (dotBits && dotsToAscii[dotBits]) {
+        unicodeResult += dotsToAscii[dotBits];
+      } else {
+        unicodeResult += "⠀"; // Blank cell fallback (U+2800)
+      }
+    }
+  }
+  return unicodeResult;
 }
 
-/* ── Loaders ──────────────────────────────────────────────────────────────── */
+/* ── ACCESSIBILITY SPLIT-STREAM STATUS SYSTEM ───────────────────────────── */
+
+function setStatus(ariaLabelText, ariaBraillelabelText) {
+  const statusContainer = document.getElementById("status");
+  if (!statusContainer) return;
+
+  // Clear existing content safely
+  statusContainer.textContent = "";
+
+  // Set the precise, clean straight-quoted accessibility properties
+  statusContainer.setAttribute("aria-label", ariaLabelText);
+  statusContainer.setAttribute("aria-braillelabel", ariaBraillelabelText);
+
+  // Focus Tree Race Mitigation: Delay layout announcement focus shift slightly 
+  // to prevent mobile speech engines from clipping ongoing row confirmation signals.
+  setTimeout(() => {
+    statusContainer.focus();
+  }, 250);
+}
+
+/* ── ASYNC DATA LAYER ROUTINES ──────────────────────────────────────────── */
 
 async function loadDailyWords() {
   try {
     const response = await fetch("daily-word2.json");
-    if (!response.ok) throw new Error("Could not find daily-word2.json");
+    if (!response.ok) throw new Error("Network response failed");
     allWords = await response.json();
   } catch (e) {
+    setStatus(
+      "Administrative error. Please send an email to the web administrator info@braillefirst.com.",
+      ""
+    );
     mobileLog("Daily Words Error: " + e.message);
   }
 }
@@ -112,173 +131,190 @@ async function loadDailyWords() {
 async function loadMapping() {
   try {
     const response = await fetch("brlunicode-mapping.json");
-    if (!response.ok) throw new Error("Could not find brlunicode-mapping.json");
+    if (!response.ok) throw new Error("Network response failed");
     const data = await response.json();
 
-    asciiToDots = {};
-    dotsToAscii = {};
+    // Map object properties explicitly for both uncontracted and contracted execution tables
+    for (const key in data) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        const item = data[key];
+        const binaryString = item.bits; // Expected 8-bit mapping flag
+        const unicodeSymbol = item.unicode;
 
-    data.forEach(item => {
-      const fullBitmask = item.bitmask;
-
-      if (item.printAscii) {
-        asciiToDots[item.printAscii.toLowerCase()] = fullBitmask;
+        asciiToDots[key] = binaryString;
+        asciiToDots[unicodeSymbol] = binaryString;
+        dotsToAscii[binaryString] = unicodeSymbol;
       }
-      if (item.unicodeChar) {
-        asciiToDots[item.unicodeChar] = fullBitmask;
-      }
-
-      dotsToAscii[fullBitmask] = item.unicodeChar || "\u2800";
-    });
+    }
   } catch (e) {
+    setStatus(
+      "Administrative error. Please send an email to the web administrator info@braillefirst.com.",
+      ""
+    );
     mobileLog("Mapping Error: " + e.message);
   }
 }
 
-/* ── UI & Game Logic ─────────────────────────────────────────────────────── */
+/* ── GRID PRESENTATION ENGINE ───────────────────────────────────────────── */
 
-function setStatus(msg) {
-  const status = document.getElementById("status");
-  status.textContent = msg;
-  setTimeout(() => { status.focus(); }, 0);
+function formatRow(guessUnicode, trackerUnicode) {
+  // Generates flat presentational fragments matching native column structures
+  let html = "";
+  
+  // Column 1: Tracker Field
+  html += `<span class="cell-block c1" role="text" aria-hidden="true">${trackerUnicode}</span>`;
+  // Transparent Space Gutter 1
+  html += `<span class="gutter-space" aria-hidden="true"> </span>`;
+  // Column 2: Guess Core Matrix
+  html += `<span class="cell-block c2" role="text" aria-hidden="true">${guessUnicode}</span>`;
+  
+  return html;
 }
 
-function updateGuessLabel() {
-  const label = document.getElementById("guess-label");
-  label.textContent = (currentGuess === MAX_GUESSES - 1) ? "f9al guess" : "guess";
+function renderRow(rowIndex, guessUnicode, trackerUnicode, speechLabel, tactileLabel) {
+  const rowElement = document.getElementById(`row-${rowIndex}`);
+  if (!rowElement) return;
+
+  // Enforce semantic node flattening for screen readers via role="text"
+  rowElement.setAttribute("role", "text");
+  rowElement.setAttribute("aria-label", speechLabel);
+  rowElement.setAttribute("aria-braillelabel", tactileLabel);
+
+  rowElement.innerHTML = formatRow(guessUnicode, trackerUnicode);
 }
 
-function mapStringToDots(str) {
-  const dots = [];
-  for (const ch of str) {
-    const lowerCh = ch.toLowerCase();
-    if (asciiToDots[lowerCh]) {
-      dots.push(asciiToDots[lowerCh]);
-    }
-  }
-  return dots;
-}
-
-function dotsArrayToAsciiString(arr) {
-  return arr.map(d => dotsToAscii[d] ?? "\u2800").join("");
-}
-
-function stringToUnicodeSymbols(str) {
-  return Array.from(str).map(ch => {
-    const lowerCh = ch.toLowerCase();
-    const dots = asciiToDots[lowerCh];
-    return dotsToAscii[dots] || "\u2800";
-  }).join("");
-}
-
-function formatRow({ guessIndex, correct, guess, wrong }) {
-  const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "";
-  return `${label}\u2800${correct}\u2800${guess}\u2800${wrong}`;
-}
-
-function renderRow(rowText) {
-  const board = document.getElementById("game-board");
-  const row = document.createElement("div");
-  row.className = "row";
-  row.tabIndex = -1;
-
-  row.setAttribute("aria-braillelabel", rowText);
-  row.setAttribute("aria-label", `Row ${currentGuess + 1}`);
-
-  const visualWrapper = document.createElement("span");
-  visualWrapper.setAttribute("aria-hidden", "true");
-  visualWrapper.textContent = rowText;
-
-  row.appendChild(visualWrapper);
-  board.appendChild(row);
-  row.focus();
-}
+/* ── DOM CORE GAME LOOP INTERACTION ENGINE ──────────────────────────────── */
 
 function submitGuess() {
   if (gameOver || !WORD_OF_THE_DAY) return;
 
-  const input = document.getElementById("guess-input");
-  const rawGuess = input.value.trim();
-  const lowerGuess = rawGuess.toLowerCase();
+  const inputElement = document.getElementById("guess-input");
+  if (!inputElement) return;
 
-  const targetPrint = WORD_OF_THE_DAY.print.toLowerCase();
-  const targetUnicode = WORD_OF_THE_DAY.brlunicode;
-
-  const isMatch = (lowerGuess === targetPrint || rawGuess === targetUnicode);
-  const referenceGuessString = isMatch ? targetUnicode : rawGuess;
-  const guessDots = mapStringToDots(referenceGuessString);
-
-  if (guessDots.length !== 5) {
-    setStatus("Invalid: Must be 5 Braille chars.");
-    input.value = "";
+  const rawGuess = inputElement.value;
+  
+  // Guardrail: Structural confirmation of entry metrics
+  if (rawGuess.length !== 5) {
+    setStatus(
+      "INVALID: Must be 5 braille characters",
+      "⠠⠠⠔⠧⠁⠇⠊⠙⠒⠀⠠⠍⠌⠀⠆⠀⠼⠑⠀⠃⠗⠇⠀⠐⠡⠎"
+    );
     return;
   }
 
-  const targetDots = mapStringToDots(targetUnicode);
+  // Parse arrays into binary string formats natively
+  const guessDotsArray = mapStringToDots(rawGuess);
+  const targetDotsArray = mapStringToDots(WORD_OF_THE_DAY.brlunicode);
 
-  const rowCorrectStrings = [];
-  const rowWrongStrings = [];
+  const guessUnicode = stringToUnicodeSymbols(rawGuess);
+  let trackerUnicode = "";
 
+  let exactMatches = 0;
+
+  // Process evaluation loops using mathematical bitwise shifts
   for (let i = 0; i < 5; i++) {
-    const g = parseInt(guessDots[i], 2);
-    const t = parseInt(targetDots[i], 2);
+    const guessBits = parseInt(guessDotsArray[i], 2);
+    const targetBits = parseInt(targetDotsArray[i], 2);
 
-    // Mask to 8 bits to prevent 32-bit signed bleed from JavaScript's bitwise NOT (~)
-    correctDots[i] = (correctDots[i] | (g & t)) & 0xFF;
+    // Filter absolute correct pins
+    const correctOverlap = guessBits & targetBits;
+    correctDots[i] |= correctOverlap;
 
-    // Wrong dots: bits in guess that are NOT in target, masked to 8 bits
-    const currentWrongBits = (g & ~t) & 0xFF;
+    // Filter invalid pins via targeted bitwise complement intersection masks
+    const wrongOverlap = guessBits & ~targetBits;
+    wrongDots[i] |= wrongOverlap;
 
-    rowCorrectStrings.push(correctDots[i].toString(2).padStart(8, "0"));
-    rowWrongStrings.push(currentWrongBits.toString(2).padStart(8, "0"));
+    if (guessBits === targetBits) {
+      exactMatches++;
+    }
+
+    // Determine what display dots remain out of the master target sequence
+    const trackerBits = targetBits & ~correctDots[i];
+    const trackerBinaryStr = trackerBits.toString(2).padStart(8, "0");
+    trackerUnicode += dotsToAscii[trackerBinaryStr] || "⠀";
   }
 
-  const unicodeGuessDisplay = isMatch ? targetUnicode : stringToUnicodeSymbols(referenceGuessString);
+  // Generate localized, flat aria speech and tactile tracking confirmations
+  const rowSpeechLabel = `Row ${currentGuess + 1}: ${rawGuess.split("").join(" ")}`;
+  const rowTactileLabel = `${trackerUnicode} ${guessUnicode}`;
 
-  renderRow(formatRow({
-    guessIndex: currentGuess,
-    correct: dotsArrayToAsciiString(rowCorrectStrings),
-    guess: unicodeGuessDisplay,
-    wrong: dotsArrayToAsciiString(rowWrongStrings),
-  }));
+  renderRow(currentGuess, guessUnicode, trackerUnicode, rowSpeechLabel, rowTactileLabel);
 
+  // Clear inputs smoothly without locking interaction wrappers
+  inputElement.value = "";
   currentGuess++;
-  input.value = "";
-  updateGuessLabel();
 
-  if (isMatch) {
-    setStatus(WIN_STATUS_MESSAGE);
+  // Assess termination triggers
+  if (exactMatches === 5) {
     gameOver = true;
+    setStatus(
+      "YOU WIN!",
+      "⠠⠠⠽⠀⠠⠠⠺⠔⠖"
+    );
   } else if (currentGuess >= MAX_GUESSES) {
-    setStatus(LOSE_STATUS_MESSAGE);
     gameOver = true;
+    // Inject dynamic word reveals safely via split-concatenation straight quotes
+    const speechDefeat = "Sorry, game over. The word was " + WORD_OF_THE_DAY.print;
+    const tactileDefeat = "⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀⠠⠮⠀⠘⠺⠀" + WORD_OF_THE_DAY.brlunicode;
+    setStatus(speechDefeat, tactileDefeat);
+  } else {
+    // Standard turn update loop text
+    setStatus(`Guess ${currentGuess} submitted.`, "");
+    
+    // Focus next physical row to prompt linear hardware traversal
+    const nextRow = document.getElementById(`row-${currentGuess}`);
+    if (nextRow) {
+      setTimeout(() => { nextRow.focus(); }, 100);
+    }
   }
 }
+
+/* ── MASTER ENTRYPOINT INITIALIZATION ───────────────────────────────────── */
 
 async function init() {
-  await Promise.all([loadMapping(), loadDailyWords()]);
+  await loadDailyWords();
+  await loadMapping();
 
-  if (allWords.length > 0) {
-    WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
-    const debugLog = document.getElementById("debug-log");
-    if (debugLog) debugLog.textContent = "";
-  } else {
+  if (allWords.length === 0) {
+    setStatus(
+      "Administrative error. Please send an email to the web administrator info@braillefirst.com.",
+      ""
+    );
     mobileLog("Critical: No words loaded. Check JSON files.");
+    return;
   }
 
-  const input = document.getElementById("guess-input");
-  const button = document.getElementById("submit-btn");
+  // Synchronize dynamic daily index calculation formulas
+  const nowMs = Date.now();
+  const deltaMs = nowMs - START_DATE_MS;
+  const currentDayIndex = Math.max(0, Math.floor(deltaMs / (1000 * 60 * 60 * 24)));
 
-  button.addEventListener("click", submitGuess);
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      submitGuess();
-    }
-  });
+  WORD_OF_THE_DAY = getWordForDayIndex(currentDayIndex);
 
-  updateGuessLabel();
-  input.focus();
+  if (!WORD_OF_THE_DAY) {
+    mobileLog("Initialization Error: Target word assignment failed structural mapping limits.");
+    return;
+  }
+
+  // Bind interaction event loops cleanly
+  const submitBtn = document.getElementById("submit-btn");
+  if (submitBtn) {
+    submitBtn.addEventListener("click", submitGuess);
+  }
+
+  const inputField = document.getElementById("guess-input");
+  if (inputField) {
+    inputField.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        submitGuess();
+      }
+    });
+  }
 }
 
-init().catch(e => mobileLog("Init Error: " + e.message));
+// Global invocation pipeline
+document.addEventListener("DOMContentLoaded", () => {
+  init().catch((e) => {
+    mobileLog("Init Error: " + e.message);
+  });
+});
