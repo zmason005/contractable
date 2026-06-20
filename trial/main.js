@@ -80,7 +80,7 @@ function buildCycle(cycleIndex, prevLastChar = null) {
 }
 
 function getWordForDayIndex(dayIndex) {
-  const listSize = allWords.length || 1; 
+  const listSize = allWords.length || 1;
   const cycleIndex = Math.floor(dayIndex / listSize);
   const position = dayIndex % listSize;
   let prevLastChar = null;
@@ -114,20 +114,20 @@ async function loadMapping() {
     const response = await fetch("brlunicode-mapping.json");
     if (!response.ok) throw new Error("Could not find brlunicode-mapping.json");
     const data = await response.json();
-    
+
     asciiToDots = {};
     dotsToAscii = {};
-    
+
     data.forEach(item => {
       const fullBitmask = item.bitmask;
-      
+
       if (item.printAscii) {
         asciiToDots[item.printAscii.toLowerCase()] = fullBitmask;
       }
       if (item.unicodeChar) {
         asciiToDots[item.unicodeChar] = fullBitmask;
       }
-      
+
       dotsToAscii[fullBitmask] = item.unicodeChar || "\u2800";
     });
   } catch (e) {
@@ -181,14 +181,14 @@ function renderRow(rowText) {
   const row = document.createElement("div");
   row.className = "row";
   row.tabIndex = -1;
-  
+
   row.setAttribute("aria-braillelabel", rowText);
   row.setAttribute("aria-label", `Row ${currentGuess + 1}`);
 
   const visualWrapper = document.createElement("span");
   visualWrapper.setAttribute("aria-hidden", "true");
   visualWrapper.textContent = rowText;
-  
+
   row.appendChild(visualWrapper);
   board.appendChild(row);
   row.focus();
@@ -210,7 +210,7 @@ function submitGuess() {
 
   if (guessDots.length !== 5) {
     setStatus("Invalid: Must be 5 Braille chars.");
-    input.value = ""; 
+    input.value = "";
     return;
   }
 
@@ -223,11 +223,11 @@ function submitGuess() {
     const g = parseInt(guessDots[i], 2);
     const t = parseInt(targetDots[i], 2);
 
-    // Correct dots build permanently over previous rounds
-    correctDots[i] |= (g & t);
+    // Mask to 8 bits to prevent 32-bit signed bleed from JavaScript's bitwise NOT (~)
+    correctDots[i] = (correctDots[i] | (g & t)) & 0xFF;
 
-    // Wrong dots are computed and isolated strictly to this round's input metrics
-    const currentWrongBits = (g & ~t);
+    // Wrong dots: bits in guess that are NOT in target, masked to 8 bits
+    const currentWrongBits = (g & ~t) & 0xFF;
 
     rowCorrectStrings.push(correctDots[i].toString(2).padStart(8, "0"));
     rowWrongStrings.push(currentWrongBits.toString(2).padStart(8, "0"));
@@ -261,7 +261,7 @@ async function init() {
   if (allWords.length > 0) {
     WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
     const debugLog = document.getElementById("debug-log");
-    if (debugLog) debugLog.textContent = ""; 
+    if (debugLog) debugLog.textContent = "";
   } else {
     mobileLog("Critical: No words loaded. Check JSON files.");
   }
