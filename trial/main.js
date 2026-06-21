@@ -191,7 +191,7 @@ function submitGuess() {
   const inputElement = document.getElementById("guess-input");
   if (!inputElement) return;
 
-  const rawGuess = inputElement.value;
+  const rawGuess = inputElement.value.trim();
   
   // Guardrail: Structural confirmation of entry metrics
   if (rawGuess.length !== 5) {
@@ -207,8 +207,9 @@ function submitGuess() {
   const targetDotsArray = mapStringToDots(WORD_OF_THE_DAY.brlunicode);
 
   const guessUnicode = stringToUnicodeSymbols(rawGuess);
+  const targetUnicode = stringToUnicodeSymbols(WORD_OF_THE_DAY.brlunicode);
+  
   let trackerUnicode = "";
-
   let exactMatches = 0;
 
   // Process evaluation loops using mathematical bitwise shifts
@@ -224,7 +225,8 @@ function submitGuess() {
     const wrongOverlap = guessBits & ~targetBits;
     wrongDots[i] |= wrongOverlap;
 
-    if (guessBits === targetBits) {
+    // Verify positional accuracy by matching exact Unicode output targets
+    if (guessUnicode[i] === targetUnicode[i]) {
       exactMatches++;
     }
 
