@@ -17,8 +17,8 @@ let correctDots = [];
 const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄⠄⡳⠭⠴⠴⠆⠂⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠒⠙⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
 const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
 
-// Maps row numeric indices to strict Braille Unicode row prefixes
-const ROW_NUMERIC_PREFIXES = ["⠼⠁", "⠼⠃", "⠼⠉", "⠼⠙", "⠼⠑", "⠼⠋"];
+// Optimized 1-cell lower-sign prefixes (Numbers 1-6 dropped to bottom pins) for 20-cell display limits
+const ROW_NUMERIC_PREFIXES = ["⠂", "⠆", "⠒", "⠲", "⠢", "⠖"];
 
 // Helper to log errors directly to the screen on iPhone
 function mobileLog(msg) {
@@ -64,7 +64,7 @@ function applyFirstCharConstraint(arr, prevLastChar = null) {
     if (a[i].print[0] === a[i - 1].print[0]) {
       for (let j = i + 1; j < a.length; j++) {
         if (a[j].print[0] !== a[i - 1].print[0]) {
-          [a[i], a[j]] = [a[j], a[0]];
+          [a[i], a[j]] = [a[j], a[i]];
           break;
         }
       }
@@ -187,26 +187,32 @@ function submitGuess() {
   let matchedWord = null;
   let guessAsUnicode = "";
 
-  // Regular expression to identify standard alphanumeric text (Contracted UEB output from iOS)
-  const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
-
-  if (isStandardPrint) {
-    // PATH 1: Text processed by iOS translation tables into standard print words
-    const lowerGuess = rawGuess.toLowerCase();
-    matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
-    
-    if (matchedWord) {
-      guessAsUnicode = matchedWord.brlunicode;
-    }
+  // CHEAT MODE OVERRIDE: Intercept the backdoor testing string
+  if (rawGuess === "=====") {
+    matchedWord = WORD_OF_THE_DAY;
+    guessAsUnicode = WORD_OF_THE_DAY.brlunicode;
   } else {
-    // PATH 2: Multi-table dot processing (Computer Braille ASCII, Braille ASCII, or Unicode Braille Patterns)
-    const guessDots = [];
-    for (const ch of rawGuess) {
-      guessDots.push(asciiToDots[ch] || "00000000"); 
+    // STANDARD PATHWAY: Regular expression to identify standard alphanumeric text (Contracted UEB output from iOS)
+    const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
+
+    if (isStandardPrint) {
+      // PATH 1: Text processed by iOS translation tables into standard print words
+      const lowerGuess = rawGuess.toLowerCase();
+      matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
+      
+      if (matchedWord) {
+        guessAsUnicode = matchedWord.brlunicode;
+      }
+    } else {
+      // PATH 2: Multi-table dot processing (Computer Braille ASCII, Braille ASCII, or Unicode Braille Patterns)
+      const guessDots = [];
+      for (const ch of rawGuess) {
+        guessDots.push(asciiToDots[ch] || "00000000"); 
+      }
+      
+      guessAsUnicode = dotsArrayToAsciiString(guessDots);
+      matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
     }
-    
-    guessAsUnicode = dotsArrayToAsciiString(guessDots);
-    matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
   }
 
   // Dictionary validation gate: Reject arbitrary length-mismatched or non-existent strings
