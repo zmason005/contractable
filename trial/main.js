@@ -5,13 +5,13 @@ const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 
 let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
 let allWords = [];          // Array of objects from daily-word2.json
-let asciiToDots = {};       // Maps both print letters and Unicode Braille to 8-bit binary strings
+let asciiToDots = {};       // Maps both Computer Braille ASCII and Unicode Braille to 8-bit binary strings
 let dotsToAscii = {};       // Maps 8-bit binary strings to literal Unicode Braille characters
 let currentGuess = 0;
 let gameOver = false;
 
 // Persistent metric tracking targets across rounds (Cumulative)
-let correctDots = Array(5).fill(0);
+let correctDots = [];
 
 // End game custom Braille Unicode messaging
 const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄⠄⡳⠭⠴⠴⠆⠂⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠒⠙⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
@@ -64,7 +64,7 @@ function applyFirstCharConstraint(arr, prevLastChar = null) {
     if (a[i].print[0] === a[i - 1].print[0]) {
       for (let j = i + 1; j < a.length; j++) {
         if (a[j].print[0] !== a[i - 1].print[0]) {
-          [a[i], a[j]] = [a[j], a[i]];
+          [a[i], a[j]] = [a[j], a[0]];
           break;
         }
       }
@@ -121,9 +121,11 @@ async function loadMapping() {
     data.forEach(item => {
       const fullBitmask = item.bitmask;
       
+      // Maps Computer Braille ASCII characters passed from iOS input stream
       if (item.printAscii) {
-        asciiToDots[item.printAscii.toLowerCase()] = fullBitmask;
+        asciiToDots[item.printAscii] = fullBitmask;
       }
+      // Maps literal Unicode Braille characters passed from iOS input stream
       if (item.unicodeChar) {
         asciiToDots[item.unicodeChar] = fullBitmask;
       }
@@ -148,27 +150,8 @@ function updateGuessLabel() {
   label.textContent = (currentGuess === MAX_GUESSES - 1) ? "f9al guess" : "guess";
 }
 
-function mapStringToDots(str) {
-  const dots = [];
-  for (const ch of str) {
-    const lowerCh = ch.toLowerCase();
-    if (asciiToDots[lowerCh]) {
-      dots.push(asciiToDots[lowerCh]);
-    }
-  }
-  return dots;
-}
-
 function dotsArrayToAsciiString(arr) {
   return arr.map(d => dotsToAscii[d] ?? "\u2800").join("");
-}
-
-function stringToUnicodeSymbols(str) {
-  return Array.from(str).map(ch => {
-    const lowerCh = ch.toLowerCase();
-    const dots = asciiToDots[lowerCh];
-    return dotsToAscii[dots] || "\u2800";
-  }).join("");
 }
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
@@ -199,52 +182,88 @@ function submitGuess() {
 
   const input = document.getElementById("guess-input");
   const rawGuess = input.value.trim();
-  const lowerGuess = rawGuess.toLowerCase();
+  if (!rawGuess) return;
 
-  const targetPrint = WORD_OF_THE_DAY.print.toLowerCase();
-  const targetUnicode = WORD_OF_THE_DAY.brlunicode;
+  let matchedWord = null;
+  let guessAsUnicode = "";
 
-  const isMatch = (lowerGuess === targetPrint || rawGuess === targetUnicode);
-  const referenceGuessString = isMatch ? targetUnicode : rawGuess;
-  const guessDots = mapStringToDots(referenceGuessString);
+  // Regular expression to identify standard alphanumeric text (Contracted UEB output from iOS)
+  const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
 
-  if (guessDots.length !== 5) {
-    setStatus("Invalid: Must be 5 Braille chars.");
-    input.value = ""; 
+  if (isStandardPrint) {
+    // PATH 1: Text processed by iOS translation tables into standard print words
+    const lowerGuess = rawGuess.toLowerCase();
+    matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
+    
+    if (matchedWord) {
+      guessAsUnicode = matchedWord.brlunicode;
+    }
+  } else {
+    // PATH 2: Multi-table dot processing (Computer Braille ASCII, Braille ASCII, or Unicode Braille Patterns)
+    const guessDots = [];
+    for (const ch of rawGuess) {
+      guessDots.push(asciiToDots[ch] || "00000000"); 
+    }
+    
+    guessAsUnicode = dotsArrayToAsciiString(guessDots);
+    matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
+  }
+
+  // Dictionary validation gate: Reject arbitrary length-mismatched or non-existent strings
+  if (!matchedWord) {
+    setStatus("Not in word list.");
     return;
   }
 
-  const targetDots = mapStringToDots(targetUnicode);
+  // Establish targets using today's true word lengths
+  const targetUnicode = WORD_OF_THE_DAY.brlunicode;
+  const targetDots = [];
+  for (const ch of targetUnicode) {
+    targetDots.push(asciiToDots[ch] || "00000000");
+  }
+
+  // Build current guess metrics array normalized to true bitmasks
+  const guessDotsArray = [];
+  for (const ch of guessAsUnicode) {
+    guessDotsArray.push(asciiToDots[ch] || "00000000");
+  }
+
+  // Dynamic initialization of persistent correct trackers to cleanly fit targeted cell array bounds
+  if (correctDots.length !== targetDots.length) {
+    correctDots = Array(targetDots.length).fill(0);
+  }
 
   const rowCorrectStrings = [];
   const rowWrongStrings = [];
 
-  for (let i = 0; i < 5; i++) {
-    const g = parseInt(guessDots[i], 2);
+  // Evaluate bits row-by-row up to the explicit structural size of the target word
+  for (let i = 0; i < targetDots.length; i++) {
+    const g = parseInt(guessDotsArray[i] || "00000000", 2);
     const t = parseInt(targetDots[i], 2);
 
-    // Correct dots build permanently over previous rounds
+    // Correct bits build permanently over previous rounds
     correctDots[i] |= (g & t);
 
-    // Wrong dots are computed and isolated strictly to this round's input metrics
+    // Wrong bits are strictly isolated to this round's input discrepancies
     const currentWrongBits = (g & ~t);
 
     rowCorrectStrings.push(correctDots[i].toString(2).padStart(8, "0"));
     rowWrongStrings.push(currentWrongBits.toString(2).padStart(8, "0"));
   }
 
-  const unicodeGuessDisplay = isMatch ? targetUnicode : stringToUnicodeSymbols(referenceGuessString);
-
   renderRow(formatRow({
     guessIndex: currentGuess,
     correct: dotsArrayToAsciiString(rowCorrectStrings),
-    guess: unicodeGuessDisplay,
+    guess: guessAsUnicode,
     wrong: dotsArrayToAsciiString(rowWrongStrings),
   }));
 
   currentGuess++;
   input.value = "";
   updateGuessLabel();
+
+  // Validate match criteria using normalized print records from database
+  const isMatch = (matchedWord.print.toLowerCase() === WORD_OF_THE_DAY.print.toLowerCase());
 
   if (isMatch) {
     setStatus(WIN_STATUS_MESSAGE);
