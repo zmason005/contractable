@@ -17,8 +17,8 @@ let correctDots = [];
 const WIN_STATUS_MESSAGE = "⠄⡳⠭⠴⠴⠢⠔⠄⠄⡳⠭⠴⠴⠲⠋⠄⠄⡳⠭⠴⠴⠢⠢⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠢⠶⠄⠄⡳⠭⠴⠴⠲⠔⠄⠄⡳⠭⠴⠴⠲⠑⠄⠄⡳⠭⠴⠴⠆⠂⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠒⠙⠄⠄⡳⠭⠴⠴⠆⠴⠄⠄⡳⠭⠴⠴⠆⠴⠄⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
 const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
 
-// Optimized 1-cell lower-sign prefixes (Numbers 1-6 dropped to bottom pins) for 20-cell display limits
-const ROW_NUMERIC_PREFIXES = ["⠂", "⠆", "⠒", "⠲", "⠢", "⠖"];
+// Maps row numeric indices to strict Braille Unicode row prefixes
+const ROW_NUMERIC_PREFIXES = ["⠼⠁", "⠼⠃", "⠼⠉", "⠼⠙", "⠼⠑", "⠼⠋"];
 
 // Helper to log errors directly to the screen on iPhone
 function mobileLog(msg) {
@@ -64,7 +64,7 @@ function applyFirstCharConstraint(arr, prevLastChar = null) {
     if (a[i].print[0] === a[i - 1].print[0]) {
       for (let j = i + 1; j < a.length; j++) {
         if (a[j].print[0] !== a[i - 1].print[0]) {
-          [a[i], a[j]] = [a[j], a[i]];
+          [a[i], a[j]] = [a[j], a[0]];
           break;
         }
       }
