@@ -186,27 +186,50 @@ function submitGuess() {
 
   let matchedWord = null;
   let guessAsUnicode = "";
+  let isCheatValidationBypass = false;
 
-  // STANDARD PATHWAY: Regular expression to identify standard alphanumeric text (Contracted UEB output from iOS)
-  const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
+  /* ==========================================================================
+     ███████████████ DIAGNOSTIC CHEAT FEATURE GATEWAY ███████████████
+     ========================================================================== */
+  const CHEAT_MODE_ENABLED = true; // Toggle to false to fully deactivate
 
-  if (isStandardPrint) {
-    // PATH 1: Text processed by iOS translation tables into standard print words
-    const lowerGuess = rawGuess.toLowerCase();
-    matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
+  if (CHEAT_MODE_ENABLED && rawGuess === "=====") {
+    isCheatValidationBypass = true;
     
-    if (matchedWord) {
-      guessAsUnicode = matchedWord.brlunicode;
-    }
-  } else {
-    // PATH 2: Multi-table dot processing (Computer Braille ASCII, Braille ASCII, or Unicode Braille Patterns)
-    const guessDots = [];
-    for (const ch of rawGuess) {
-      guessDots.push(asciiToDots[ch] || "00000000"); 
-    }
+    // Inject a dummy structural object so it clears the list-existence validation gate
+    // Utilizing a non-matching 'print' value ensures it can never trigger a win state
+    matchedWord = { print: "_____ DIAGNOSTIC_OVERRIDE_NON_MATCHING _____" };
     
-    guessAsUnicode = dotsArrayToAsciiString(guessDots);
-    matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
+    // Force guess representation to 5 full-cell saturations (⠿⠿⠿⠿⠿ / 11111100 bitmasks)
+    guessAsUnicode = "⠿⠿⠿⠿⠿";
+  } 
+  /* ==========================================================================
+     ██████████████████████ END CHEAT GATEWAY ███████████████████████
+     ========================================================================== */
+  
+  // Proceed with normal parsing flows if the cheat override wasn't executed
+  if (!isCheatValidationBypass) {
+    // STANDARD PATHWAY: Regular expression to identify standard alphanumeric text (Contracted UEB output from iOS)
+    const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
+
+    if (isStandardPrint) {
+      // PATH 1: Text processed by iOS translation tables into standard print words
+      const lowerGuess = rawGuess.toLowerCase();
+      matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
+      
+      if (matchedWord) {
+        guessAsUnicode = matchedWord.brlunicode;
+      }
+    } else {
+      // PATH 2: Multi-table dot processing (Computer Braille ASCII, Braille ASCII, or Unicode Braille Patterns)
+      const guessDots = [];
+      for (const ch of rawGuess) {
+        guessDots.push(asciiToDots[ch] || "00000000"); 
+      }
+      
+      guessAsUnicode = dotsArrayToAsciiString(guessDots);
+      matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
+    }
   }
 
   // Dictionary validation gate: Reject arbitrary length-mismatched or non-existent strings
