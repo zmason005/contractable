@@ -142,7 +142,8 @@ async function loadMapping() {
 function setStatus(msg) {
   const status = document.getElementById("status");
   status.textContent = msg;
-  setTimeout(() => { status.focus(); }, 0);
+  status.removeAttribute("hidden"); // Reveal the element smoothly to everyone
+  setTimeout(() => { status.focus(); }, 0); // Fire focus immediately to shift screen readers
 }
 
 function updateGuessLabel() {
@@ -183,6 +184,13 @@ function submitGuess() {
   const input = document.getElementById("guess-input");
   const rawGuess = input.value.trim();
   if (!rawGuess) return;
+
+  // Clear previous non-game-over message records from viewport immediately upon a fresh submission
+  if (!gameOver) {
+    const statusDiv = document.getElementById("status");
+    statusDiv.setAttribute("hidden", "");
+    statusDiv.textContent = "";
+  }
 
   let matchedWord = null;
   let guessAsUnicode = "";
