@@ -187,32 +187,26 @@ function submitGuess() {
   let matchedWord = null;
   let guessAsUnicode = "";
 
-  // CHEAT MODE OVERRIDE: Intercept the backdoor testing string
-  if (rawGuess === "=====") {
-    matchedWord = WORD_OF_THE_DAY;
-    guessAsUnicode = WORD_OF_THE_DAY.brlunicode;
-  } else {
-    // STANDARD PATHWAY: Regular expression to identify standard alphanumeric text (Contracted UEB output from iOS)
-    const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
+  // STANDARD PATHWAY: Regular expression to identify standard alphanumeric text (Contracted UEB output from iOS)
+  const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
 
-    if (isStandardPrint) {
-      // PATH 1: Text processed by iOS translation tables into standard print words
-      const lowerGuess = rawGuess.toLowerCase();
-      matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
-      
-      if (matchedWord) {
-        guessAsUnicode = matchedWord.brlunicode;
-      }
-    } else {
-      // PATH 2: Multi-table dot processing (Computer Braille ASCII, Braille ASCII, or Unicode Braille Patterns)
-      const guessDots = [];
-      for (const ch of rawGuess) {
-        guessDots.push(asciiToDots[ch] || "00000000"); 
-      }
-      
-      guessAsUnicode = dotsArrayToAsciiString(guessDots);
-      matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
+  if (isStandardPrint) {
+    // PATH 1: Text processed by iOS translation tables into standard print words
+    const lowerGuess = rawGuess.toLowerCase();
+    matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
+    
+    if (matchedWord) {
+      guessAsUnicode = matchedWord.brlunicode;
     }
+  } else {
+    // PATH 2: Multi-table dot processing (Computer Braille ASCII, Braille ASCII, or Unicode Braille Patterns)
+    const guessDots = [];
+    for (const ch of rawGuess) {
+      guessDots.push(asciiToDots[ch] || "00000000"); 
+    }
+    
+    guessAsUnicode = dotsArrayToAsciiString(guessDots);
+    matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
   }
 
   // Dictionary validation gate: Reject arbitrary length-mismatched or non-existent strings
