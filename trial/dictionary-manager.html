@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contractable Utility</title>
+<title>ValidWordBuilder</title>
 <style>
 body {
 background-color: #000000;
@@ -35,6 +35,10 @@ padding: 5px;
 margin: 5px 0;
 font-family: inherit;
 }
+#status-message {
+font-weight: bold;
+margin-top: 5px;
+}
 </style>
 </head>
 <body>
@@ -42,21 +46,142 @@ font-family: inherit;
 <h1>Word Manager</h1>
 <blockquote>Use this tool to manage and compile game dictionary files.</blockquote>
 
+<h2>System Setup</h2>
+<blockquote>
+<label for="master-loader">1. Load Master daily-word2.json</label><br>
+<input type="file" id="master-loader" accept=".json"><br>
+<label for="supp-loader">2. Load Current extra-words.json (Optional)</label><br>
+<input type="file" id="supp-loader" accept=".json"><br>
+<div id="status-message">Awaiting JSON database files...</div>
+</blockquote>
+
 <h2>Add New Word</h2>
 <blockquote>
-<label for="word-id">Word ID</label><br>
-<input type="number" id="word-id" name="word-id"><br>
 <label for="print-str">Print String</label><br>
-<input type="text" id="print-str" name="print-str"><br>
+<input type="text" id="print-str" name="print-str" autocomplete="off"><br>
 <label for="braille-str">Braille Unicode</label><br>
-<input type="text" id="braille-str" name="braille-str"><br>
-<button type="button">Add Entry</button>
+<input type="text" id="braille-str" name="braille-str" autocomplete="off"><br>
+<button type="button" id="add-btn" onclick="processNewEntry()">Add Entry</button>
 </blockquote>
 
 <h2>Data Export</h2>
 <blockquote>
-<button type="button">Export JSON</button>
+<button type="button" id="export-btn" onclick="exportSupplementalFile()">Export JSON</button>
 </blockquote>
 </div>
+
+<script>
+let masterWords = [];
+let supplementalWords = [];
+const status = document.getElementById('status-message');
+
+// Phase 1: Manual Ingestion of the Master List
+document.getElementById('master-loader').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        try {
+            const parsed = JSON.parse(event.target.result);
+            masterWords = Array.isArray(parsed) ? parsed : [];
+            status.style.color = '#ffffff';
+            status.textContent = `Loaded ${masterWords.length} base words from master file.`;
+        } catch (err) {
+            status.style.color = '#ff5555';
+            status.textContent = 'Error parsing master JSON file.';
+        }
+    };
+    reader.readAsText(file);
+});
+
+// Phase 2: Manual Ingestion of the existing Supplemental List (extra-words.json)
+document.getElementById('supp-loader').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        try {
+            const parsed = JSON.parse(event.target.result);
+            supplementalWords = Array.isArray(parsed) ? parsed : [];
+            status.style.color = '#ffffff';
+            status.textContent = `Imported ${supplementalWords.length} entries from existing extra-words.json file.`;
+        } catch (err) {
+            status.style.color = '#ff5555';
+            status.textContent = 'Error parsing uploaded extra-words.json file.';
+        }
+    };
+    reader.readAsText(file);
+});
+
+// Phase 3: Validation, Deduplication, and Auto-ID Generation
+function processNewEntry() {
+    const printInput = document.getElementById('print-str').value.trim().toLowerCase();
+    const brailleInput = document.getElementById('braille-str').value.trim();
+    
+    if (!printInput || !brailleInput) {
+        status.style.color = '#ff5555';
+        status.textContent = 'Error: Both print and braille entries are required.';
+        return;
+    }
+    
+    if (masterWords.length === 0) {
+        status.style.color = '#ff5555';
+        status.textContent = 'Error: Please load daily-word2.json before adding entries.';
+        return;
+    }
+    
+    // Cross-file uniqueness check
+    const matchInMaster = masterWords.some(w => w.print.toLowerCase() === printInput || w.brlunicode === brailleInput);
+    const matchInSupp = supplementalWords.some(w => w.print.toLowerCase() === printInput || w.brlunicode === brailleInput);
+    
+    if (matchInMaster || matchInSupp) {
+        status.style.color = '#ff5555';
+        status.textContent = `Rejected: "${printInput}" or sequence already exists in data sets.`;
+        return;
+    }
+    
+    // Auto-Increment Logic across all existing records
+    const combinedLists = [...masterWords, ...supplementalWords];
+    const nextId = combinedLists.length > 0 
+        ? Math.max(...combinedLists.map(w => parseInt(w.id, 10) || 0)) + 1 
+        : 1;
+        
+    const entry = { id: nextId, print: printInput, brlunicode: brailleInput };
+    supplementalWords.push(entry);
+    
+    status.style.color = '#55ff55';
+    status.textContent = `Success: Staged "${printInput}" dynamically as ID ${nextId}.`;
+    
+    // Reset layout inputs and refocus
+    document.getElementById('print-str').value = '';
+    document.getElementById('braille-str').value = '';
+    document.getElementById('print-str').focus();
+}
+
+// Phase 4: System Export as extra-words.json
+function exportSupplementalFile() {
+    if (supplementalWords.length === 0) {
+        status.style.color = '#ff5555';
+        status.textContent = 'No new records in the supplemental array to export.';
+        return;
+    }
+    
+    const jsonStr = JSON.stringify(supplementalWords, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'extra-words.json';
+    document.body.appendChild(a);
+    a.click();
+    
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    status.style.color = '#55ff55';
+    status.textContent = 'Export completed! extra-words.json downloaded.';
+}
+</script>
 </body>
 </html>
