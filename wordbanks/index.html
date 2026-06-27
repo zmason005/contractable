@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contractable Utility</title>
+<style>
+body {
+background-color: #000000;
+color: #ffffff;
+font-family: system-ui, -apple-system, sans-serif;
+margin: 10px;
+padding: 0;
+line-height: 1.4;
+}
+h1, h2, h3 {
+text-align: left;
+margin: 15px 0 5px 0;
+}
+blockquote {
+margin: 0 0 10px 0;
+padding: 0;
+text-align: left;
+display: block;
+}
+.container {
+max-width: 100%;
+width: 50ch;
+}
+input, button, textarea {
+background-color: #000000;
+color: #ffffff;
+border: 1px solid #ffffff;
+padding: 5px;
+margin: 5px 0;
+font-family: inherit;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Word Manager</h1>
+<blockquote>Use this tool to manage and compile game dictionary files.</blockquote>
+
+<h2>Add New Word</h2>
+<blockquote>
+<label for="word-id">Word ID</label><br>
+<input type="number" id="word-id" name="word-id"><br>
+<label for="print-str">Print String</label><br>
+<input type="text" id="print-str" name="print-str"><br>
+<label for="braille-str">Braille Unicode</label><br>
+<input type="text" id="braille-str" name="braille-str"><br>
+<button type="button">Add Entry</button>
+</blockquote>
+
+<h2>Data Export</h2>
+<blockquote>
+<button type="button">Export JSON</button>
+</blockquote>
+</div>
+</body>
+</html>
