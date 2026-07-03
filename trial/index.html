@@ -62,15 +62,15 @@
     
     /* THE GAME BOARD CONTAINER
        ======================================================================
-       CRITICAL GAP FIX: Changed 'white-space: pre' to 'white-space: pre-line'.
-       - 'pre' forces the browser to treat raw HTML indentations/tabs/line breaks 
-         as literal spacing, causing the unwanted vertical empty gap on screen.
-       - 'pre-line' collapses those accidental structural HTML code breaks into 
-         a single line, while still honoring explicit \n line breaks sent by JS.
+       CRITICAL GAP FIX: Replaced 'white-space: pre-line' with modern vertical 
+       flexbox configuration. This eliminates hidden code-formatting indentation 
+       gaps entirely while keeping rows correctly isolated as straight lines.
     */
     #game-board { 
       margin-top: 1em; 
-      white-space: pre-line; /* GAP FIX: Collapses raw HTML space/indentation gaps */
+      display: flex;
+      flex-direction: column;
+      gap: 0.15em;
       font-variant-numeric: tabular-nums; /* Keeps all numeric characters exactly uniform in width */
       letter-spacing: 0; /* Lock letter spacing to preserve physical Braille tracking alignments */
       padding: 0.1em 0; /* Tighter padding values to bring rows and header closer together */
@@ -82,6 +82,7 @@
       outline: none; 
       margin-bottom: 0.15em; 
       letter-spacing: 0;
+      white-space: nowrap;
     }
     
     #controls { 
