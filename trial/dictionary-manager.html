@@ -260,7 +260,7 @@ document.getElementById('supp-loader').addEventListener('change', (e) => {
 // Phase 3: Validation, Deduplication, and Safe Auto-ID Generation
 function processNewEntry() {
     const printInput = document.getElementById('print-str').value.trim().toLowerCase();
-    const rawBrailleInput = document.getElementById('braille-str').value; // Retain case definitions for mapping variations (e.g., a vs A)
+    const rawBrailleInput = document.getElementById('braille-str').value.trim(); // Trimmed to handle white-space safety
     
     if (!printInput || !rawBrailleInput) {
         status.style.color = '#ff5555';
@@ -275,7 +275,7 @@ function processNewEntry() {
     }
     
     // Parse character maps directly into unicode values
-    const brailleInput = translateStringToBraille(rawBrailleInput).trim();
+    const brailleInput = translateStringToBraille(rawBrailleInput);
     
     // Cross-file uniqueness check matching sanitized variables
     const matchInMaster = masterWords.some(w => (w.print?.toLowerCase().trim() === printInput) || (w.brlunicode?.trim() === brailleInput));
@@ -352,12 +352,18 @@ function exportSupplementalFile() {
     status.textContent = 'Backup completed! extra-words.json downloaded.';
 }
 
-// Enter key listeners for frictionless submission layout
-document.getElementById('braille-str').addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') processNewEntry();
+// CHANGED: Listened to 'keydown' instead of 'keyup' to stop event echo when input focus swaps
+document.getElementById('braille-str').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        processNewEntry();
+    }
 });
-document.getElementById('print-str').addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') processNewEntry();
+document.getElementById('print-str').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        processNewEntry();
+    }
 });
 </script>
 </body>
