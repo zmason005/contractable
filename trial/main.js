@@ -4,7 +4,7 @@ const MAX_GUESSES = 6;
 const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 
 let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
-let allWords = [];          // Array of objects from daily-word2.json
+let allWords = [];          // Array of objects from daily-word4.json
 let asciiToDots = {};       // Maps both Computer Braille ASCII and Unicode Braille to 8-bit binary strings
 let dotsToAscii = {};       // Maps 8-bit binary strings to literal Unicode Braille characters
 let currentGuess = 0;
@@ -101,8 +101,9 @@ function todayDayIndex() {
 
 async function loadDailyWords() {
   try {
-    const response = await fetch("daily-word2.json");
-    if (!response.ok) throw new Error("Could not find daily-word2.json");
+    // CHANGED: File path updated from daily-word2.json to daily-word4.json
+    const response = await fetch("daily-word4.json");
+    if (!response.ok) throw new Error("Could not find daily-word4.json");
     allWords = await response.json();
   } catch (e) {
     mobileLog("Daily Words Error: " + e.message);
