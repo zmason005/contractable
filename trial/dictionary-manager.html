@@ -60,6 +60,8 @@ margin-top: 10px;
 <input type="file" id="master-loader" accept=".json"><br>
 <label for="supp-loader">2. Load Current extra-words.json (Optional)</label><br>
 <input type="file" id="supp-loader" accept=".json"><br>
+<label for="map-loader">3. Load Mapping Profile brlunicode.json</label><br>
+<input type="file" id="map-loader" accept=".json"><br>
 <div id="status-message">Awaiting JSON database files...</div>
 </blockquote>
 
@@ -67,8 +69,9 @@ margin-top: 10px;
 <blockquote>
 <label for="print-str">Print String</label><br>
 <input type="text" id="print-str" name="print-str" autocomplete="off"><br>
-<label for="braille-str">Braille Unicode</label><br>
+<label for="braille-str">Braille Key Inputs (Case Sensitive, e.g., a!B)</label><br>
 <input type="text" id="braille-str" name="braille-str" autocomplete="off"><br>
+<div id="translation-preview" style="color:#aaa; font-size:0.9em; margin-bottom:5px;">Preview translation: </div>
 <button type="button" id="add-btn" onclick="processNewEntry()">Add Entry</button>
 </blockquote>
 
@@ -84,10 +87,12 @@ margin-top: 10px;
 <script>
 let masterWords = [];
 let supplementalWords = [];
+let brailleLookupMap = null; // Storing optimized runtime lookup key-pairs
 const status = document.getElementById('status-message');
 const jsonOutput = document.getElementById('json-output');
+const preview = document.getElementById('translation-preview');
 
-// Utility to sync internal state directly to the visual text viewport
+// Synchronize state changes to text viewer viewport
 function updateJsonView() {
     if (supplementalWords.length > 0) {
         jsonOutput.value = JSON.stringify(supplementalWords, null, 2);
@@ -95,6 +100,24 @@ function updateJsonView() {
         jsonOutput.value = '';
     }
 }
+
+// Convert input strings using the parsed schema structure matching printAscii -> unicodeChar
+function translateStringToBraille(inputStr) {
+    if (!brailleLookupMap) return "";
+    return inputStr.split('').map(char => {
+        return brailleLookupMap[char] || char;
+    }).join('');
+}
+
+// Live presentation tracking logic
+document.getElementById('braille-str').addEventListener('input', (e) => {
+    if (!brailleLookupMap) {
+        preview.textContent = "Preview translation: [Please load mapping file first]";
+        return;
+    }
+    const converted = translateStringToBraille(e.target.value);
+    preview.textContent = `Preview translation: ${converted}`;
+});
 
 // Phase 1: Manual Ingestion of the Master List
 document.getElementById('master-loader').addEventListener('change', (e) => {
@@ -135,14 +158,49 @@ document.getElementById('supp-loader').addEventListener('change', (e) => {
     reader.readAsText(file);
 });
 
+// Phase 2b: Parse and convert your relational database profile array into a quick lookup dictionary
+document.getElementById('map-loader').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        try {
+            const rawArray = JSON.parse(event.target.result);
+            if (Array.isArray(rawArray)) {
+                // Reduces array array models down to single flat objects at execution runtime: {"!": "⠮", "A": "⡁"}
+                brailleLookupMap = rawArray.reduce((acc, entry) => {
+                    if (entry.printAscii !== undefined && entry.unicodeChar !== undefined) {
+                        acc[entry.printAscii] = entry.unicodeChar;
+                    }
+                    return acc;
+                }, {});
+                status.style.color = '#ffffff';
+                status.textContent = `Successfully indexed ${Object.keys(brailleLookupMap).length} Braille schema characters.`;
+            } else {
+                throw new Error("Invalid format");
+            }
+        } catch (err) {
+            status.style.color = '#ff5555';
+            status.textContent = 'Error parsing brlunicode.json mapping profile array.';
+        }
+    };
+    reader.readAsText(file);
+});
+
 // Phase 3: Validation, Deduplication, and Safe Auto-ID Generation
 function processNewEntry() {
     const printInput = document.getElementById('print-str').value.trim().toLowerCase();
-    const brailleInput = document.getElementById('braille-str').value.trim();
+    const rawBrailleInput = document.getElementById('braille-str').value; // Retain case definitions for mapping variations (e.g., a vs A)
     
-    if (!printInput || !brailleInput) {
+    if (!brailleLookupMap) {
         status.style.color = '#ff5555';
-        status.textContent = 'Error: Both print and braille entries are required.';
+        status.textContent = 'Error: Please upload brlunicode.json before adding items.';
+        return;
+    }
+    
+    if (!printInput || !rawBrailleInput) {
+        status.style.color = '#ff5555';
+        status.textContent = 'Error: Both text fields require valid inputs.';
         return;
     }
     
@@ -152,13 +210,16 @@ function processNewEntry() {
         return;
     }
     
-    // Cross-file uniqueness check with optional chaining protection
-    const matchInMaster = masterWords.some(w => w.print?.toLowerCase() === printInput || w.brlunicode === brailleInput);
-    const matchInSupp = supplementalWords.some(w => w.print?.toLowerCase() === printInput || w.brlunicode === brailleInput);
+    // Parse character maps directly into unicode values
+    const brailleInput = translateStringToBraille(rawBrailleInput).trim();
+    
+    // Cross-file uniqueness check matching sanitized variables
+    const matchInMaster = masterWords.some(w => (w.print?.toLowerCase().trim() === printInput) || (w.brlunicode?.trim() === brailleInput));
+    const matchInSupp = supplementalWords.some(w => (w.print?.toLowerCase().trim() === printInput) || (w.brlunicode?.trim() === brailleInput));
     
     if (matchInMaster || matchInSupp) {
         status.style.color = '#ff5555';
-        status.textContent = `Rejected: "${printInput}" or sequence already exists in data sets.`;
+        status.textContent = `Rejected: "${printInput}" or sequence matches an existing database pattern.`;
         return;
     }
     
@@ -173,14 +234,15 @@ function processNewEntry() {
     supplementalWords.push(entry);
     
     status.style.color = '#55ff55';
-    status.textContent = `Success: Staged "${printInput}" dynamically as ID ${nextId}.`;
+    status.textContent = `Success: Saved "${printInput}" -> "${brailleInput}" as ID ${nextId}.`;
     
-    // Update live text viewport layout
+    // Update live text viewport layout 
     updateJsonView();
     
-    // Reset layout inputs and refocus
+    // Reset inputs
     document.getElementById('print-str').value = '';
     document.getElementById('braille-str').value = '';
+    preview.textContent = "Preview translation: ";
     document.getElementById('print-str').focus();
 }
 
