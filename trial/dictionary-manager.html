@@ -39,6 +39,14 @@ font-family: inherit;
 font-weight: bold;
 margin-top: 5px;
 }
+#json-output {
+width: 100%;
+max-width: 100%;
+box-sizing: border-box;
+color: #55ff55;
+font-family: monospace;
+margin-top: 10px;
+}
 </style>
 </head>
 <body>
@@ -66,7 +74,10 @@ margin-top: 5px;
 
 <h2>Data Export</h2>
 <blockquote>
-<button type="button" id="export-btn" onclick="exportSupplementalFile()">Export JSON</button>
+<button type="button" id="copy-btn" onclick="copyJsonToClipboard()">Copy JSON</button>
+<button type="button" id="export-btn" onclick="exportSupplementalFile()">Download Backup</button><br>
+<label for="json-output" style="display:block; margin-top:10px;">Current Supplemental JSON:</label>
+<textarea id="json-output" readonly rows="12" placeholder="JSON data will generate here..."></textarea>
 </blockquote>
 </div>
 
@@ -74,6 +85,16 @@ margin-top: 5px;
 let masterWords = [];
 let supplementalWords = [];
 const status = document.getElementById('status-message');
+const jsonOutput = document.getElementById('json-output');
+
+// Utility to sync internal state directly to the visual text viewport
+function updateJsonView() {
+    if (supplementalWords.length > 0) {
+        jsonOutput.value = JSON.stringify(supplementalWords, null, 2);
+    } else {
+        jsonOutput.value = '';
+    }
+}
 
 // Phase 1: Manual Ingestion of the Master List
 document.getElementById('master-loader').addEventListener('change', (e) => {
@@ -94,7 +115,7 @@ document.getElementById('master-loader').addEventListener('change', (e) => {
     reader.readAsText(file);
 });
 
-// Phase 2: Manual Ingestion of the existing Supplemental List (extra-words.json)
+// Phase 2: Manual Ingestion of the existing Supplemental List
 document.getElementById('supp-loader').addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -105,6 +126,7 @@ document.getElementById('supp-loader').addEventListener('change', (e) => {
             supplementalWords = Array.isArray(parsed) ? parsed : [];
             status.style.color = '#ffffff';
             status.textContent = `Imported ${supplementalWords.length} entries from existing extra-words.json file.`;
+            updateJsonView();
         } catch (err) {
             status.style.color = '#ff5555';
             status.textContent = 'Error parsing uploaded extra-words.json file.';
@@ -113,7 +135,7 @@ document.getElementById('supp-loader').addEventListener('change', (e) => {
     reader.readAsText(file);
 });
 
-// Phase 3: Validation, Deduplication, and Auto-ID Generation
+// Phase 3: Validation, Deduplication, and Safe Auto-ID Generation
 function processNewEntry() {
     const printInput = document.getElementById('print-str').value.trim().toLowerCase();
     const brailleInput = document.getElementById('braille-str').value.trim();
@@ -130,9 +152,9 @@ function processNewEntry() {
         return;
     }
     
-    // Cross-file uniqueness check
-    const matchInMaster = masterWords.some(w => w.print.toLowerCase() === printInput || w.brlunicode === brailleInput);
-    const matchInSupp = supplementalWords.some(w => w.print.toLowerCase() === printInput || w.brlunicode === brailleInput);
+    // Cross-file uniqueness check with optional chaining protection
+    const matchInMaster = masterWords.some(w => w.print?.toLowerCase() === printInput || w.brlunicode === brailleInput);
+    const matchInSupp = supplementalWords.some(w => w.print?.toLowerCase() === printInput || w.brlunicode === brailleInput);
     
     if (matchInMaster || matchInSupp) {
         status.style.color = '#ff5555';
@@ -140,11 +162,12 @@ function processNewEntry() {
         return;
     }
     
-    // Auto-Increment Logic across all existing records
+    // Stack-safe Auto-Increment Logic using reduce()
     const combinedLists = [...masterWords, ...supplementalWords];
-    const nextId = combinedLists.length > 0 
-        ? Math.max(...combinedLists.map(w => parseInt(w.id, 10) || 0)) + 1 
-        : 1;
+    const nextId = combinedLists.reduce((max, w) => {
+        const currentId = parseInt(w.id, 10) || 0;
+        return currentId > max ? currentId : max;
+    }, 0) + 1;
         
     const entry = { id: nextId, print: printInput, brlunicode: brailleInput };
     supplementalWords.push(entry);
@@ -152,13 +175,33 @@ function processNewEntry() {
     status.style.color = '#55ff55';
     status.textContent = `Success: Staged "${printInput}" dynamically as ID ${nextId}.`;
     
+    // Update live text viewport layout
+    updateJsonView();
+    
     // Reset layout inputs and refocus
     document.getElementById('print-str').value = '';
     document.getElementById('braille-str').value = '';
     document.getElementById('print-str').focus();
 }
 
-// Phase 4: System Export as extra-words.json
+// Phase 4a: Copy System JSON text straight to clipboard for GitHub pasting
+function copyJsonToClipboard() {
+    if (supplementalWords.length === 0) {
+        status.style.color = '#ff5555';
+        status.textContent = 'No data available in the supplemental array to copy.';
+        return;
+    }
+    
+    navigator.clipboard.writeText(jsonOutput.value).then(() => {
+        status.style.color = '#55ff55';
+        status.textContent = 'JSON copied to clipboard! Ready to paste into GitHub.';
+    }).catch(err => {
+        status.style.color = '#ff5555';
+        status.textContent = 'Failed to copy text automatically.';
+    });
+}
+
+// Phase 4b: Fallback System Download File Tool
 function exportSupplementalFile() {
     if (supplementalWords.length === 0) {
         status.style.color = '#ff5555';
@@ -166,7 +209,7 @@ function exportSupplementalFile() {
         return;
     }
     
-    const jsonStr = JSON.stringify(supplementalWords, null, 2);
+    const jsonStr = jsonOutput.value;
     const blob = new Blob([jsonStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     
@@ -180,8 +223,16 @@ function exportSupplementalFile() {
     URL.revokeObjectURL(url);
     
     status.style.color = '#55ff55';
-    status.textContent = 'Export completed! extra-words.json downloaded.';
+    status.textContent = 'Backup completed! extra-words.json downloaded.';
 }
+
+// Enter key listeners for frictionless submission layout
+document.getElementById('braille-str').addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') processNewEntry();
+});
+document.getElementById('print-str').addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') processNewEntry();
+});
 </script>
 </body>
 </html>
