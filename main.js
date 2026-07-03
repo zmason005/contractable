@@ -3,15 +3,22 @@
 const MAX_GUESSES = 6;
 const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 
-let WORD_OF_THE_DAY = "";
-let allWords = [];
-let asciiToDots = {};
-let dotsToAscii = {};
+let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
+let allWords = [];          // Array of objects from daily-word4.json
+let asciiToDots = {};       // Maps both Computer Braille ASCII and Unicode Braille to 8-bit binary strings
+let dotsToAscii = {};       // Maps 8-bit binary strings to literal Unicode Braille characters
 let currentGuess = 0;
 let gameOver = false;
 
-let correctDots = Array(5).fill("000000");
-let wrongDots = Array(5).fill("000000");
+// Persistent metric tracking targets across rounds (Cumulative)
+let correctDots = [];
+
+// End game custom Braille Unicode messaging
+const WIN_STATUS_MESSAGE = "⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
+const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
+
+// Optimized 1-cell lower-sign prefixes (Numbers 1-6 dropped to bottom pins) for 20-cell display limits
+const ROW_NUMERIC_PREFIXES = ["⠂", "⠆", "⠒", "⠲", "⠢", "⠖"];
 
 // Helper to log errors directly to the screen on iPhone
 function mobileLog(msg) {
@@ -20,7 +27,7 @@ function mobileLog(msg) {
   console.error(msg);
 }
 
-/* ── PRNG & Logic ────────────────────────────────────────────────────────── */
+/* ── PRNG & Logic ─────────────────────────────────────────────────────────[...] */
 
 function mulberry32(seed) {
   seed = seed >>> 0;
@@ -45,18 +52,18 @@ function deterministicShuffle(arr, seed) {
 
 function applyFirstCharConstraint(arr, prevLastChar = null) {
   const a = arr.slice();
-  if (prevLastChar !== null && a[0][0] === prevLastChar) {
+  if (prevLastChar !== null && a[0].print[0] === prevLastChar) {
     for (let j = 1; j < a.length; j++) {
-      if (a[j][0] !== prevLastChar) {
+      if (a[j].print[0] !== prevLastChar) {
         [a[0], a[j]] = [a[j], a[0]];
         break;
       }
     }
   }
   for (let i = 1; i < a.length; i++) {
-    if (a[i][0] === a[i - 1][0]) {
+    if (a[i].print[0] === a[i - 1].print[0]) {
       for (let j = i + 1; j < a.length; j++) {
-        if (a[j][0] !== a[i - 1][0]) {
+        if (a[j].print[0] !== a[i - 1].print[0]) {
           [a[i], a[j]] = [a[j], a[i]];
           break;
         }
@@ -73,12 +80,13 @@ function buildCycle(cycleIndex, prevLastChar = null) {
 }
 
 function getWordForDayIndex(dayIndex) {
-  const cycleIndex = Math.floor(dayIndex / 1772);
-  const position = dayIndex % 1772;
+  const listSize = allWords.length || 1; 
+  const cycleIndex = Math.floor(dayIndex / listSize);
+  const position = dayIndex % listSize;
   let prevLastChar = null;
   if (cycleIndex > 0) {
     const prevCycle = buildCycle(cycleIndex - 1, null);
-    prevLastChar = prevCycle[prevCycle.length - 1][0];
+    prevLastChar = prevCycle[prevCycle.length - 1].print[0];
   }
   const cycle = buildCycle(cycleIndex, prevLastChar);
   return cycle[position];
@@ -89,14 +97,14 @@ function todayDayIndex() {
   return Math.floor((nowUTC - START_DATE_MS) / 86400000);
 }
 
-/* ── Loaders ──────────────────────────────────────────────────────────────── */
+/* ── Loaders ───────────────────────────────────────────────────────────[...] */
 
 async function loadDailyWords() {
   try {
-    const response = await fetch("daily-words.json");
-    if (!response.ok) throw new Error("Could not find daily-words.json");
-    const data = await response.json();
-    allWords = Object.values(data).map(item => item.ascii);
+    // CHANGED: File path updated from daily-word2.json to daily-word4.json
+    const response = await fetch("daily-word4.json");
+    if (!response.ok) throw new Error("Could not find daily-word4.json");
+    allWords = await response.json();
   } catch (e) {
     mobileLog("Daily Words Error: " + e.message);
   }
@@ -104,12 +112,27 @@ async function loadDailyWords() {
 
 async function loadMapping() {
   try {
-    const response = await fetch("braille-ascii-map.json");
-    if (!response.ok) throw new Error("Could not find braille-ascii-map.json");
-    asciiToDots = await response.json();
-    for (const [ascii, dots] of Object.entries(asciiToDots)) {
-      dotsToAscii[dots] = ascii;
-    }
+    const response = await fetch("brlunicode-mapping.json");
+    if (!response.ok) throw new Error("Could not find brlunicode-mapping.json");
+    const data = await response.json();
+    
+    asciiToDots = {};
+    dotsToAscii = {};
+    
+    data.forEach(item => {
+      const fullBitmask = item.bitmask;
+      
+      // Maps Computer Braille ASCII characters passed from iOS input stream
+      if (item.printAscii) {
+        asciiToDots[item.printAscii] = fullBitmask;
+      }
+      // Maps literal Unicode Braille characters passed from iOS input stream
+      if (item.unicodeChar) {
+        asciiToDots[item.unicodeChar] = fullBitmask;
+      }
+      
+      dotsToAscii[fullBitmask] = item.unicodeChar || "\u2800";
+    });
   } catch (e) {
     mobileLog("Mapping Error: " + e.message);
   }
@@ -117,54 +140,25 @@ async function loadMapping() {
 
 /* ── UI & Game Logic ─────────────────────────────────────────────────────── */
 
-function setStatus(msgText, msgBraille) {
+function setStatus(msg) {
   const status = document.getElementById("status");
-  if (!status) return;
-
-  // Enforce strict lower-case format for screen readers on dynamic alerts
-  status.setAttribute("aria-label", msgText.toLowerCase());
-  
-  // Deliver the un-translated raw pin stream directly to Braille display devices
-  status.setAttribute("aria-braillelabel", msgBraille);
-  
-  // Write the visual Unicode symbols directly into the DOM tree container
-  status.textContent = msgBraille;
-  
-  setTimeout(() => { status.focus(); }, 0);
+  status.textContent = msg;
+  status.removeAttribute("hidden"); // Reveal the element smoothly to everyone
+  setTimeout(() => { status.focus(); }, 0); // Fire focus immediately to shift screen readers
 }
 
 function updateGuessLabel() {
   const label = document.getElementById("guess-label");
-  if (!label) return;
-
-  if (currentGuess === MAX_GUESSES - 1) {
-    label.setAttribute("aria-label", "final guess");
-    label.setAttribute("aria-braillelabel", "⠋⠔⠁⠇⠀⠛⠥⠑⠎⠎");
-    label.textContent = "⠋⠔⠁⠇⠀⠛⠥⠑⠎⠎";
-  } else {
-    label.setAttribute("aria-label", "guess");
-    label.setAttribute("aria-braillelabel", "⠛⠥⠑⠎⠎");
-    label.textContent = "⠛⠥⠑⠎⠎";
-  }
-}
-
-function mapStringToDots(str) {
-  const dots = [];
-  for (const ch of str) {
-    if (asciiToDots[ch]) {
-      dots.push(asciiToDots[ch]);
-    }
-  }
-  return dots;
+  label.textContent = (currentGuess === MAX_GUESSES - 1) ? "f9al guess" : "guess";
 }
 
 function dotsArrayToAsciiString(arr) {
-  return arr.map(d => dotsToAscii[d] ?? " ").join("");
+  return arr.map(d => dotsToAscii[d] ?? "\u2800").join("");
 }
 
 function formatRow({ guessIndex, correct, guess, wrong }) {
-  const label = guessIndex < 6 ? `#${String.fromCharCode(97 + guessIndex)}` : "";
-  return `${label} ${correct} ${guess} ${wrong}`;
+  const label = guessIndex < 6 ? ROW_NUMERIC_PREFIXES[guessIndex] : "";
+  return `${label}\u2800${correct}\u2800${guess}\u2800${wrong}`;
 }
 
 function renderRow(rowText) {
@@ -172,59 +166,142 @@ function renderRow(rowText) {
   const row = document.createElement("div");
   row.className = "row";
   row.tabIndex = -1;
-  row.textContent = rowText;
+  
+  row.setAttribute("aria-braillelabel", rowText);
+  row.setAttribute("aria-label", `Row ${currentGuess + 1}`);
+
+  const visualWrapper = document.createElement("span");
+  visualWrapper.setAttribute("aria-hidden", "true");
+  visualWrapper.textContent = rowText;
+  
+  row.appendChild(visualWrapper);
   board.appendChild(row);
   row.focus();
 }
 
 function submitGuess() {
-  if (gameOver) return;
+  if (gameOver || !WORD_OF_THE_DAY) return;
 
   const input = document.getElementById("guess-input");
-  if (!input) return;
+  const rawGuess = input.value.trim();
+  if (!rawGuess) return;
 
-  const rawGuess = input.value;
-  const guessDots = mapStringToDots(rawGuess);
+  // Clear previous non-game-over message records from viewport immediately upon a fresh submission
+  if (!gameOver) {
+    const statusDiv = document.getElementById("status");
+    statusDiv.setAttribute("hidden", "");
+    statusDiv.textContent = "";
+  }
 
-  // Length Validation Checkpoint with Decoupled Response Strategy
-  if (guessDots.length !== 5) {
-    setStatus("must be 5 braille characters", "⠠⠍⠌⠀⠆⠀⠼⠑⠀⠃⠗⠇⠀⠐⠡⠎");
+  let matchedWord = null;
+  let guessAsUnicode = "";
+  let isCheatValidationBypass = false;
+
+  /* ==========================================================================
+     ███████████████ DIAGNOSTIC CHEAT FEATURE GATEWAY ███████████████
+     ========================================================================== */
+  const CHEAT_MODE_ENABLED = true; // Toggle to false to fully deactivate
+
+  if (CHEAT_MODE_ENABLED && rawGuess === "=====") {
+    isCheatValidationBypass = true;
+    
+    // Inject a dummy structural object so it clears the list-existence validation gate
+    // Utilizing a non-matching 'print' value ensures it can never trigger a win state
+    matchedWord = { print: "_____ DIAGNOSTIC_OVERRIDE_NON_MATCHING _____" };
+    
+    // Force guess representation to 5 full-cell saturations (⠿⠿⠿⠿⠿ / 11111100 bitmasks)
+    guessAsUnicode = "⠿⠿⠿⠿⠿";
+  } 
+  /* ==========================================================================
+     ██████████████████████ END CHEAT GATEWAY ███████████████████████
+     ========================================================================== */
+  
+  // Proceed with normal parsing flows if the cheat override wasn't executed
+  if (!isCheatValidationBypass) {
+    // STANDARD PATHWAY: Regular expression to identify standard alphanumeric text (Contracted UEB output from iOS)
+    const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
+
+    if (isStandardPrint) {
+      // PATH 1: Text processed by iOS translation tables into standard print words
+      const lowerGuess = rawGuess.toLowerCase();
+      matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
+      
+      if (matchedWord) {
+        guessAsUnicode = matchedWord.brlunicode;
+      }
+    } else {
+      // PATH 2: Multi-table dot processing (Computer Braille ASCII, Braille ASCII, or Unicode Braille Patterns)
+      const guessDots = [];
+      for (const ch of rawGuess) {
+        guessDots.push(asciiToDots[ch] || "00000000"); 
+      }
+      
+      guessAsUnicode = dotsArrayToAsciiString(guessDots);
+      matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
+    }
+  }
+
+  // Dictionary validation gate: Reject arbitrary length-mismatched or non-existent strings
+  if (!matchedWord) {
+    setStatus("Not in word list.");
     return;
   }
 
-  const targetDots = mapStringToDots(WORD_OF_THE_DAY);
+  // Establish targets using today's true word lengths
+  const targetUnicode = WORD_OF_THE_DAY.brlunicode;
+  const targetDots = [];
+  for (const ch of targetUnicode) {
+    targetDots.push(asciiToDots[ch] || "00000000");
+  }
 
-  for (let i = 0; i < 5; i++) {
-    const g = parseInt(guessDots[i], 2);
+  // Build current guess metrics array normalized to true bitmasks
+  const guessDotsArray = [];
+  for (const ch of guessAsUnicode) {
+    guessDotsArray.push(asciiToDots[ch] || "00000000");
+  }
+
+  // Dynamic initialization of persistent correct trackers to cleanly fit targeted cell array bounds
+  if (correctDots.length !== targetDots.length) {
+    correctDots = Array(targetDots.length).fill(0);
+  }
+
+  const rowCorrectStrings = [];
+  const rowWrongStrings = [];
+
+  // Evaluate bits row-by-row up to the explicit structural size of the target word
+  for (let i = 0; i < targetDots.length; i++) {
+    const g = parseInt(guessDotsArray[i] || "00000000", 2);
     const t = parseInt(targetDots[i], 2);
 
-    const overlap = g & t;
-    const wrong = g & ~t;
+    // Correct bits build permanently over previous rounds
+    correctDots[i] |= (g & t);
 
-    correctDots[i] = (parseInt(correctDots[i], 2) | overlap)
-      .toString(2).padStart(6, "0");
+    // Wrong bits are strictly isolated to this round's input discrepancies
+    const currentWrongBits = (g & ~t);
 
-    wrongDots[i] = (parseInt(wrongDots[i], 2) | wrong)
-      .toString(2).padStart(6, "0");
+    rowCorrectStrings.push(correctDots[i].toString(2).padStart(8, "0"));
+    rowWrongStrings.push(currentWrongBits.toString(2).padStart(8, "0"));
   }
 
   renderRow(formatRow({
     guessIndex: currentGuess,
-    correct: dotsArrayToAsciiString(correctDots),
-    guess: rawGuess,
-    wrong: dotsArrayToAsciiString(wrongDots),
+    correct: dotsArrayToAsciiString(rowCorrectStrings),
+    guess: guessAsUnicode,
+    wrong: dotsArrayToAsciiString(rowWrongStrings),
   }));
 
   currentGuess++;
   input.value = "";
   updateGuessLabel();
 
-  // End Game Win/Loss Routing
-  if (rawGuess === WORD_OF_THE_DAY) {
-    setStatus("you win!", "⠠⠠⠽⠀⠠⠠⠺⠔⠖");
+  // Validate match criteria using normalized print records from database
+  const isMatch = (matchedWord.print.toLowerCase() === WORD_OF_THE_DAY.print.toLowerCase());
+
+  if (isMatch) {
+    setStatus(WIN_STATUS_MESSAGE);
     gameOver = true;
   } else if (currentGuess >= MAX_GUESSES) {
-    setStatus("sorry, the word was " + WORD_OF_THE_DAY, "⠠⠎⠕⠗⠗⠽⠂⠀⠮⠀⠘⠺⠀⠴⠀" + WORD_OF_THE_DAY);
+    setStatus(LOSE_STATUS_MESSAGE);
     gameOver = true;
   }
 }
@@ -234,7 +311,6 @@ async function init() {
 
   if (allWords.length > 0) {
     WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
-    // Clear debug container if files loaded clean
     const debugLog = document.getElementById("debug-log");
     if (debugLog) debugLog.textContent = ""; 
   } else {
@@ -244,18 +320,16 @@ async function init() {
   const input = document.getElementById("guess-input");
   const button = document.getElementById("submit-btn");
 
-  if (button) button.addEventListener("click", submitGuess);
-  if (input) {
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        submitGuess();
-      }
-    });
-    input.focus();
-  }
+  button.addEventListener("click", submitGuess);
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      submitGuess();
+    }
+  });
 
   updateGuessLabel();
+  input.focus();
 }
 
 init().catch(e => mobileLog("Init Error: " + e.message));
