@@ -60,8 +60,6 @@ margin-top: 10px;
 <input type="file" id="master-loader" accept=".json"><br>
 <label for="supp-loader">2. Load Current extra-words.json (Optional)</label><br>
 <input type="file" id="supp-loader" accept=".json"><br>
-<label for="map-loader">3. Load Mapping Profile brlunicode.json</label><br>
-<input type="file" id="map-loader" accept=".json"><br>
 <div id="status-message">Awaiting JSON database files...</div>
 </blockquote>
 
@@ -87,10 +85,116 @@ margin-top: 10px;
 <script>
 let masterWords = [];
 let supplementalWords = [];
-let brailleLookupMap = null; // Storing optimized runtime lookup key-pairs
 const status = document.getElementById('status-message');
 const jsonOutput = document.getElementById('json-output');
 const preview = document.getElementById('translation-preview');
+
+// Raw metadata array baked directly into the utility
+const rawBrailleData = [
+  { "unicodeChar": "⠀", "printAscii": " " },
+  { "unicodeChar": "⠮", "printAscii": "!" },
+  { "unicodeChar": "⠐", "printAscii": "\"" },
+  { "unicodeChar": "⠼", "printAscii": "#" },
+  { "unicodeChar": "⠫", "printAscii": "$" },
+  { "unicodeChar": "⠩", "printAscii": "%" },
+  { "unicodeChar": "⠯", "printAscii": "&" },
+  { "unicodeChar": "⠄", "printAscii": "'" },
+  { "unicodeChar": "⠷", "printAscii": "(" },
+  { "unicodeChar": "⠾", "printAscii": ")" },
+  { "unicodeChar": "⠡", "printAscii": "*" },
+  { "unicodeChar": "⠬", "printAscii": "+" },
+  { "unicodeChar": "⠠", "printAscii": "," },
+  { "unicodeChar": "⠤", "printAscii": "-" },
+  { "unicodeChar": "⠨", "printAscii": "." },
+  { "unicodeChar": "⠌", "printAscii": "/" },
+  { "unicodeChar": "⠴", "printAscii": "0" },
+  { "unicodeChar": "⠂", "printAscii": "1" },
+  { "unicodeChar": "⠆", "printAscii": "2" },
+  { "unicodeChar": "⠒", "printAscii": "3" },
+  { "unicodeChar": "⠲", "printAscii": "4" },
+  { "unicodeChar": "⠢", "printAscii": "5" },
+  { "unicodeChar": "⠖", "printAscii": "6" },
+  { "unicodeChar": "⠶", "printAscii": "7" },
+  { "unicodeChar": "⠦", "printAscii": "8" },
+  { "unicodeChar": "⠔", "printAscii": "9" },
+  { "unicodeChar": "⠱", "printAscii": ":" },
+  { "unicodeChar": "⠰", "printAscii": ";" },
+  { "unicodeChar": "⠣", "printAscii": "<" },
+  { "unicodeChar": "⠿", "printAscii": "=" },
+  { "unicodeChar": "⠜", "printAscii": ">" },
+  { "unicodeChar": "⠹", "printAscii": "?" },
+  { "unicodeChar": "⡈", "printAscii": "@" },
+  { "unicodeChar": "⡁", "printAscii": "A" },
+  { "unicodeChar": "⡃", "printAscii": "B" },
+  { "unicodeChar": "⡉", "printAscii": "C" },
+  { "unicodeChar": "⡙", "printAscii": "D" },
+  { "unicodeChar": "⡑", "printAscii": "E" },
+  { "unicodeChar": "⡋", "printAscii": "F" },
+  { "unicodeChar": "⡛", "printAscii": "G" },
+  { "unicodeChar": "⡓", "printAscii": "H" },
+  { "unicodeChar": "⡊", "printAscii": "I" },
+  { "unicodeChar": "⡚", "printAscii": "J" },
+  { "unicodeChar": "⡅", "printAscii": "K" },
+  { "unicodeChar": "⡇", "printAscii": "L" },
+  { "unicodeChar": "⡍", "printAscii": "M" },
+  { "unicodeChar": "⡝", "printAscii": "N" },
+  { "unicodeChar": "⡕", "printAscii": "O" },
+  { "unicodeChar": "⡏", "printAscii": "P" },
+  { "unicodeChar": "⡟", "printAscii": "Q" },
+  { "unicodeChar": "⡗", "printAscii": "R" },
+  { "unicodeChar": "⡎", "printAscii": "S" },
+  { "unicodeChar": "⡞", "printAscii": "T" },
+  { "unicodeChar": "⡥", "printAscii": "U" },
+  { "unicodeChar": "⡧", "printAscii": "V" },
+  { "unicodeChar": "⡺", "printAscii": "W" },
+  { "unicodeChar": "⡭", "printAscii": "X" },
+  { "unicodeChar": "⡽", "printAscii": "Y" },
+  { "unicodeChar": "⡵", "printAscii": "Z" },
+  { "unicodeChar": "⡪", "printAscii": "[" },
+  { "unicodeChar": "⡳", "printAscii": "\\" },
+  { "unicodeChar": "⡻", "printAscii": "]" },
+  { "unicodeChar": "⡘", "printAscii": "^" },
+  { "unicodeChar": "⠸", "printAscii": "_" },
+  { "unicodeChar": "⠈", "printAscii": "`" },
+  { "unicodeChar": "⠁", "printAscii": "a" },
+  { "unicodeChar": "⠃", "printAscii": "b" },
+  { "unicodeChar": "⠉", "printAscii": "c" },
+  { "unicodeChar": "⠙", "printAscii": "d" },
+  { "unicodeChar": "⠑", "printAscii": "e" },
+  { "unicodeChar": "⠋", "printAscii": "f" },
+  { "unicodeChar": "⠛", "printAscii": "g" },
+  { "unicodeChar": "⠓", "printAscii": "h" },
+  { "unicodeChar": "⠊", "printAscii": "i" },
+  { "unicodeChar": "⠚", "printAscii": "j" },
+  { "unicodeChar": "⠅", "printAscii": "k" },
+  { "unicodeChar": "⠇", "printAscii": "l" },
+  { "unicodeChar": "⠍", "printAscii": "m" },
+  { "unicodeChar": "⠝", "printAscii": "n" },
+  { "unicodeChar": "⠕", "printAscii": "o" },
+  { "unicodeChar": "⠏", "printAscii": "p" },
+  { "unicodeChar": "⠟", "printAscii": "q" },
+  { "unicodeChar": "⠗", "printAscii": "r" },
+  { "unicodeChar": "⠎", "printAscii": "s" },
+  { "unicodeChar": "⠞", "printAscii": "t" },
+  { "unicodeChar": "⠥", "printAscii": "u" },
+  { "unicodeChar": "⠧", "printAscii": "v" },
+  { "unicodeChar": "⠺", "printAscii": "w" },
+  { "unicodeChar": "⠭", "printAscii": "x" },
+  { "unicodeChar": "⠽", "printAscii": "y" },
+  { "unicodeChar": "⠵", "printAscii": "z" },
+  { "unicodeChar": "⠪", "printAscii": "{" },
+  { "unicodeChar": "⠳", "printAscii": "|" },
+  { "unicodeChar": "⠻", "printAscii": "}" },
+  { "unicodeChar": "⠘", "printAscii": "~" }
+];
+
+// Automatically index the hardcoded list into an optimized lookup map on load
+const brailleLookupMap = rawBrailleData.reduce((acc, entry) => {
+    if (entry.printAscii !== undefined && entry.unicodeChar !== undefined) {
+        acc[entry.printAscii] = entry.unicodeChar;
+    }
+    return acc;
+}, {});
 
 // Synchronize state changes to text viewer viewport
 function updateJsonView() {
@@ -101,9 +205,8 @@ function updateJsonView() {
     }
 }
 
-// Convert input strings using the parsed schema structure matching printAscii -> unicodeChar
+// Convert input strings using the optimized lookup key-pairs
 function translateStringToBraille(inputStr) {
-    if (!brailleLookupMap) return "";
     return inputStr.split('').map(char => {
         return brailleLookupMap[char] || char;
     }).join('');
@@ -111,10 +214,6 @@ function translateStringToBraille(inputStr) {
 
 // Live presentation tracking logic
 document.getElementById('braille-str').addEventListener('input', (e) => {
-    if (!brailleLookupMap) {
-        preview.textContent = "Preview translation: [Please load mapping file first]";
-        return;
-    }
     const converted = translateStringToBraille(e.target.value);
     preview.textContent = `Preview translation: ${converted}`;
 });
@@ -129,7 +228,7 @@ document.getElementById('master-loader').addEventListener('change', (e) => {
             const parsed = JSON.parse(event.target.result);
             masterWords = Array.isArray(parsed) ? parsed : [];
             status.style.color = '#ffffff';
-            status.textContent = `Loaded ${masterWords.length} base words from master file.`;
+            status.textContent = `Loaded ${masterWords.length} base words from master file. Ready to build.`;
         } catch (err) {
             status.style.color = '#ff5555';
             status.textContent = 'Error parsing master JSON file.';
@@ -158,45 +257,10 @@ document.getElementById('supp-loader').addEventListener('change', (e) => {
     reader.readAsText(file);
 });
 
-// Phase 2b: Parse and convert your relational database profile array into a quick lookup dictionary
-document.getElementById('map-loader').addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        try {
-            const rawArray = JSON.parse(event.target.result);
-            if (Array.isArray(rawArray)) {
-                // Reduces array array models down to single flat objects at execution runtime: {"!": "⠮", "A": "⡁"}
-                brailleLookupMap = rawArray.reduce((acc, entry) => {
-                    if (entry.printAscii !== undefined && entry.unicodeChar !== undefined) {
-                        acc[entry.printAscii] = entry.unicodeChar;
-                    }
-                    return acc;
-                }, {});
-                status.style.color = '#ffffff';
-                status.textContent = `Successfully indexed ${Object.keys(brailleLookupMap).length} Braille schema characters.`;
-            } else {
-                throw new Error("Invalid format");
-            }
-        } catch (err) {
-            status.style.color = '#ff5555';
-            status.textContent = 'Error parsing brlunicode.json mapping profile array.';
-        }
-    };
-    reader.readAsText(file);
-});
-
 // Phase 3: Validation, Deduplication, and Safe Auto-ID Generation
 function processNewEntry() {
     const printInput = document.getElementById('print-str').value.trim().toLowerCase();
     const rawBrailleInput = document.getElementById('braille-str').value; // Retain case definitions for mapping variations (e.g., a vs A)
-    
-    if (!brailleLookupMap) {
-        status.style.color = '#ff5555';
-        status.textContent = 'Error: Please upload brlunicode.json before adding items.';
-        return;
-    }
     
     if (!printInput || !rawBrailleInput) {
         status.style.color = '#ff5555';
