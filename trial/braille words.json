@@ -1,0 +1,11467 @@
+[
+  {
+    "id": 1,
+    "print": "about",
+    "brlunicode": "⠁⠃"
+  },
+  {
+    "id": 2,
+    "print": "above",
+    "brlunicode": "⠁⠃⠧"
+  },
+  {
+    "id": 3,
+    "print": "absence",
+    "brlunicode": "⠁⠃⠎⠰⠑"
+  },
+  {
+    "id": 4,
+    "print": "absent",
+    "brlunicode": "⠁⠃⠎⠢⠞"
+  },
+  {
+    "id": 5,
+    "print": "abuse",
+    "brlunicode": "⠁⠃⠥⠎⠑"
+  },
+  {
+    "id": 6,
+    "print": "accent",
+    "brlunicode": "⠁⠒⠢⠞"
+  },
+  {
+    "id": 7,
+    "print": "accept",
+    "brlunicode": "⠁⠒⠑⠏⠞"
+  },
+  {
+    "id": 8,
+    "print": "access",
+    "brlunicode": "⠁⠒⠑⠎⠎"
+  },
+  {
+    "id": 9,
+    "print": "according",
+    "brlunicode": "⠁⠉"
+  },
+  {
+    "id": 10,
+    "print": "accordingly",
+    "brlunicode": "⠁⠉⠇⠽"
+  },
+  {
+    "id": 11,
+    "print": "account",
+    "brlunicode": "⠁⠒⠨⠞"
+  },
+  {
+    "id": 12,
+    "print": "accounting",
+    "brlunicode": "⠁⠒⠨⠞⠬"
+  },
+  {
+    "id": 13,
+    "print": "accused",
+    "brlunicode": "⠁⠒⠥⠎⠫"
+  },
+  {
+    "id": 14,
+    "print": "acres",
+    "brlunicode": "⠁⠉⠗⠑⠎"
+  },
+  {
+    "id": 15,
+    "print": "across",
+    "brlunicode": "⠁⠉⠗"
+  },
+  {
+    "id": 16,
+    "print": "acting",
+    "brlunicode": "⠁⠉⠞⠬"
+  },
+  {
+    "id": 17,
+    "print": "action",
+    "brlunicode": "⠁⠉⠰⠝"
+  },
+  {
+    "id": 18,
+    "print": "actor",
+    "brlunicode": "⠁⠉⠞⠕⠗"
+  },
+  {
+    "id": 19,
+    "print": "acute",
+    "brlunicode": "⠁⠉⠥⠞⠑"
+  },
+  {
+    "id": 20,
+    "print": "added",
+    "brlunicode": "⠁⠙⠙⠫"
+  },
+  {
+    "id": 21,
+    "print": "adding",
+    "brlunicode": "⠁⠙⠙⠬"
+  },
+  {
+    "id": 22,
+    "print": "adjust",
+    "brlunicode": "⠁⠙⠚⠥⠌"
+  },
+  {
+    "id": 23,
+    "print": "admit",
+    "brlunicode": "⠁⠙⠍⠊⠞"
+  },
+  {
+    "id": 24,
+    "print": "adobe",
+    "brlunicode": "⠁⠙⠕⠃⠑"
+  },
+  {
+    "id": 25,
+    "print": "adopt",
+    "brlunicode": "⠁⠙⠕⠏⠞"
+  },
+  {
+    "id": 26,
+    "print": "adult",
+    "brlunicode": "⠁⠙⠥⠇⠞"
+  },
+  {
+    "id": 27,
+    "print": "advance",
+    "brlunicode": "⠁⠙⠧⠨⠑"
+  },
+  {
+    "id": 28,
+    "print": "advert",
+    "brlunicode": "⠁⠙⠧⠻⠞"
+  },
+  {
+    "id": 29,
+    "print": "aerial",
+    "brlunicode": "⠁⠻⠊⠁⠇"
+  },
+  {
+    "id": 30,
+    "print": "affair",
+    "brlunicode": "⠁⠖⠁⠊⠗"
+  },
+  {
+    "id": 31,
+    "print": "affect",
+    "brlunicode": "⠁⠖⠑⠉⠞"
+  },
+  {
+    "id": 32,
+    "print": "afford",
+    "brlunicode": "⠁⠋⠿⠙"
+  },
+  {
+    "id": 33,
+    "print": "after",
+    "brlunicode": "⠁⠋"
+  },
+  {
+    "id": 34,
+    "print": "afternoon",
+    "brlunicode": "⠁⠋⠝"
+  },
+  {
+    "id": 35,
+    "print": "afterwards",
+    "brlunicode": "⠁⠋⠺⠎"
+  },
+  {
+    "id": 36,
+    "print": "again",
+    "brlunicode": "⠁⠛"
+  },
+  {
+    "id": 37,
+    "print": "agency",
+    "brlunicode": "⠁⠛⠢⠉⠽"
+  },
+  {
+    "id": 38,
+    "print": "agenda",
+    "brlunicode": "⠁⠛⠢⠙⠁"
+  },
+  {
+    "id": 39,
+    "print": "agent",
+    "brlunicode": "⠁⠛⠢⠞"
+  },
+  {
+    "id": 40,
+    "print": "aging",
+    "brlunicode": "⠁⠛⠬"
+  },
+  {
+    "id": 41,
+    "print": "agree",
+    "brlunicode": "⠁⠛⠗⠑⠑"
+  },
+  {
+    "id": 42,
+    "print": "agreed",
+    "brlunicode": "⠁⠛⠗⠑⠫"
+  },
+  {
+    "id": 43,
+    "print": "ahead",
+    "brlunicode": "⠁⠓⠂⠙"
+  },
+  {
+    "id": 44,
+    "print": "aimed",
+    "brlunicode": "⠁⠊⠍⠫"
+  },
+  {
+    "id": 45,
+    "print": "alarm",
+    "brlunicode": "⠁⠇⠜⠍"
+  },
+  {
+    "id": 46,
+    "print": "album",
+    "brlunicode": "⠁⠇⠃⠥⠍"
+  },
+  {
+    "id": 47,
+    "print": "alert",
+    "brlunicode": "⠁⠇⠻⠞"
+  },
+  {
+    "id": 48,
+    "print": "alias",
+    "brlunicode": "⠁⠇⠊⠁⠎"
+  },
+  {
+    "id": 49,
+    "print": "alien",
+    "brlunicode": "⠁⠇⠊⠢"
+  },
+  {
+    "id": 50,
+    "print": "align",
+    "brlunicode": "⠁⠇⠊⠛⠝"
+  },
+  {
+    "id": 51,
+    "print": "alike",
+    "brlunicode": "⠁⠇⠊⠅⠑"
+  },
+  {
+    "id": 52,
+    "print": "alive",
+    "brlunicode": "⠁⠇⠊⠧⠑"
+  },
+  {
+    "id": 53,
+    "print": "allied",
+    "brlunicode": "⠁⠇⠇⠊⠫"
+  },
+  {
+    "id": 54,
+    "print": "allow",
+    "brlunicode": "⠁⠇⠇⠪"
+  },
+  {
+    "id": 55,
+    "print": "allowed",
+    "brlunicode": "⠁⠇⠇⠪⠫"
+  },
+  {
+    "id": 56,
+    "print": "allowing",
+    "brlunicode": "⠁⠇⠇⠪⠬"
+  },
+  {
+    "id": 57,
+    "print": "allows",
+    "brlunicode": "⠁⠇⠇⠪⠎"
+  },
+  {
+    "id": 58,
+    "print": "alloy",
+    "brlunicode": "⠁⠇⠇⠕⠽"
+  },
+  {
+    "id": 59,
+    "print": "almost",
+    "brlunicode": "⠁⠇⠍"
+  },
+  {
+    "id": 60,
+    "print": "alone",
+    "brlunicode": "⠁⠇⠐⠕"
+  },
+  {
+    "id": 61,
+    "print": "along",
+    "brlunicode": "⠁⠇⠰⠛"
+  },
+  {
+    "id": 62,
+    "print": "alpha",
+    "brlunicode": "⠁⠇⠏⠓⠁"
+  },
+  {
+    "id": 63,
+    "print": "alpine",
+    "brlunicode": "⠁⠇⠏⠔⠑"
+  },
+  {
+    "id": 64,
+    "print": "already",
+    "brlunicode": "⠁⠇⠗"
+  },
+  {
+    "id": 65,
+    "print": "alter",
+    "brlunicode": "⠁⠇⠞⠻"
+  },
+  {
+    "id": 66,
+    "print": "altered",
+    "brlunicode": "⠁⠇⠞⠻⠫"
+  },
+  {
+    "id": 67,
+    "print": "always",
+    "brlunicode": "⠁⠇⠺"
+  },
+  {
+    "id": 68,
+    "print": "amazing",
+    "brlunicode": "⠁⠍⠁⠵⠬"
+  },
+  {
+    "id": 69,
+    "print": "amend",
+    "brlunicode": "⠁⠍⠢⠙"
+  },
+  {
+    "id": 70,
+    "print": "amended",
+    "brlunicode": "⠁⠍⠢⠙⠫"
+  },
+  {
+    "id": 71,
+    "print": "amino",
+    "brlunicode": "⠁⠍⠔⠕"
+  },
+  {
+    "id": 72,
+    "print": "amount",
+    "brlunicode": "⠁⠍⠨⠞"
+  },
+  {
+    "id": 73,
+    "print": "anchor",
+    "brlunicode": "⠁⠝⠡⠕⠗"
+  },
+  {
+    "id": 74,
+    "print": "anderson",
+    "brlunicode": "⠯⠻⠎⠕⠝"
+  },
+  {
+    "id": 75,
+    "print": "andorra",
+    "brlunicode": "⠯⠕⠗⠗⠁"
+  },
+  {
+    "id": 76,
+    "print": "andrews",
+    "brlunicode": "⠯⠗⠑⠺⠎"
+  },
+  {
+    "id": 77,
+    "print": "anger",
+    "brlunicode": "⠁⠝⠛⠻"
+  },
+  {
+    "id": 78,
+    "print": "angle",
+    "brlunicode": "⠁⠝⠛⠇⠑"
+  },
+  {
+    "id": 79,
+    "print": "angry",
+    "brlunicode": "⠁⠝⠛⠗⠽"
+  },
+  {
+    "id": 80,
+    "print": "anime",
+    "brlunicode": "⠁⠝⠊⠍⠑"
+  },
+  {
+    "id": 81,
+    "print": "annex",
+    "brlunicode": "⠁⠝⠝⠑⠭"
+  },
+  {
+    "id": 82,
+    "print": "another",
+    "brlunicode": "⠁⠝⠕⠮⠗"
+  },
+  {
+    "id": 83,
+    "print": "answer",
+    "brlunicode": "⠁⠝⠎⠺⠻"
+  },
+  {
+    "id": 84,
+    "print": "anywhere",
+    "brlunicode": "⠁⠝⠽⠐⠱"
+  },
+  {
+    "id": 85,
+    "print": "apache",
+    "brlunicode": "⠁⠏⠁⠡⠑"
+  },
+  {
+    "id": 86,
+    "print": "apart",
+    "brlunicode": "⠁⠐⠏"
+  },
+  {
+    "id": 87,
+    "print": "apartment",
+    "brlunicode": "⠁⠐⠏⠰⠞"
+  },
+  {
+    "id": 88,
+    "print": "appeal",
+    "brlunicode": "⠁⠏⠏⠂⠇"
+  },
+  {
+    "id": 89,
+    "print": "appear",
+    "brlunicode": "⠁⠏⠏⠑⠜"
+  },
+  {
+    "id": 90,
+    "print": "apple",
+    "brlunicode": "⠁⠏⠏⠇⠑"
+  },
+  {
+    "id": 91,
+    "print": "apply",
+    "brlunicode": "⠁⠏⠏⠇⠽"
+  },
+  {
+    "id": 92,
+    "print": "arabia",
+    "brlunicode": "⠜⠁⠃⠊⠁"
+  },
+  {
+    "id": 93,
+    "print": "arabic",
+    "brlunicode": "⠜⠁⠃⠊⠉"
+  },
+  {
+    "id": 94,
+    "print": "arcade",
+    "brlunicode": "⠜⠉⠁⠙⠑"
+  },
+  {
+    "id": 95,
+    "print": "archive",
+    "brlunicode": "⠜⠡⠊⠧⠑"
+  },
+  {
+    "id": 96,
+    "print": "archived",
+    "brlunicode": "⠜⠡⠊⠧⠫"
+  },
+  {
+    "id": 97,
+    "print": "arctic",
+    "brlunicode": "⠜⠉⠞⠊⠉"
+  },
+  {
+    "id": 98,
+    "print": "arena",
+    "brlunicode": "⠜⠢⠁"
+  },
+  {
+    "id": 99,
+    "print": "argue",
+    "brlunicode": "⠜⠛⠥⠑"
+  },
+  {
+    "id": 100,
+    "print": "argued",
+    "brlunicode": "⠜⠛⠥⠫"
+  },
+  {
+    "id": 101,
+    "print": "argument",
+    "brlunicode": "⠜⠛⠥⠰⠞"
+  },
+  {
+    "id": 102,
+    "print": "arise",
+    "brlunicode": "⠜⠊⠎⠑"
+  },
+  {
+    "id": 103,
+    "print": "arising",
+    "brlunicode": "⠜⠊⠎⠬"
+  },
+  {
+    "id": 104,
+    "print": "armed",
+    "brlunicode": "⠜⠍⠫"
+  },
+  {
+    "id": 105,
+    "print": "armenia",
+    "brlunicode": "⠜⠍⠢⠊⠁"
+  },
+  {
+    "id": 106,
+    "print": "armor",
+    "brlunicode": "⠜⠍⠕⠗"
+  },
+  {
+    "id": 107,
+    "print": "around",
+    "brlunicode": "⠜⠨⠙"
+  },
+  {
+    "id": 108,
+    "print": "array",
+    "brlunicode": "⠜⠗⠁⠽"
+  },
+  {
+    "id": 109,
+    "print": "arrest",
+    "brlunicode": "⠜⠗⠑⠌"
+  },
+  {
+    "id": 110,
+    "print": "arrested",
+    "brlunicode": "⠜⠗⠑⠌⠫"
+  },
+  {
+    "id": 111,
+    "print": "arrive",
+    "brlunicode": "⠜⠗⠊⠧⠑"
+  },
+  {
+    "id": 112,
+    "print": "arrived",
+    "brlunicode": "⠜⠗⠊⠧⠫"
+  },
+  {
+    "id": 113,
+    "print": "arrow",
+    "brlunicode": "⠜⠗⠪"
+  },
+  {
+    "id": 114,
+    "print": "artist",
+    "brlunicode": "⠜⠞⠊⠌"
+  },
+  {
+    "id": 115,
+    "print": "artwork",
+    "brlunicode": "⠜⠞⠐⠺"
+  },
+  {
+    "id": 116,
+    "print": "aruba",
+    "brlunicode": "⠜⠥⠃⠁"
+  },
+  {
+    "id": 117,
+    "print": "ascii",
+    "brlunicode": "⠁⠎⠉⠊⠊"
+  },
+  {
+    "id": 118,
+    "print": "asian",
+    "brlunicode": "⠁⠎⠊⠁⠝"
+  },
+  {
+    "id": 119,
+    "print": "aside",
+    "brlunicode": "⠁⠎⠊⠙⠑"
+  },
+  {
+    "id": 120,
+    "print": "asked",
+    "brlunicode": "⠁⠎⠅⠫"
+  },
+  {
+    "id": 121,
+    "print": "asking",
+    "brlunicode": "⠁⠎⠅⠬"
+  },
+  {
+    "id": 122,
+    "print": "asset",
+    "brlunicode": "⠁⠎⠎⠑⠞"
+  },
+  {
+    "id": 123,
+    "print": "assist",
+    "brlunicode": "⠁⠎⠎⠊⠌"
+  },
+  {
+    "id": 124,
+    "print": "asthma",
+    "brlunicode": "⠁⠎⠹⠍⠁"
+  },
+  {
+    "id": 125,
+    "print": "athens",
+    "brlunicode": "⠁⠮⠝⠎"
+  },
+  {
+    "id": 126,
+    "print": "atlas",
+    "brlunicode": "⠁⠞⠇⠁⠎"
+  },
+  {
+    "id": 127,
+    "print": "attach",
+    "brlunicode": "⠁⠞⠞⠁⠡"
+  },
+  {
+    "id": 128,
+    "print": "attend",
+    "brlunicode": "⠁⠞⠞⠢⠙"
+  },
+  {
+    "id": 129,
+    "print": "auction",
+    "brlunicode": "⠁⠥⠉⠰⠝"
+  },
+  {
+    "id": 130,
+    "print": "audio",
+    "brlunicode": "⠁⠥⠙⠊⠕"
+  },
+  {
+    "id": 131,
+    "print": "audit",
+    "brlunicode": "⠁⠥⠙⠊⠞"
+  },
+  {
+    "id": 132,
+    "print": "author",
+    "brlunicode": "⠁⠥⠹⠕⠗"
+  },
+  {
+    "id": 133,
+    "print": "avatar",
+    "brlunicode": "⠁⠧⠁⠞⠜"
+  },
+  {
+    "id": 134,
+    "print": "avenue",
+    "brlunicode": "⠁⠧⠢⠥⠑"
+  },
+  {
+    "id": 135,
+    "print": "avoid",
+    "brlunicode": "⠁⠧⠕⠊⠙"
+  },
+  {
+    "id": 136,
+    "print": "award",
+    "brlunicode": "⠁⠺⠜⠙"
+  },
+  {
+    "id": 137,
+    "print": "awarded",
+    "brlunicode": "⠁⠺⠜⠙⠫"
+  },
+  {
+    "id": 138,
+    "print": "aware",
+    "brlunicode": "⠁⠺⠜⠑"
+  },
+  {
+    "id": 139,
+    "print": "awesome",
+    "brlunicode": "⠁⠺⠑⠐⠎"
+  },
+  {
+    "id": 140,
+    "print": "awful",
+    "brlunicode": "⠁⠺⠰⠇"
+  },
+  {
+    "id": 141,
+    "print": "backed",
+    "brlunicode": "⠃⠁⠉⠅⠫"
+  },
+  {
+    "id": 142,
+    "print": "backing",
+    "brlunicode": "⠃⠁⠉⠅⠬"
+  },
+  {
+    "id": 143,
+    "print": "bacon",
+    "brlunicode": "⠃⠁⠉⠕⠝"
+  },
+  {
+    "id": 144,
+    "print": "badge",
+    "brlunicode": "⠃⠁⠙⠛⠑"
+  },
+  {
+    "id": 145,
+    "print": "badly",
+    "brlunicode": "⠃⠁⠙⠇⠽"
+  },
+  {
+    "id": 146,
+    "print": "baker",
+    "brlunicode": "⠃⠁⠅⠻"
+  },
+  {
+    "id": 147,
+    "print": "baking",
+    "brlunicode": "⠃⠁⠅⠬"
+  },
+  {
+    "id": 148,
+    "print": "balance",
+    "brlunicode": "⠃⠁⠇⠨⠑"
+  },
+  {
+    "id": 149,
+    "print": "banking",
+    "brlunicode": "⠃⠁⠝⠅⠬"
+  },
+  {
+    "id": 150,
+    "print": "banks",
+    "brlunicode": "⠃⠁⠝⠅⠎"
+  },
+  {
+    "id": 151,
+    "print": "banned",
+    "brlunicode": "⠃⠁⠝⠝⠫"
+  },
+  {
+    "id": 152,
+    "print": "banner",
+    "brlunicode": "⠃⠁⠝⠝⠻"
+  },
+  {
+    "id": 153,
+    "print": "barely",
+    "brlunicode": "⠃⠜⠑⠇⠽"
+  },
+  {
+    "id": 154,
+    "print": "bargain",
+    "brlunicode": "⠃⠜⠛⠁⠔"
+  },
+  {
+    "id": 155,
+    "print": "barrel",
+    "brlunicode": "⠃⠜⠗⠑⠇"
+  },
+  {
+    "id": 156,
+    "print": "barrier",
+    "brlunicode": "⠃⠜⠗⠊⠻"
+  },
+  {
+    "id": 157,
+    "print": "based",
+    "brlunicode": "⠃⠁⠎⠫"
+  },
+  {
+    "id": 158,
+    "print": "basic",
+    "brlunicode": "⠃⠁⠎⠊⠉"
+  },
+  {
+    "id": 159,
+    "print": "basin",
+    "brlunicode": "⠃⠁⠎⠔"
+  },
+  {
+    "id": 160,
+    "print": "basis",
+    "brlunicode": "⠃⠁⠎⠊⠎"
+  },
+  {
+    "id": 161,
+    "print": "batch",
+    "brlunicode": "⠃⠁⠞⠡"
+  },
+  {
+    "id": 162,
+    "print": "beach",
+    "brlunicode": "⠃⠂⠡"
+  },
+  {
+    "id": 163,
+    "print": "beads",
+    "brlunicode": "⠃⠂⠙⠎"
+  },
+  {
+    "id": 164,
+    "print": "bearing",
+    "brlunicode": "⠃⠑⠜⠬"
+  },
+  {
+    "id": 165,
+    "print": "beast",
+    "brlunicode": "⠃⠂⠌"
+  },
+  {
+    "id": 166,
+    "print": "beats",
+    "brlunicode": "⠃⠂⠞⠎"
+  },
+  {
+    "id": 167,
+    "print": "beauty",
+    "brlunicode": "⠃⠂⠥⠞⠽"
+  },
+  {
+    "id": 168,
+    "print": "beaver",
+    "brlunicode": "⠃⠂⠧⠻"
+  },
+  {
+    "id": 169,
+    "print": "became",
+    "brlunicode": "⠆⠉⠁⠍⠑"
+  },
+  {
+    "id": 170,
+    "print": "become",
+    "brlunicode": "⠆⠉⠕⠍⠑"
+  },
+  {
+    "id": 171,
+    "print": "becoming",
+    "brlunicode": "⠆⠉⠕⠍⠬"
+  },
+  {
+    "id": 172,
+    "print": "bedding",
+    "brlunicode": "⠃⠫⠙⠬"
+  },
+  {
+    "id": 173,
+    "print": "before",
+    "brlunicode": "⠆⠋"
+  },
+  {
+    "id": 174,
+    "print": "began",
+    "brlunicode": "⠆⠛⠁⠝"
+  },
+  {
+    "id": 175,
+    "print": "begin",
+    "brlunicode": "⠆⠛⠔"
+  },
+  {
+    "id": 176,
+    "print": "beginner",
+    "brlunicode": "⠆⠛⠔⠝⠻"
+  },
+  {
+    "id": 177,
+    "print": "beginning",
+    "brlunicode": "⠆⠛⠔⠝⠬"
+  },
+  {
+    "id": 178,
+    "print": "begun",
+    "brlunicode": "⠆⠛⠥⠝"
+  },
+  {
+    "id": 179,
+    "print": "behalf",
+    "brlunicode": "⠆⠓⠁⠇⠋"
+  },
+  {
+    "id": 180,
+    "print": "behind",
+    "brlunicode": "⠆⠓"
+  },
+  {
+    "id": 181,
+    "print": "beijing",
+    "brlunicode": "⠃⠑⠊⠚⠬"
+  },
+  {
+    "id": 182,
+    "print": "being",
+    "brlunicode": "⠆⠬"
+  },
+  {
+    "id": 183,
+    "print": "belarus",
+    "brlunicode": "⠆⠇⠜⠥⠎"
+  },
+  {
+    "id": 184,
+    "print": "belief",
+    "brlunicode": "⠆⠇⠊⠑⠋"
+  },
+  {
+    "id": 185,
+    "print": "belize",
+    "brlunicode": "⠆⠇⠊⠵⠑"
+  },
+  {
+    "id": 186,
+    "print": "belly",
+    "brlunicode": "⠃⠑⠇⠇⠽"
+  },
+  {
+    "id": 187,
+    "print": "belong",
+    "brlunicode": "⠆⠇⠰⠛"
+  },
+  {
+    "id": 188,
+    "print": "belongs",
+    "brlunicode": "⠆⠇⠰⠛⠎"
+  },
+  {
+    "id": 189,
+    "print": "below",
+    "brlunicode": "⠆⠇"
+  },
+  {
+    "id": 190,
+    "print": "bench",
+    "brlunicode": "⠃⠢⠡"
+  },
+  {
+    "id": 191,
+    "print": "beneath",
+    "brlunicode": "⠆⠝"
+  },
+  {
+    "id": 192,
+    "print": "berlin",
+    "brlunicode": "⠃⠻⠇⠔"
+  },
+  {
+    "id": 193,
+    "print": "besides",
+    "brlunicode": "⠆⠎⠎"
+  },
+  {
+    "id": 194,
+    "print": "better",
+    "brlunicode": "⠃⠑⠞⠞⠻"
+  },
+  {
+    "id": 195,
+    "print": "betting",
+    "brlunicode": "⠃⠑⠞⠞⠬"
+  },
+  {
+    "id": 196,
+    "print": "between",
+    "brlunicode": "⠆⠞"
+  },
+  {
+    "id": 197,
+    "print": "beyond",
+    "brlunicode": "⠆⠽"
+  },
+  {
+    "id": 198,
+    "print": "bible",
+    "brlunicode": "⠃⠊⠃⠇⠑"
+  },
+  {
+    "id": 199,
+    "print": "bidder",
+    "brlunicode": "⠃⠊⠙⠙⠻"
+  },
+  {
+    "id": 200,
+    "print": "bidding",
+    "brlunicode": "⠃⠊⠙⠙⠬"
+  },
+  {
+    "id": 201,
+    "print": "bigger",
+    "brlunicode": "⠃⠊⠶⠻"
+  },
+  {
+    "id": 202,
+    "print": "biggest",
+    "brlunicode": "⠃⠊⠶⠑⠌"
+  },
+  {
+    "id": 203,
+    "print": "bikini",
+    "brlunicode": "⠃⠊⠅⠔⠊"
+  },
+  {
+    "id": 204,
+    "print": "billing",
+    "brlunicode": "⠃⠊⠇⠇⠬"
+  },
+  {
+    "id": 205,
+    "print": "binary",
+    "brlunicode": "⠃⠔⠜⠽"
+  },
+  {
+    "id": 206,
+    "print": "binding",
+    "brlunicode": "⠃⠔⠙⠬"
+  },
+  {
+    "id": 207,
+    "print": "bingo",
+    "brlunicode": "⠃⠬⠕"
+  },
+  {
+    "id": 208,
+    "print": "birth",
+    "brlunicode": "⠃⠊⠗⠹"
+  },
+  {
+    "id": 209,
+    "print": "black",
+    "brlunicode": "⠃⠇⠁⠉⠅"
+  },
+  {
+    "id": 210,
+    "print": "blade",
+    "brlunicode": "⠃⠇⠁⠙⠑"
+  },
+  {
+    "id": 211,
+    "print": "blame",
+    "brlunicode": "⠃⠇⠁⠍⠑"
+  },
+  {
+    "id": 212,
+    "print": "blank",
+    "brlunicode": "⠃⠇⠁⠝⠅"
+  },
+  {
+    "id": 213,
+    "print": "blast",
+    "brlunicode": "⠃⠇⠁⠌"
+  },
+  {
+    "id": 214,
+    "print": "bleeding",
+    "brlunicode": "⠃⠇⠑⠫⠬"
+  },
+  {
+    "id": 215,
+    "print": "blend",
+    "brlunicode": "⠃⠇⠢⠙"
+  },
+  {
+    "id": 216,
+    "print": "bless",
+    "brlunicode": "⠃⠨⠎"
+  },
+  {
+    "id": 217,
+    "print": "blessed",
+    "brlunicode": "⠃⠨⠎⠫"
+  },
+  {
+    "id": 218,
+    "print": "blind",
+    "brlunicode": "⠃⠇"
+  },
+  {
+    "id": 219,
+    "print": "blink",
+    "brlunicode": "⠃⠇⠔⠅"
+  },
+  {
+    "id": 220,
+    "print": "block",
+    "brlunicode": "⠃⠇⠕⠉⠅"
+  },
+  {
+    "id": 221,
+    "print": "blogger",
+    "brlunicode": "⠃⠇⠕⠶⠻"
+  },
+  {
+    "id": 222,
+    "print": "blond",
+    "brlunicode": "⠃⠇⠕⠝⠙"
+  },
+  {
+    "id": 223,
+    "print": "blood",
+    "brlunicode": "⠃⠇⠕⠕⠙"
+  },
+  {
+    "id": 224,
+    "print": "bloom",
+    "brlunicode": "⠃⠇⠕⠕⠍"
+  },
+  {
+    "id": 225,
+    "print": "blowing",
+    "brlunicode": "⠃⠇⠪⠬"
+  },
+  {
+    "id": 226,
+    "print": "blues",
+    "brlunicode": "⠃⠇⠥⠑⠎"
+  },
+  {
+    "id": 227,
+    "print": "board",
+    "brlunicode": "⠃⠕⠜⠙"
+  },
+  {
+    "id": 228,
+    "print": "boards",
+    "brlunicode": "⠃⠕⠜⠙⠎"
+  },
+  {
+    "id": 229,
+    "print": "boating",
+    "brlunicode": "⠃⠕⠁⠞⠬"
+  },
+  {
+    "id": 230,
+    "print": "bones",
+    "brlunicode": "⠃⠐⠕⠎"
+  },
+  {
+    "id": 231,
+    "print": "bonus",
+    "brlunicode": "⠃⠕⠝⠥⠎"
+  },
+  {
+    "id": 232,
+    "print": "booking",
+    "brlunicode": "⠃⠕⠕⠅⠬"
+  },
+  {
+    "id": 233,
+    "print": "boost",
+    "brlunicode": "⠃⠕⠕⠌"
+  },
+  {
+    "id": 234,
+    "print": "booth",
+    "brlunicode": "⠃⠕⠕⠹"
+  },
+  {
+    "id": 235,
+    "print": "booty",
+    "brlunicode": "⠃⠕⠕⠞⠽"
+  },
+  {
+    "id": 236,
+    "print": "border",
+    "brlunicode": "⠃⠕⠗⠙⠻"
+  },
+  {
+    "id": 237,
+    "print": "bored",
+    "brlunicode": "⠃⠕⠗⠫"
+  },
+  {
+    "id": 238,
+    "print": "boring",
+    "brlunicode": "⠃⠕⠗⠬"
+  },
+  {
+    "id": 239,
+    "print": "borough",
+    "brlunicode": "⠃⠕⠗⠳⠣"
+  },
+  {
+    "id": 240,
+    "print": "boston",
+    "brlunicode": "⠃⠕⠌⠕⠝"
+  },
+  {
+    "id": 241,
+    "print": "bother",
+    "brlunicode": "⠃⠕⠮⠗"
+  },
+  {
+    "id": 242,
+    "print": "bought",
+    "brlunicode": "⠃⠐⠳"
+  },
+  {
+    "id": 243,
+    "print": "boulder",
+    "brlunicode": "⠃⠳⠇⠙⠻"
+  },
+  {
+    "id": 244,
+    "print": "bound",
+    "brlunicode": "⠃⠨⠙"
+  },
+  {
+    "id": 245,
+    "print": "boundary",
+    "brlunicode": "⠃⠨⠙⠜⠽"
+  },
+  {
+    "id": 246,
+    "print": "bowling",
+    "brlunicode": "⠃⠪⠇⠬"
+  },
+  {
+    "id": 247,
+    "print": "boxed",
+    "brlunicode": "⠃⠕⠭⠫"
+  },
+  {
+    "id": 248,
+    "print": "boxing",
+    "brlunicode": "⠃⠕⠭⠬"
+  },
+  {
+    "id": 249,
+    "print": "brain",
+    "brlunicode": "⠃⠗⠁⠔"
+  },
+  {
+    "id": 250,
+    "print": "brake",
+    "brlunicode": "⠃⠗⠁⠅⠑"
+  },
+  {
+    "id": 251,
+    "print": "branch",
+    "brlunicode": "⠃⠗⠁⠝⠡"
+  },
+  {
+    "id": 252,
+    "print": "brand",
+    "brlunicode": "⠃⠗⠯"
+  },
+  {
+    "id": 253,
+    "print": "brass",
+    "brlunicode": "⠃⠗⠁⠎⠎"
+  },
+  {
+    "id": 254,
+    "print": "brave",
+    "brlunicode": "⠃⠗⠁⠧⠑"
+  },
+  {
+    "id": 255,
+    "print": "breach",
+    "brlunicode": "⠃⠗⠂⠡"
+  },
+  {
+    "id": 256,
+    "print": "bread",
+    "brlunicode": "⠃⠗⠂⠙"
+  },
+  {
+    "id": 257,
+    "print": "break",
+    "brlunicode": "⠃⠗⠂⠅"
+  },
+  {
+    "id": 258,
+    "print": "breaking",
+    "brlunicode": "⠃⠗⠂⠅⠬"
+  },
+  {
+    "id": 259,
+    "print": "breast",
+    "brlunicode": "⠃⠗⠂⠌"
+  },
+  {
+    "id": 260,
+    "print": "breath",
+    "brlunicode": "⠃⠗⠂⠹"
+  },
+  {
+    "id": 261,
+    "print": "breathing",
+    "brlunicode": "⠃⠗⠂⠹⠬"
+  },
+  {
+    "id": 262,
+    "print": "breed",
+    "brlunicode": "⠃⠗⠑⠫"
+  },
+  {
+    "id": 263,
+    "print": "breeding",
+    "brlunicode": "⠃⠗⠑⠫⠬"
+  },
+  {
+    "id": 264,
+    "print": "brick",
+    "brlunicode": "⠃⠗⠊⠉⠅"
+  },
+  {
+    "id": 265,
+    "print": "brief",
+    "brlunicode": "⠃⠗⠊⠑⠋"
+  },
+  {
+    "id": 266,
+    "print": "bright",
+    "brlunicode": "⠃⠐⠗"
+  },
+  {
+    "id": 267,
+    "print": "brighton",
+    "brlunicode": "⠃⠐⠗⠕⠝"
+  },
+  {
+    "id": 268,
+    "print": "bring",
+    "brlunicode": "⠃⠗⠬"
+  },
+  {
+    "id": 269,
+    "print": "bringing",
+    "brlunicode": "⠃⠗⠬⠬"
+  },
+  {
+    "id": 270,
+    "print": "brings",
+    "brlunicode": "⠃⠗⠬⠎"
+  },
+  {
+    "id": 271,
+    "print": "broad",
+    "brlunicode": "⠃⠗⠕⠁⠙"
+  },
+  {
+    "id": 272,
+    "print": "broke",
+    "brlunicode": "⠃⠗⠕⠅⠑"
+  },
+  {
+    "id": 273,
+    "print": "broken",
+    "brlunicode": "⠃⠗⠕⠅⠢"
+  },
+  {
+    "id": 274,
+    "print": "broker",
+    "brlunicode": "⠃⠗⠕⠅⠻"
+  },
+  {
+    "id": 275,
+    "print": "brother",
+    "brlunicode": "⠃⠗⠕⠮⠗"
+  },
+  {
+    "id": 276,
+    "print": "brought",
+    "brlunicode": "⠃⠗⠐⠳"
+  },
+  {
+    "id": 277,
+    "print": "brown",
+    "brlunicode": "⠃⠗⠪⠝"
+  },
+  {
+    "id": 278,
+    "print": "browse",
+    "brlunicode": "⠃⠗⠪⠎⠑"
+  },
+  {
+    "id": 279,
+    "print": "browser",
+    "brlunicode": "⠃⠗⠪⠎⠻"
+  },
+  {
+    "id": 280,
+    "print": "browsing",
+    "brlunicode": "⠃⠗⠪⠎⠬"
+  },
+  {
+    "id": 281,
+    "print": "brush",
+    "brlunicode": "⠃⠗⠥⠩"
+  },
+  {
+    "id": 282,
+    "print": "bubble",
+    "brlunicode": "⠃⠥⠆⠇⠑"
+  },
+  {
+    "id": 283,
+    "print": "buffer",
+    "brlunicode": "⠃⠥⠖⠻"
+  },
+  {
+    "id": 284,
+    "print": "build",
+    "brlunicode": "⠃⠥⠊⠇⠙"
+  },
+  {
+    "id": 285,
+    "print": "built",
+    "brlunicode": "⠃⠥⠊⠇⠞"
+  },
+  {
+    "id": 286,
+    "print": "bumper",
+    "brlunicode": "⠃⠥⠍⠏⠻"
+  },
+  {
+    "id": 287,
+    "print": "bunch",
+    "brlunicode": "⠃⠥⠝⠡"
+  },
+  {
+    "id": 288,
+    "print": "burden",
+    "brlunicode": "⠃⠥⠗⠙⠢"
+  },
+  {
+    "id": 289,
+    "print": "bureau",
+    "brlunicode": "⠃⠥⠗⠂⠥"
+  },
+  {
+    "id": 290,
+    "print": "buried",
+    "brlunicode": "⠃⠥⠗⠊⠫"
+  },
+  {
+    "id": 291,
+    "print": "burner",
+    "brlunicode": "⠃⠥⠗⠝⠻"
+  },
+  {
+    "id": 292,
+    "print": "burning",
+    "brlunicode": "⠃⠥⠗⠝⠬"
+  },
+  {
+    "id": 293,
+    "print": "burns",
+    "brlunicode": "⠃⠥⠗⠝⠎"
+  },
+  {
+    "id": 294,
+    "print": "burst",
+    "brlunicode": "⠃⠥⠗⠌"
+  },
+  {
+    "id": 295,
+    "print": "butter",
+    "brlunicode": "⠃⠥⠞⠞⠻"
+  },
+  {
+    "id": 296,
+    "print": "buyer",
+    "brlunicode": "⠃⠥⠽⠻"
+  },
+  {
+    "id": 297,
+    "print": "buying",
+    "brlunicode": "⠃⠥⠽⠬"
+  },
+  {
+    "id": 298,
+    "print": "cabin",
+    "brlunicode": "⠉⠁⠃⠔"
+  },
+  {
+    "id": 299,
+    "print": "cable",
+    "brlunicode": "⠉⠁⠃⠇⠑"
+  },
+  {
+    "id": 300,
+    "print": "cache",
+    "brlunicode": "⠉⠁⠡⠑"
+  },
+  {
+    "id": 301,
+    "print": "cached",
+    "brlunicode": "⠉⠁⠡⠫"
+  },
+  {
+    "id": 302,
+    "print": "calif",
+    "brlunicode": "⠉⠁⠇⠊⠋"
+  },
+  {
+    "id": 303,
+    "print": "called",
+    "brlunicode": "⠉⠁⠇⠇⠫"
+  },
+  {
+    "id": 304,
+    "print": "calling",
+    "brlunicode": "⠉⠁⠇⠇⠬"
+  },
+  {
+    "id": 305,
+    "print": "camera",
+    "brlunicode": "⠉⠁⠍⠻⠁"
+  },
+  {
+    "id": 306,
+    "print": "camping",
+    "brlunicode": "⠉⠁⠍⠏⠬"
+  },
+  {
+    "id": 307,
+    "print": "canal",
+    "brlunicode": "⠉⠁⠝⠁⠇"
+  },
+  {
+    "id": 308,
+    "print": "cancel",
+    "brlunicode": "⠉⠨⠑⠇"
+  },
+  {
+    "id": 309,
+    "print": "cancer",
+    "brlunicode": "⠉⠨⠑⠗"
+  },
+  {
+    "id": 310,
+    "print": "candle",
+    "brlunicode": "⠉⠯⠇⠑"
+  },
+  {
+    "id": 311,
+    "print": "canon",
+    "brlunicode": "⠉⠁⠝⠕⠝"
+  },
+  {
+    "id": 312,
+    "print": "carbon",
+    "brlunicode": "⠉⠜⠃⠕⠝"
+  },
+  {
+    "id": 313,
+    "print": "cards",
+    "brlunicode": "⠉⠜⠙⠎"
+  },
+  {
+    "id": 314,
+    "print": "career",
+    "brlunicode": "⠉⠜⠑⠻"
+  },
+  {
+    "id": 315,
+    "print": "careful",
+    "brlunicode": "⠉⠜⠑⠰⠇"
+  },
+  {
+    "id": 316,
+    "print": "cargo",
+    "brlunicode": "⠉⠜⠛⠕"
+  },
+  {
+    "id": 317,
+    "print": "caring",
+    "brlunicode": "⠉⠜⠬"
+  },
+  {
+    "id": 318,
+    "print": "carpet",
+    "brlunicode": "⠉⠜⠏⠑⠞"
+  },
+  {
+    "id": 319,
+    "print": "carried",
+    "brlunicode": "⠉⠜⠗⠊⠫"
+  },
+  {
+    "id": 320,
+    "print": "carrier",
+    "brlunicode": "⠉⠜⠗⠊⠻"
+  },
+  {
+    "id": 321,
+    "print": "carrying",
+    "brlunicode": "⠉⠜⠗⠽⠬"
+  },
+  {
+    "id": 322,
+    "print": "casino",
+    "brlunicode": "⠉⠁⠎⠔⠕"
+  },
+  {
+    "id": 323,
+    "print": "casting",
+    "brlunicode": "⠉⠁⠌⠬"
+  },
+  {
+    "id": 324,
+    "print": "castle",
+    "brlunicode": "⠉⠁⠌⠇⠑"
+  },
+  {
+    "id": 325,
+    "print": "catch",
+    "brlunicode": "⠉⠁⠞⠡"
+  },
+  {
+    "id": 326,
+    "print": "catering",
+    "brlunicode": "⠉⠁⠞⠻⠬"
+  },
+  {
+    "id": 327,
+    "print": "caught",
+    "brlunicode": "⠉⠁⠥⠣⠞"
+  },
+  {
+    "id": 328,
+    "print": "cause",
+    "brlunicode": "⠉⠁⠥⠎⠑"
+  },
+  {
+    "id": 329,
+    "print": "caused",
+    "brlunicode": "⠉⠁⠥⠎⠫"
+  },
+  {
+    "id": 330,
+    "print": "causing",
+    "brlunicode": "⠉⠁⠥⠎⠬"
+  },
+  {
+    "id": 331,
+    "print": "caution",
+    "brlunicode": "⠉⠁⠥⠰⠝"
+  },
+  {
+    "id": 332,
+    "print": "cedar",
+    "brlunicode": "⠉⠫⠜"
+  },
+  {
+    "id": 333,
+    "print": "ceiling",
+    "brlunicode": "⠉⠑⠊⠇⠬"
+  },
+  {
+    "id": 334,
+    "print": "cement",
+    "brlunicode": "⠉⠑⠰⠞"
+  },
+  {
+    "id": 335,
+    "print": "census",
+    "brlunicode": "⠉⠢⠎⠥⠎"
+  },
+  {
+    "id": 336,
+    "print": "center",
+    "brlunicode": "⠉⠢⠞⠻"
+  },
+  {
+    "id": 337,
+    "print": "centered",
+    "brlunicode": "⠉⠢⠞⠻⠫"
+  },
+  {
+    "id": 338,
+    "print": "centre",
+    "brlunicode": "⠉⠢⠞⠗⠑"
+  },
+  {
+    "id": 339,
+    "print": "certain",
+    "brlunicode": "⠉⠻⠞⠁⠔"
+  },
+  {
+    "id": 340,
+    "print": "chain",
+    "brlunicode": "⠡⠁⠔"
+  },
+  {
+    "id": 341,
+    "print": "chains",
+    "brlunicode": "⠡⠁⠔⠎"
+  },
+  {
+    "id": 342,
+    "print": "chair",
+    "brlunicode": "⠡⠁⠊⠗"
+  },
+  {
+    "id": 343,
+    "print": "chamber",
+    "brlunicode": "⠡⠁⠍⠃⠻"
+  },
+  {
+    "id": 344,
+    "print": "change",
+    "brlunicode": "⠡⠁⠝⠛⠑"
+  },
+  {
+    "id": 345,
+    "print": "changed",
+    "brlunicode": "⠡⠁⠝⠛⠫"
+  },
+  {
+    "id": 346,
+    "print": "changing",
+    "brlunicode": "⠡⠁⠝⠛⠬"
+  },
+  {
+    "id": 347,
+    "print": "chaos",
+    "brlunicode": "⠡⠁⠕⠎"
+  },
+  {
+    "id": 348,
+    "print": "chapel",
+    "brlunicode": "⠡⠁⠏⠑⠇"
+  },
+  {
+    "id": 349,
+    "print": "chapter",
+    "brlunicode": "⠡⠁⠏⠞⠻"
+  },
+  {
+    "id": 350,
+    "print": "character",
+    "brlunicode": "⠐⠡"
+  },
+  {
+    "id": 351,
+    "print": "characterized",
+    "brlunicode": "⠐⠡⠊⠵⠫"
+  },
+  {
+    "id": 352,
+    "print": "charge",
+    "brlunicode": "⠡⠜⠛⠑"
+  },
+  {
+    "id": 353,
+    "print": "charged",
+    "brlunicode": "⠡⠜⠛⠫"
+  },
+  {
+    "id": 354,
+    "print": "charger",
+    "brlunicode": "⠡⠜⠛⠻"
+  },
+  {
+    "id": 355,
+    "print": "charging",
+    "brlunicode": "⠡⠜⠛⠬"
+  },
+  {
+    "id": 356,
+    "print": "charm",
+    "brlunicode": "⠡⠜⠍"
+  },
+  {
+    "id": 357,
+    "print": "charming",
+    "brlunicode": "⠡⠜⠍⠬"
+  },
+  {
+    "id": 358,
+    "print": "chart",
+    "brlunicode": "⠡⠜⠞"
+  },
+  {
+    "id": 359,
+    "print": "charter",
+    "brlunicode": "⠡⠜⠞⠻"
+  },
+  {
+    "id": 360,
+    "print": "cheap",
+    "brlunicode": "⠡⠂⠏"
+  },
+  {
+    "id": 361,
+    "print": "cheaper",
+    "brlunicode": "⠡⠂⠏⠻"
+  },
+  {
+    "id": 362,
+    "print": "cheapest",
+    "brlunicode": "⠡⠂⠏⠑⠌"
+  },
+  {
+    "id": 363,
+    "print": "cheat",
+    "brlunicode": "⠡⠂⠞"
+  },
+  {
+    "id": 364,
+    "print": "check",
+    "brlunicode": "⠡⠑⠉⠅"
+  },
+  {
+    "id": 365,
+    "print": "checked",
+    "brlunicode": "⠡⠑⠉⠅⠫"
+  },
+  {
+    "id": 366,
+    "print": "checking",
+    "brlunicode": "⠡⠑⠉⠅⠬"
+  },
+  {
+    "id": 367,
+    "print": "cheese",
+    "brlunicode": "⠡⠑⠑⠎⠑"
+  },
+  {
+    "id": 368,
+    "print": "cheque",
+    "brlunicode": "⠡⠑⠟⠥⠑"
+  },
+  {
+    "id": 369,
+    "print": "chess",
+    "brlunicode": "⠡⠑⠎⠎"
+  },
+  {
+    "id": 370,
+    "print": "chest",
+    "brlunicode": "⠡⠑⠌"
+  },
+  {
+    "id": 371,
+    "print": "chick",
+    "brlunicode": "⠡⠊⠉⠅"
+  },
+  {
+    "id": 372,
+    "print": "chicken",
+    "brlunicode": "⠡⠊⠉⠅⠢"
+  },
+  {
+    "id": 373,
+    "print": "chief",
+    "brlunicode": "⠡⠊⠑⠋"
+  },
+  {
+    "id": 374,
+    "print": "child",
+    "brlunicode": "⠡"
+  },
+  {
+    "id": 375,
+    "print": "chile",
+    "brlunicode": "⠡⠊⠇⠑"
+  },
+  {
+    "id": 376,
+    "print": "china",
+    "brlunicode": "⠡⠔⠁"
+  },
+  {
+    "id": 377,
+    "print": "chinese",
+    "brlunicode": "⠡⠔⠑⠎⠑"
+  },
+  {
+    "id": 378,
+    "print": "chips",
+    "brlunicode": "⠡⠊⠏⠎"
+  },
+  {
+    "id": 379,
+    "print": "choice",
+    "brlunicode": "⠡⠕⠊⠉⠑"
+  },
+  {
+    "id": 380,
+    "print": "choir",
+    "brlunicode": "⠡⠕⠊⠗"
+  },
+  {
+    "id": 381,
+    "print": "choose",
+    "brlunicode": "⠡⠕⠕⠎⠑"
+  },
+  {
+    "id": 382,
+    "print": "choosing",
+    "brlunicode": "⠡⠕⠕⠎⠬"
+  },
+  {
+    "id": 383,
+    "print": "chorus",
+    "brlunicode": "⠡⠕⠗⠥⠎"
+  },
+  {
+    "id": 384,
+    "print": "chose",
+    "brlunicode": "⠡⠕⠎⠑"
+  },
+  {
+    "id": 385,
+    "print": "chosen",
+    "brlunicode": "⠡⠕⠎⠢"
+  },
+  {
+    "id": 386,
+    "print": "chrome",
+    "brlunicode": "⠡⠗⠕⠍⠑"
+  },
+  {
+    "id": 387,
+    "print": "chubby",
+    "brlunicode": "⠡⠥⠆⠽"
+  },
+  {
+    "id": 388,
+    "print": "church",
+    "brlunicode": "⠡⠥⠗⠡"
+  },
+  {
+    "id": 389,
+    "print": "cinema",
+    "brlunicode": "⠉⠔⠑⠍⠁"
+  },
+  {
+    "id": 390,
+    "print": "cisco",
+    "brlunicode": "⠉⠊⠎⠉⠕"
+  },
+  {
+    "id": 391,
+    "print": "cited",
+    "brlunicode": "⠉⠊⠞⠫"
+  },
+  {
+    "id": 392,
+    "print": "civic",
+    "brlunicode": "⠉⠊⠧⠊⠉"
+  },
+  {
+    "id": 393,
+    "print": "civil",
+    "brlunicode": "⠉⠊⠧⠊⠇"
+  },
+  {
+    "id": 394,
+    "print": "claim",
+    "brlunicode": "⠉⠇⠁⠊⠍"
+  },
+  {
+    "id": 395,
+    "print": "clarity",
+    "brlunicode": "⠉⠇⠜⠰⠽"
+  },
+  {
+    "id": 396,
+    "print": "class",
+    "brlunicode": "⠉⠇⠁⠎⠎"
+  },
+  {
+    "id": 397,
+    "print": "clean",
+    "brlunicode": "⠉⠇⠂⠝"
+  },
+  {
+    "id": 398,
+    "print": "cleaner",
+    "brlunicode": "⠉⠇⠂⠝⠻"
+  },
+  {
+    "id": 399,
+    "print": "cleaning",
+    "brlunicode": "⠉⠇⠂⠝⠬"
+  },
+  {
+    "id": 400,
+    "print": "clear",
+    "brlunicode": "⠉⠇⠑⠜"
+  },
+  {
+    "id": 401,
+    "print": "cleared",
+    "brlunicode": "⠉⠇⠑⠜⠫"
+  },
+  {
+    "id": 402,
+    "print": "clearing",
+    "brlunicode": "⠉⠇⠑⠜⠬"
+  },
+  {
+    "id": 403,
+    "print": "clerk",
+    "brlunicode": "⠉⠇⠻⠅"
+  },
+  {
+    "id": 404,
+    "print": "click",
+    "brlunicode": "⠉⠇⠊⠉⠅"
+  },
+  {
+    "id": 405,
+    "print": "client",
+    "brlunicode": "⠉⠇⠊⠢⠞"
+  },
+  {
+    "id": 406,
+    "print": "climb",
+    "brlunicode": "⠉⠇⠊⠍⠃"
+  },
+  {
+    "id": 407,
+    "print": "clinic",
+    "brlunicode": "⠉⠇⠔⠊⠉"
+  },
+  {
+    "id": 408,
+    "print": "clock",
+    "brlunicode": "⠉⠇⠕⠉⠅"
+  },
+  {
+    "id": 409,
+    "print": "clone",
+    "brlunicode": "⠉⠇⠐⠕"
+  },
+  {
+    "id": 410,
+    "print": "close",
+    "brlunicode": "⠉⠇⠕⠎⠑"
+  },
+  {
+    "id": 411,
+    "print": "closed",
+    "brlunicode": "⠉⠇⠕⠎⠫"
+  },
+  {
+    "id": 412,
+    "print": "closer",
+    "brlunicode": "⠉⠇⠕⠎⠻"
+  },
+  {
+    "id": 413,
+    "print": "closing",
+    "brlunicode": "⠉⠇⠕⠎⠬"
+  },
+  {
+    "id": 414,
+    "print": "cloth",
+    "brlunicode": "⠉⠇⠕⠹"
+  },
+  {
+    "id": 415,
+    "print": "clothes",
+    "brlunicode": "⠉⠇⠕⠮⠎"
+  },
+  {
+    "id": 416,
+    "print": "clothing",
+    "brlunicode": "⠉⠇⠕⠹⠬"
+  },
+  {
+    "id": 417,
+    "print": "cloud",
+    "brlunicode": "⠉⠇⠳⠙"
+  },
+  {
+    "id": 418,
+    "print": "cloudy",
+    "brlunicode": "⠉⠇⠳⠙⠽"
+  },
+  {
+    "id": 419,
+    "print": "cluster",
+    "brlunicode": "⠉⠇⠥⠌⠻"
+  },
+  {
+    "id": 420,
+    "print": "coach",
+    "brlunicode": "⠉⠕⠁⠡"
+  },
+  {
+    "id": 421,
+    "print": "coaching",
+    "brlunicode": "⠉⠕⠁⠡⠬"
+  },
+  {
+    "id": 422,
+    "print": "coast",
+    "brlunicode": "⠉⠕⠁⠌"
+  },
+  {
+    "id": 423,
+    "print": "coated",
+    "brlunicode": "⠉⠕⠁⠞⠫"
+  },
+  {
+    "id": 424,
+    "print": "coating",
+    "brlunicode": "⠉⠕⠁⠞⠬"
+  },
+  {
+    "id": 425,
+    "print": "coding",
+    "brlunicode": "⠉⠕⠙⠬"
+  },
+  {
+    "id": 426,
+    "print": "coffee",
+    "brlunicode": "⠉⠷⠋⠑⠑"
+  },
+  {
+    "id": 427,
+    "print": "collar",
+    "brlunicode": "⠉⠕⠇⠇⠜"
+  },
+  {
+    "id": 428,
+    "print": "colon",
+    "brlunicode": "⠉⠕⠇⠕⠝"
+  },
+  {
+    "id": 429,
+    "print": "color",
+    "brlunicode": "⠉⠕⠇⠕⠗"
+  },
+  {
+    "id": 430,
+    "print": "colour",
+    "brlunicode": "⠉⠕⠇⠳⠗"
+  },
+  {
+    "id": 431,
+    "print": "combo",
+    "brlunicode": "⠉⠕⠍⠃⠕"
+  },
+  {
+    "id": 432,
+    "print": "comedy",
+    "brlunicode": "⠉⠕⠍⠫⠽"
+  },
+  {
+    "id": 433,
+    "print": "comfort",
+    "brlunicode": "⠉⠕⠍⠿⠞"
+  },
+  {
+    "id": 434,
+    "print": "comic",
+    "brlunicode": "⠉⠕⠍⠊⠉"
+  },
+  {
+    "id": 435,
+    "print": "coming",
+    "brlunicode": "⠉⠕⠍⠬"
+  },
+  {
+    "id": 436,
+    "print": "command",
+    "brlunicode": "⠉⠕⠍⠍⠯"
+  },
+  {
+    "id": 437,
+    "print": "comment",
+    "brlunicode": "⠉⠕⠍⠰⠞"
+  },
+  {
+    "id": 438,
+    "print": "concept",
+    "brlunicode": "⠒⠉⠑⠏⠞"
+  },
+  {
+    "id": 439,
+    "print": "concern",
+    "brlunicode": "⠒⠉⠻⠝"
+  },
+  {
+    "id": 440,
+    "print": "concerned",
+    "brlunicode": "⠒⠉⠻⠝⠫"
+  },
+  {
+    "id": 441,
+    "print": "concerning",
+    "brlunicode": "⠒⠉⠻⠝⠬"
+  },
+  {
+    "id": 442,
+    "print": "concert",
+    "brlunicode": "⠒⠉⠻⠞"
+  },
+  {
+    "id": 443,
+    "print": "concord",
+    "brlunicode": "⠒⠉⠕⠗⠙"
+  },
+  {
+    "id": 444,
+    "print": "condition",
+    "brlunicode": "⠒⠙⠊⠰⠝"
+  },
+  {
+    "id": 445,
+    "print": "condo",
+    "brlunicode": "⠒⠙⠕"
+  },
+  {
+    "id": 446,
+    "print": "conduct",
+    "brlunicode": "⠒⠙⠥⠉⠞"
+  },
+  {
+    "id": 447,
+    "print": "conference",
+    "brlunicode": "⠒⠋⠻⠰⠑"
+  },
+  {
+    "id": 448,
+    "print": "confirm",
+    "brlunicode": "⠒⠋⠊⠗⠍"
+  },
+  {
+    "id": 449,
+    "print": "confused",
+    "brlunicode": "⠒⠋⠥⠎⠫"
+  },
+  {
+    "id": 450,
+    "print": "confusion",
+    "brlunicode": "⠒⠋⠥⠨⠝"
+  },
+  {
+    "id": 451,
+    "print": "congo",
+    "brlunicode": "⠒⠛⠕"
+  },
+  {
+    "id": 452,
+    "print": "connect",
+    "brlunicode": "⠒⠝⠑⠉⠞"
+  },
+  {
+    "id": 453,
+    "print": "consent",
+    "brlunicode": "⠒⠎⠢⠞"
+  },
+  {
+    "id": 454,
+    "print": "consider",
+    "brlunicode": "⠒⠎⠊⠙⠻"
+  },
+  {
+    "id": 455,
+    "print": "consist",
+    "brlunicode": "⠒⠎⠊⠌"
+  },
+  {
+    "id": 456,
+    "print": "consisting",
+    "brlunicode": "⠒⠎⠊⠌⠬"
+  },
+  {
+    "id": 457,
+    "print": "consists",
+    "brlunicode": "⠒⠎⠊⠌⠎"
+  },
+  {
+    "id": 458,
+    "print": "console",
+    "brlunicode": "⠒⠎⠕⠇⠑"
+  },
+  {
+    "id": 459,
+    "print": "constant",
+    "brlunicode": "⠒⠌⠁⠝⠞"
+  },
+  {
+    "id": 460,
+    "print": "consult",
+    "brlunicode": "⠒⠎⠥⠇⠞"
+  },
+  {
+    "id": 461,
+    "print": "consumer",
+    "brlunicode": "⠒⠎⠥⠍⠻"
+  },
+  {
+    "id": 462,
+    "print": "contact",
+    "brlunicode": "⠒⠞⠁⠉⠞"
+  },
+  {
+    "id": 463,
+    "print": "contain",
+    "brlunicode": "⠒⠞⠁⠔"
+  },
+  {
+    "id": 464,
+    "print": "contained",
+    "brlunicode": "⠒⠞⠁⠔⠫"
+  },
+  {
+    "id": 465,
+    "print": "container",
+    "brlunicode": "⠒⠞⠁⠔⠻"
+  },
+  {
+    "id": 466,
+    "print": "containing",
+    "brlunicode": "⠒⠞⠁⠔⠬"
+  },
+  {
+    "id": 467,
+    "print": "contains",
+    "brlunicode": "⠒⠞⠁⠔⠎"
+  },
+  {
+    "id": 468,
+    "print": "content",
+    "brlunicode": "⠒⠞⠢⠞"
+  },
+  {
+    "id": 469,
+    "print": "contents",
+    "brlunicode": "⠒⠞⠢⠞⠎"
+  },
+  {
+    "id": 470,
+    "print": "contest",
+    "brlunicode": "⠒⠞⠑⠌"
+  },
+  {
+    "id": 471,
+    "print": "context",
+    "brlunicode": "⠒⠞⠑⠭⠞"
+  },
+  {
+    "id": 472,
+    "print": "continent",
+    "brlunicode": "⠒⠞⠔⠢⠞"
+  },
+  {
+    "id": 473,
+    "print": "continue",
+    "brlunicode": "⠒⠞⠔⠥⠑"
+  },
+  {
+    "id": 474,
+    "print": "continued",
+    "brlunicode": "⠒⠞⠔⠥⠫"
+  },
+  {
+    "id": 475,
+    "print": "continuing",
+    "brlunicode": "⠒⠞⠔⠥⠬"
+  },
+  {
+    "id": 476,
+    "print": "contrary",
+    "brlunicode": "⠒⠞⠗⠜⠽"
+  },
+  {
+    "id": 477,
+    "print": "contrast",
+    "brlunicode": "⠒⠞⠗⠁⠌"
+  },
+  {
+    "id": 478,
+    "print": "control",
+    "brlunicode": "⠒⠞⠗⠕⠇"
+  },
+  {
+    "id": 479,
+    "print": "convention",
+    "brlunicode": "⠒⠧⠢⠰⠝"
+  },
+  {
+    "id": 480,
+    "print": "conversion",
+    "brlunicode": "⠒⠧⠻⠨⠝"
+  },
+  {
+    "id": 481,
+    "print": "convert",
+    "brlunicode": "⠒⠧⠻⠞"
+  },
+  {
+    "id": 482,
+    "print": "converted",
+    "brlunicode": "⠒⠧⠻⠞⠫"
+  },
+  {
+    "id": 483,
+    "print": "converter",
+    "brlunicode": "⠒⠧⠻⠞⠻"
+  },
+  {
+    "id": 484,
+    "print": "convinced",
+    "brlunicode": "⠒⠧⠔⠉⠫"
+  },
+  {
+    "id": 485,
+    "print": "cooked",
+    "brlunicode": "⠉⠕⠕⠅⠫"
+  },
+  {
+    "id": 486,
+    "print": "cooking",
+    "brlunicode": "⠉⠕⠕⠅⠬"
+  },
+  {
+    "id": 487,
+    "print": "cooler",
+    "brlunicode": "⠉⠕⠕⠇⠻"
+  },
+  {
+    "id": 488,
+    "print": "cooling",
+    "brlunicode": "⠉⠕⠕⠇⠬"
+  },
+  {
+    "id": 489,
+    "print": "copied",
+    "brlunicode": "⠉⠕⠏⠊⠫"
+  },
+  {
+    "id": 490,
+    "print": "copper",
+    "brlunicode": "⠉⠕⠏⠏⠻"
+  },
+  {
+    "id": 491,
+    "print": "copying",
+    "brlunicode": "⠉⠕⠏⠽⠬"
+  },
+  {
+    "id": 492,
+    "print": "corner",
+    "brlunicode": "⠉⠕⠗⠝⠻"
+  },
+  {
+    "id": 493,
+    "print": "corps",
+    "brlunicode": "⠉⠕⠗⠏⠎"
+  },
+  {
+    "id": 494,
+    "print": "costs",
+    "brlunicode": "⠉⠕⠌⠎"
+  },
+  {
+    "id": 495,
+    "print": "count",
+    "brlunicode": "⠉⠨⠞"
+  },
+  {
+    "id": 496,
+    "print": "counted",
+    "brlunicode": "⠉⠨⠞⠫"
+  },
+  {
+    "id": 497,
+    "print": "counter",
+    "brlunicode": "⠉⠨⠞⠻"
+  },
+  {
+    "id": 498,
+    "print": "counting",
+    "brlunicode": "⠉⠨⠞⠬"
+  },
+  {
+    "id": 499,
+    "print": "country",
+    "brlunicode": "⠉⠨⠞⠗⠽"
+  },
+  {
+    "id": 500,
+    "print": "county",
+    "brlunicode": "⠉⠨⠞⠽"
+  },
+  {
+    "id": 501,
+    "print": "couple",
+    "brlunicode": "⠉⠳⠏⠇⠑"
+  },
+  {
+    "id": 502,
+    "print": "coupled",
+    "brlunicode": "⠉⠳⠏⠇⠫"
+  },
+  {
+    "id": 503,
+    "print": "coupon",
+    "brlunicode": "⠉⠳⠏⠕⠝"
+  },
+  {
+    "id": 504,
+    "print": "courier",
+    "brlunicode": "⠉⠳⠗⠊⠻"
+  },
+  {
+    "id": 505,
+    "print": "course",
+    "brlunicode": "⠉⠳⠗⠎⠑"
+  },
+  {
+    "id": 506,
+    "print": "court",
+    "brlunicode": "⠉⠳⠗⠞"
+  },
+  {
+    "id": 507,
+    "print": "cover",
+    "brlunicode": "⠉⠕⠧⠻"
+  },
+  {
+    "id": 508,
+    "print": "covered",
+    "brlunicode": "⠉⠕⠧⠻⠫"
+  },
+  {
+    "id": 509,
+    "print": "covering",
+    "brlunicode": "⠉⠕⠧⠻⠬"
+  },
+  {
+    "id": 510,
+    "print": "cowboy",
+    "brlunicode": "⠉⠪⠃⠕⠽"
+  },
+  {
+    "id": 511,
+    "print": "crack",
+    "brlunicode": "⠉⠗⠁⠉⠅"
+  },
+  {
+    "id": 512,
+    "print": "craft",
+    "brlunicode": "⠉⠗⠁⠋⠞"
+  },
+  {
+    "id": 513,
+    "print": "craps",
+    "brlunicode": "⠉⠗⠁⠏⠎"
+  },
+  {
+    "id": 514,
+    "print": "crash",
+    "brlunicode": "⠉⠗⠁⠩"
+  },
+  {
+    "id": 515,
+    "print": "crazy",
+    "brlunicode": "⠉⠗⠁⠵⠽"
+  },
+  {
+    "id": 516,
+    "print": "cream",
+    "brlunicode": "⠉⠗⠂⠍"
+  },
+  {
+    "id": 517,
+    "print": "create",
+    "brlunicode": "⠉⠗⠂⠞⠑"
+  },
+  {
+    "id": 518,
+    "print": "created",
+    "brlunicode": "⠉⠗⠂⠞⠫"
+  },
+  {
+    "id": 519,
+    "print": "creating",
+    "brlunicode": "⠉⠗⠂⠞⠬"
+  },
+  {
+    "id": 520,
+    "print": "creation",
+    "brlunicode": "⠉⠗⠂⠰⠝"
+  },
+  {
+    "id": 521,
+    "print": "credit",
+    "brlunicode": "⠉⠗⠫⠊⠞"
+  },
+  {
+    "id": 522,
+    "print": "creek",
+    "brlunicode": "⠉⠗⠑⠑⠅"
+  },
+  {
+    "id": 523,
+    "print": "crest",
+    "brlunicode": "⠉⠗⠑⠌"
+  },
+  {
+    "id": 524,
+    "print": "crime",
+    "brlunicode": "⠉⠗⠊⠍⠑"
+  },
+  {
+    "id": 525,
+    "print": "cross",
+    "brlunicode": "⠉⠗⠕⠎⠎"
+  },
+  {
+    "id": 526,
+    "print": "crowd",
+    "brlunicode": "⠉⠗⠪⠙"
+  },
+  {
+    "id": 527,
+    "print": "crown",
+    "brlunicode": "⠉⠗⠪⠝"
+  },
+  {
+    "id": 528,
+    "print": "crude",
+    "brlunicode": "⠉⠗⠥⠙⠑"
+  },
+  {
+    "id": 529,
+    "print": "cubic",
+    "brlunicode": "⠉⠥⠃⠊⠉"
+  },
+  {
+    "id": 530,
+    "print": "curve",
+    "brlunicode": "⠉⠥⠗⠧⠑"
+  },
+  {
+    "id": 531,
+    "print": "custom",
+    "brlunicode": "⠉⠥⠌⠕⠍"
+  },
+  {
+    "id": 532,
+    "print": "cutting",
+    "brlunicode": "⠉⠥⠞⠞⠬"
+  },
+  {
+    "id": 533,
+    "print": "cycle",
+    "brlunicode": "⠉⠽⠉⠇⠑"
+  },
+  {
+    "id": 534,
+    "print": "cycling",
+    "brlunicode": "⠉⠽⠉⠇⠬"
+  },
+  {
+    "id": 535,
+    "print": "czech",
+    "brlunicode": "⠉⠵⠑⠡"
+  },
+  {
+    "id": 536,
+    "print": "daddy",
+    "brlunicode": "⠙⠁⠙⠙⠽"
+  },
+  {
+    "id": 537,
+    "print": "daily",
+    "brlunicode": "⠙⠁⠊⠇⠽"
+  },
+  {
+    "id": 538,
+    "print": "dairy",
+    "brlunicode": "⠙⠁⠊⠗⠽"
+  },
+  {
+    "id": 539,
+    "print": "dance",
+    "brlunicode": "⠙⠨⠑"
+  },
+  {
+    "id": 540,
+    "print": "dancing",
+    "brlunicode": "⠙⠁⠝⠉⠬"
+  },
+  {
+    "id": 541,
+    "print": "danger",
+    "brlunicode": "⠙⠁⠝⠛⠻"
+  },
+  {
+    "id": 542,
+    "print": "danish",
+    "brlunicode": "⠙⠁⠝⠊⠩"
+  },
+  {
+    "id": 543,
+    "print": "darkness",
+    "brlunicode": "⠙⠜⠅⠰⠎"
+  },
+  {
+    "id": 544,
+    "print": "dated",
+    "brlunicode": "⠙⠁⠞⠫"
+  },
+  {
+    "id": 545,
+    "print": "dating",
+    "brlunicode": "⠙⠁⠞⠬"
+  },
+  {
+    "id": 546,
+    "print": "dayton",
+    "brlunicode": "⠐⠙⠞⠕⠝"
+  },
+  {
+    "id": 547,
+    "print": "deadly",
+    "brlunicode": "⠙⠂⠙⠇⠽"
+  },
+  {
+    "id": 548,
+    "print": "dealer",
+    "brlunicode": "⠙⠂⠇⠻"
+  },
+  {
+    "id": 549,
+    "print": "dealing",
+    "brlunicode": "⠙⠂⠇⠬"
+  },
+  {
+    "id": 550,
+    "print": "dealt",
+    "brlunicode": "⠙⠂⠇⠞"
+  },
+  {
+    "id": 551,
+    "print": "death",
+    "brlunicode": "⠙⠂⠹"
+  },
+  {
+    "id": 552,
+    "print": "debug",
+    "brlunicode": "⠙⠑⠃⠥⠛"
+  },
+  {
+    "id": 553,
+    "print": "debut",
+    "brlunicode": "⠙⠑⠃⠥⠞"
+  },
+  {
+    "id": 554,
+    "print": "decent",
+    "brlunicode": "⠙⠑⠉⠢⠞"
+  },
+  {
+    "id": 555,
+    "print": "declare",
+    "brlunicode": "⠙⠉⠇"
+  },
+  {
+    "id": 556,
+    "print": "declared",
+    "brlunicode": "⠙⠉⠇⠙"
+  },
+  {
+    "id": 557,
+    "print": "decor",
+    "brlunicode": "⠙⠑⠉⠕⠗"
+  },
+  {
+    "id": 558,
+    "print": "deemed",
+    "brlunicode": "⠙⠑⠑⠍⠫"
+  },
+  {
+    "id": 559,
+    "print": "deeper",
+    "brlunicode": "⠙⠑⠑⠏⠻"
+  },
+  {
+    "id": 560,
+    "print": "defeat",
+    "brlunicode": "⠙⠑⠋⠂⠞"
+  },
+  {
+    "id": 561,
+    "print": "defence",
+    "brlunicode": "⠙⠑⠋⠰⠑"
+  },
+  {
+    "id": 562,
+    "print": "defend",
+    "brlunicode": "⠙⠑⠋⠢⠙"
+  },
+  {
+    "id": 563,
+    "print": "define",
+    "brlunicode": "⠙⠑⠋⠔⠑"
+  },
+  {
+    "id": 564,
+    "print": "defined",
+    "brlunicode": "⠙⠑⠋⠔⠫"
+  },
+  {
+    "id": 565,
+    "print": "defining",
+    "brlunicode": "⠙⠑⠋⠔⠬"
+  },
+  {
+    "id": 566,
+    "print": "delay",
+    "brlunicode": "⠙⠑⠇⠁⠽"
+  },
+  {
+    "id": 567,
+    "print": "delhi",
+    "brlunicode": "⠙⠑⠇⠓⠊"
+  },
+  {
+    "id": 568,
+    "print": "delta",
+    "brlunicode": "⠙⠑⠇⠞⠁"
+  },
+  {
+    "id": 569,
+    "print": "demand",
+    "brlunicode": "⠙⠑⠍⠯"
+  },
+  {
+    "id": 570,
+    "print": "demanding",
+    "brlunicode": "⠙⠑⠍⠯⠬"
+  },
+  {
+    "id": 571,
+    "print": "denial",
+    "brlunicode": "⠙⠢⠊⠁⠇"
+  },
+  {
+    "id": 572,
+    "print": "denied",
+    "brlunicode": "⠙⠢⠊⠫"
+  },
+  {
+    "id": 573,
+    "print": "denmark",
+    "brlunicode": "⠙⠢⠍⠜⠅"
+  },
+  {
+    "id": 574,
+    "print": "dense",
+    "brlunicode": "⠙⠢⠎⠑"
+  },
+  {
+    "id": 575,
+    "print": "density",
+    "brlunicode": "⠙⠢⠎⠰⠽"
+  },
+  {
+    "id": 576,
+    "print": "dental",
+    "brlunicode": "⠙⠢⠞⠁⠇"
+  },
+  {
+    "id": 577,
+    "print": "denver",
+    "brlunicode": "⠙⠢⠧⠻"
+  },
+  {
+    "id": 578,
+    "print": "depend",
+    "brlunicode": "⠙⠑⠏⠢⠙"
+  },
+  {
+    "id": 579,
+    "print": "depot",
+    "brlunicode": "⠙⠑⠏⠕⠞"
+  },
+  {
+    "id": 580,
+    "print": "depth",
+    "brlunicode": "⠙⠑⠏⠹"
+  },
+  {
+    "id": 581,
+    "print": "derived",
+    "brlunicode": "⠙⠻⠊⠧⠫"
+  },
+  {
+    "id": 582,
+    "print": "desert",
+    "brlunicode": "⠙⠑⠎⠻⠞"
+  },
+  {
+    "id": 583,
+    "print": "destiny",
+    "brlunicode": "⠙⠑⠌⠔⠽"
+  },
+  {
+    "id": 584,
+    "print": "devil",
+    "brlunicode": "⠙⠑⠧⠊⠇"
+  },
+  {
+    "id": 585,
+    "print": "diary",
+    "brlunicode": "⠙⠊⠜⠽"
+  },
+  {
+    "id": 586,
+    "print": "differ",
+    "brlunicode": "⠙⠊⠖⠻"
+  },
+  {
+    "id": 587,
+    "print": "digest",
+    "brlunicode": "⠙⠊⠛⠑⠌"
+  },
+  {
+    "id": 588,
+    "print": "digit",
+    "brlunicode": "⠙⠊⠛⠊⠞"
+  },
+  {
+    "id": 589,
+    "print": "dining",
+    "brlunicode": "⠙⠔⠬"
+  },
+  {
+    "id": 590,
+    "print": "dinner",
+    "brlunicode": "⠙⠔⠝⠻"
+  },
+  {
+    "id": 591,
+    "print": "dirty",
+    "brlunicode": "⠙⠊⠗⠞⠽"
+  },
+  {
+    "id": 592,
+    "print": "disable",
+    "brlunicode": "⠲⠁⠃⠇⠑"
+  },
+  {
+    "id": 593,
+    "print": "disabled",
+    "brlunicode": "⠲⠁⠃⠇⠫"
+  },
+  {
+    "id": 594,
+    "print": "disaster",
+    "brlunicode": "⠲⠁⠌⠻"
+  },
+  {
+    "id": 595,
+    "print": "discharge",
+    "brlunicode": "⠲⠡⠜⠛⠑"
+  },
+  {
+    "id": 596,
+    "print": "disco",
+    "brlunicode": "⠲⠉⠕"
+  },
+  {
+    "id": 597,
+    "print": "discount",
+    "brlunicode": "⠲⠉⠨⠞"
+  },
+  {
+    "id": 598,
+    "print": "discounted",
+    "brlunicode": "⠲⠉⠨⠞⠫"
+  },
+  {
+    "id": 599,
+    "print": "discover",
+    "brlunicode": "⠲⠉⠕⠧⠻"
+  },
+  {
+    "id": 600,
+    "print": "disease",
+    "brlunicode": "⠲⠂⠎⠑"
+  },
+  {
+    "id": 601,
+    "print": "disney",
+    "brlunicode": "⠲⠝⠑⠽"
+  },
+  {
+    "id": 602,
+    "print": "disorder",
+    "brlunicode": "⠲⠕⠗⠙⠻"
+  },
+  {
+    "id": 603,
+    "print": "dispatch",
+    "brlunicode": "⠲⠏⠁⠞⠡"
+  },
+  {
+    "id": 604,
+    "print": "display",
+    "brlunicode": "⠲⠏⠇⠁⠽"
+  },
+  {
+    "id": 605,
+    "print": "dispute",
+    "brlunicode": "⠲⠏⠥⠞⠑"
+  },
+  {
+    "id": 606,
+    "print": "distance",
+    "brlunicode": "⠲⠞⠨⠑"
+  },
+  {
+    "id": 607,
+    "print": "distant",
+    "brlunicode": "⠲⠞⠁⠝⠞"
+  },
+  {
+    "id": 608,
+    "print": "distinct",
+    "brlunicode": "⠲⠞⠔⠉⠞"
+  },
+  {
+    "id": 609,
+    "print": "divine",
+    "brlunicode": "⠙⠊⠧⠔⠑"
+  },
+  {
+    "id": 610,
+    "print": "diving",
+    "brlunicode": "⠙⠊⠧⠬"
+  },
+  {
+    "id": 611,
+    "print": "dodge",
+    "brlunicode": "⠙⠕⠙⠛⠑"
+  },
+  {
+    "id": 612,
+    "print": "doing",
+    "brlunicode": "⠙⠕⠬"
+  },
+  {
+    "id": 613,
+    "print": "dollar",
+    "brlunicode": "⠙⠕⠇⠇⠜"
+  },
+  {
+    "id": 614,
+    "print": "domain",
+    "brlunicode": "⠙⠕⠍⠁⠔"
+  },
+  {
+    "id": 615,
+    "print": "donor",
+    "brlunicode": "⠙⠕⠝⠕⠗"
+  },
+  {
+    "id": 616,
+    "print": "double",
+    "brlunicode": "⠙⠳⠃⠇⠑"
+  },
+  {
+    "id": 617,
+    "print": "doubt",
+    "brlunicode": "⠙⠳⠃⠞"
+  },
+  {
+    "id": 618,
+    "print": "dover",
+    "brlunicode": "⠙⠕⠧⠻"
+  },
+  {
+    "id": 619,
+    "print": "dozen",
+    "brlunicode": "⠙⠕⠵⠢"
+  },
+  {
+    "id": 620,
+    "print": "dozens",
+    "brlunicode": "⠙⠕⠵⠢⠎"
+  },
+  {
+    "id": 621,
+    "print": "draft",
+    "brlunicode": "⠙⠗⠁⠋⠞"
+  },
+  {
+    "id": 622,
+    "print": "drain",
+    "brlunicode": "⠙⠗⠁⠔"
+  },
+  {
+    "id": 623,
+    "print": "drama",
+    "brlunicode": "⠙⠗⠁⠍⠁"
+  },
+  {
+    "id": 624,
+    "print": "drawing",
+    "brlunicode": "⠙⠗⠁⠺⠬"
+  },
+  {
+    "id": 625,
+    "print": "drawn",
+    "brlunicode": "⠙⠗⠁⠺⠝"
+  },
+  {
+    "id": 626,
+    "print": "dream",
+    "brlunicode": "⠙⠗⠂⠍"
+  },
+  {
+    "id": 627,
+    "print": "dress",
+    "brlunicode": "⠙⠗⠑⠎⠎"
+  },
+  {
+    "id": 628,
+    "print": "dried",
+    "brlunicode": "⠙⠗⠊⠫"
+  },
+  {
+    "id": 629,
+    "print": "drill",
+    "brlunicode": "⠙⠗⠊⠇⠇"
+  },
+  {
+    "id": 630,
+    "print": "drink",
+    "brlunicode": "⠙⠗⠔⠅"
+  },
+  {
+    "id": 631,
+    "print": "drinking",
+    "brlunicode": "⠙⠗⠔⠅⠬"
+  },
+  {
+    "id": 632,
+    "print": "drive",
+    "brlunicode": "⠙⠗⠊⠧⠑"
+  },
+  {
+    "id": 633,
+    "print": "driven",
+    "brlunicode": "⠙⠗⠊⠧⠢"
+  },
+  {
+    "id": 634,
+    "print": "driver",
+    "brlunicode": "⠙⠗⠊⠧⠻"
+  },
+  {
+    "id": 635,
+    "print": "driving",
+    "brlunicode": "⠙⠗⠊⠧⠬"
+  },
+  {
+    "id": 636,
+    "print": "drove",
+    "brlunicode": "⠙⠗⠕⠧⠑"
+  },
+  {
+    "id": 637,
+    "print": "dryer",
+    "brlunicode": "⠙⠗⠽⠻"
+  },
+  {
+    "id": 638,
+    "print": "dubai",
+    "brlunicode": "⠙⠥⠃⠁⠊"
+  },
+  {
+    "id": 639,
+    "print": "dublin",
+    "brlunicode": "⠙⠥⠃⠇⠔"
+  },
+  {
+    "id": 640,
+    "print": "dutch",
+    "brlunicode": "⠙⠥⠞⠡"
+  },
+  {
+    "id": 641,
+    "print": "dying",
+    "brlunicode": "⠙⠽⠬"
+  },
+  {
+    "id": 642,
+    "print": "eagle",
+    "brlunicode": "⠑⠁⠛⠇⠑"
+  },
+  {
+    "id": 643,
+    "print": "earlier",
+    "brlunicode": "⠑⠜⠇⠊⠻"
+  },
+  {
+    "id": 644,
+    "print": "early",
+    "brlunicode": "⠑⠜⠇⠽"
+  },
+  {
+    "id": 645,
+    "print": "earned",
+    "brlunicode": "⠑⠜⠝⠫"
+  },
+  {
+    "id": 646,
+    "print": "earning",
+    "brlunicode": "⠑⠜⠝⠬"
+  },
+  {
+    "id": 647,
+    "print": "earnings",
+    "brlunicode": "⠑⠜⠝⠬⠎"
+  },
+  {
+    "id": 648,
+    "print": "earth",
+    "brlunicode": "⠑⠜⠹"
+  },
+  {
+    "id": 649,
+    "print": "easier",
+    "brlunicode": "⠑⠁⠎⠊⠻"
+  },
+  {
+    "id": 650,
+    "print": "eastern",
+    "brlunicode": "⠑⠁⠌⠻⠝"
+  },
+  {
+    "id": 651,
+    "print": "eating",
+    "brlunicode": "⠑⠁⠞⠬"
+  },
+  {
+    "id": 652,
+    "print": "edited",
+    "brlunicode": "⠫⠊⠞⠫"
+  },
+  {
+    "id": 653,
+    "print": "editing",
+    "brlunicode": "⠫⠊⠞⠬"
+  },
+  {
+    "id": 654,
+    "print": "edition",
+    "brlunicode": "⠫⠊⠰⠝"
+  },
+  {
+    "id": 655,
+    "print": "editor",
+    "brlunicode": "⠫⠊⠞⠕⠗"
+  },
+  {
+    "id": 656,
+    "print": "edwards",
+    "brlunicode": "⠫⠺⠜⠙⠎"
+  },
+  {
+    "id": 657,
+    "print": "effect",
+    "brlunicode": "⠑⠖⠑⠉⠞"
+  },
+  {
+    "id": 658,
+    "print": "effort",
+    "brlunicode": "⠑⠋⠿⠞"
+  },
+  {
+    "id": 659,
+    "print": "egypt",
+    "brlunicode": "⠑⠛⠽⠏⠞"
+  },
+  {
+    "id": 660,
+    "print": "eight",
+    "brlunicode": "⠑⠊⠣⠞"
+  },
+  {
+    "id": 661,
+    "print": "either",
+    "brlunicode": "⠑⠊"
+  },
+  {
+    "id": 662,
+    "print": "elder",
+    "brlunicode": "⠑⠇⠙⠻"
+  },
+  {
+    "id": 663,
+    "print": "elect",
+    "brlunicode": "⠑⠇⠑⠉⠞"
+  },
+  {
+    "id": 664,
+    "print": "element",
+    "brlunicode": "⠑⠇⠑⠰⠞"
+  },
+  {
+    "id": 665,
+    "print": "eleven",
+    "brlunicode": "⠑⠇⠑⠧⠢"
+  },
+  {
+    "id": 666,
+    "print": "elite",
+    "brlunicode": "⠑⠇⠊⠞⠑"
+  },
+  {
+    "id": 667,
+    "print": "email",
+    "brlunicode": "⠑⠍⠁⠊⠇"
+  },
+  {
+    "id": 668,
+    "print": "emerging",
+    "brlunicode": "⠑⠍⠻⠛⠬"
+  },
+  {
+    "id": 669,
+    "print": "empty",
+    "brlunicode": "⠑⠍⠏⠞⠽"
+  },
+  {
+    "id": 670,
+    "print": "enable",
+    "brlunicode": "⠢⠁⠃⠇⠑"
+  },
+  {
+    "id": 671,
+    "print": "enabled",
+    "brlunicode": "⠢⠁⠃⠇⠫"
+  },
+  {
+    "id": 672,
+    "print": "enabling",
+    "brlunicode": "⠢⠁⠃⠇⠬"
+  },
+  {
+    "id": 673,
+    "print": "encoding",
+    "brlunicode": "⠢⠉⠕⠙⠬"
+  },
+  {
+    "id": 674,
+    "print": "encounter",
+    "brlunicode": "⠢⠉⠨⠞⠻"
+  },
+  {
+    "id": 675,
+    "print": "ended",
+    "brlunicode": "⠢⠙⠫"
+  },
+  {
+    "id": 676,
+    "print": "ending",
+    "brlunicode": "⠢⠙⠬"
+  },
+  {
+    "id": 677,
+    "print": "endless",
+    "brlunicode": "⠢⠙⠨⠎"
+  },
+  {
+    "id": 678,
+    "print": "enemy",
+    "brlunicode": "⠢⠑⠍⠽"
+  },
+  {
+    "id": 679,
+    "print": "energy",
+    "brlunicode": "⠢⠻⠛⠽"
+  },
+  {
+    "id": 680,
+    "print": "engage",
+    "brlunicode": "⠢⠛⠁⠛⠑"
+  },
+  {
+    "id": 681,
+    "print": "engaged",
+    "brlunicode": "⠢⠛⠁⠛⠫"
+  },
+  {
+    "id": 682,
+    "print": "engaging",
+    "brlunicode": "⠢⠛⠁⠛⠬"
+  },
+  {
+    "id": 683,
+    "print": "engine",
+    "brlunicode": "⠢⠛⠔⠑"
+  },
+  {
+    "id": 684,
+    "print": "engineer",
+    "brlunicode": "⠢⠛⠔⠑⠻"
+  },
+  {
+    "id": 685,
+    "print": "england",
+    "brlunicode": "⠢⠛⠇⠯"
+  },
+  {
+    "id": 686,
+    "print": "english",
+    "brlunicode": "⠢⠛⠇⠊⠩"
+  },
+  {
+    "id": 687,
+    "print": "enhance",
+    "brlunicode": "⠢⠓⠨⠑"
+  },
+  {
+    "id": 688,
+    "print": "enhanced",
+    "brlunicode": "⠢⠓⠨⠑⠙"
+  },
+  {
+    "id": 689,
+    "print": "enjoy",
+    "brlunicode": "⠢⠚⠕⠽"
+  },
+  {
+    "id": 690,
+    "print": "enjoyed",
+    "brlunicode": "⠢⠚⠕⠽⠫"
+  },
+  {
+    "id": 691,
+    "print": "enjoying",
+    "brlunicode": "⠢⠚⠕⠽⠬"
+  },
+  {
+    "id": 692,
+    "print": "enlarge",
+    "brlunicode": "⠢⠇⠜⠛⠑"
+  },
+  {
+    "id": 693,
+    "print": "enough",
+    "brlunicode": "⠢"
+  },
+  {
+    "id": 694,
+    "print": "ensure",
+    "brlunicode": "⠢⠎⠥⠗⠑"
+  },
+  {
+    "id": 695,
+    "print": "ensuring",
+    "brlunicode": "⠢⠎⠥⠗⠬"
+  },
+  {
+    "id": 696,
+    "print": "enter",
+    "brlunicode": "⠢⠞⠻"
+  },
+  {
+    "id": 697,
+    "print": "entered",
+    "brlunicode": "⠢⠞⠻⠫"
+  },
+  {
+    "id": 698,
+    "print": "entering",
+    "brlunicode": "⠢⠞⠻⠬"
+  },
+  {
+    "id": 699,
+    "print": "enters",
+    "brlunicode": "⠢⠞⠻⠎"
+  },
+  {
+    "id": 700,
+    "print": "entire",
+    "brlunicode": "⠢⠞⠊⠗⠑"
+  },
+  {
+    "id": 701,
+    "print": "entity",
+    "brlunicode": "⠢⠞⠰⠽"
+  },
+  {
+    "id": 702,
+    "print": "entrance",
+    "brlunicode": "⠢⠞⠗⠨⠑"
+  },
+  {
+    "id": 703,
+    "print": "entry",
+    "brlunicode": "⠢⠞⠗⠽"
+  },
+  {
+    "id": 704,
+    "print": "enzyme",
+    "brlunicode": "⠢⠵⠽⠍⠑"
+  },
+  {
+    "id": 705,
+    "print": "equal",
+    "brlunicode": "⠑⠟⠥⠁⠇"
+  },
+  {
+    "id": 706,
+    "print": "equity",
+    "brlunicode": "⠑⠟⠥⠰⠽"
+  },
+  {
+    "id": 707,
+    "print": "error",
+    "brlunicode": "⠻⠗⠕⠗"
+  },
+  {
+    "id": 708,
+    "print": "essay",
+    "brlunicode": "⠑⠎⠎⠁⠽"
+  },
+  {
+    "id": 709,
+    "print": "essence",
+    "brlunicode": "⠑⠎⠎⠰⠑"
+  },
+  {
+    "id": 710,
+    "print": "essex",
+    "brlunicode": "⠑⠎⠎⠑⠭"
+  },
+  {
+    "id": 711,
+    "print": "estate",
+    "brlunicode": "⠑⠌⠁⠞⠑"
+  },
+  {
+    "id": 712,
+    "print": "ethics",
+    "brlunicode": "⠑⠹⠊⠉⠎"
+  },
+  {
+    "id": 713,
+    "print": "ethnic",
+    "brlunicode": "⠑⠹⠝⠊⠉"
+  },
+  {
+    "id": 714,
+    "print": "evans",
+    "brlunicode": "⠑⠧⠁⠝⠎"
+  },
+  {
+    "id": 715,
+    "print": "evening",
+    "brlunicode": "⠑⠧⠢⠬"
+  },
+  {
+    "id": 716,
+    "print": "event",
+    "brlunicode": "⠑⠧⠢⠞"
+  },
+  {
+    "id": 717,
+    "print": "every",
+    "brlunicode": "⠑"
+  },
+  {
+    "id": 718,
+    "print": "everyday",
+    "brlunicode": "⠐⠑⠽⠐⠙"
+  },
+  {
+    "id": 719,
+    "print": "everywhere",
+    "brlunicode": "⠐⠑⠽⠐⠱"
+  },
+  {
+    "id": 720,
+    "print": "exact",
+    "brlunicode": "⠑⠭⠁⠉⠞"
+  },
+  {
+    "id": 721,
+    "print": "exceed",
+    "brlunicode": "⠑⠭⠉⠑⠫"
+  },
+  {
+    "id": 722,
+    "print": "excel",
+    "brlunicode": "⠑⠭⠉⠑⠇"
+  },
+  {
+    "id": 723,
+    "print": "exist",
+    "brlunicode": "⠑⠭⠊⠌"
+  },
+  {
+    "id": 724,
+    "print": "existed",
+    "brlunicode": "⠑⠭⠊⠌⠫"
+  },
+  {
+    "id": 725,
+    "print": "existing",
+    "brlunicode": "⠑⠭⠊⠌⠬"
+  },
+  {
+    "id": 726,
+    "print": "exists",
+    "brlunicode": "⠑⠭⠊⠌⠎"
+  },
+  {
+    "id": 727,
+    "print": "expand",
+    "brlunicode": "⠑⠭⠏⠯"
+  },
+  {
+    "id": 728,
+    "print": "expanded",
+    "brlunicode": "⠑⠭⠏⠯⠫"
+  },
+  {
+    "id": 729,
+    "print": "expanding",
+    "brlunicode": "⠑⠭⠏⠯⠬"
+  },
+  {
+    "id": 730,
+    "print": "expert",
+    "brlunicode": "⠑⠭⠏⠻⠞"
+  },
+  {
+    "id": 731,
+    "print": "extend",
+    "brlunicode": "⠑⠭⠞⠢⠙"
+  },
+  {
+    "id": 732,
+    "print": "extent",
+    "brlunicode": "⠑⠭⠞⠢⠞"
+  },
+  {
+    "id": 733,
+    "print": "extra",
+    "brlunicode": "⠑⠭⠞⠗⠁"
+  },
+  {
+    "id": 734,
+    "print": "faced",
+    "brlunicode": "⠋⠁⠉⠫"
+  },
+  {
+    "id": 735,
+    "print": "facing",
+    "brlunicode": "⠋⠁⠉⠬"
+  },
+  {
+    "id": 736,
+    "print": "failed",
+    "brlunicode": "⠋⠁⠊⠇⠫"
+  },
+  {
+    "id": 737,
+    "print": "failing",
+    "brlunicode": "⠋⠁⠊⠇⠬"
+  },
+  {
+    "id": 738,
+    "print": "fails",
+    "brlunicode": "⠋⠁⠊⠇⠎"
+  },
+  {
+    "id": 739,
+    "print": "fairy",
+    "brlunicode": "⠋⠁⠊⠗⠽"
+  },
+  {
+    "id": 740,
+    "print": "fallen",
+    "brlunicode": "⠋⠁⠇⠇⠢"
+  },
+  {
+    "id": 741,
+    "print": "falling",
+    "brlunicode": "⠋⠁⠇⠇⠬"
+  },
+  {
+    "id": 742,
+    "print": "falls",
+    "brlunicode": "⠋⠁⠇⠇⠎"
+  },
+  {
+    "id": 743,
+    "print": "false",
+    "brlunicode": "⠋⠁⠇⠎⠑"
+  },
+  {
+    "id": 744,
+    "print": "famous",
+    "brlunicode": "⠋⠁⠍⠳⠎"
+  },
+  {
+    "id": 745,
+    "print": "farmer",
+    "brlunicode": "⠋⠜⠍⠻"
+  },
+  {
+    "id": 746,
+    "print": "farming",
+    "brlunicode": "⠋⠜⠍⠬"
+  },
+  {
+    "id": 747,
+    "print": "faster",
+    "brlunicode": "⠋⠁⠌⠻"
+  },
+  {
+    "id": 748,
+    "print": "fastest",
+    "brlunicode": "⠋⠁⠌⠑⠌"
+  },
+  {
+    "id": 749,
+    "print": "fatal",
+    "brlunicode": "⠋⠁⠞⠁⠇"
+  },
+  {
+    "id": 750,
+    "print": "father",
+    "brlunicode": "⠐⠋"
+  },
+  {
+    "id": 751,
+    "print": "fatty",
+    "brlunicode": "⠋⠁⠞⠞⠽"
+  },
+  {
+    "id": 752,
+    "print": "fault",
+    "brlunicode": "⠋⠁⠥⠇⠞"
+  },
+  {
+    "id": 753,
+    "print": "favor",
+    "brlunicode": "⠋⠁⠧⠕⠗"
+  },
+  {
+    "id": 754,
+    "print": "favour",
+    "brlunicode": "⠋⠁⠧⠳⠗"
+  },
+  {
+    "id": 755,
+    "print": "federal",
+    "brlunicode": "⠋⠫⠻⠁⠇"
+  },
+  {
+    "id": 756,
+    "print": "feeding",
+    "brlunicode": "⠋⠑⠫⠬"
+  },
+  {
+    "id": 757,
+    "print": "feeling",
+    "brlunicode": "⠋⠑⠑⠇⠬"
+  },
+  {
+    "id": 758,
+    "print": "fellow",
+    "brlunicode": "⠋⠑⠇⠇⠪"
+  },
+  {
+    "id": 759,
+    "print": "fence",
+    "brlunicode": "⠋⠰⠑"
+  },
+  {
+    "id": 760,
+    "print": "ferry",
+    "brlunicode": "⠋⠻⠗⠽"
+  },
+  {
+    "id": 761,
+    "print": "fetish",
+    "brlunicode": "⠋⠑⠞⠊⠩"
+  },
+  {
+    "id": 762,
+    "print": "fever",
+    "brlunicode": "⠋⠐⠑"
+  },
+  {
+    "id": 763,
+    "print": "fewer",
+    "brlunicode": "⠋⠑⠺⠻"
+  },
+  {
+    "id": 764,
+    "print": "fiber",
+    "brlunicode": "⠋⠊⠃⠻"
+  },
+  {
+    "id": 765,
+    "print": "fibre",
+    "brlunicode": "⠋⠊⠃⠗⠑"
+  },
+  {
+    "id": 766,
+    "print": "fiction",
+    "brlunicode": "⠋⠊⠉⠰⠝"
+  },
+  {
+    "id": 767,
+    "print": "field",
+    "brlunicode": "⠋⠊⠑⠇⠙"
+  },
+  {
+    "id": 768,
+    "print": "fifth",
+    "brlunicode": "⠋⠊⠋⠹"
+  },
+  {
+    "id": 769,
+    "print": "fifty",
+    "brlunicode": "⠋⠊⠋⠞⠽"
+  },
+  {
+    "id": 770,
+    "print": "fight",
+    "brlunicode": "⠋⠊⠣⠞"
+  },
+  {
+    "id": 771,
+    "print": "fighter",
+    "brlunicode": "⠋⠊⠣⠞⠻"
+  },
+  {
+    "id": 772,
+    "print": "fighting",
+    "brlunicode": "⠋⠊⠣⠞⠬"
+  },
+  {
+    "id": 773,
+    "print": "filed",
+    "brlunicode": "⠋⠊⠇⠫"
+  },
+  {
+    "id": 774,
+    "print": "filing",
+    "brlunicode": "⠋⠊⠇⠬"
+  },
+  {
+    "id": 775,
+    "print": "filled",
+    "brlunicode": "⠋⠊⠇⠇⠫"
+  },
+  {
+    "id": 776,
+    "print": "filling",
+    "brlunicode": "⠋⠊⠇⠇⠬"
+  },
+  {
+    "id": 777,
+    "print": "filter",
+    "brlunicode": "⠋⠊⠇⠞⠻"
+  },
+  {
+    "id": 778,
+    "print": "final",
+    "brlunicode": "⠋⠔⠁⠇"
+  },
+  {
+    "id": 779,
+    "print": "finance",
+    "brlunicode": "⠋⠔⠨⠑"
+  },
+  {
+    "id": 780,
+    "print": "finances",
+    "brlunicode": "⠋⠔⠨⠑⠎"
+  },
+  {
+    "id": 781,
+    "print": "finder",
+    "brlunicode": "⠋⠔⠙⠻"
+  },
+  {
+    "id": 782,
+    "print": "finding",
+    "brlunicode": "⠋⠔⠙⠬"
+  },
+  {
+    "id": 783,
+    "print": "findings",
+    "brlunicode": "⠋⠔⠙⠬⠎"
+  },
+  {
+    "id": 784,
+    "print": "finest",
+    "brlunicode": "⠋⠔⠑⠌"
+  },
+  {
+    "id": 785,
+    "print": "finger",
+    "brlunicode": "⠋⠬⠻"
+  },
+  {
+    "id": 786,
+    "print": "finish",
+    "brlunicode": "⠋⠔⠊⠩"
+  },
+  {
+    "id": 787,
+    "print": "finished",
+    "brlunicode": "⠋⠔⠊⠩⠫"
+  },
+  {
+    "id": 788,
+    "print": "finishing",
+    "brlunicode": "⠋⠔⠊⠩⠬"
+  },
+  {
+    "id": 789,
+    "print": "finite",
+    "brlunicode": "⠋⠔⠊⠞⠑"
+  },
+  {
+    "id": 790,
+    "print": "finland",
+    "brlunicode": "⠋⠔⠇⠯"
+  },
+  {
+    "id": 791,
+    "print": "finnish",
+    "brlunicode": "⠋⠔⠝⠊⠩"
+  },
+  {
+    "id": 792,
+    "print": "fired",
+    "brlunicode": "⠋⠊⠗⠫"
+  },
+  {
+    "id": 793,
+    "print": "first",
+    "brlunicode": "⠋⠌"
+  },
+  {
+    "id": 794,
+    "print": "fisher",
+    "brlunicode": "⠋⠊⠩⠻"
+  },
+  {
+    "id": 795,
+    "print": "fishing",
+    "brlunicode": "⠋⠊⠩⠬"
+  },
+  {
+    "id": 796,
+    "print": "fitness",
+    "brlunicode": "⠋⠊⠞⠰⠎"
+  },
+  {
+    "id": 797,
+    "print": "fitted",
+    "brlunicode": "⠋⠊⠞⠞⠫"
+  },
+  {
+    "id": 798,
+    "print": "fitting",
+    "brlunicode": "⠋⠊⠞⠞⠬"
+  },
+  {
+    "id": 799,
+    "print": "fixed",
+    "brlunicode": "⠋⠊⠭⠫"
+  },
+  {
+    "id": 800,
+    "print": "flame",
+    "brlunicode": "⠋⠇⠁⠍⠑"
+  },
+  {
+    "id": 801,
+    "print": "flash",
+    "brlunicode": "⠋⠇⠁⠩"
+  },
+  {
+    "id": 802,
+    "print": "flashing",
+    "brlunicode": "⠋⠇⠁⠩⠬"
+  },
+  {
+    "id": 803,
+    "print": "fleet",
+    "brlunicode": "⠋⠇⠑⠑⠞"
+  },
+  {
+    "id": 804,
+    "print": "flesh",
+    "brlunicode": "⠋⠇⠑⠩"
+  },
+  {
+    "id": 805,
+    "print": "flight",
+    "brlunicode": "⠋⠇⠊⠣⠞"
+  },
+  {
+    "id": 806,
+    "print": "float",
+    "brlunicode": "⠋⠇⠕⠁⠞"
+  },
+  {
+    "id": 807,
+    "print": "flood",
+    "brlunicode": "⠋⠇⠕⠕⠙"
+  },
+  {
+    "id": 808,
+    "print": "floor",
+    "brlunicode": "⠋⠇⠕⠕⠗"
+  },
+  {
+    "id": 809,
+    "print": "flour",
+    "brlunicode": "⠋⠇⠳⠗"
+  },
+  {
+    "id": 810,
+    "print": "fluid",
+    "brlunicode": "⠋⠇⠥⠊⠙"
+  },
+  {
+    "id": 811,
+    "print": "flush",
+    "brlunicode": "⠋⠇⠥⠩"
+  },
+  {
+    "id": 812,
+    "print": "flyer",
+    "brlunicode": "⠋⠇⠽⠻"
+  },
+  {
+    "id": 813,
+    "print": "flying",
+    "brlunicode": "⠋⠇⠽⠬"
+  },
+  {
+    "id": 814,
+    "print": "focal",
+    "brlunicode": "⠋⠕⠉⠁⠇"
+  },
+  {
+    "id": 815,
+    "print": "focus",
+    "brlunicode": "⠋⠕⠉⠥⠎"
+  },
+  {
+    "id": 816,
+    "print": "folder",
+    "brlunicode": "⠋⠕⠇⠙⠻"
+  },
+  {
+    "id": 817,
+    "print": "folding",
+    "brlunicode": "⠋⠕⠇⠙⠬"
+  },
+  {
+    "id": 818,
+    "print": "folks",
+    "brlunicode": "⠋⠕⠇⠅⠎"
+  },
+  {
+    "id": 819,
+    "print": "follow",
+    "brlunicode": "⠋⠕⠇⠇⠪"
+  },
+  {
+    "id": 820,
+    "print": "force",
+    "brlunicode": "⠿⠉⠑"
+  },
+  {
+    "id": 821,
+    "print": "forced",
+    "brlunicode": "⠿⠉⠫"
+  },
+  {
+    "id": 822,
+    "print": "forecast",
+    "brlunicode": "⠿⠑⠉⠁⠌"
+  },
+  {
+    "id": 823,
+    "print": "foreign",
+    "brlunicode": "⠿⠑⠊⠛⠝"
+  },
+  {
+    "id": 824,
+    "print": "forestry",
+    "brlunicode": "⠿⠑⠌⠗⠽"
+  },
+  {
+    "id": 825,
+    "print": "forever",
+    "brlunicode": "⠿⠐⠑"
+  },
+  {
+    "id": 826,
+    "print": "forge",
+    "brlunicode": "⠿⠛⠑"
+  },
+  {
+    "id": 827,
+    "print": "forget",
+    "brlunicode": "⠿⠛⠑⠞"
+  },
+  {
+    "id": 828,
+    "print": "forgot",
+    "brlunicode": "⠿⠛⠕⠞"
+  },
+  {
+    "id": 829,
+    "print": "formal",
+    "brlunicode": "⠿⠍⠁⠇"
+  },
+  {
+    "id": 830,
+    "print": "format",
+    "brlunicode": "⠿⠍⠁⠞"
+  },
+  {
+    "id": 831,
+    "print": "formation",
+    "brlunicode": "⠿⠍⠁⠰⠝"
+  },
+  {
+    "id": 832,
+    "print": "formed",
+    "brlunicode": "⠿⠍⠫"
+  },
+  {
+    "id": 833,
+    "print": "former",
+    "brlunicode": "⠿⠍⠻"
+  },
+  {
+    "id": 834,
+    "print": "formerly",
+    "brlunicode": "⠿⠍⠻⠇⠽"
+  },
+  {
+    "id": 835,
+    "print": "forming",
+    "brlunicode": "⠿⠍⠬"
+  },
+  {
+    "id": 836,
+    "print": "formula",
+    "brlunicode": "⠿⠍⠥⠇⠁"
+  },
+  {
+    "id": 837,
+    "print": "forth",
+    "brlunicode": "⠿⠹"
+  },
+  {
+    "id": 838,
+    "print": "forty",
+    "brlunicode": "⠿⠞⠽"
+  },
+  {
+    "id": 839,
+    "print": "forum",
+    "brlunicode": "⠿⠥⠍"
+  },
+  {
+    "id": 840,
+    "print": "forward",
+    "brlunicode": "⠿⠺⠜⠙"
+  },
+  {
+    "id": 841,
+    "print": "forwarding",
+    "brlunicode": "⠿⠺⠜⠙⠬"
+  },
+  {
+    "id": 842,
+    "print": "fought",
+    "brlunicode": "⠋⠐⠳"
+  },
+  {
+    "id": 843,
+    "print": "found",
+    "brlunicode": "⠋⠨⠙"
+  },
+  {
+    "id": 844,
+    "print": "founded",
+    "brlunicode": "⠋⠨⠙⠫"
+  },
+  {
+    "id": 845,
+    "print": "founder",
+    "brlunicode": "⠋⠨⠙⠻"
+  },
+  {
+    "id": 846,
+    "print": "fountain",
+    "brlunicode": "⠋⠨⠞⠁⠔"
+  },
+  {
+    "id": 847,
+    "print": "fourth",
+    "brlunicode": "⠋⠳⠗⠹"
+  },
+  {
+    "id": 848,
+    "print": "frame",
+    "brlunicode": "⠋⠗⠁⠍⠑"
+  },
+  {
+    "id": 849,
+    "print": "framed",
+    "brlunicode": "⠋⠗⠁⠍⠫"
+  },
+  {
+    "id": 850,
+    "print": "framing",
+    "brlunicode": "⠋⠗⠁⠍⠬"
+  },
+  {
+    "id": 851,
+    "print": "fraud",
+    "brlunicode": "⠋⠗⠁⠥⠙"
+  },
+  {
+    "id": 852,
+    "print": "fresh",
+    "brlunicode": "⠋⠗⠑⠩"
+  },
+  {
+    "id": 853,
+    "print": "friday",
+    "brlunicode": "⠋⠗⠊⠐⠙"
+  },
+  {
+    "id": 854,
+    "print": "friend",
+    "brlunicode": "⠋⠗"
+  },
+  {
+    "id": 855,
+    "print": "friendly",
+    "brlunicode": "⠋⠗⠇⠽"
+  },
+  {
+    "id": 856,
+    "print": "friendship",
+    "brlunicode": "⠋⠗⠩⠊⠏"
+  },
+  {
+    "id": 857,
+    "print": "front",
+    "brlunicode": "⠋⠗⠕⠝⠞"
+  },
+  {
+    "id": 858,
+    "print": "frost",
+    "brlunicode": "⠋⠗⠕⠌"
+  },
+  {
+    "id": 859,
+    "print": "frozen",
+    "brlunicode": "⠋⠗⠕⠵⠢"
+  },
+  {
+    "id": 860,
+    "print": "fruit",
+    "brlunicode": "⠋⠗⠥⠊⠞"
+  },
+  {
+    "id": 861,
+    "print": "fully",
+    "brlunicode": "⠋⠥⠇⠇⠽"
+  },
+  {
+    "id": 862,
+    "print": "funded",
+    "brlunicode": "⠋⠥⠝⠙⠫"
+  },
+  {
+    "id": 863,
+    "print": "funding",
+    "brlunicode": "⠋⠥⠝⠙⠬"
+  },
+  {
+    "id": 864,
+    "print": "funds",
+    "brlunicode": "⠋⠥⠝⠙⠎"
+  },
+  {
+    "id": 865,
+    "print": "funky",
+    "brlunicode": "⠋⠥⠝⠅⠽"
+  },
+  {
+    "id": 866,
+    "print": "funny",
+    "brlunicode": "⠋⠥⠝⠝⠽"
+  },
+  {
+    "id": 867,
+    "print": "further",
+    "brlunicode": "⠋⠥⠗⠮⠗"
+  },
+  {
+    "id": 868,
+    "print": "fusion",
+    "brlunicode": "⠋⠥⠨⠝"
+  },
+  {
+    "id": 869,
+    "print": "fuzzy",
+    "brlunicode": "⠋⠥⠵⠵⠽"
+  },
+  {
+    "id": 870,
+    "print": "gained",
+    "brlunicode": "⠛⠁⠔⠫"
+  },
+  {
+    "id": 871,
+    "print": "gaming",
+    "brlunicode": "⠛⠁⠍⠬"
+  },
+  {
+    "id": 872,
+    "print": "gamma",
+    "brlunicode": "⠛⠁⠍⠍⠁"
+  },
+  {
+    "id": 873,
+    "print": "garage",
+    "brlunicode": "⠛⠜⠁⠛⠑"
+  },
+  {
+    "id": 874,
+    "print": "garden",
+    "brlunicode": "⠛⠜⠙⠢"
+  },
+  {
+    "id": 875,
+    "print": "gardening",
+    "brlunicode": "⠛⠜⠙⠢⠬"
+  },
+  {
+    "id": 876,
+    "print": "garlic",
+    "brlunicode": "⠛⠜⠇⠊⠉"
+  },
+  {
+    "id": 877,
+    "print": "gather",
+    "brlunicode": "⠛⠁⠮⠗"
+  },
+  {
+    "id": 878,
+    "print": "gathered",
+    "brlunicode": "⠛⠁⠮⠗⠫"
+  },
+  {
+    "id": 879,
+    "print": "gathering",
+    "brlunicode": "⠛⠁⠮⠗⠬"
+  },
+  {
+    "id": 880,
+    "print": "gauge",
+    "brlunicode": "⠛⠁⠥⠛⠑"
+  },
+  {
+    "id": 881,
+    "print": "gender",
+    "brlunicode": "⠛⠢⠙⠻"
+  },
+  {
+    "id": 882,
+    "print": "general",
+    "brlunicode": "⠛⠢⠻⠁⠇"
+  },
+  {
+    "id": 883,
+    "print": "generic",
+    "brlunicode": "⠛⠢⠻⠊⠉"
+  },
+  {
+    "id": 884,
+    "print": "generous",
+    "brlunicode": "⠛⠢⠻⠳⠎"
+  },
+  {
+    "id": 885,
+    "print": "genius",
+    "brlunicode": "⠛⠢⠊⠥⠎"
+  },
+  {
+    "id": 886,
+    "print": "genome",
+    "brlunicode": "⠛⠢⠕⠍⠑"
+  },
+  {
+    "id": 887,
+    "print": "genre",
+    "brlunicode": "⠛⠢⠗⠑"
+  },
+  {
+    "id": 888,
+    "print": "gentle",
+    "brlunicode": "⠛⠢⠞⠇⠑"
+  },
+  {
+    "id": 889,
+    "print": "gently",
+    "brlunicode": "⠛⠢⠞⠇⠽"
+  },
+  {
+    "id": 890,
+    "print": "genuine",
+    "brlunicode": "⠛⠢⠥⠔⠑"
+  },
+  {
+    "id": 891,
+    "print": "german",
+    "brlunicode": "⠛⠻⠍⠁⠝"
+  },
+  {
+    "id": 892,
+    "print": "germany",
+    "brlunicode": "⠛⠻⠸⠍"
+  },
+  {
+    "id": 893,
+    "print": "getting",
+    "brlunicode": "⠛⠑⠞⠞⠬"
+  },
+  {
+    "id": 894,
+    "print": "ghana",
+    "brlunicode": "⠣⠁⠝⠁"
+  },
+  {
+    "id": 895,
+    "print": "ghost",
+    "brlunicode": "⠣⠕⠌"
+  },
+  {
+    "id": 896,
+    "print": "giant",
+    "brlunicode": "⠛⠊⠁⠝⠞"
+  },
+  {
+    "id": 897,
+    "print": "given",
+    "brlunicode": "⠛⠊⠧⠢"
+  },
+  {
+    "id": 898,
+    "print": "giving",
+    "brlunicode": "⠛⠊⠧⠬"
+  },
+  {
+    "id": 899,
+    "print": "glance",
+    "brlunicode": "⠛⠇⠨⠑"
+  },
+  {
+    "id": 900,
+    "print": "glass",
+    "brlunicode": "⠛⠇⠁⠎⠎"
+  },
+  {
+    "id": 901,
+    "print": "globe",
+    "brlunicode": "⠛⠇⠕⠃⠑"
+  },
+  {
+    "id": 902,
+    "print": "gnome",
+    "brlunicode": "⠛⠝⠕⠍⠑"
+  },
+  {
+    "id": 903,
+    "print": "going",
+    "brlunicode": "⠛⠕⠬"
+  },
+  {
+    "id": 904,
+    "print": "golden",
+    "brlunicode": "⠛⠕⠇⠙⠢"
+  },
+  {
+    "id": 905,
+    "print": "gothic",
+    "brlunicode": "⠛⠕⠹⠊⠉"
+  },
+  {
+    "id": 906,
+    "print": "gotten",
+    "brlunicode": "⠛⠕⠞⠞⠢"
+  },
+  {
+    "id": 907,
+    "print": "grade",
+    "brlunicode": "⠛⠗⠁⠙⠑"
+  },
+  {
+    "id": 908,
+    "print": "grain",
+    "brlunicode": "⠛⠗⠁⠔"
+  },
+  {
+    "id": 909,
+    "print": "grand",
+    "brlunicode": "⠛⠗⠯"
+  },
+  {
+    "id": 910,
+    "print": "graph",
+    "brlunicode": "⠛⠗⠁⠏⠓"
+  },
+  {
+    "id": 911,
+    "print": "grass",
+    "brlunicode": "⠛⠗⠁⠎⠎"
+  },
+  {
+    "id": 912,
+    "print": "grave",
+    "brlunicode": "⠛⠗⠁⠧⠑"
+  },
+  {
+    "id": 913,
+    "print": "great",
+    "brlunicode": "⠛⠗⠞"
+  },
+  {
+    "id": 914,
+    "print": "greater",
+    "brlunicode": "⠛⠗⠞⠻"
+  },
+  {
+    "id": 915,
+    "print": "greatest",
+    "brlunicode": "⠛⠗⠞⠑⠌"
+  },
+  {
+    "id": 916,
+    "print": "greatly",
+    "brlunicode": "⠛⠗⠞⠇⠽"
+  },
+  {
+    "id": 917,
+    "print": "greek",
+    "brlunicode": "⠛⠗⠑⠑⠅"
+  },
+  {
+    "id": 918,
+    "print": "green",
+    "brlunicode": "⠛⠗⠑⠢"
+  },
+  {
+    "id": 919,
+    "print": "greene",
+    "brlunicode": "⠛⠗⠑⠢⠑"
+  },
+  {
+    "id": 920,
+    "print": "grill",
+    "brlunicode": "⠛⠗⠊⠇⠇"
+  },
+  {
+    "id": 921,
+    "print": "gross",
+    "brlunicode": "⠛⠗⠕⠎⠎"
+  },
+  {
+    "id": 922,
+    "print": "ground",
+    "brlunicode": "⠛⠗⠨⠙"
+  },
+  {
+    "id": 923,
+    "print": "grounds",
+    "brlunicode": "⠛⠗⠨⠙⠎"
+  },
+  {
+    "id": 924,
+    "print": "group",
+    "brlunicode": "⠛⠗⠳⠏"
+  },
+  {
+    "id": 925,
+    "print": "growing",
+    "brlunicode": "⠛⠗⠪⠬"
+  },
+  {
+    "id": 926,
+    "print": "grown",
+    "brlunicode": "⠛⠗⠪⠝"
+  },
+  {
+    "id": 927,
+    "print": "grows",
+    "brlunicode": "⠛⠗⠪⠎"
+  },
+  {
+    "id": 928,
+    "print": "growth",
+    "brlunicode": "⠛⠗⠪⠹"
+  },
+  {
+    "id": 929,
+    "print": "guard",
+    "brlunicode": "⠛⠥⠜⠙"
+  },
+  {
+    "id": 930,
+    "print": "guess",
+    "brlunicode": "⠛⠥⠑⠎⠎"
+  },
+  {
+    "id": 931,
+    "print": "guest",
+    "brlunicode": "⠛⠥⠑⠌"
+  },
+  {
+    "id": 932,
+    "print": "guide",
+    "brlunicode": "⠛⠥⠊⠙⠑"
+  },
+  {
+    "id": 933,
+    "print": "guided",
+    "brlunicode": "⠛⠥⠊⠙⠫"
+  },
+  {
+    "id": 934,
+    "print": "guild",
+    "brlunicode": "⠛⠥⠊⠇⠙"
+  },
+  {
+    "id": 935,
+    "print": "guinea",
+    "brlunicode": "⠛⠥⠔⠑⠁"
+  },
+  {
+    "id": 936,
+    "print": "guitar",
+    "brlunicode": "⠛⠥⠊⠞⠜"
+  },
+  {
+    "id": 937,
+    "print": "hacker",
+    "brlunicode": "⠓⠁⠉⠅⠻"
+  },
+  {
+    "id": 938,
+    "print": "hairy",
+    "brlunicode": "⠓⠁⠊⠗⠽"
+  },
+  {
+    "id": 939,
+    "print": "haiti",
+    "brlunicode": "⠓⠁⠊⠞⠊"
+  },
+  {
+    "id": 940,
+    "print": "hammer",
+    "brlunicode": "⠓⠁⠍⠍⠻"
+  },
+  {
+    "id": 941,
+    "print": "handed",
+    "brlunicode": "⠓⠯⠫"
+  },
+  {
+    "id": 942,
+    "print": "handle",
+    "brlunicode": "⠓⠯⠇⠑"
+  },
+  {
+    "id": 943,
+    "print": "handled",
+    "brlunicode": "⠓⠯⠇⠫"
+  },
+  {
+    "id": 944,
+    "print": "handling",
+    "brlunicode": "⠓⠯⠇⠬"
+  },
+  {
+    "id": 945,
+    "print": "hands",
+    "brlunicode": "⠓⠯⠎"
+  },
+  {
+    "id": 946,
+    "print": "handy",
+    "brlunicode": "⠓⠯⠽"
+  },
+  {
+    "id": 947,
+    "print": "hanging",
+    "brlunicode": "⠓⠁⠝⠛⠬"
+  },
+  {
+    "id": 948,
+    "print": "happen",
+    "brlunicode": "⠓⠁⠏⠏⠢"
+  },
+  {
+    "id": 949,
+    "print": "harbor",
+    "brlunicode": "⠓⠜⠃⠕⠗"
+  },
+  {
+    "id": 950,
+    "print": "harbour",
+    "brlunicode": "⠓⠜⠃⠳⠗"
+  },
+  {
+    "id": 951,
+    "print": "harder",
+    "brlunicode": "⠓⠜⠙⠻"
+  },
+  {
+    "id": 952,
+    "print": "hardly",
+    "brlunicode": "⠓⠜⠙⠇⠽"
+  },
+  {
+    "id": 953,
+    "print": "harmful",
+    "brlunicode": "⠓⠜⠍⠰⠇"
+  },
+  {
+    "id": 954,
+    "print": "harper",
+    "brlunicode": "⠓⠜⠏⠻"
+  },
+  {
+    "id": 955,
+    "print": "hartford",
+    "brlunicode": "⠓⠜⠞⠿⠙"
+  },
+  {
+    "id": 956,
+    "print": "harvest",
+    "brlunicode": "⠓⠜⠧⠑⠌"
+  },
+  {
+    "id": 957,
+    "print": "having",
+    "brlunicode": "⠓⠁⠧⠬"
+  },
+  {
+    "id": 958,
+    "print": "hazard",
+    "brlunicode": "⠓⠁⠵⠜⠙"
+  },
+  {
+    "id": 959,
+    "print": "headed",
+    "brlunicode": "⠓⠂⠙⠫"
+  },
+  {
+    "id": 960,
+    "print": "header",
+    "brlunicode": "⠓⠂⠙⠻"
+  },
+  {
+    "id": 961,
+    "print": "heading",
+    "brlunicode": "⠓⠂⠙⠬"
+  },
+  {
+    "id": 962,
+    "print": "healing",
+    "brlunicode": "⠓⠂⠇⠬"
+  },
+  {
+    "id": 963,
+    "print": "health",
+    "brlunicode": "⠓⠂⠇⠹"
+  },
+  {
+    "id": 964,
+    "print": "healthy",
+    "brlunicode": "⠓⠂⠇⠹⠽"
+  },
+  {
+    "id": 965,
+    "print": "heard",
+    "brlunicode": "⠓⠑⠜⠙"
+  },
+  {
+    "id": 966,
+    "print": "hearing",
+    "brlunicode": "⠓⠑⠜⠬"
+  },
+  {
+    "id": 967,
+    "print": "heart",
+    "brlunicode": "⠓⠑⠜⠞"
+  },
+  {
+    "id": 968,
+    "print": "hearts",
+    "brlunicode": "⠓⠑⠜⠞⠎"
+  },
+  {
+    "id": 969,
+    "print": "heated",
+    "brlunicode": "⠓⠂⠞⠫"
+  },
+  {
+    "id": 970,
+    "print": "heater",
+    "brlunicode": "⠓⠂⠞⠻"
+  },
+  {
+    "id": 971,
+    "print": "heating",
+    "brlunicode": "⠓⠂⠞⠬"
+  },
+  {
+    "id": 972,
+    "print": "heaven",
+    "brlunicode": "⠓⠂⠧⠢"
+  },
+  {
+    "id": 973,
+    "print": "heavy",
+    "brlunicode": "⠓⠂⠧⠽"
+  },
+  {
+    "id": 974,
+    "print": "height",
+    "brlunicode": "⠓⠑⠊⠣⠞"
+  },
+  {
+    "id": 975,
+    "print": "hello",
+    "brlunicode": "⠓⠑⠇⠇⠕"
+  },
+  {
+    "id": 976,
+    "print": "helped",
+    "brlunicode": "⠓⠑⠇⠏⠫"
+  },
+  {
+    "id": 977,
+    "print": "helping",
+    "brlunicode": "⠓⠑⠇⠏⠬"
+  },
+  {
+    "id": 978,
+    "print": "hence",
+    "brlunicode": "⠓⠰⠑"
+  },
+  {
+    "id": 979,
+    "print": "herald",
+    "brlunicode": "⠓⠻⠁⠇⠙"
+  },
+  {
+    "id": 980,
+    "print": "herbal",
+    "brlunicode": "⠓⠻⠃⠁⠇"
+  },
+  {
+    "id": 981,
+    "print": "hereby",
+    "brlunicode": "⠐⠓⠃⠽"
+  },
+  {
+    "id": 982,
+    "print": "herein",
+    "brlunicode": "⠐⠓⠔"
+  },
+  {
+    "id": 983,
+    "print": "hidden",
+    "brlunicode": "⠓⠊⠙⠙⠢"
+  },
+  {
+    "id": 984,
+    "print": "higher",
+    "brlunicode": "⠓⠊⠣⠻"
+  },
+  {
+    "id": 985,
+    "print": "highest",
+    "brlunicode": "⠓⠊⠣⠑⠌"
+  },
+  {
+    "id": 986,
+    "print": "highland",
+    "brlunicode": "⠓⠊⠣⠇⠯"
+  },
+  {
+    "id": 987,
+    "print": "highly",
+    "brlunicode": "⠓⠊⠣⠇⠽"
+  },
+  {
+    "id": 988,
+    "print": "hiking",
+    "brlunicode": "⠓⠊⠅⠬"
+  },
+  {
+    "id": 989,
+    "print": "hindu",
+    "brlunicode": "⠓⠔⠙⠥"
+  },
+  {
+    "id": 990,
+    "print": "hired",
+    "brlunicode": "⠓⠊⠗⠫"
+  },
+  {
+    "id": 991,
+    "print": "hiring",
+    "brlunicode": "⠓⠊⠗⠬"
+  },
+  {
+    "id": 992,
+    "print": "hitting",
+    "brlunicode": "⠓⠊⠞⠞⠬"
+  },
+  {
+    "id": 993,
+    "print": "hobby",
+    "brlunicode": "⠓⠕⠆⠽"
+  },
+  {
+    "id": 994,
+    "print": "holder",
+    "brlunicode": "⠓⠕⠇⠙⠻"
+  },
+  {
+    "id": 995,
+    "print": "holding",
+    "brlunicode": "⠓⠕⠇⠙⠬"
+  },
+  {
+    "id": 996,
+    "print": "holland",
+    "brlunicode": "⠓⠕⠇⠇⠯"
+  },
+  {
+    "id": 997,
+    "print": "hollow",
+    "brlunicode": "⠓⠕⠇⠇⠪"
+  },
+  {
+    "id": 998,
+    "print": "honest",
+    "brlunicode": "⠓⠐⠕⠌"
+  },
+  {
+    "id": 999,
+    "print": "hoped",
+    "brlunicode": "⠓⠕⠏⠫"
+  },
+  {
+    "id": 1000,
+    "print": "hoping",
+    "brlunicode": "⠓⠕⠏⠬"
+  },
+  {
+    "id": 1001,
+    "print": "horse",
+    "brlunicode": "⠓⠕⠗⠎⠑"
+  },
+  {
+    "id": 1002,
+    "print": "hosted",
+    "brlunicode": "⠓⠕⠌⠫"
+  },
+  {
+    "id": 1003,
+    "print": "hostel",
+    "brlunicode": "⠓⠕⠌⠑⠇"
+  },
+  {
+    "id": 1004,
+    "print": "hosting",
+    "brlunicode": "⠓⠕⠌⠬"
+  },
+  {
+    "id": 1005,
+    "print": "hotel",
+    "brlunicode": "⠓⠕⠞⠑⠇"
+  },
+  {
+    "id": 1006,
+    "print": "hourly",
+    "brlunicode": "⠓⠳⠗⠇⠽"
+  },
+  {
+    "id": 1007,
+    "print": "hours",
+    "brlunicode": "⠓⠳⠗⠎"
+  },
+  {
+    "id": 1008,
+    "print": "house",
+    "brlunicode": "⠓⠳⠎⠑"
+  },
+  {
+    "id": 1009,
+    "print": "housing",
+    "brlunicode": "⠓⠳⠎⠬"
+  },
+  {
+    "id": 1010,
+    "print": "houston",
+    "brlunicode": "⠓⠳⠌⠕⠝"
+  },
+  {
+    "id": 1011,
+    "print": "however",
+    "brlunicode": "⠓⠪⠐⠑"
+  },
+  {
+    "id": 1012,
+    "print": "hughes",
+    "brlunicode": "⠓⠥⠣⠑⠎"
+  },
+  {
+    "id": 1013,
+    "print": "human",
+    "brlunicode": "⠓⠥⠍⠁⠝"
+  },
+  {
+    "id": 1014,
+    "print": "humor",
+    "brlunicode": "⠓⠥⠍⠕⠗"
+  },
+  {
+    "id": 1015,
+    "print": "hunger",
+    "brlunicode": "⠓⠥⠝⠛⠻"
+  },
+  {
+    "id": 1016,
+    "print": "hunting",
+    "brlunicode": "⠓⠥⠝⠞⠬"
+  },
+  {
+    "id": 1017,
+    "print": "husband",
+    "brlunicode": "⠓⠥⠎⠃⠯"
+  },
+  {
+    "id": 1018,
+    "print": "iceland",
+    "brlunicode": "⠊⠉⠑⠇⠯"
+  },
+  {
+    "id": 1019,
+    "print": "idaho",
+    "brlunicode": "⠊⠙⠁⠓⠕"
+  },
+  {
+    "id": 1020,
+    "print": "ideal",
+    "brlunicode": "⠊⠙⠂⠇"
+  },
+  {
+    "id": 1021,
+    "print": "illness",
+    "brlunicode": "⠊⠇⠇⠰⠎"
+  },
+  {
+    "id": 1022,
+    "print": "image",
+    "brlunicode": "⠊⠍⠁⠛⠑"
+  },
+  {
+    "id": 1023,
+    "print": "imaging",
+    "brlunicode": "⠊⠍⠁⠛⠬"
+  },
+  {
+    "id": 1024,
+    "print": "immediate",
+    "brlunicode": "⠊⠍⠍"
+  },
+  {
+    "id": 1025,
+    "print": "immediately",
+    "brlunicode": "⠊⠍⠍⠇⠽"
+  },
+  {
+    "id": 1026,
+    "print": "income",
+    "brlunicode": "⠔⠉⠕⠍⠑"
+  },
+  {
+    "id": 1027,
+    "print": "incoming",
+    "brlunicode": "⠔⠉⠕⠍⠬"
+  },
+  {
+    "id": 1028,
+    "print": "indeed",
+    "brlunicode": "⠔⠙⠑⠫"
+  },
+  {
+    "id": 1029,
+    "print": "index",
+    "brlunicode": "⠔⠙⠑⠭"
+  },
+  {
+    "id": 1030,
+    "print": "indexed",
+    "brlunicode": "⠔⠙⠑⠭⠫"
+  },
+  {
+    "id": 1031,
+    "print": "india",
+    "brlunicode": "⠔⠙⠊⠁"
+  },
+  {
+    "id": 1032,
+    "print": "indian",
+    "brlunicode": "⠔⠙⠊⠁⠝"
+  },
+  {
+    "id": 1033,
+    "print": "indie",
+    "brlunicode": "⠔⠙⠊⠑"
+  },
+  {
+    "id": 1034,
+    "print": "indoor",
+    "brlunicode": "⠔⠙⠕⠕⠗"
+  },
+  {
+    "id": 1035,
+    "print": "induced",
+    "brlunicode": "⠔⠙⠥⠉⠫"
+  },
+  {
+    "id": 1036,
+    "print": "infant",
+    "brlunicode": "⠔⠋⠁⠝⠞"
+  },
+  {
+    "id": 1037,
+    "print": "inform",
+    "brlunicode": "⠔⠿⠍"
+  },
+  {
+    "id": 1038,
+    "print": "informal",
+    "brlunicode": "⠔⠿⠍⠁⠇"
+  },
+  {
+    "id": 1039,
+    "print": "informed",
+    "brlunicode": "⠔⠿⠍⠫"
+  },
+  {
+    "id": 1040,
+    "print": "injured",
+    "brlunicode": "⠔⠚⠥⠗⠫"
+  },
+  {
+    "id": 1041,
+    "print": "injury",
+    "brlunicode": "⠔⠚⠥⠗⠽"
+  },
+  {
+    "id": 1042,
+    "print": "inner",
+    "brlunicode": "⠔⠝⠻"
+  },
+  {
+    "id": 1043,
+    "print": "input",
+    "brlunicode": "⠔⠏⠥⠞"
+  },
+  {
+    "id": 1044,
+    "print": "insert",
+    "brlunicode": "⠔⠎⠻⠞"
+  },
+  {
+    "id": 1045,
+    "print": "inserted",
+    "brlunicode": "⠔⠎⠻⠞⠫"
+  },
+  {
+    "id": 1046,
+    "print": "insertion",
+    "brlunicode": "⠔⠎⠻⠰⠝"
+  },
+  {
+    "id": 1047,
+    "print": "inside",
+    "brlunicode": "⠔⠎⠊⠙⠑"
+  },
+  {
+    "id": 1048,
+    "print": "insider",
+    "brlunicode": "⠔⠎⠊⠙⠻"
+  },
+  {
+    "id": 1049,
+    "print": "insight",
+    "brlunicode": "⠔⠎⠊⠣⠞"
+  },
+  {
+    "id": 1050,
+    "print": "install",
+    "brlunicode": "⠔⠌⠁⠇⠇"
+  },
+  {
+    "id": 1051,
+    "print": "instance",
+    "brlunicode": "⠔⠌⠨⠑"
+  },
+  {
+    "id": 1052,
+    "print": "instant",
+    "brlunicode": "⠔⠌⠁⠝⠞"
+  },
+  {
+    "id": 1053,
+    "print": "instead",
+    "brlunicode": "⠔⠌⠂⠙"
+  },
+  {
+    "id": 1054,
+    "print": "insulin",
+    "brlunicode": "⠔⠎⠥⠇⠔"
+  },
+  {
+    "id": 1055,
+    "print": "insured",
+    "brlunicode": "⠔⠎⠥⠗⠫"
+  },
+  {
+    "id": 1056,
+    "print": "intake",
+    "brlunicode": "⠔⠞⠁⠅⠑"
+  },
+  {
+    "id": 1057,
+    "print": "integer",
+    "brlunicode": "⠔⠞⠑⠛⠻"
+  },
+  {
+    "id": 1058,
+    "print": "intend",
+    "brlunicode": "⠔⠞⠢⠙"
+  },
+  {
+    "id": 1059,
+    "print": "intended",
+    "brlunicode": "⠔⠞⠢⠙⠫"
+  },
+  {
+    "id": 1060,
+    "print": "intense",
+    "brlunicode": "⠔⠞⠢⠎⠑"
+  },
+  {
+    "id": 1061,
+    "print": "intent",
+    "brlunicode": "⠔⠞⠢⠞"
+  },
+  {
+    "id": 1062,
+    "print": "intention",
+    "brlunicode": "⠔⠞⠢⠰⠝"
+  },
+  {
+    "id": 1063,
+    "print": "inter",
+    "brlunicode": "⠔⠞⠻"
+  },
+  {
+    "id": 1064,
+    "print": "interest",
+    "brlunicode": "⠔⠞⠻⠑⠌"
+  },
+  {
+    "id": 1065,
+    "print": "interim",
+    "brlunicode": "⠔⠞⠻⠊⠍"
+  },
+  {
+    "id": 1066,
+    "print": "intro",
+    "brlunicode": "⠔⠞⠗⠕"
+  },
+  {
+    "id": 1067,
+    "print": "invasion",
+    "brlunicode": "⠔⠧⠁⠨⠝"
+  },
+  {
+    "id": 1068,
+    "print": "invention",
+    "brlunicode": "⠔⠧⠢⠰⠝"
+  },
+  {
+    "id": 1069,
+    "print": "invest",
+    "brlunicode": "⠔⠧⠑⠌"
+  },
+  {
+    "id": 1070,
+    "print": "investing",
+    "brlunicode": "⠔⠧⠑⠌⠬"
+  },
+  {
+    "id": 1071,
+    "print": "invite",
+    "brlunicode": "⠔⠧⠊⠞⠑"
+  },
+  {
+    "id": 1072,
+    "print": "invited",
+    "brlunicode": "⠔⠧⠊⠞⠫"
+  },
+  {
+    "id": 1073,
+    "print": "iraqi",
+    "brlunicode": "⠊⠗⠁⠟⠊"
+  },
+  {
+    "id": 1074,
+    "print": "ireland",
+    "brlunicode": "⠊⠗⠑⠇⠯"
+  },
+  {
+    "id": 1075,
+    "print": "irish",
+    "brlunicode": "⠊⠗⠊⠩"
+  },
+  {
+    "id": 1076,
+    "print": "islam",
+    "brlunicode": "⠊⠎⠇⠁⠍"
+  },
+  {
+    "id": 1077,
+    "print": "island",
+    "brlunicode": "⠊⠎⠇⠯"
+  },
+  {
+    "id": 1078,
+    "print": "issue",
+    "brlunicode": "⠊⠎⠎⠥⠑"
+  },
+  {
+    "id": 1079,
+    "print": "issued",
+    "brlunicode": "⠊⠎⠎⠥⠫"
+  },
+  {
+    "id": 1080,
+    "print": "italy",
+    "brlunicode": "⠊⠞⠁⠇⠽"
+  },
+  {
+    "id": 1081,
+    "print": "jaguar",
+    "brlunicode": "⠚⠁⠛⠥⠜"
+  },
+  {
+    "id": 1082,
+    "print": "japan",
+    "brlunicode": "⠚⠁⠏⠁⠝"
+  },
+  {
+    "id": 1083,
+    "print": "jersey",
+    "brlunicode": "⠚⠻⠎⠑⠽"
+  },
+  {
+    "id": 1084,
+    "print": "jewish",
+    "brlunicode": "⠚⠑⠺⠊⠩"
+  },
+  {
+    "id": 1085,
+    "print": "johns",
+    "brlunicode": "⠚⠕⠓⠝⠎"
+  },
+  {
+    "id": 1086,
+    "print": "joined",
+    "brlunicode": "⠚⠕⠔⠫"
+  },
+  {
+    "id": 1087,
+    "print": "joining",
+    "brlunicode": "⠚⠕⠔⠬"
+  },
+  {
+    "id": 1088,
+    "print": "joint",
+    "brlunicode": "⠚⠕⠔⠞"
+  },
+  {
+    "id": 1089,
+    "print": "jones",
+    "brlunicode": "⠚⠐⠕⠎"
+  },
+  {
+    "id": 1090,
+    "print": "judge",
+    "brlunicode": "⠚⠥⠙⠛⠑"
+  },
+  {
+    "id": 1091,
+    "print": "juice",
+    "brlunicode": "⠚⠥⠊⠉⠑"
+  },
+  {
+    "id": 1092,
+    "print": "jumping",
+    "brlunicode": "⠚⠥⠍⠏⠬"
+  },
+  {
+    "id": 1093,
+    "print": "karma",
+    "brlunicode": "⠅⠜⠍⠁"
+  },
+  {
+    "id": 1094,
+    "print": "keeping",
+    "brlunicode": "⠅⠑⠑⠏⠬"
+  },
+  {
+    "id": 1095,
+    "print": "kenya",
+    "brlunicode": "⠅⠢⠽⠁"
+  },
+  {
+    "id": 1096,
+    "print": "kernel",
+    "brlunicode": "⠅⠻⠝⠑⠇"
+  },
+  {
+    "id": 1097,
+    "print": "killed",
+    "brlunicode": "⠅⠊⠇⠇⠫"
+  },
+  {
+    "id": 1098,
+    "print": "killer",
+    "brlunicode": "⠅⠊⠇⠇⠻"
+  },
+  {
+    "id": 1099,
+    "print": "killing",
+    "brlunicode": "⠅⠊⠇⠇⠬"
+  },
+  {
+    "id": 1100,
+    "print": "kinase",
+    "brlunicode": "⠅⠔⠁⠎⠑"
+  },
+  {
+    "id": 1101,
+    "print": "kinda",
+    "brlunicode": "⠅⠔⠙⠁"
+  },
+  {
+    "id": 1102,
+    "print": "kingdom",
+    "brlunicode": "⠅⠬⠙⠕⠍"
+  },
+  {
+    "id": 1103,
+    "print": "kissing",
+    "brlunicode": "⠅⠊⠎⠎⠬"
+  },
+  {
+    "id": 1104,
+    "print": "kitchen",
+    "brlunicode": "⠅⠊⠞⠡⠢"
+  },
+  {
+    "id": 1105,
+    "print": "klein",
+    "brlunicode": "⠅⠇⠑⠔"
+  },
+  {
+    "id": 1106,
+    "print": "knife",
+    "brlunicode": "⠅⠝⠊⠋⠑"
+  },
+  {
+    "id": 1107,
+    "print": "knight",
+    "brlunicode": "⠅⠝⠊⠣⠞"
+  },
+  {
+    "id": 1108,
+    "print": "knock",
+    "brlunicode": "⠅⠝⠕⠉⠅"
+  },
+  {
+    "id": 1109,
+    "print": "knowing",
+    "brlunicode": "⠐⠅⠬"
+  },
+  {
+    "id": 1110,
+    "print": "knowledge",
+    "brlunicode": "⠅"
+  },
+  {
+    "id": 1111,
+    "print": "known",
+    "brlunicode": "⠐⠅⠝"
+  },
+  {
+    "id": 1112,
+    "print": "korea",
+    "brlunicode": "⠅⠕⠗⠑⠁"
+  },
+  {
+    "id": 1113,
+    "print": "korean",
+    "brlunicode": "⠅⠕⠗⠂⠝"
+  },
+  {
+    "id": 1114,
+    "print": "kruger",
+    "brlunicode": "⠅⠗⠥⠛⠻"
+  },
+  {
+    "id": 1115,
+    "print": "label",
+    "brlunicode": "⠇⠁⠃⠑⠇"
+  },
+  {
+    "id": 1116,
+    "print": "labor",
+    "brlunicode": "⠇⠁⠃⠕⠗"
+  },
+  {
+    "id": 1117,
+    "print": "labour",
+    "brlunicode": "⠇⠁⠃⠳⠗"
+  },
+  {
+    "id": 1118,
+    "print": "ladder",
+    "brlunicode": "⠇⠁⠙⠙⠻"
+  },
+  {
+    "id": 1119,
+    "print": "laden",
+    "brlunicode": "⠇⠁⠙⠢"
+  },
+  {
+    "id": 1120,
+    "print": "landing",
+    "brlunicode": "⠇⠯⠬"
+  },
+  {
+    "id": 1121,
+    "print": "large",
+    "brlunicode": "⠇⠜⠛⠑"
+  },
+  {
+    "id": 1122,
+    "print": "larger",
+    "brlunicode": "⠇⠜⠛⠻"
+  },
+  {
+    "id": 1123,
+    "print": "largest",
+    "brlunicode": "⠇⠜⠛⠑⠌"
+  },
+  {
+    "id": 1124,
+    "print": "laser",
+    "brlunicode": "⠇⠁⠎⠻"
+  },
+  {
+    "id": 1125,
+    "print": "lasting",
+    "brlunicode": "⠇⠁⠌⠬"
+  },
+  {
+    "id": 1126,
+    "print": "later",
+    "brlunicode": "⠇⠁⠞⠻"
+  },
+  {
+    "id": 1127,
+    "print": "latest",
+    "brlunicode": "⠇⠁⠞⠑⠌"
+  },
+  {
+    "id": 1128,
+    "print": "latex",
+    "brlunicode": "⠇⠁⠞⠑⠭"
+  },
+  {
+    "id": 1129,
+    "print": "latin",
+    "brlunicode": "⠇⠁⠞⠔"
+  },
+  {
+    "id": 1130,
+    "print": "latino",
+    "brlunicode": "⠇⠁⠞⠔⠕"
+  },
+  {
+    "id": 1131,
+    "print": "latter",
+    "brlunicode": "⠇⠁⠞⠞⠻"
+  },
+  {
+    "id": 1132,
+    "print": "laugh",
+    "brlunicode": "⠇⠁⠥⠣"
+  },
+  {
+    "id": 1133,
+    "print": "laughing",
+    "brlunicode": "⠇⠁⠥⠣⠬"
+  },
+  {
+    "id": 1134,
+    "print": "launch",
+    "brlunicode": "⠇⠁⠥⠝⠡"
+  },
+  {
+    "id": 1135,
+    "print": "lawyer",
+    "brlunicode": "⠇⠁⠺⠽⠻"
+  },
+  {
+    "id": 1136,
+    "print": "layer",
+    "brlunicode": "⠇⠁⠽⠻"
+  },
+  {
+    "id": 1137,
+    "print": "layout",
+    "brlunicode": "⠇⠁⠽⠳⠞"
+  },
+  {
+    "id": 1138,
+    "print": "leader",
+    "brlunicode": "⠇⠂⠙⠻"
+  },
+  {
+    "id": 1139,
+    "print": "leaders",
+    "brlunicode": "⠇⠂⠙⠻⠎"
+  },
+  {
+    "id": 1140,
+    "print": "leading",
+    "brlunicode": "⠇⠂⠙⠬"
+  },
+  {
+    "id": 1141,
+    "print": "league",
+    "brlunicode": "⠇⠂⠛⠥⠑"
+  },
+  {
+    "id": 1142,
+    "print": "learn",
+    "brlunicode": "⠇⠑⠜⠝"
+  },
+  {
+    "id": 1143,
+    "print": "learned",
+    "brlunicode": "⠇⠑⠜⠝⠫"
+  },
+  {
+    "id": 1144,
+    "print": "learning",
+    "brlunicode": "⠇⠑⠜⠝⠬"
+  },
+  {
+    "id": 1145,
+    "print": "lease",
+    "brlunicode": "⠇⠂⠎⠑"
+  },
+  {
+    "id": 1146,
+    "print": "leasing",
+    "brlunicode": "⠇⠂⠎⠬"
+  },
+  {
+    "id": 1147,
+    "print": "least",
+    "brlunicode": "⠇⠂⠌"
+  },
+  {
+    "id": 1148,
+    "print": "leather",
+    "brlunicode": "⠇⠂⠮⠗"
+  },
+  {
+    "id": 1149,
+    "print": "leave",
+    "brlunicode": "⠇⠂⠧⠑"
+  },
+  {
+    "id": 1150,
+    "print": "leaving",
+    "brlunicode": "⠇⠂⠧⠬"
+  },
+  {
+    "id": 1151,
+    "print": "leeds",
+    "brlunicode": "⠇⠑⠫⠎"
+  },
+  {
+    "id": 1152,
+    "print": "legal",
+    "brlunicode": "⠇⠑⠛⠁⠇"
+  },
+  {
+    "id": 1153,
+    "print": "legend",
+    "brlunicode": "⠇⠑⠛⠢⠙"
+  },
+  {
+    "id": 1154,
+    "print": "lemon",
+    "brlunicode": "⠇⠑⠍⠕⠝"
+  },
+  {
+    "id": 1155,
+    "print": "lender",
+    "brlunicode": "⠇⠢⠙⠻"
+  },
+  {
+    "id": 1156,
+    "print": "lending",
+    "brlunicode": "⠇⠢⠙⠬"
+  },
+  {
+    "id": 1157,
+    "print": "length",
+    "brlunicode": "⠇⠢⠛⠹"
+  },
+  {
+    "id": 1158,
+    "print": "lesser",
+    "brlunicode": "⠇⠑⠎⠎⠻"
+  },
+  {
+    "id": 1159,
+    "print": "letter",
+    "brlunicode": "⠇⠗"
+  },
+  {
+    "id": 1160,
+    "print": "letters",
+    "brlunicode": "⠇⠗⠎"
+  },
+  {
+    "id": 1161,
+    "print": "letting",
+    "brlunicode": "⠇⠑⠞⠞⠬"
+  },
+  {
+    "id": 1162,
+    "print": "level",
+    "brlunicode": "⠇⠑⠧⠑⠇"
+  },
+  {
+    "id": 1163,
+    "print": "licence",
+    "brlunicode": "⠇⠊⠉⠰⠑"
+  },
+  {
+    "id": 1164,
+    "print": "licking",
+    "brlunicode": "⠇⠊⠉⠅⠬"
+  },
+  {
+    "id": 1165,
+    "print": "light",
+    "brlunicode": "⠇⠊⠣⠞"
+  },
+  {
+    "id": 1166,
+    "print": "lighter",
+    "brlunicode": "⠇⠊⠣⠞⠻"
+  },
+  {
+    "id": 1167,
+    "print": "lighting",
+    "brlunicode": "⠇⠊⠣⠞⠬"
+  },
+  {
+    "id": 1168,
+    "print": "liked",
+    "brlunicode": "⠇⠊⠅⠫"
+  },
+  {
+    "id": 1169,
+    "print": "limit",
+    "brlunicode": "⠇⠊⠍⠊⠞"
+  },
+  {
+    "id": 1170,
+    "print": "linear",
+    "brlunicode": "⠇⠔⠑⠜"
+  },
+  {
+    "id": 1171,
+    "print": "lined",
+    "brlunicode": "⠇⠔⠫"
+  },
+  {
+    "id": 1172,
+    "print": "lingerie",
+    "brlunicode": "⠇⠬⠻⠊⠑"
+  },
+  {
+    "id": 1173,
+    "print": "linked",
+    "brlunicode": "⠇⠔⠅⠫"
+  },
+  {
+    "id": 1174,
+    "print": "linking",
+    "brlunicode": "⠇⠔⠅⠬"
+  },
+  {
+    "id": 1175,
+    "print": "links",
+    "brlunicode": "⠇⠔⠅⠎"
+  },
+  {
+    "id": 1176,
+    "print": "linux",
+    "brlunicode": "⠇⠔⠥⠭"
+  },
+  {
+    "id": 1177,
+    "print": "listed",
+    "brlunicode": "⠇⠊⠌⠫"
+  },
+  {
+    "id": 1178,
+    "print": "listen",
+    "brlunicode": "⠇⠊⠌⠢"
+  },
+  {
+    "id": 1179,
+    "print": "listening",
+    "brlunicode": "⠇⠊⠌⠢⠬"
+  },
+  {
+    "id": 1180,
+    "print": "listing",
+    "brlunicode": "⠇⠊⠌⠬"
+  },
+  {
+    "id": 1181,
+    "print": "little",
+    "brlunicode": "⠇⠇"
+  },
+  {
+    "id": 1182,
+    "print": "lived",
+    "brlunicode": "⠇⠊⠧⠫"
+  },
+  {
+    "id": 1183,
+    "print": "liver",
+    "brlunicode": "⠇⠊⠧⠻"
+  },
+  {
+    "id": 1184,
+    "print": "living",
+    "brlunicode": "⠇⠊⠧⠬"
+  },
+  {
+    "id": 1185,
+    "print": "loaded",
+    "brlunicode": "⠇⠕⠁⠙⠫"
+  },
+  {
+    "id": 1186,
+    "print": "loading",
+    "brlunicode": "⠇⠕⠁⠙⠬"
+  },
+  {
+    "id": 1187,
+    "print": "loads",
+    "brlunicode": "⠇⠕⠁⠙⠎"
+  },
+  {
+    "id": 1188,
+    "print": "lobby",
+    "brlunicode": "⠇⠕⠆⠽"
+  },
+  {
+    "id": 1189,
+    "print": "local",
+    "brlunicode": "⠇⠕⠉⠁⠇"
+  },
+  {
+    "id": 1190,
+    "print": "locked",
+    "brlunicode": "⠇⠕⠉⠅⠫"
+  },
+  {
+    "id": 1191,
+    "print": "locking",
+    "brlunicode": "⠇⠕⠉⠅⠬"
+  },
+  {
+    "id": 1192,
+    "print": "lodge",
+    "brlunicode": "⠇⠕⠙⠛⠑"
+  },
+  {
+    "id": 1193,
+    "print": "lodging",
+    "brlunicode": "⠇⠕⠙⠛⠬"
+  },
+  {
+    "id": 1194,
+    "print": "logged",
+    "brlunicode": "⠇⠕⠶⠫"
+  },
+  {
+    "id": 1195,
+    "print": "logging",
+    "brlunicode": "⠇⠕⠶⠬"
+  },
+  {
+    "id": 1196,
+    "print": "logic",
+    "brlunicode": "⠇⠕⠛⠊⠉"
+  },
+  {
+    "id": 1197,
+    "print": "logos",
+    "brlunicode": "⠇⠕⠛⠕⠎"
+  },
+  {
+    "id": 1198,
+    "print": "lonely",
+    "brlunicode": "⠇⠐⠕⠇⠽"
+  },
+  {
+    "id": 1199,
+    "print": "longer",
+    "brlunicode": "⠇⠰⠛⠻"
+  },
+  {
+    "id": 1200,
+    "print": "longest",
+    "brlunicode": "⠇⠰⠛⠑⠌"
+  },
+  {
+    "id": 1201,
+    "print": "looked",
+    "brlunicode": "⠇⠕⠕⠅⠫"
+  },
+  {
+    "id": 1202,
+    "print": "looking",
+    "brlunicode": "⠇⠕⠕⠅⠬"
+  },
+  {
+    "id": 1203,
+    "print": "loose",
+    "brlunicode": "⠇⠕⠕⠎⠑"
+  },
+  {
+    "id": 1204,
+    "print": "losing",
+    "brlunicode": "⠇⠕⠎⠬"
+  },
+  {
+    "id": 1205,
+    "print": "lotus",
+    "brlunicode": "⠇⠕⠞⠥⠎"
+  },
+  {
+    "id": 1206,
+    "print": "lounge",
+    "brlunicode": "⠇⠳⠝⠛⠑"
+  },
+  {
+    "id": 1207,
+    "print": "loved",
+    "brlunicode": "⠇⠕⠧⠫"
+  },
+  {
+    "id": 1208,
+    "print": "lover",
+    "brlunicode": "⠇⠕⠧⠻"
+  },
+  {
+    "id": 1209,
+    "print": "loving",
+    "brlunicode": "⠇⠕⠧⠬"
+  },
+  {
+    "id": 1210,
+    "print": "lower",
+    "brlunicode": "⠇⠪⠻"
+  },
+  {
+    "id": 1211,
+    "print": "lowest",
+    "brlunicode": "⠇⠪⠑⠌"
+  },
+  {
+    "id": 1212,
+    "print": "lunch",
+    "brlunicode": "⠇⠥⠝⠡"
+  },
+  {
+    "id": 1213,
+    "print": "lying",
+    "brlunicode": "⠇⠽⠬"
+  },
+  {
+    "id": 1214,
+    "print": "lyric",
+    "brlunicode": "⠇⠽⠗⠊⠉"
+  },
+  {
+    "id": 1215,
+    "print": "machine",
+    "brlunicode": "⠍⠁⠡⠔⠑"
+  },
+  {
+    "id": 1216,
+    "print": "macro",
+    "brlunicode": "⠍⠁⠉⠗⠕"
+  },
+  {
+    "id": 1217,
+    "print": "madness",
+    "brlunicode": "⠍⠁⠙⠰⠎"
+  },
+  {
+    "id": 1218,
+    "print": "magic",
+    "brlunicode": "⠍⠁⠛⠊⠉"
+  },
+  {
+    "id": 1219,
+    "print": "maiden",
+    "brlunicode": "⠍⠁⠊⠙⠢"
+  },
+  {
+    "id": 1220,
+    "print": "mailed",
+    "brlunicode": "⠍⠁⠊⠇⠫"
+  },
+  {
+    "id": 1221,
+    "print": "mailing",
+    "brlunicode": "⠍⠁⠊⠇⠬"
+  },
+  {
+    "id": 1222,
+    "print": "maine",
+    "brlunicode": "⠍⠁⠔⠑"
+  },
+  {
+    "id": 1223,
+    "print": "mainland",
+    "brlunicode": "⠍⠁⠔⠇⠯"
+  },
+  {
+    "id": 1224,
+    "print": "mainly",
+    "brlunicode": "⠍⠁⠔⠇⠽"
+  },
+  {
+    "id": 1225,
+    "print": "maker",
+    "brlunicode": "⠍⠁⠅⠻"
+  },
+  {
+    "id": 1226,
+    "print": "making",
+    "brlunicode": "⠍⠁⠅⠬"
+  },
+  {
+    "id": 1227,
+    "print": "malta",
+    "brlunicode": "⠍⠁⠇⠞⠁"
+  },
+  {
+    "id": 1228,
+    "print": "mambo",
+    "brlunicode": "⠍⠁⠍⠃⠕"
+  },
+  {
+    "id": 1229,
+    "print": "mandate",
+    "brlunicode": "⠍⠯⠁⠞⠑"
+  },
+  {
+    "id": 1230,
+    "print": "manner",
+    "brlunicode": "⠍⠁⠝⠝⠻"
+  },
+  {
+    "id": 1231,
+    "print": "manor",
+    "brlunicode": "⠍⠁⠝⠕⠗"
+  },
+  {
+    "id": 1232,
+    "print": "maple",
+    "brlunicode": "⠍⠁⠏⠇⠑"
+  },
+  {
+    "id": 1233,
+    "print": "mapping",
+    "brlunicode": "⠍⠁⠏⠏⠬"
+  },
+  {
+    "id": 1234,
+    "print": "marble",
+    "brlunicode": "⠍⠜⠃⠇⠑"
+  },
+  {
+    "id": 1235,
+    "print": "march",
+    "brlunicode": "⠍⠜⠡"
+  },
+  {
+    "id": 1236,
+    "print": "margin",
+    "brlunicode": "⠍⠜⠛⠔"
+  },
+  {
+    "id": 1237,
+    "print": "marine",
+    "brlunicode": "⠍⠜⠔⠑"
+  },
+  {
+    "id": 1238,
+    "print": "maritime",
+    "brlunicode": "⠍⠜⠊⠐⠞"
+  },
+  {
+    "id": 1239,
+    "print": "marked",
+    "brlunicode": "⠍⠜⠅⠫"
+  },
+  {
+    "id": 1240,
+    "print": "marker",
+    "brlunicode": "⠍⠜⠅⠻"
+  },
+  {
+    "id": 1241,
+    "print": "market",
+    "brlunicode": "⠍⠜⠅⠑⠞"
+  },
+  {
+    "id": 1242,
+    "print": "marking",
+    "brlunicode": "⠍⠜⠅⠬"
+  },
+  {
+    "id": 1243,
+    "print": "marks",
+    "brlunicode": "⠍⠜⠅⠎"
+  },
+  {
+    "id": 1244,
+    "print": "married",
+    "brlunicode": "⠍⠜⠗⠊⠫"
+  },
+  {
+    "id": 1245,
+    "print": "marvel",
+    "brlunicode": "⠍⠜⠧⠑⠇"
+  },
+  {
+    "id": 1246,
+    "print": "maryland",
+    "brlunicode": "⠍⠜⠽⠇⠯"
+  },
+  {
+    "id": 1247,
+    "print": "master",
+    "brlunicode": "⠍⠁⠌⠻"
+  },
+  {
+    "id": 1248,
+    "print": "masters",
+    "brlunicode": "⠍⠁⠌⠻⠎"
+  },
+  {
+    "id": 1249,
+    "print": "match",
+    "brlunicode": "⠍⠁⠞⠡"
+  },
+  {
+    "id": 1250,
+    "print": "matched",
+    "brlunicode": "⠍⠁⠞⠡⠫"
+  },
+  {
+    "id": 1251,
+    "print": "matching",
+    "brlunicode": "⠍⠁⠞⠡⠬"
+  },
+  {
+    "id": 1252,
+    "print": "mating",
+    "brlunicode": "⠍⠁⠞⠬"
+  },
+  {
+    "id": 1253,
+    "print": "matter",
+    "brlunicode": "⠍⠁⠞⠞⠻"
+  },
+  {
+    "id": 1254,
+    "print": "maybe",
+    "brlunicode": "⠍⠁⠽⠃⠑"
+  },
+  {
+    "id": 1255,
+    "print": "meaning",
+    "brlunicode": "⠍⠂⠝⠬"
+  },
+  {
+    "id": 1256,
+    "print": "means",
+    "brlunicode": "⠍⠂⠝⠎"
+  },
+  {
+    "id": 1257,
+    "print": "meant",
+    "brlunicode": "⠍⠂⠝⠞"
+  },
+  {
+    "id": 1258,
+    "print": "medal",
+    "brlunicode": "⠍⠫⠁⠇"
+  },
+  {
+    "id": 1259,
+    "print": "median",
+    "brlunicode": "⠍⠫⠊⠁⠝"
+  },
+  {
+    "id": 1260,
+    "print": "medium",
+    "brlunicode": "⠍⠫⠊⠥⠍"
+  },
+  {
+    "id": 1261,
+    "print": "medline",
+    "brlunicode": "⠍⠫⠇⠔⠑"
+  },
+  {
+    "id": 1262,
+    "print": "meeting",
+    "brlunicode": "⠍⠑⠑⠞⠬"
+  },
+  {
+    "id": 1263,
+    "print": "member",
+    "brlunicode": "⠍⠑⠍⠃⠻"
+  },
+  {
+    "id": 1264,
+    "print": "mental",
+    "brlunicode": "⠍⠢⠞⠁⠇"
+  },
+  {
+    "id": 1265,
+    "print": "mention",
+    "brlunicode": "⠍⠢⠰⠝"
+  },
+  {
+    "id": 1266,
+    "print": "mentioned",
+    "brlunicode": "⠍⠢⠰⠝⠫"
+  },
+  {
+    "id": 1267,
+    "print": "mentor",
+    "brlunicode": "⠍⠢⠞⠕⠗"
+  },
+  {
+    "id": 1268,
+    "print": "merely",
+    "brlunicode": "⠍⠻⠑⠇⠽"
+  },
+  {
+    "id": 1269,
+    "print": "merge",
+    "brlunicode": "⠍⠻⠛⠑"
+  },
+  {
+    "id": 1270,
+    "print": "merger",
+    "brlunicode": "⠍⠻⠛⠻"
+  },
+  {
+    "id": 1271,
+    "print": "merit",
+    "brlunicode": "⠍⠻⠊⠞"
+  },
+  {
+    "id": 1272,
+    "print": "metal",
+    "brlunicode": "⠍⠑⠞⠁⠇"
+  },
+  {
+    "id": 1273,
+    "print": "meter",
+    "brlunicode": "⠍⠑⠞⠻"
+  },
+  {
+    "id": 1274,
+    "print": "method",
+    "brlunicode": "⠍⠑⠹⠕⠙"
+  },
+  {
+    "id": 1275,
+    "print": "metro",
+    "brlunicode": "⠍⠑⠞⠗⠕"
+  },
+  {
+    "id": 1276,
+    "print": "miami",
+    "brlunicode": "⠍⠊⠁⠍⠊"
+  },
+  {
+    "id": 1277,
+    "print": "micro",
+    "brlunicode": "⠍⠊⠉⠗⠕"
+  },
+  {
+    "id": 1278,
+    "print": "might",
+    "brlunicode": "⠍⠊⠣⠞"
+  },
+  {
+    "id": 1279,
+    "print": "mighty",
+    "brlunicode": "⠍⠊⠣⠞⠽"
+  },
+  {
+    "id": 1280,
+    "print": "milan",
+    "brlunicode": "⠍⠊⠇⠁⠝"
+  },
+  {
+    "id": 1281,
+    "print": "miller",
+    "brlunicode": "⠍⠊⠇⠇⠻"
+  },
+  {
+    "id": 1282,
+    "print": "mills",
+    "brlunicode": "⠍⠊⠇⠇⠎"
+  },
+  {
+    "id": 1283,
+    "print": "mineral",
+    "brlunicode": "⠍⠔⠻⠁⠇"
+  },
+  {
+    "id": 1284,
+    "print": "mining",
+    "brlunicode": "⠍⠔⠬"
+  },
+  {
+    "id": 1285,
+    "print": "minister",
+    "brlunicode": "⠍⠔⠊⠌⠻"
+  },
+  {
+    "id": 1286,
+    "print": "minor",
+    "brlunicode": "⠍⠔⠕⠗"
+  },
+  {
+    "id": 1287,
+    "print": "minus",
+    "brlunicode": "⠍⠔⠥⠎"
+  },
+  {
+    "id": 1288,
+    "print": "minute",
+    "brlunicode": "⠍⠔⠥⠞⠑"
+  },
+  {
+    "id": 1289,
+    "print": "missed",
+    "brlunicode": "⠍⠊⠎⠎⠫"
+  },
+  {
+    "id": 1290,
+    "print": "missing",
+    "brlunicode": "⠍⠊⠎⠎⠬"
+  },
+  {
+    "id": 1291,
+    "print": "mission",
+    "brlunicode": "⠍⠊⠎⠨⠝"
+  },
+  {
+    "id": 1292,
+    "print": "mixed",
+    "brlunicode": "⠍⠊⠭⠫"
+  },
+  {
+    "id": 1293,
+    "print": "mixer",
+    "brlunicode": "⠍⠊⠭⠻"
+  },
+  {
+    "id": 1294,
+    "print": "mixing",
+    "brlunicode": "⠍⠊⠭⠬"
+  },
+  {
+    "id": 1295,
+    "print": "model",
+    "brlunicode": "⠍⠕⠙⠑⠇"
+  },
+  {
+    "id": 1296,
+    "print": "modem",
+    "brlunicode": "⠍⠕⠙⠑⠍"
+  },
+  {
+    "id": 1297,
+    "print": "modern",
+    "brlunicode": "⠍⠕⠙⠻⠝"
+  },
+  {
+    "id": 1298,
+    "print": "moment",
+    "brlunicode": "⠍⠕⠰⠞"
+  },
+  {
+    "id": 1299,
+    "print": "monday",
+    "brlunicode": "⠍⠕⠝⠐⠙"
+  },
+  {
+    "id": 1300,
+    "print": "money",
+    "brlunicode": "⠍⠐⠕⠽"
+  },
+  {
+    "id": 1301,
+    "print": "monster",
+    "brlunicode": "⠍⠕⠝⠌⠻"
+  },
+  {
+    "id": 1302,
+    "print": "month",
+    "brlunicode": "⠍⠕⠝⠹"
+  },
+  {
+    "id": 1303,
+    "print": "moral",
+    "brlunicode": "⠍⠕⠗⠁⠇"
+  },
+  {
+    "id": 1304,
+    "print": "morning",
+    "brlunicode": "⠍⠕⠗⠝⠬"
+  },
+  {
+    "id": 1305,
+    "print": "moscow",
+    "brlunicode": "⠍⠕⠎⠉⠪"
+  },
+  {
+    "id": 1306,
+    "print": "mostly",
+    "brlunicode": "⠍⠕⠌⠇⠽"
+  },
+  {
+    "id": 1307,
+    "print": "motel",
+    "brlunicode": "⠍⠕⠞⠑⠇"
+  },
+  {
+    "id": 1308,
+    "print": "mother",
+    "brlunicode": "⠐⠍"
+  },
+  {
+    "id": 1309,
+    "print": "motion",
+    "brlunicode": "⠍⠕⠰⠝"
+  },
+  {
+    "id": 1310,
+    "print": "motor",
+    "brlunicode": "⠍⠕⠞⠕⠗"
+  },
+  {
+    "id": 1311,
+    "print": "mount",
+    "brlunicode": "⠍⠨⠞"
+  },
+  {
+    "id": 1312,
+    "print": "mountain",
+    "brlunicode": "⠍⠨⠞⠁⠔"
+  },
+  {
+    "id": 1313,
+    "print": "mounted",
+    "brlunicode": "⠍⠨⠞⠫"
+  },
+  {
+    "id": 1314,
+    "print": "mounting",
+    "brlunicode": "⠍⠨⠞⠬"
+  },
+  {
+    "id": 1315,
+    "print": "mouse",
+    "brlunicode": "⠍⠳⠎⠑"
+  },
+  {
+    "id": 1316,
+    "print": "mouth",
+    "brlunicode": "⠍⠳⠹"
+  },
+  {
+    "id": 1317,
+    "print": "moved",
+    "brlunicode": "⠍⠕⠧⠫"
+  },
+  {
+    "id": 1318,
+    "print": "movie",
+    "brlunicode": "⠍⠕⠧⠊⠑"
+  },
+  {
+    "id": 1319,
+    "print": "moving",
+    "brlunicode": "⠍⠕⠧⠬"
+  },
+  {
+    "id": 1320,
+    "print": "munich",
+    "brlunicode": "⠍⠥⠝⠊⠡"
+  },
+  {
+    "id": 1321,
+    "print": "music",
+    "brlunicode": "⠍⠥⠎⠊⠉"
+  },
+  {
+    "id": 1322,
+    "print": "mystery",
+    "brlunicode": "⠍⠽⠌⠻⠽"
+  },
+  {
+    "id": 1323,
+    "print": "named",
+    "brlunicode": "⠐⠝⠙"
+  },
+  {
+    "id": 1324,
+    "print": "namely",
+    "brlunicode": "⠐⠝⠇⠽"
+  },
+  {
+    "id": 1325,
+    "print": "names",
+    "brlunicode": "⠐⠝⠎"
+  },
+  {
+    "id": 1326,
+    "print": "narrow",
+    "brlunicode": "⠝⠜⠗⠪"
+  },
+  {
+    "id": 1327,
+    "print": "nasty",
+    "brlunicode": "⠝⠁⠌⠽"
+  },
+  {
+    "id": 1328,
+    "print": "nation",
+    "brlunicode": "⠝⠁⠰⠝"
+  },
+  {
+    "id": 1329,
+    "print": "naval",
+    "brlunicode": "⠝⠁⠧⠁⠇"
+  },
+  {
+    "id": 1330,
+    "print": "nearby",
+    "brlunicode": "⠝⠑⠜⠃⠽"
+  },
+  {
+    "id": 1331,
+    "print": "nearest",
+    "brlunicode": "⠝⠑⠜⠑⠌"
+  },
+  {
+    "id": 1332,
+    "print": "nearly",
+    "brlunicode": "⠝⠑⠜⠇⠽"
+  },
+  {
+    "id": 1333,
+    "print": "necessary",
+    "brlunicode": "⠝⠑⠉"
+  },
+  {
+    "id": 1334,
+    "print": "needed",
+    "brlunicode": "⠝⠑⠫⠫"
+  },
+  {
+    "id": 1335,
+    "print": "needle",
+    "brlunicode": "⠝⠑⠫⠇⠑"
+  },
+  {
+    "id": 1336,
+    "print": "neither",
+    "brlunicode": "⠝⠑⠊"
+  },
+  {
+    "id": 1337,
+    "print": "nepal",
+    "brlunicode": "⠝⠑⠏⠁⠇"
+  },
+  {
+    "id": 1338,
+    "print": "nerve",
+    "brlunicode": "⠝⠻⠧⠑"
+  },
+  {
+    "id": 1339,
+    "print": "nervous",
+    "brlunicode": "⠝⠻⠧⠳⠎"
+  },
+  {
+    "id": 1340,
+    "print": "nested",
+    "brlunicode": "⠝⠑⠌⠫"
+  },
+  {
+    "id": 1341,
+    "print": "network",
+    "brlunicode": "⠝⠑⠞⠐⠺"
+  },
+  {
+    "id": 1342,
+    "print": "never",
+    "brlunicode": "⠝⠐⠑"
+  },
+  {
+    "id": 1343,
+    "print": "newark",
+    "brlunicode": "⠝⠑⠺⠜⠅"
+  },
+  {
+    "id": 1344,
+    "print": "newer",
+    "brlunicode": "⠝⠑⠺⠻"
+  },
+  {
+    "id": 1345,
+    "print": "newest",
+    "brlunicode": "⠝⠑⠺⠑⠌"
+  },
+  {
+    "id": 1346,
+    "print": "newly",
+    "brlunicode": "⠝⠑⠺⠇⠽"
+  },
+  {
+    "id": 1347,
+    "print": "niger",
+    "brlunicode": "⠝⠊⠛⠻"
+  },
+  {
+    "id": 1348,
+    "print": "night",
+    "brlunicode": "⠝⠊⠣⠞"
+  },
+  {
+    "id": 1349,
+    "print": "noise",
+    "brlunicode": "⠝⠕⠊⠎⠑"
+  },
+  {
+    "id": 1350,
+    "print": "north",
+    "brlunicode": "⠝⠕⠗⠹"
+  },
+  {
+    "id": 1351,
+    "print": "noted",
+    "brlunicode": "⠝⠕⠞⠫"
+  },
+  {
+    "id": 1352,
+    "print": "nothing",
+    "brlunicode": "⠝⠕⠹⠬"
+  },
+  {
+    "id": 1353,
+    "print": "notion",
+    "brlunicode": "⠝⠕⠰⠝"
+  },
+  {
+    "id": 1354,
+    "print": "novel",
+    "brlunicode": "⠝⠕⠧⠑⠇"
+  },
+  {
+    "id": 1355,
+    "print": "nowhere",
+    "brlunicode": "⠝⠕⠐⠱"
+  },
+  {
+    "id": 1356,
+    "print": "nudist",
+    "brlunicode": "⠝⠥⠙⠊⠌"
+  },
+  {
+    "id": 1357,
+    "print": "nudity",
+    "brlunicode": "⠝⠥⠙⠰⠽"
+  },
+  {
+    "id": 1358,
+    "print": "number",
+    "brlunicode": "⠝⠥⠍⠃⠻"
+  },
+  {
+    "id": 1359,
+    "print": "nurse",
+    "brlunicode": "⠝⠥⠗⠎⠑"
+  },
+  {
+    "id": 1360,
+    "print": "nursing",
+    "brlunicode": "⠝⠥⠗⠎⠬"
+  },
+  {
+    "id": 1361,
+    "print": "nylon",
+    "brlunicode": "⠝⠽⠇⠕⠝"
+  },
+  {
+    "id": 1362,
+    "print": "oakland",
+    "brlunicode": "⠕⠁⠅⠇⠯"
+  },
+  {
+    "id": 1363,
+    "print": "oasis",
+    "brlunicode": "⠕⠁⠎⠊⠎"
+  },
+  {
+    "id": 1364,
+    "print": "obtain",
+    "brlunicode": "⠕⠃⠞⠁⠔"
+  },
+  {
+    "id": 1365,
+    "print": "occasion",
+    "brlunicode": "⠕⠒⠁⠨⠝"
+  },
+  {
+    "id": 1366,
+    "print": "occur",
+    "brlunicode": "⠕⠒⠥⠗"
+  },
+  {
+    "id": 1367,
+    "print": "occurs",
+    "brlunicode": "⠕⠒⠥⠗⠎"
+  },
+  {
+    "id": 1368,
+    "print": "ocean",
+    "brlunicode": "⠕⠉⠂⠝"
+  },
+  {
+    "id": 1369,
+    "print": "offense",
+    "brlunicode": "⠷⠋⠢⠎⠑"
+  },
+  {
+    "id": 1370,
+    "print": "offer",
+    "brlunicode": "⠷⠋⠻"
+  },
+  {
+    "id": 1371,
+    "print": "offered",
+    "brlunicode": "⠷⠋⠻⠫"
+  },
+  {
+    "id": 1372,
+    "print": "offering",
+    "brlunicode": "⠷⠋⠻⠬"
+  },
+  {
+    "id": 1373,
+    "print": "office",
+    "brlunicode": "⠷⠋⠊⠉⠑"
+  },
+  {
+    "id": 1374,
+    "print": "officer",
+    "brlunicode": "⠷⠋⠊⠉⠻"
+  },
+  {
+    "id": 1375,
+    "print": "offset",
+    "brlunicode": "⠷⠋⠎⠑⠞"
+  },
+  {
+    "id": 1376,
+    "print": "often",
+    "brlunicode": "⠷⠞⠢"
+  },
+  {
+    "id": 1377,
+    "print": "older",
+    "brlunicode": "⠕⠇⠙⠻"
+  },
+  {
+    "id": 1378,
+    "print": "oldest",
+    "brlunicode": "⠕⠇⠙⠑⠌"
+  },
+  {
+    "id": 1379,
+    "print": "omaha",
+    "brlunicode": "⠕⠍⠁⠓⠁"
+  },
+  {
+    "id": 1380,
+    "print": "omega",
+    "brlunicode": "⠕⠍⠑⠛⠁"
+  },
+  {
+    "id": 1381,
+    "print": "ongoing",
+    "brlunicode": "⠕⠝⠛⠕⠬"
+  },
+  {
+    "id": 1382,
+    "print": "onion",
+    "brlunicode": "⠕⠝⠊⠕⠝"
+  },
+  {
+    "id": 1383,
+    "print": "online",
+    "brlunicode": "⠕⠝⠇⠔⠑"
+  },
+  {
+    "id": 1384,
+    "print": "opened",
+    "brlunicode": "⠕⠏⠢⠫"
+  },
+  {
+    "id": 1385,
+    "print": "opening",
+    "brlunicode": "⠕⠏⠢⠬"
+  },
+  {
+    "id": 1386,
+    "print": "opera",
+    "brlunicode": "⠕⠏⠻⠁"
+  },
+  {
+    "id": 1387,
+    "print": "option",
+    "brlunicode": "⠕⠏⠰⠝"
+  },
+  {
+    "id": 1388,
+    "print": "orbit",
+    "brlunicode": "⠕⠗⠃⠊⠞"
+  },
+  {
+    "id": 1389,
+    "print": "order",
+    "brlunicode": "⠕⠗⠙⠻"
+  },
+  {
+    "id": 1390,
+    "print": "ordered",
+    "brlunicode": "⠕⠗⠙⠻⠫"
+  },
+  {
+    "id": 1391,
+    "print": "ordering",
+    "brlunicode": "⠕⠗⠙⠻⠬"
+  },
+  {
+    "id": 1392,
+    "print": "origin",
+    "brlunicode": "⠕⠗⠊⠛⠔"
+  },
+  {
+    "id": 1393,
+    "print": "other",
+    "brlunicode": "⠕⠮⠗"
+  },
+  {
+    "id": 1394,
+    "print": "outer",
+    "brlunicode": "⠳⠞⠻"
+  },
+  {
+    "id": 1395,
+    "print": "outlet",
+    "brlunicode": "⠳⠞⠇⠑⠞"
+  },
+  {
+    "id": 1396,
+    "print": "outline",
+    "brlunicode": "⠳⠞⠇⠔⠑"
+  },
+  {
+    "id": 1397,
+    "print": "outlined",
+    "brlunicode": "⠳⠞⠇⠔⠫"
+  },
+  {
+    "id": 1398,
+    "print": "output",
+    "brlunicode": "⠳⠞⠏⠥⠞"
+  },
+  {
+    "id": 1399,
+    "print": "outreach",
+    "brlunicode": "⠳⠞⠗⠂⠡"
+  },
+  {
+    "id": 1400,
+    "print": "outstanding",
+    "brlunicode": "⠳⠞⠌⠯⠬"
+  },
+  {
+    "id": 1401,
+    "print": "owned",
+    "brlunicode": "⠪⠝⠫"
+  },
+  {
+    "id": 1402,
+    "print": "owner",
+    "brlunicode": "⠪⠝⠻"
+  },
+  {
+    "id": 1403,
+    "print": "oxford",
+    "brlunicode": "⠕⠭⠿⠙"
+  },
+  {
+    "id": 1404,
+    "print": "oxide",
+    "brlunicode": "⠕⠭⠊⠙⠑"
+  },
+  {
+    "id": 1405,
+    "print": "oxygen",
+    "brlunicode": "⠕⠭⠽⠛⠢"
+  },
+  {
+    "id": 1406,
+    "print": "ozone",
+    "brlunicode": "⠕⠵⠐⠕"
+  },
+  {
+    "id": 1407,
+    "print": "packed",
+    "brlunicode": "⠏⠁⠉⠅⠫"
+  },
+  {
+    "id": 1408,
+    "print": "packing",
+    "brlunicode": "⠏⠁⠉⠅⠬"
+  },
+  {
+    "id": 1409,
+    "print": "painful",
+    "brlunicode": "⠏⠁⠔⠰⠇"
+  },
+  {
+    "id": 1410,
+    "print": "paint",
+    "brlunicode": "⠏⠁⠔⠞"
+  },
+  {
+    "id": 1411,
+    "print": "painted",
+    "brlunicode": "⠏⠁⠔⠞⠫"
+  },
+  {
+    "id": 1412,
+    "print": "painting",
+    "brlunicode": "⠏⠁⠔⠞⠬"
+  },
+  {
+    "id": 1413,
+    "print": "panel",
+    "brlunicode": "⠏⠁⠝⠑⠇"
+  },
+  {
+    "id": 1414,
+    "print": "panic",
+    "brlunicode": "⠏⠁⠝⠊⠉"
+  },
+  {
+    "id": 1415,
+    "print": "pants",
+    "brlunicode": "⠏⠁⠝⠞⠎"
+  },
+  {
+    "id": 1416,
+    "print": "paper",
+    "brlunicode": "⠏⠁⠏⠻"
+  },
+  {
+    "id": 1417,
+    "print": "papers",
+    "brlunicode": "⠏⠁⠏⠻⠎"
+  },
+  {
+    "id": 1418,
+    "print": "papua",
+    "brlunicode": "⠏⠁⠏⠥⠁"
+  },
+  {
+    "id": 1419,
+    "print": "parade",
+    "brlunicode": "⠏⠜⠁⠙⠑"
+  },
+  {
+    "id": 1420,
+    "print": "parcel",
+    "brlunicode": "⠏⠜⠉⠑⠇"
+  },
+  {
+    "id": 1421,
+    "print": "parent",
+    "brlunicode": "⠏⠜⠢⠞"
+  },
+  {
+    "id": 1422,
+    "print": "parenting",
+    "brlunicode": "⠏⠜⠢⠞⠬"
+  },
+  {
+    "id": 1423,
+    "print": "paris",
+    "brlunicode": "⠏⠜⠊⠎"
+  },
+  {
+    "id": 1424,
+    "print": "parish",
+    "brlunicode": "⠏⠜⠊⠩"
+  },
+  {
+    "id": 1425,
+    "print": "parking",
+    "brlunicode": "⠏⠜⠅⠬"
+  },
+  {
+    "id": 1426,
+    "print": "parks",
+    "brlunicode": "⠏⠜⠅⠎"
+  },
+  {
+    "id": 1427,
+    "print": "partial",
+    "brlunicode": "⠐⠏⠊⠁⠇"
+  },
+  {
+    "id": 1428,
+    "print": "partition",
+    "brlunicode": "⠐⠏⠊⠰⠝"
+  },
+  {
+    "id": 1429,
+    "print": "partly",
+    "brlunicode": "⠐⠏⠇⠽"
+  },
+  {
+    "id": 1430,
+    "print": "partner",
+    "brlunicode": "⠐⠏⠝⠻"
+  },
+  {
+    "id": 1431,
+    "print": "parts",
+    "brlunicode": "⠐⠏⠎"
+  },
+  {
+    "id": 1432,
+    "print": "party",
+    "brlunicode": "⠐⠏⠽"
+  },
+  {
+    "id": 1433,
+    "print": "passed",
+    "brlunicode": "⠏⠁⠎⠎⠫"
+  },
+  {
+    "id": 1434,
+    "print": "passing",
+    "brlunicode": "⠏⠁⠎⠎⠬"
+  },
+  {
+    "id": 1435,
+    "print": "passion",
+    "brlunicode": "⠏⠁⠎⠨⠝"
+  },
+  {
+    "id": 1436,
+    "print": "pasta",
+    "brlunicode": "⠏⠁⠌⠁"
+  },
+  {
+    "id": 1437,
+    "print": "paste",
+    "brlunicode": "⠏⠁⠌⠑"
+  },
+  {
+    "id": 1438,
+    "print": "pastor",
+    "brlunicode": "⠏⠁⠌⠕⠗"
+  },
+  {
+    "id": 1439,
+    "print": "patch",
+    "brlunicode": "⠏⠁⠞⠡"
+  },
+  {
+    "id": 1440,
+    "print": "patent",
+    "brlunicode": "⠏⠁⠞⠢⠞"
+  },
+  {
+    "id": 1441,
+    "print": "patio",
+    "brlunicode": "⠏⠁⠞⠊⠕"
+  },
+  {
+    "id": 1442,
+    "print": "paxil",
+    "brlunicode": "⠏⠁⠭⠊⠇"
+  },
+  {
+    "id": 1443,
+    "print": "payday",
+    "brlunicode": "⠏⠁⠽⠐⠙"
+  },
+  {
+    "id": 1444,
+    "print": "paying",
+    "brlunicode": "⠏⠁⠽⠬"
+  },
+  {
+    "id": 1445,
+    "print": "payment",
+    "brlunicode": "⠏⠁⠽⠰⠞"
+  },
+  {
+    "id": 1446,
+    "print": "peace",
+    "brlunicode": "⠏⠂⠉⠑"
+  },
+  {
+    "id": 1447,
+    "print": "peeing",
+    "brlunicode": "⠏⠑⠑⠬"
+  },
+  {
+    "id": 1448,
+    "print": "pencil",
+    "brlunicode": "⠏⠢⠉⠊⠇"
+  },
+  {
+    "id": 1449,
+    "print": "pending",
+    "brlunicode": "⠏⠢⠙⠬"
+  },
+  {
+    "id": 1450,
+    "print": "penguin",
+    "brlunicode": "⠏⠢⠛⠥⠔"
+  },
+  {
+    "id": 1451,
+    "print": "pension",
+    "brlunicode": "⠏⠢⠨⠝"
+  },
+  {
+    "id": 1452,
+    "print": "people",
+    "brlunicode": "⠏"
+  },
+  {
+    "id": 1453,
+    "print": "pepper",
+    "brlunicode": "⠏⠑⠏⠏⠻"
+  },
+  {
+    "id": 1454,
+    "print": "perceived",
+    "brlunicode": "⠏⠻⠉⠧⠙"
+  },
+  {
+    "id": 1455,
+    "print": "percent",
+    "brlunicode": "⠏⠻⠉⠢⠞"
+  },
+  {
+    "id": 1456,
+    "print": "perform",
+    "brlunicode": "⠏⠻⠿⠍"
+  },
+  {
+    "id": 1457,
+    "print": "performed",
+    "brlunicode": "⠏⠻⠿⠍⠫"
+  },
+  {
+    "id": 1458,
+    "print": "performer",
+    "brlunicode": "⠏⠻⠿⠍⠻"
+  },
+  {
+    "id": 1459,
+    "print": "performing",
+    "brlunicode": "⠏⠻⠿⠍⠬"
+  },
+  {
+    "id": 1460,
+    "print": "performs",
+    "brlunicode": "⠏⠻⠿⠍⠎"
+  },
+  {
+    "id": 1461,
+    "print": "perhaps",
+    "brlunicode": "⠏⠻⠓"
+  },
+  {
+    "id": 1462,
+    "print": "period",
+    "brlunicode": "⠏⠻⠊⠕⠙"
+  },
+  {
+    "id": 1463,
+    "print": "permit",
+    "brlunicode": "⠏⠻⠍⠊⠞"
+  },
+  {
+    "id": 1464,
+    "print": "person",
+    "brlunicode": "⠏⠻⠎⠕⠝"
+  },
+  {
+    "id": 1465,
+    "print": "perth",
+    "brlunicode": "⠏⠻⠹"
+  },
+  {
+    "id": 1466,
+    "print": "phase",
+    "brlunicode": "⠏⠓⠁⠎⠑"
+  },
+  {
+    "id": 1467,
+    "print": "phone",
+    "brlunicode": "⠏⠓⠐⠕"
+  },
+  {
+    "id": 1468,
+    "print": "photo",
+    "brlunicode": "⠏⠓⠕⠞⠕"
+  },
+  {
+    "id": 1469,
+    "print": "piano",
+    "brlunicode": "⠏⠊⠁⠝⠕"
+  },
+  {
+    "id": 1470,
+    "print": "picked",
+    "brlunicode": "⠏⠊⠉⠅⠫"
+  },
+  {
+    "id": 1471,
+    "print": "picking",
+    "brlunicode": "⠏⠊⠉⠅⠬"
+  },
+  {
+    "id": 1472,
+    "print": "piece",
+    "brlunicode": "⠏⠊⠑⠉⠑"
+  },
+  {
+    "id": 1473,
+    "print": "pillow",
+    "brlunicode": "⠏⠊⠇⠇⠪"
+  },
+  {
+    "id": 1474,
+    "print": "pilot",
+    "brlunicode": "⠏⠊⠇⠕⠞"
+  },
+  {
+    "id": 1475,
+    "print": "pitch",
+    "brlunicode": "⠏⠊⠞⠡"
+  },
+  {
+    "id": 1476,
+    "print": "pixel",
+    "brlunicode": "⠏⠊⠭⠑⠇"
+  },
+  {
+    "id": 1477,
+    "print": "pizza",
+    "brlunicode": "⠏⠊⠵⠵⠁"
+  },
+  {
+    "id": 1478,
+    "print": "place",
+    "brlunicode": "⠏⠇⠁⠉⠑"
+  },
+  {
+    "id": 1479,
+    "print": "placed",
+    "brlunicode": "⠏⠇⠁⠉⠫"
+  },
+  {
+    "id": 1480,
+    "print": "placing",
+    "brlunicode": "⠏⠇⠁⠉⠬"
+  },
+  {
+    "id": 1481,
+    "print": "plain",
+    "brlunicode": "⠏⠇⠁⠔"
+  },
+  {
+    "id": 1482,
+    "print": "plane",
+    "brlunicode": "⠏⠇⠁⠝⠑"
+  },
+  {
+    "id": 1483,
+    "print": "plant",
+    "brlunicode": "⠏⠇⠁⠝⠞"
+  },
+  {
+    "id": 1484,
+    "print": "plate",
+    "brlunicode": "⠏⠇⠁⠞⠑"
+  },
+  {
+    "id": 1485,
+    "print": "played",
+    "brlunicode": "⠏⠇⠁⠽⠫"
+  },
+  {
+    "id": 1486,
+    "print": "player",
+    "brlunicode": "⠏⠇⠁⠽⠻"
+  },
+  {
+    "id": 1487,
+    "print": "playing",
+    "brlunicode": "⠏⠇⠁⠽⠬"
+  },
+  {
+    "id": 1488,
+    "print": "plaza",
+    "brlunicode": "⠏⠇⠁⠵⠁"
+  },
+  {
+    "id": 1489,
+    "print": "please",
+    "brlunicode": "⠏⠇⠂⠎⠑"
+  },
+  {
+    "id": 1490,
+    "print": "pleased",
+    "brlunicode": "⠏⠇⠂⠎⠫"
+  },
+  {
+    "id": 1491,
+    "print": "pledge",
+    "brlunicode": "⠏⠇⠫⠛⠑"
+  },
+  {
+    "id": 1492,
+    "print": "plenty",
+    "brlunicode": "⠏⠇⠢⠞⠽"
+  },
+  {
+    "id": 1493,
+    "print": "point",
+    "brlunicode": "⠏⠕⠔⠞"
+  },
+  {
+    "id": 1494,
+    "print": "pointed",
+    "brlunicode": "⠏⠕⠔⠞⠫"
+  },
+  {
+    "id": 1495,
+    "print": "pointer",
+    "brlunicode": "⠏⠕⠔⠞⠻"
+  },
+  {
+    "id": 1496,
+    "print": "pointing",
+    "brlunicode": "⠏⠕⠔⠞⠬"
+  },
+  {
+    "id": 1497,
+    "print": "poker",
+    "brlunicode": "⠏⠕⠅⠻"
+  },
+  {
+    "id": 1498,
+    "print": "poland",
+    "brlunicode": "⠏⠕⠇⠯"
+  },
+  {
+    "id": 1499,
+    "print": "polar",
+    "brlunicode": "⠏⠕⠇⠜"
+  },
+  {
+    "id": 1500,
+    "print": "polish",
+    "brlunicode": "⠏⠕⠇⠊⠩"
+  },
+  {
+    "id": 1501,
+    "print": "polls",
+    "brlunicode": "⠏⠕⠇⠇⠎"
+  },
+  {
+    "id": 1502,
+    "print": "portion",
+    "brlunicode": "⠏⠕⠗⠰⠝"
+  },
+  {
+    "id": 1503,
+    "print": "posing",
+    "brlunicode": "⠏⠕⠎⠬"
+  },
+  {
+    "id": 1504,
+    "print": "postal",
+    "brlunicode": "⠏⠕⠌⠁⠇"
+  },
+  {
+    "id": 1505,
+    "print": "posted",
+    "brlunicode": "⠏⠕⠌⠫"
+  },
+  {
+    "id": 1506,
+    "print": "poster",
+    "brlunicode": "⠏⠕⠌⠻"
+  },
+  {
+    "id": 1507,
+    "print": "posting",
+    "brlunicode": "⠏⠕⠌⠬"
+  },
+  {
+    "id": 1508,
+    "print": "potter",
+    "brlunicode": "⠏⠕⠞⠞⠻"
+  },
+  {
+    "id": 1509,
+    "print": "pound",
+    "brlunicode": "⠏⠨⠙"
+  },
+  {
+    "id": 1510,
+    "print": "powder",
+    "brlunicode": "⠏⠪⠙⠻"
+  },
+  {
+    "id": 1511,
+    "print": "power",
+    "brlunicode": "⠏⠪⠻"
+  },
+  {
+    "id": 1512,
+    "print": "powered",
+    "brlunicode": "⠏⠪⠻⠫"
+  },
+  {
+    "id": 1513,
+    "print": "powerful",
+    "brlunicode": "⠏⠪⠻⠰⠇"
+  },
+  {
+    "id": 1514,
+    "print": "prayer",
+    "brlunicode": "⠏⠗⠁⠽⠻"
+  },
+  {
+    "id": 1515,
+    "print": "prefer",
+    "brlunicode": "⠏⠗⠑⠋⠻"
+  },
+  {
+    "id": 1516,
+    "print": "prepaid",
+    "brlunicode": "⠏⠗⠑⠏⠙"
+  },
+  {
+    "id": 1517,
+    "print": "press",
+    "brlunicode": "⠏⠗⠑⠎⠎"
+  },
+  {
+    "id": 1518,
+    "print": "priced",
+    "brlunicode": "⠏⠗⠊⠉⠫"
+  },
+  {
+    "id": 1519,
+    "print": "pricing",
+    "brlunicode": "⠏⠗⠊⠉⠬"
+  },
+  {
+    "id": 1520,
+    "print": "pride",
+    "brlunicode": "⠏⠗⠊⠙⠑"
+  },
+  {
+    "id": 1521,
+    "print": "priest",
+    "brlunicode": "⠏⠗⠊⠑⠌"
+  },
+  {
+    "id": 1522,
+    "print": "prime",
+    "brlunicode": "⠏⠗⠊⠍⠑"
+  },
+  {
+    "id": 1523,
+    "print": "print",
+    "brlunicode": "⠏⠗⠔⠞"
+  },
+  {
+    "id": 1524,
+    "print": "printed",
+    "brlunicode": "⠏⠗⠔⠞⠫"
+  },
+  {
+    "id": 1525,
+    "print": "printer",
+    "brlunicode": "⠏⠗⠔⠞⠻"
+  },
+  {
+    "id": 1526,
+    "print": "printing",
+    "brlunicode": "⠏⠗⠔⠞⠬"
+  },
+  {
+    "id": 1527,
+    "print": "prior",
+    "brlunicode": "⠏⠗⠊⠕⠗"
+  },
+  {
+    "id": 1528,
+    "print": "prize",
+    "brlunicode": "⠏⠗⠊⠵⠑"
+  },
+  {
+    "id": 1529,
+    "print": "probe",
+    "brlunicode": "⠏⠗⠕⠃⠑"
+  },
+  {
+    "id": 1530,
+    "print": "profit",
+    "brlunicode": "⠏⠗⠷⠊⠞"
+  },
+  {
+    "id": 1531,
+    "print": "proof",
+    "brlunicode": "⠏⠗⠕⠷"
+  },
+  {
+    "id": 1532,
+    "print": "proper",
+    "brlunicode": "⠏⠗⠕⠏⠻"
+  },
+  {
+    "id": 1533,
+    "print": "proud",
+    "brlunicode": "⠏⠗⠳⠙"
+  },
+  {
+    "id": 1534,
+    "print": "prove",
+    "brlunicode": "⠏⠗⠕⠧⠑"
+  },
+  {
+    "id": 1535,
+    "print": "proved",
+    "brlunicode": "⠏⠗⠕⠧⠫"
+  },
+  {
+    "id": 1536,
+    "print": "proven",
+    "brlunicode": "⠏⠗⠕⠧⠢"
+  },
+  {
+    "id": 1537,
+    "print": "proxy",
+    "brlunicode": "⠏⠗⠕⠭⠽"
+  },
+  {
+    "id": 1538,
+    "print": "pulled",
+    "brlunicode": "⠏⠥⠇⠇⠫"
+  },
+  {
+    "id": 1539,
+    "print": "pulling",
+    "brlunicode": "⠏⠥⠇⠇⠬"
+  },
+  {
+    "id": 1540,
+    "print": "pulse",
+    "brlunicode": "⠏⠥⠇⠎⠑"
+  },
+  {
+    "id": 1541,
+    "print": "punch",
+    "brlunicode": "⠏⠥⠝⠡"
+  },
+  {
+    "id": 1542,
+    "print": "puppy",
+    "brlunicode": "⠏⠥⠏⠏⠽"
+  },
+  {
+    "id": 1543,
+    "print": "purse",
+    "brlunicode": "⠏⠥⠗⠎⠑"
+  },
+  {
+    "id": 1544,
+    "print": "pushed",
+    "brlunicode": "⠏⠥⠩⠫"
+  },
+  {
+    "id": 1545,
+    "print": "pushing",
+    "brlunicode": "⠏⠥⠩⠬"
+  },
+  {
+    "id": 1546,
+    "print": "putting",
+    "brlunicode": "⠏⠥⠞⠞⠬"
+  },
+  {
+    "id": 1547,
+    "print": "python",
+    "brlunicode": "⠏⠽⠹⠕⠝"
+  },
+  {
+    "id": 1548,
+    "print": "qatar",
+    "brlunicode": "⠟⠁⠞⠜"
+  },
+  {
+    "id": 1549,
+    "print": "quarter",
+    "brlunicode": "⠟⠥⠜⠞⠻"
+  },
+  {
+    "id": 1550,
+    "print": "queen",
+    "brlunicode": "⠟⠥⠑⠢"
+  },
+  {
+    "id": 1551,
+    "print": "queens",
+    "brlunicode": "⠟⠥⠑⠢⠎"
+  },
+  {
+    "id": 1552,
+    "print": "query",
+    "brlunicode": "⠟⠥⠻⠽"
+  },
+  {
+    "id": 1553,
+    "print": "quest",
+    "brlunicode": "⠟⠥⠑⠌"
+  },
+  {
+    "id": 1554,
+    "print": "question",
+    "brlunicode": "⠐⠟"
+  },
+  {
+    "id": 1555,
+    "print": "queue",
+    "brlunicode": "⠟⠥⠑⠥⠑"
+  },
+  {
+    "id": 1556,
+    "print": "quick",
+    "brlunicode": "⠟⠅"
+  },
+  {
+    "id": 1557,
+    "print": "quickly",
+    "brlunicode": "⠟⠅⠇⠽"
+  },
+  {
+    "id": 1558,
+    "print": "quiet",
+    "brlunicode": "⠟⠥⠊⠑⠞"
+  },
+  {
+    "id": 1559,
+    "print": "quilt",
+    "brlunicode": "⠟⠥⠊⠇⠞"
+  },
+  {
+    "id": 1560,
+    "print": "quite",
+    "brlunicode": "⠟"
+  },
+  {
+    "id": 1561,
+    "print": "quote",
+    "brlunicode": "⠟⠥⠕⠞⠑"
+  },
+  {
+    "id": 1562,
+    "print": "quoted",
+    "brlunicode": "⠟⠥⠕⠞⠫"
+  },
+  {
+    "id": 1563,
+    "print": "rabbit",
+    "brlunicode": "⠗⠁⠆⠊⠞"
+  },
+  {
+    "id": 1564,
+    "print": "racing",
+    "brlunicode": "⠗⠁⠉⠬"
+  },
+  {
+    "id": 1565,
+    "print": "radar",
+    "brlunicode": "⠗⠁⠙⠜"
+  },
+  {
+    "id": 1566,
+    "print": "radio",
+    "brlunicode": "⠗⠁⠙⠊⠕"
+  },
+  {
+    "id": 1567,
+    "print": "rainbow",
+    "brlunicode": "⠗⠁⠔⠃⠪"
+  },
+  {
+    "id": 1568,
+    "print": "raise",
+    "brlunicode": "⠗⠁⠊⠎⠑"
+  },
+  {
+    "id": 1569,
+    "print": "raised",
+    "brlunicode": "⠗⠁⠊⠎⠫"
+  },
+  {
+    "id": 1570,
+    "print": "raising",
+    "brlunicode": "⠗⠁⠊⠎⠬"
+  },
+  {
+    "id": 1571,
+    "print": "rally",
+    "brlunicode": "⠗⠁⠇⠇⠽"
+  },
+  {
+    "id": 1572,
+    "print": "ranch",
+    "brlunicode": "⠗⠁⠝⠡"
+  },
+  {
+    "id": 1573,
+    "print": "random",
+    "brlunicode": "⠗⠯⠕⠍"
+  },
+  {
+    "id": 1574,
+    "print": "range",
+    "brlunicode": "⠗⠁⠝⠛⠑"
+  },
+  {
+    "id": 1575,
+    "print": "ranging",
+    "brlunicode": "⠗⠁⠝⠛⠬"
+  },
+  {
+    "id": 1576,
+    "print": "ranked",
+    "brlunicode": "⠗⠁⠝⠅⠫"
+  },
+  {
+    "id": 1577,
+    "print": "ranking",
+    "brlunicode": "⠗⠁⠝⠅⠬"
+  },
+  {
+    "id": 1578,
+    "print": "rapid",
+    "brlunicode": "⠗⠁⠏⠊⠙"
+  },
+  {
+    "id": 1579,
+    "print": "rarely",
+    "brlunicode": "⠗⠜⠑⠇⠽"
+  },
+  {
+    "id": 1580,
+    "print": "rated",
+    "brlunicode": "⠗⠁⠞⠫"
+  },
+  {
+    "id": 1581,
+    "print": "rates",
+    "brlunicode": "⠗⠁⠞⠑⠎"
+  },
+  {
+    "id": 1582,
+    "print": "rather",
+    "brlunicode": "⠗"
+  },
+  {
+    "id": 1583,
+    "print": "rating",
+    "brlunicode": "⠗⠁⠞⠬"
+  },
+  {
+    "id": 1584,
+    "print": "ratio",
+    "brlunicode": "⠗⠁⠞⠊⠕"
+  },
+  {
+    "id": 1585,
+    "print": "reach",
+    "brlunicode": "⠗⠂⠡"
+  },
+  {
+    "id": 1586,
+    "print": "reached",
+    "brlunicode": "⠗⠂⠡⠫"
+  },
+  {
+    "id": 1587,
+    "print": "reaching",
+    "brlunicode": "⠗⠂⠡⠬"
+  },
+  {
+    "id": 1588,
+    "print": "reader",
+    "brlunicode": "⠗⠂⠙⠻"
+  },
+  {
+    "id": 1589,
+    "print": "reading",
+    "brlunicode": "⠗⠂⠙⠬"
+  },
+  {
+    "id": 1590,
+    "print": "ready",
+    "brlunicode": "⠗⠂⠙⠽"
+  },
+  {
+    "id": 1591,
+    "print": "reality",
+    "brlunicode": "⠗⠂⠇⠰⠽"
+  },
+  {
+    "id": 1592,
+    "print": "really",
+    "brlunicode": "⠗⠂⠇⠇⠽"
+  },
+  {
+    "id": 1593,
+    "print": "realm",
+    "brlunicode": "⠗⠂⠇⠍"
+  },
+  {
+    "id": 1594,
+    "print": "realty",
+    "brlunicode": "⠗⠂⠇⠞⠽"
+  },
+  {
+    "id": 1595,
+    "print": "reason",
+    "brlunicode": "⠗⠂⠎⠕⠝"
+  },
+  {
+    "id": 1596,
+    "print": "rebel",
+    "brlunicode": "⠗⠑⠃⠑⠇"
+  },
+  {
+    "id": 1597,
+    "print": "rebound",
+    "brlunicode": "⠗⠑⠃⠨⠙"
+  },
+  {
+    "id": 1598,
+    "print": "receive",
+    "brlunicode": "⠗⠉⠧"
+  },
+  {
+    "id": 1599,
+    "print": "received",
+    "brlunicode": "⠗⠉⠧⠙"
+  },
+  {
+    "id": 1600,
+    "print": "receiver",
+    "brlunicode": "⠗⠉⠧⠗"
+  },
+  {
+    "id": 1601,
+    "print": "receives",
+    "brlunicode": "⠗⠉⠧⠎"
+  },
+  {
+    "id": 1602,
+    "print": "receiving",
+    "brlunicode": "⠗⠉⠧⠛"
+  },
+  {
+    "id": 1603,
+    "print": "recent",
+    "brlunicode": "⠗⠑⠉⠢⠞"
+  },
+  {
+    "id": 1604,
+    "print": "redeem",
+    "brlunicode": "⠗⠫⠑⠑⠍"
+  },
+  {
+    "id": 1605,
+    "print": "redhead",
+    "brlunicode": "⠗⠫⠓⠂⠙"
+  },
+  {
+    "id": 1606,
+    "print": "reduce",
+    "brlunicode": "⠗⠫⠥⠉⠑"
+  },
+  {
+    "id": 1607,
+    "print": "reduced",
+    "brlunicode": "⠗⠫⠥⠉⠫"
+  },
+  {
+    "id": 1608,
+    "print": "reducing",
+    "brlunicode": "⠗⠫⠥⠉⠬"
+  },
+  {
+    "id": 1609,
+    "print": "refer",
+    "brlunicode": "⠗⠑⠋⠻"
+  },
+  {
+    "id": 1610,
+    "print": "refers",
+    "brlunicode": "⠗⠑⠋⠻⠎"
+  },
+  {
+    "id": 1611,
+    "print": "refine",
+    "brlunicode": "⠗⠑⠋⠔⠑"
+  },
+  {
+    "id": 1612,
+    "print": "refined",
+    "brlunicode": "⠗⠑⠋⠔⠫"
+  },
+  {
+    "id": 1613,
+    "print": "reform",
+    "brlunicode": "⠗⠑⠿⠍"
+  },
+  {
+    "id": 1614,
+    "print": "regard",
+    "brlunicode": "⠗⠑⠛⠜⠙"
+  },
+  {
+    "id": 1615,
+    "print": "reggae",
+    "brlunicode": "⠗⠑⠶⠁⠑"
+  },
+  {
+    "id": 1616,
+    "print": "relax",
+    "brlunicode": "⠗⠑⠇⠁⠭"
+  },
+  {
+    "id": 1617,
+    "print": "relay",
+    "brlunicode": "⠗⠑⠇⠁⠽"
+  },
+  {
+    "id": 1618,
+    "print": "relying",
+    "brlunicode": "⠗⠑⠇⠽⠬"
+  },
+  {
+    "id": 1619,
+    "print": "remain",
+    "brlunicode": "⠗⠑⠍⠁⠔"
+  },
+  {
+    "id": 1620,
+    "print": "remark",
+    "brlunicode": "⠗⠑⠍⠜⠅"
+  },
+  {
+    "id": 1621,
+    "print": "remedy",
+    "brlunicode": "⠗⠑⠍⠫⠽"
+  },
+  {
+    "id": 1622,
+    "print": "remind",
+    "brlunicode": "⠗⠑⠍⠔⠙"
+  },
+  {
+    "id": 1623,
+    "print": "render",
+    "brlunicode": "⠗⠢⠙⠻"
+  },
+  {
+    "id": 1624,
+    "print": "rendered",
+    "brlunicode": "⠗⠢⠙⠻⠫"
+  },
+  {
+    "id": 1625,
+    "print": "rendering",
+    "brlunicode": "⠗⠢⠙⠻⠬"
+  },
+  {
+    "id": 1626,
+    "print": "renew",
+    "brlunicode": "⠗⠢⠑⠺"
+  },
+  {
+    "id": 1627,
+    "print": "rental",
+    "brlunicode": "⠗⠢⠞⠁⠇"
+  },
+  {
+    "id": 1628,
+    "print": "repeat",
+    "brlunicode": "⠗⠑⠏⠂⠞"
+  },
+  {
+    "id": 1629,
+    "print": "reply",
+    "brlunicode": "⠗⠑⠏⠇⠽"
+  },
+  {
+    "id": 1630,
+    "print": "reset",
+    "brlunicode": "⠗⠑⠎⠑⠞"
+  },
+  {
+    "id": 1631,
+    "print": "resist",
+    "brlunicode": "⠗⠑⠎⠊⠌"
+  },
+  {
+    "id": 1632,
+    "print": "retain",
+    "brlunicode": "⠗⠑⠞⠁⠔"
+  },
+  {
+    "id": 1633,
+    "print": "retro",
+    "brlunicode": "⠗⠑⠞⠗⠕"
+  },
+  {
+    "id": 1634,
+    "print": "reveal",
+    "brlunicode": "⠗⠑⠧⠂⠇"
+  },
+  {
+    "id": 1635,
+    "print": "reward",
+    "brlunicode": "⠗⠑⠺⠜⠙"
+  },
+  {
+    "id": 1636,
+    "print": "rhythm",
+    "brlunicode": "⠗⠓⠽⠹⠍"
+  },
+  {
+    "id": 1637,
+    "print": "ribbon",
+    "brlunicode": "⠗⠊⠆⠕⠝"
+  },
+  {
+    "id": 1638,
+    "print": "rider",
+    "brlunicode": "⠗⠊⠙⠻"
+  },
+  {
+    "id": 1639,
+    "print": "ridge",
+    "brlunicode": "⠗⠊⠙⠛⠑"
+  },
+  {
+    "id": 1640,
+    "print": "riding",
+    "brlunicode": "⠗⠊⠙⠬"
+  },
+  {
+    "id": 1641,
+    "print": "right",
+    "brlunicode": "⠐⠗"
+  },
+  {
+    "id": 1642,
+    "print": "rings",
+    "brlunicode": "⠗⠬⠎"
+  },
+  {
+    "id": 1643,
+    "print": "rising",
+    "brlunicode": "⠗⠊⠎⠬"
+  },
+  {
+    "id": 1644,
+    "print": "river",
+    "brlunicode": "⠗⠊⠧⠻"
+  },
+  {
+    "id": 1645,
+    "print": "roads",
+    "brlunicode": "⠗⠕⠁⠙⠎"
+  },
+  {
+    "id": 1646,
+    "print": "robot",
+    "brlunicode": "⠗⠕⠃⠕⠞"
+  },
+  {
+    "id": 1647,
+    "print": "robust",
+    "brlunicode": "⠗⠕⠃⠥⠌"
+  },
+  {
+    "id": 1648,
+    "print": "rolled",
+    "brlunicode": "⠗⠕⠇⠇⠫"
+  },
+  {
+    "id": 1649,
+    "print": "roller",
+    "brlunicode": "⠗⠕⠇⠇⠻"
+  },
+  {
+    "id": 1650,
+    "print": "rolling",
+    "brlunicode": "⠗⠕⠇⠇⠬"
+  },
+  {
+    "id": 1651,
+    "print": "romance",
+    "brlunicode": "⠗⠕⠍⠨⠑"
+  },
+  {
+    "id": 1652,
+    "print": "rooms",
+    "brlunicode": "⠗⠕⠕⠍⠎"
+  },
+  {
+    "id": 1653,
+    "print": "roots",
+    "brlunicode": "⠗⠕⠕⠞⠎"
+  },
+  {
+    "id": 1654,
+    "print": "roster",
+    "brlunicode": "⠗⠕⠌⠻"
+  },
+  {
+    "id": 1655,
+    "print": "rotary",
+    "brlunicode": "⠗⠕⠞⠜⠽"
+  },
+  {
+    "id": 1656,
+    "print": "rouge",
+    "brlunicode": "⠗⠳⠛⠑"
+  },
+  {
+    "id": 1657,
+    "print": "rough",
+    "brlunicode": "⠗⠳⠣"
+  },
+  {
+    "id": 1658,
+    "print": "roughly",
+    "brlunicode": "⠗⠳⠣⠇⠽"
+  },
+  {
+    "id": 1659,
+    "print": "round",
+    "brlunicode": "⠗⠨⠙"
+  },
+  {
+    "id": 1660,
+    "print": "route",
+    "brlunicode": "⠗⠳⠞⠑"
+  },
+  {
+    "id": 1661,
+    "print": "router",
+    "brlunicode": "⠗⠳⠞⠻"
+  },
+  {
+    "id": 1662,
+    "print": "routine",
+    "brlunicode": "⠗⠳⠞⠔⠑"
+  },
+  {
+    "id": 1663,
+    "print": "routing",
+    "brlunicode": "⠗⠳⠞⠬"
+  },
+  {
+    "id": 1664,
+    "print": "rover",
+    "brlunicode": "⠗⠕⠧⠻"
+  },
+  {
+    "id": 1665,
+    "print": "rubber",
+    "brlunicode": "⠗⠥⠆⠻"
+  },
+  {
+    "id": 1666,
+    "print": "rugby",
+    "brlunicode": "⠗⠥⠛⠃⠽"
+  },
+  {
+    "id": 1667,
+    "print": "ruled",
+    "brlunicode": "⠗⠥⠇⠫"
+  },
+  {
+    "id": 1668,
+    "print": "ruling",
+    "brlunicode": "⠗⠥⠇⠬"
+  },
+  {
+    "id": 1669,
+    "print": "runner",
+    "brlunicode": "⠗⠥⠝⠝⠻"
+  },
+  {
+    "id": 1670,
+    "print": "running",
+    "brlunicode": "⠗⠥⠝⠝⠬"
+  },
+  {
+    "id": 1671,
+    "print": "rural",
+    "brlunicode": "⠗⠥⠗⠁⠇"
+  },
+  {
+    "id": 1672,
+    "print": "rwanda",
+    "brlunicode": "⠗⠺⠯⠁"
+  },
+  {
+    "id": 1673,
+    "print": "sacred",
+    "brlunicode": "⠎⠁⠉⠗⠫"
+  },
+  {
+    "id": 1674,
+    "print": "safari",
+    "brlunicode": "⠎⠁⠋⠜⠊"
+  },
+  {
+    "id": 1675,
+    "print": "safer",
+    "brlunicode": "⠎⠁⠋⠻"
+  },
+  {
+    "id": 1676,
+    "print": "sailing",
+    "brlunicode": "⠎⠁⠊⠇⠬"
+  },
+  {
+    "id": 1677,
+    "print": "saint",
+    "brlunicode": "⠎⠁⠔⠞"
+  },
+  {
+    "id": 1678,
+    "print": "salad",
+    "brlunicode": "⠎⠁⠇⠁⠙"
+  },
+  {
+    "id": 1679,
+    "print": "salary",
+    "brlunicode": "⠎⠁⠇⠜⠽"
+  },
+  {
+    "id": 1680,
+    "print": "sales",
+    "brlunicode": "⠎⠁⠇⠑⠎"
+  },
+  {
+    "id": 1681,
+    "print": "salon",
+    "brlunicode": "⠎⠁⠇⠕⠝"
+  },
+  {
+    "id": 1682,
+    "print": "samba",
+    "brlunicode": "⠎⠁⠍⠃⠁"
+  },
+  {
+    "id": 1683,
+    "print": "samoa",
+    "brlunicode": "⠎⠁⠍⠕⠁"
+  },
+  {
+    "id": 1684,
+    "print": "sandwich",
+    "brlunicode": "⠎⠯⠺⠊⠡"
+  },
+  {
+    "id": 1685,
+    "print": "santa",
+    "brlunicode": "⠎⠁⠝⠞⠁"
+  },
+  {
+    "id": 1686,
+    "print": "satin",
+    "brlunicode": "⠎⠁⠞⠔"
+  },
+  {
+    "id": 1687,
+    "print": "sauce",
+    "brlunicode": "⠎⠁⠥⠉⠑"
+  },
+  {
+    "id": 1688,
+    "print": "saudi",
+    "brlunicode": "⠎⠁⠥⠙⠊"
+  },
+  {
+    "id": 1689,
+    "print": "saved",
+    "brlunicode": "⠎⠁⠧⠫"
+  },
+  {
+    "id": 1690,
+    "print": "saver",
+    "brlunicode": "⠎⠁⠧⠻"
+  },
+  {
+    "id": 1691,
+    "print": "saving",
+    "brlunicode": "⠎⠁⠧⠬"
+  },
+  {
+    "id": 1692,
+    "print": "savings",
+    "brlunicode": "⠎⠁⠧⠬⠎"
+  },
+  {
+    "id": 1693,
+    "print": "saying",
+    "brlunicode": "⠎⠁⠽⠬"
+  },
+  {
+    "id": 1694,
+    "print": "scale",
+    "brlunicode": "⠎⠉⠁⠇⠑"
+  },
+  {
+    "id": 1695,
+    "print": "scary",
+    "brlunicode": "⠎⠉⠜⠽"
+  },
+  {
+    "id": 1696,
+    "print": "scene",
+    "brlunicode": "⠎⠉⠢⠑"
+  },
+  {
+    "id": 1697,
+    "print": "scenic",
+    "brlunicode": "⠎⠉⠢⠊⠉"
+  },
+  {
+    "id": 1698,
+    "print": "schema",
+    "brlunicode": "⠎⠡⠑⠍⠁"
+  },
+  {
+    "id": 1699,
+    "print": "scheme",
+    "brlunicode": "⠎⠡⠑⠍⠑"
+  },
+  {
+    "id": 1700,
+    "print": "scholar",
+    "brlunicode": "⠎⠡⠕⠇⠜"
+  },
+  {
+    "id": 1701,
+    "print": "school",
+    "brlunicode": "⠎⠡⠕⠕⠇"
+  },
+  {
+    "id": 1702,
+    "print": "science",
+    "brlunicode": "⠎⠉⠊⠰⠑"
+  },
+  {
+    "id": 1703,
+    "print": "scoop",
+    "brlunicode": "⠎⠉⠕⠕⠏"
+  },
+  {
+    "id": 1704,
+    "print": "scope",
+    "brlunicode": "⠎⠉⠕⠏⠑"
+  },
+  {
+    "id": 1705,
+    "print": "score",
+    "brlunicode": "⠎⠉⠕⠗⠑"
+  },
+  {
+    "id": 1706,
+    "print": "scored",
+    "brlunicode": "⠎⠉⠕⠗⠫"
+  },
+  {
+    "id": 1707,
+    "print": "scoring",
+    "brlunicode": "⠎⠉⠕⠗⠬"
+  },
+  {
+    "id": 1708,
+    "print": "scout",
+    "brlunicode": "⠎⠉⠳⠞"
+  },
+  {
+    "id": 1709,
+    "print": "screen",
+    "brlunicode": "⠎⠉⠗⠑⠢"
+  },
+  {
+    "id": 1710,
+    "print": "scuba",
+    "brlunicode": "⠎⠉⠥⠃⠁"
+  },
+  {
+    "id": 1711,
+    "print": "sealed",
+    "brlunicode": "⠎⠂⠇⠫"
+  },
+  {
+    "id": 1712,
+    "print": "search",
+    "brlunicode": "⠎⠑⠜⠡"
+  },
+  {
+    "id": 1713,
+    "print": "searched",
+    "brlunicode": "⠎⠑⠜⠡⠫"
+  },
+  {
+    "id": 1714,
+    "print": "searching",
+    "brlunicode": "⠎⠑⠜⠡⠬"
+  },
+  {
+    "id": 1715,
+    "print": "season",
+    "brlunicode": "⠎⠂⠎⠕⠝"
+  },
+  {
+    "id": 1716,
+    "print": "seating",
+    "brlunicode": "⠎⠂⠞⠬"
+  },
+  {
+    "id": 1717,
+    "print": "seats",
+    "brlunicode": "⠎⠂⠞⠎"
+  },
+  {
+    "id": 1718,
+    "print": "section",
+    "brlunicode": "⠎⠑⠉⠰⠝"
+  },
+  {
+    "id": 1719,
+    "print": "seeing",
+    "brlunicode": "⠎⠑⠑⠬"
+  },
+  {
+    "id": 1720,
+    "print": "seeker",
+    "brlunicode": "⠎⠑⠑⠅⠻"
+  },
+  {
+    "id": 1721,
+    "print": "seeking",
+    "brlunicode": "⠎⠑⠑⠅⠬"
+  },
+  {
+    "id": 1722,
+    "print": "seemed",
+    "brlunicode": "⠎⠑⠑⠍⠫"
+  },
+  {
+    "id": 1723,
+    "print": "seems",
+    "brlunicode": "⠎⠑⠑⠍⠎"
+  },
+  {
+    "id": 1724,
+    "print": "segment",
+    "brlunicode": "⠎⠑⠛⠰⠞"
+  },
+  {
+    "id": 1725,
+    "print": "seller",
+    "brlunicode": "⠎⠑⠇⠇⠻"
+  },
+  {
+    "id": 1726,
+    "print": "selling",
+    "brlunicode": "⠎⠑⠇⠇⠬"
+  },
+  {
+    "id": 1727,
+    "print": "seminar",
+    "brlunicode": "⠎⠑⠍⠔⠜"
+  },
+  {
+    "id": 1728,
+    "print": "senate",
+    "brlunicode": "⠎⠢⠁⠞⠑"
+  },
+  {
+    "id": 1729,
+    "print": "sender",
+    "brlunicode": "⠎⠢⠙⠻"
+  },
+  {
+    "id": 1730,
+    "print": "sending",
+    "brlunicode": "⠎⠢⠙⠬"
+  },
+  {
+    "id": 1731,
+    "print": "sends",
+    "brlunicode": "⠎⠢⠙⠎"
+  },
+  {
+    "id": 1732,
+    "print": "senior",
+    "brlunicode": "⠎⠢⠊⠕⠗"
+  },
+  {
+    "id": 1733,
+    "print": "sense",
+    "brlunicode": "⠎⠢⠎⠑"
+  },
+  {
+    "id": 1734,
+    "print": "sensor",
+    "brlunicode": "⠎⠢⠎⠕⠗"
+  },
+  {
+    "id": 1735,
+    "print": "sentence",
+    "brlunicode": "⠎⠢⠞⠰⠑"
+  },
+  {
+    "id": 1736,
+    "print": "serbia",
+    "brlunicode": "⠎⠻⠃⠊⠁"
+  },
+  {
+    "id": 1737,
+    "print": "serial",
+    "brlunicode": "⠎⠻⠊⠁⠇"
+  },
+  {
+    "id": 1738,
+    "print": "series",
+    "brlunicode": "⠎⠻⠊⠑⠎"
+  },
+  {
+    "id": 1739,
+    "print": "serious",
+    "brlunicode": "⠎⠻⠊⠳⠎"
+  },
+  {
+    "id": 1740,
+    "print": "serum",
+    "brlunicode": "⠎⠻⠥⠍"
+  },
+  {
+    "id": 1741,
+    "print": "serve",
+    "brlunicode": "⠎⠻⠧⠑"
+  },
+  {
+    "id": 1742,
+    "print": "served",
+    "brlunicode": "⠎⠻⠧⠫"
+  },
+  {
+    "id": 1743,
+    "print": "server",
+    "brlunicode": "⠎⠻⠧⠻"
+  },
+  {
+    "id": 1744,
+    "print": "serving",
+    "brlunicode": "⠎⠻⠧⠬"
+  },
+  {
+    "id": 1745,
+    "print": "session",
+    "brlunicode": "⠎⠑⠎⠨⠝"
+  },
+  {
+    "id": 1746,
+    "print": "setting",
+    "brlunicode": "⠎⠑⠞⠞⠬"
+  },
+  {
+    "id": 1747,
+    "print": "setup",
+    "brlunicode": "⠎⠑⠞⠥⠏"
+  },
+  {
+    "id": 1748,
+    "print": "seven",
+    "brlunicode": "⠎⠑⠧⠢"
+  },
+  {
+    "id": 1749,
+    "print": "seventh",
+    "brlunicode": "⠎⠑⠧⠢⠹"
+  },
+  {
+    "id": 1750,
+    "print": "several",
+    "brlunicode": "⠎⠐⠑⠁⠇"
+  },
+  {
+    "id": 1751,
+    "print": "severe",
+    "brlunicode": "⠎⠑⠧⠻⠑"
+  },
+  {
+    "id": 1752,
+    "print": "sewing",
+    "brlunicode": "⠎⠑⠺⠬"
+  },
+  {
+    "id": 1753,
+    "print": "shade",
+    "brlunicode": "⠩⠁⠙⠑"
+  },
+  {
+    "id": 1754,
+    "print": "shades",
+    "brlunicode": "⠩⠁⠙⠑⠎"
+  },
+  {
+    "id": 1755,
+    "print": "shaft",
+    "brlunicode": "⠩⠁⠋⠞"
+  },
+  {
+    "id": 1756,
+    "print": "shake",
+    "brlunicode": "⠩⠁⠅⠑"
+  },
+  {
+    "id": 1757,
+    "print": "shame",
+    "brlunicode": "⠩⠁⠍⠑"
+  },
+  {
+    "id": 1758,
+    "print": "shape",
+    "brlunicode": "⠩⠁⠏⠑"
+  },
+  {
+    "id": 1759,
+    "print": "shaped",
+    "brlunicode": "⠩⠁⠏⠫"
+  },
+  {
+    "id": 1760,
+    "print": "share",
+    "brlunicode": "⠩⠜⠑"
+  },
+  {
+    "id": 1761,
+    "print": "shared",
+    "brlunicode": "⠩⠜⠫"
+  },
+  {
+    "id": 1762,
+    "print": "sharing",
+    "brlunicode": "⠩⠜⠬"
+  },
+  {
+    "id": 1763,
+    "print": "shark",
+    "brlunicode": "⠩⠜⠅"
+  },
+  {
+    "id": 1764,
+    "print": "sharp",
+    "brlunicode": "⠩⠜⠏"
+  },
+  {
+    "id": 1765,
+    "print": "shaved",
+    "brlunicode": "⠩⠁⠧⠫"
+  },
+  {
+    "id": 1766,
+    "print": "sheep",
+    "brlunicode": "⠩⠑⠑⠏"
+  },
+  {
+    "id": 1767,
+    "print": "sheer",
+    "brlunicode": "⠩⠑⠻"
+  },
+  {
+    "id": 1768,
+    "print": "sheet",
+    "brlunicode": "⠩⠑⠑⠞"
+  },
+  {
+    "id": 1769,
+    "print": "shelf",
+    "brlunicode": "⠩⠑⠇⠋"
+  },
+  {
+    "id": 1770,
+    "print": "shelter",
+    "brlunicode": "⠩⠑⠇⠞⠻"
+  },
+  {
+    "id": 1771,
+    "print": "sheriff",
+    "brlunicode": "⠩⠻⠊⠋⠋"
+  },
+  {
+    "id": 1772,
+    "print": "shield",
+    "brlunicode": "⠩⠊⠑⠇⠙"
+  },
+  {
+    "id": 1773,
+    "print": "shift",
+    "brlunicode": "⠩⠊⠋⠞"
+  },
+  {
+    "id": 1774,
+    "print": "shine",
+    "brlunicode": "⠩⠔⠑"
+  },
+  {
+    "id": 1775,
+    "print": "shipment",
+    "brlunicode": "⠩⠊⠏⠰⠞"
+  },
+  {
+    "id": 1776,
+    "print": "shipped",
+    "brlunicode": "⠩⠊⠏⠏⠫"
+  },
+  {
+    "id": 1777,
+    "print": "shipping",
+    "brlunicode": "⠩⠊⠏⠏⠬"
+  },
+  {
+    "id": 1778,
+    "print": "shirt",
+    "brlunicode": "⠩⠊⠗⠞"
+  },
+  {
+    "id": 1779,
+    "print": "shock",
+    "brlunicode": "⠩⠕⠉⠅"
+  },
+  {
+    "id": 1780,
+    "print": "shoes",
+    "brlunicode": "⠩⠕⠑⠎"
+  },
+  {
+    "id": 1781,
+    "print": "shoot",
+    "brlunicode": "⠩⠕⠕⠞"
+  },
+  {
+    "id": 1782,
+    "print": "shooting",
+    "brlunicode": "⠩⠕⠕⠞⠬"
+  },
+  {
+    "id": 1783,
+    "print": "shopper",
+    "brlunicode": "⠩⠕⠏⠏⠻"
+  },
+  {
+    "id": 1784,
+    "print": "shopping",
+    "brlunicode": "⠩⠕⠏⠏⠬"
+  },
+  {
+    "id": 1785,
+    "print": "shore",
+    "brlunicode": "⠩⠕⠗⠑"
+  },
+  {
+    "id": 1786,
+    "print": "short",
+    "brlunicode": "⠩⠕⠗⠞"
+  },
+  {
+    "id": 1787,
+    "print": "shorter",
+    "brlunicode": "⠩⠕⠗⠞⠻"
+  },
+  {
+    "id": 1788,
+    "print": "shorts",
+    "brlunicode": "⠩⠕⠗⠞⠎"
+  },
+  {
+    "id": 1789,
+    "print": "shoulder",
+    "brlunicode": "⠩⠳⠇⠙⠻"
+  },
+  {
+    "id": 1790,
+    "print": "showed",
+    "brlunicode": "⠩⠪⠫"
+  },
+  {
+    "id": 1791,
+    "print": "shower",
+    "brlunicode": "⠩⠪⠻"
+  },
+  {
+    "id": 1792,
+    "print": "showing",
+    "brlunicode": "⠩⠪⠬"
+  },
+  {
+    "id": 1793,
+    "print": "shown",
+    "brlunicode": "⠩⠪⠝"
+  },
+  {
+    "id": 1794,
+    "print": "sierra",
+    "brlunicode": "⠎⠊⠻⠗⠁"
+  },
+  {
+    "id": 1795,
+    "print": "sight",
+    "brlunicode": "⠎⠊⠣⠞"
+  },
+  {
+    "id": 1796,
+    "print": "sigma",
+    "brlunicode": "⠎⠊⠛⠍⠁"
+  },
+  {
+    "id": 1797,
+    "print": "signed",
+    "brlunicode": "⠎⠊⠛⠝⠫"
+  },
+  {
+    "id": 1798,
+    "print": "signing",
+    "brlunicode": "⠎⠊⠛⠝⠬"
+  },
+  {
+    "id": 1799,
+    "print": "silence",
+    "brlunicode": "⠎⠊⠇⠰⠑"
+  },
+  {
+    "id": 1800,
+    "print": "silent",
+    "brlunicode": "⠎⠊⠇⠢⠞"
+  },
+  {
+    "id": 1801,
+    "print": "silly",
+    "brlunicode": "⠎⠊⠇⠇⠽"
+  },
+  {
+    "id": 1802,
+    "print": "silver",
+    "brlunicode": "⠎⠊⠇⠧⠻"
+  },
+  {
+    "id": 1803,
+    "print": "singer",
+    "brlunicode": "⠎⠬⠻"
+  },
+  {
+    "id": 1804,
+    "print": "singing",
+    "brlunicode": "⠎⠬⠬"
+  },
+  {
+    "id": 1805,
+    "print": "single",
+    "brlunicode": "⠎⠬⠇⠑"
+  },
+  {
+    "id": 1806,
+    "print": "singles",
+    "brlunicode": "⠎⠬⠇⠑⠎"
+  },
+  {
+    "id": 1807,
+    "print": "sister",
+    "brlunicode": "⠎⠊⠌⠻"
+  },
+  {
+    "id": 1808,
+    "print": "sitting",
+    "brlunicode": "⠎⠊⠞⠞⠬"
+  },
+  {
+    "id": 1809,
+    "print": "sixth",
+    "brlunicode": "⠎⠊⠭⠹"
+  },
+  {
+    "id": 1810,
+    "print": "sized",
+    "brlunicode": "⠎⠊⠵⠫"
+  },
+  {
+    "id": 1811,
+    "print": "skating",
+    "brlunicode": "⠎⠅⠁⠞⠬"
+  },
+  {
+    "id": 1812,
+    "print": "skiing",
+    "brlunicode": "⠎⠅⠊⠬"
+  },
+  {
+    "id": 1813,
+    "print": "skill",
+    "brlunicode": "⠎⠅⠊⠇⠇"
+  },
+  {
+    "id": 1814,
+    "print": "skirt",
+    "brlunicode": "⠎⠅⠊⠗⠞"
+  },
+  {
+    "id": 1815,
+    "print": "sleep",
+    "brlunicode": "⠎⠇⠑⠑⠏"
+  },
+  {
+    "id": 1816,
+    "print": "slide",
+    "brlunicode": "⠎⠇⠊⠙⠑"
+  },
+  {
+    "id": 1817,
+    "print": "slight",
+    "brlunicode": "⠎⠇⠊⠣⠞"
+  },
+  {
+    "id": 1818,
+    "print": "slowly",
+    "brlunicode": "⠎⠇⠪⠇⠽"
+  },
+  {
+    "id": 1819,
+    "print": "small",
+    "brlunicode": "⠎⠍⠁⠇⠇"
+  },
+  {
+    "id": 1820,
+    "print": "smart",
+    "brlunicode": "⠎⠍⠜⠞"
+  },
+  {
+    "id": 1821,
+    "print": "smell",
+    "brlunicode": "⠎⠍⠑⠇⠇"
+  },
+  {
+    "id": 1822,
+    "print": "smile",
+    "brlunicode": "⠎⠍⠊⠇⠑"
+  },
+  {
+    "id": 1823,
+    "print": "smoke",
+    "brlunicode": "⠎⠍⠕⠅⠑"
+  },
+  {
+    "id": 1824,
+    "print": "smoking",
+    "brlunicode": "⠎⠍⠕⠅⠬"
+  },
+  {
+    "id": 1825,
+    "print": "smooth",
+    "brlunicode": "⠎⠍⠕⠕⠹"
+  },
+  {
+    "id": 1826,
+    "print": "snake",
+    "brlunicode": "⠎⠝⠁⠅⠑"
+  },
+  {
+    "id": 1827,
+    "print": "soccer",
+    "brlunicode": "⠎⠕⠒⠻"
+  },
+  {
+    "id": 1828,
+    "print": "solar",
+    "brlunicode": "⠎⠕⠇⠜"
+  },
+  {
+    "id": 1829,
+    "print": "solid",
+    "brlunicode": "⠎⠕⠇⠊⠙"
+  },
+  {
+    "id": 1830,
+    "print": "solve",
+    "brlunicode": "⠎⠕⠇⠧⠑"
+  },
+  {
+    "id": 1831,
+    "print": "solved",
+    "brlunicode": "⠎⠕⠇⠧⠫"
+  },
+  {
+    "id": 1832,
+    "print": "solving",
+    "brlunicode": "⠎⠕⠇⠧⠬"
+  },
+  {
+    "id": 1833,
+    "print": "somehow",
+    "brlunicode": "⠐⠎⠓⠪"
+  },
+  {
+    "id": 1834,
+    "print": "someone",
+    "brlunicode": "⠐⠎⠐⠕"
+  },
+  {
+    "id": 1835,
+    "print": "sometimes",
+    "brlunicode": "⠐⠎⠐⠞⠎"
+  },
+  {
+    "id": 1836,
+    "print": "somewhat",
+    "brlunicode": "⠐⠎⠱⠁⠞"
+  },
+  {
+    "id": 1837,
+    "print": "somewhere",
+    "brlunicode": "⠐⠎⠐⠱"
+  },
+  {
+    "id": 1838,
+    "print": "sonic",
+    "brlunicode": "⠎⠕⠝⠊⠉"
+  },
+  {
+    "id": 1839,
+    "print": "sorry",
+    "brlunicode": "⠎⠕⠗⠗⠽"
+  },
+  {
+    "id": 1840,
+    "print": "sorted",
+    "brlunicode": "⠎⠕⠗⠞⠫"
+  },
+  {
+    "id": 1841,
+    "print": "sought",
+    "brlunicode": "⠎⠐⠳"
+  },
+  {
+    "id": 1842,
+    "print": "sound",
+    "brlunicode": "⠎⠨⠙"
+  },
+  {
+    "id": 1843,
+    "print": "source",
+    "brlunicode": "⠎⠳⠗⠉⠑"
+  },
+  {
+    "id": 1844,
+    "print": "south",
+    "brlunicode": "⠎⠳⠹"
+  },
+  {
+    "id": 1845,
+    "print": "southeast",
+    "brlunicode": "⠎⠳⠹⠂⠌"
+  },
+  {
+    "id": 1846,
+    "print": "southern",
+    "brlunicode": "⠎⠳⠮⠗⠝"
+  },
+  {
+    "id": 1847,
+    "print": "space",
+    "brlunicode": "⠎⠏⠁⠉⠑"
+  },
+  {
+    "id": 1848,
+    "print": "spain",
+    "brlunicode": "⠎⠏⠁⠔"
+  },
+  {
+    "id": 1849,
+    "print": "spank",
+    "brlunicode": "⠎⠏⠁⠝⠅"
+  },
+  {
+    "id": 1850,
+    "print": "spare",
+    "brlunicode": "⠎⠏⠜⠑"
+  },
+  {
+    "id": 1851,
+    "print": "speak",
+    "brlunicode": "⠎⠏⠂⠅"
+  },
+  {
+    "id": 1852,
+    "print": "speaker",
+    "brlunicode": "⠎⠏⠂⠅⠻"
+  },
+  {
+    "id": 1853,
+    "print": "speaking",
+    "brlunicode": "⠎⠏⠂⠅⠬"
+  },
+  {
+    "id": 1854,
+    "print": "speaks",
+    "brlunicode": "⠎⠏⠂⠅⠎"
+  },
+  {
+    "id": 1855,
+    "print": "specs",
+    "brlunicode": "⠎⠏⠑⠉⠎"
+  },
+  {
+    "id": 1856,
+    "print": "speech",
+    "brlunicode": "⠎⠏⠑⠑⠡"
+  },
+  {
+    "id": 1857,
+    "print": "speed",
+    "brlunicode": "⠎⠏⠑⠫"
+  },
+  {
+    "id": 1858,
+    "print": "spell",
+    "brlunicode": "⠎⠏⠑⠇⠇"
+  },
+  {
+    "id": 1859,
+    "print": "spend",
+    "brlunicode": "⠎⠏⠢⠙"
+  },
+  {
+    "id": 1860,
+    "print": "spending",
+    "brlunicode": "⠎⠏⠢⠙⠬"
+  },
+  {
+    "id": 1861,
+    "print": "spent",
+    "brlunicode": "⠎⠏⠢⠞"
+  },
+  {
+    "id": 1862,
+    "print": "sphere",
+    "brlunicode": "⠎⠏⠐⠓"
+  },
+  {
+    "id": 1863,
+    "print": "spice",
+    "brlunicode": "⠎⠏⠊⠉⠑"
+  },
+  {
+    "id": 1864,
+    "print": "spider",
+    "brlunicode": "⠎⠏⠊⠙⠻"
+  },
+  {
+    "id": 1865,
+    "print": "spine",
+    "brlunicode": "⠎⠏⠔⠑"
+  },
+  {
+    "id": 1866,
+    "print": "spirit",
+    "brlunicode": "⠸⠎"
+  },
+  {
+    "id": 1867,
+    "print": "spirits",
+    "brlunicode": "⠸⠎⠎"
+  },
+  {
+    "id": 1868,
+    "print": "spiritual",
+    "brlunicode": "⠸⠎⠥⠁⠇"
+  },
+  {
+    "id": 1869,
+    "print": "split",
+    "brlunicode": "⠎⠏⠇⠊⠞"
+  },
+  {
+    "id": 1870,
+    "print": "spoke",
+    "brlunicode": "⠎⠏⠕⠅⠑"
+  },
+  {
+    "id": 1871,
+    "print": "spoken",
+    "brlunicode": "⠎⠏⠕⠅⠢"
+  },
+  {
+    "id": 1872,
+    "print": "sport",
+    "brlunicode": "⠎⠏⠕⠗⠞"
+  },
+  {
+    "id": 1873,
+    "print": "spots",
+    "brlunicode": "⠎⠏⠕⠞⠎"
+  },
+  {
+    "id": 1874,
+    "print": "spouse",
+    "brlunicode": "⠎⠏⠳⠎⠑"
+  },
+  {
+    "id": 1875,
+    "print": "spray",
+    "brlunicode": "⠎⠏⠗⠁⠽"
+  },
+  {
+    "id": 1876,
+    "print": "spread",
+    "brlunicode": "⠎⠏⠗⠂⠙"
+  },
+  {
+    "id": 1877,
+    "print": "spring",
+    "brlunicode": "⠎⠏⠗⠬"
+  },
+  {
+    "id": 1878,
+    "print": "springer",
+    "brlunicode": "⠎⠏⠗⠬⠻"
+  },
+  {
+    "id": 1879,
+    "print": "sprint",
+    "brlunicode": "⠎⠏⠗⠔⠞"
+  },
+  {
+    "id": 1880,
+    "print": "squad",
+    "brlunicode": "⠎⠟⠥⠁⠙"
+  },
+  {
+    "id": 1881,
+    "print": "square",
+    "brlunicode": "⠎⠟⠥⠜⠑"
+  },
+  {
+    "id": 1882,
+    "print": "stable",
+    "brlunicode": "⠌⠁⠃⠇⠑"
+  },
+  {
+    "id": 1883,
+    "print": "stack",
+    "brlunicode": "⠌⠁⠉⠅"
+  },
+  {
+    "id": 1884,
+    "print": "staff",
+    "brlunicode": "⠌⠁⠋⠋"
+  },
+  {
+    "id": 1885,
+    "print": "staffing",
+    "brlunicode": "⠌⠁⠖⠬"
+  },
+  {
+    "id": 1886,
+    "print": "stage",
+    "brlunicode": "⠌⠁⠛⠑"
+  },
+  {
+    "id": 1887,
+    "print": "stainless",
+    "brlunicode": "⠌⠁⠔⠨⠎"
+  },
+  {
+    "id": 1888,
+    "print": "stamp",
+    "brlunicode": "⠌⠁⠍⠏"
+  },
+  {
+    "id": 1889,
+    "print": "stand",
+    "brlunicode": "⠌⠯"
+  },
+  {
+    "id": 1890,
+    "print": "standard",
+    "brlunicode": "⠌⠯⠜⠙"
+  },
+  {
+    "id": 1891,
+    "print": "standing",
+    "brlunicode": "⠌⠯⠬"
+  },
+  {
+    "id": 1892,
+    "print": "starring",
+    "brlunicode": "⠌⠜⠗⠬"
+  },
+  {
+    "id": 1893,
+    "print": "start",
+    "brlunicode": "⠌⠜⠞"
+  },
+  {
+    "id": 1894,
+    "print": "started",
+    "brlunicode": "⠌⠜⠞⠫"
+  },
+  {
+    "id": 1895,
+    "print": "starter",
+    "brlunicode": "⠌⠜⠞⠻"
+  },
+  {
+    "id": 1896,
+    "print": "starting",
+    "brlunicode": "⠌⠜⠞⠬"
+  },
+  {
+    "id": 1897,
+    "print": "startup",
+    "brlunicode": "⠌⠜⠞⠥⠏"
+  },
+  {
+    "id": 1898,
+    "print": "state",
+    "brlunicode": "⠌⠁⠞⠑"
+  },
+  {
+    "id": 1899,
+    "print": "stated",
+    "brlunicode": "⠌⠁⠞⠫"
+  },
+  {
+    "id": 1900,
+    "print": "static",
+    "brlunicode": "⠌⠁⠞⠊⠉"
+  },
+  {
+    "id": 1901,
+    "print": "stating",
+    "brlunicode": "⠌⠁⠞⠬"
+  },
+  {
+    "id": 1902,
+    "print": "station",
+    "brlunicode": "⠌⠁⠰⠝"
+  },
+  {
+    "id": 1903,
+    "print": "stations",
+    "brlunicode": "⠌⠁⠰⠝⠎"
+  },
+  {
+    "id": 1904,
+    "print": "status",
+    "brlunicode": "⠌⠁⠞⠥⠎"
+  },
+  {
+    "id": 1905,
+    "print": "stayed",
+    "brlunicode": "⠌⠁⠽⠫"
+  },
+  {
+    "id": 1906,
+    "print": "staying",
+    "brlunicode": "⠌⠁⠽⠬"
+  },
+  {
+    "id": 1907,
+    "print": "stays",
+    "brlunicode": "⠌⠁⠽⠎"
+  },
+  {
+    "id": 1908,
+    "print": "steady",
+    "brlunicode": "⠌⠂⠙⠽"
+  },
+  {
+    "id": 1909,
+    "print": "steal",
+    "brlunicode": "⠌⠂⠇"
+  },
+  {
+    "id": 1910,
+    "print": "steam",
+    "brlunicode": "⠌⠂⠍"
+  },
+  {
+    "id": 1911,
+    "print": "steel",
+    "brlunicode": "⠌⠑⠑⠇"
+  },
+  {
+    "id": 1912,
+    "print": "steering",
+    "brlunicode": "⠌⠑⠻⠬"
+  },
+  {
+    "id": 1913,
+    "print": "steps",
+    "brlunicode": "⠌⠑⠏⠎"
+  },
+  {
+    "id": 1914,
+    "print": "stereo",
+    "brlunicode": "⠌⠻⠑⠕"
+  },
+  {
+    "id": 1915,
+    "print": "stevens",
+    "brlunicode": "⠌⠑⠧⠢⠎"
+  },
+  {
+    "id": 1916,
+    "print": "stick",
+    "brlunicode": "⠌⠊⠉⠅"
+  },
+  {
+    "id": 1917,
+    "print": "sticker",
+    "brlunicode": "⠌⠊⠉⠅⠻"
+  },
+  {
+    "id": 1918,
+    "print": "sticky",
+    "brlunicode": "⠌⠊⠉⠅⠽"
+  },
+  {
+    "id": 1919,
+    "print": "still",
+    "brlunicode": "⠌"
+  },
+  {
+    "id": 1920,
+    "print": "stock",
+    "brlunicode": "⠌⠕⠉⠅"
+  },
+  {
+    "id": 1921,
+    "print": "stocks",
+    "brlunicode": "⠌⠕⠉⠅⠎"
+  },
+  {
+    "id": 1922,
+    "print": "stolen",
+    "brlunicode": "⠌⠕⠇⠢"
+  },
+  {
+    "id": 1923,
+    "print": "stomach",
+    "brlunicode": "⠌⠕⠍⠁⠡"
+  },
+  {
+    "id": 1924,
+    "print": "stone",
+    "brlunicode": "⠌⠐⠕"
+  },
+  {
+    "id": 1925,
+    "print": "stood",
+    "brlunicode": "⠌⠕⠕⠙"
+  },
+  {
+    "id": 1926,
+    "print": "stopped",
+    "brlunicode": "⠌⠕⠏⠏⠫"
+  },
+  {
+    "id": 1927,
+    "print": "stopping",
+    "brlunicode": "⠌⠕⠏⠏⠬"
+  },
+  {
+    "id": 1928,
+    "print": "stops",
+    "brlunicode": "⠌⠕⠏⠎"
+  },
+  {
+    "id": 1929,
+    "print": "store",
+    "brlunicode": "⠌⠕⠗⠑"
+  },
+  {
+    "id": 1930,
+    "print": "stored",
+    "brlunicode": "⠌⠕⠗⠫"
+  },
+  {
+    "id": 1931,
+    "print": "story",
+    "brlunicode": "⠌⠕⠗⠽"
+  },
+  {
+    "id": 1932,
+    "print": "strain",
+    "brlunicode": "⠌⠗⠁⠔"
+  },
+  {
+    "id": 1933,
+    "print": "strand",
+    "brlunicode": "⠌⠗⠯"
+  },
+  {
+    "id": 1934,
+    "print": "strap",
+    "brlunicode": "⠌⠗⠁⠏"
+  },
+  {
+    "id": 1935,
+    "print": "stream",
+    "brlunicode": "⠌⠗⠂⠍"
+  },
+  {
+    "id": 1936,
+    "print": "streaming",
+    "brlunicode": "⠌⠗⠂⠍⠬"
+  },
+  {
+    "id": 1937,
+    "print": "street",
+    "brlunicode": "⠌⠗⠑⠑⠞"
+  },
+  {
+    "id": 1938,
+    "print": "strength",
+    "brlunicode": "⠌⠗⠢⠛⠹"
+  },
+  {
+    "id": 1939,
+    "print": "stress",
+    "brlunicode": "⠌⠗⠑⠎⠎"
+  },
+  {
+    "id": 1940,
+    "print": "stretch",
+    "brlunicode": "⠌⠗⠑⠞⠡"
+  },
+  {
+    "id": 1941,
+    "print": "strict",
+    "brlunicode": "⠌⠗⠊⠉⠞"
+  },
+  {
+    "id": 1942,
+    "print": "strike",
+    "brlunicode": "⠌⠗⠊⠅⠑"
+  },
+  {
+    "id": 1943,
+    "print": "striking",
+    "brlunicode": "⠌⠗⠊⠅⠬"
+  },
+  {
+    "id": 1944,
+    "print": "string",
+    "brlunicode": "⠌⠗⠬"
+  },
+  {
+    "id": 1945,
+    "print": "strings",
+    "brlunicode": "⠌⠗⠬⠎"
+  },
+  {
+    "id": 1946,
+    "print": "strong",
+    "brlunicode": "⠌⠗⠰⠛"
+  },
+  {
+    "id": 1947,
+    "print": "stronger",
+    "brlunicode": "⠌⠗⠰⠛⠻"
+  },
+  {
+    "id": 1948,
+    "print": "struck",
+    "brlunicode": "⠌⠗⠥⠉⠅"
+  },
+  {
+    "id": 1949,
+    "print": "stuck",
+    "brlunicode": "⠌⠥⠉⠅"
+  },
+  {
+    "id": 1950,
+    "print": "student",
+    "brlunicode": "⠌⠥⠙⠢⠞"
+  },
+  {
+    "id": 1951,
+    "print": "studied",
+    "brlunicode": "⠌⠥⠙⠊⠫"
+  },
+  {
+    "id": 1952,
+    "print": "studio",
+    "brlunicode": "⠌⠥⠙⠊⠕"
+  },
+  {
+    "id": 1953,
+    "print": "study",
+    "brlunicode": "⠌⠥⠙⠽"
+  },
+  {
+    "id": 1954,
+    "print": "studying",
+    "brlunicode": "⠌⠥⠙⠽⠬"
+  },
+  {
+    "id": 1955,
+    "print": "stuff",
+    "brlunicode": "⠌⠥⠋⠋"
+  },
+  {
+    "id": 1956,
+    "print": "stuffed",
+    "brlunicode": "⠌⠥⠖⠫"
+  },
+  {
+    "id": 1957,
+    "print": "stunning",
+    "brlunicode": "⠌⠥⠝⠝⠬"
+  },
+  {
+    "id": 1958,
+    "print": "style",
+    "brlunicode": "⠌⠽⠇⠑"
+  },
+  {
+    "id": 1959,
+    "print": "stylish",
+    "brlunicode": "⠌⠽⠇⠊⠩"
+  },
+  {
+    "id": 1960,
+    "print": "stylus",
+    "brlunicode": "⠌⠽⠇⠥⠎"
+  },
+  {
+    "id": 1961,
+    "print": "succeed",
+    "brlunicode": "⠎⠥⠒⠑⠫"
+  },
+  {
+    "id": 1962,
+    "print": "sudan",
+    "brlunicode": "⠎⠥⠙⠁⠝"
+  },
+  {
+    "id": 1963,
+    "print": "sudden",
+    "brlunicode": "⠎⠥⠙⠙⠢"
+  },
+  {
+    "id": 1964,
+    "print": "suffer",
+    "brlunicode": "⠎⠥⠖⠻"
+  },
+  {
+    "id": 1965,
+    "print": "suffered",
+    "brlunicode": "⠎⠥⠖⠻⠫"
+  },
+  {
+    "id": 1966,
+    "print": "suffering",
+    "brlunicode": "⠎⠥⠖⠻⠬"
+  },
+  {
+    "id": 1967,
+    "print": "sugar",
+    "brlunicode": "⠎⠥⠛⠜"
+  },
+  {
+    "id": 1968,
+    "print": "suggest",
+    "brlunicode": "⠎⠥⠶⠑⠌"
+  },
+  {
+    "id": 1969,
+    "print": "suite",
+    "brlunicode": "⠎⠥⠊⠞⠑"
+  },
+  {
+    "id": 1970,
+    "print": "suited",
+    "brlunicode": "⠎⠥⠊⠞⠫"
+  },
+  {
+    "id": 1971,
+    "print": "summer",
+    "brlunicode": "⠎⠥⠍⠍⠻"
+  },
+  {
+    "id": 1972,
+    "print": "sunday",
+    "brlunicode": "⠎⠥⠝⠐⠙"
+  },
+  {
+    "id": 1973,
+    "print": "super",
+    "brlunicode": "⠎⠥⠏⠻"
+  },
+  {
+    "id": 1974,
+    "print": "superb",
+    "brlunicode": "⠎⠥⠏⠻⠃"
+  },
+  {
+    "id": 1975,
+    "print": "surfing",
+    "brlunicode": "⠎⠥⠗⠋⠬"
+  },
+  {
+    "id": 1976,
+    "print": "surge",
+    "brlunicode": "⠎⠥⠗⠛⠑"
+  },
+  {
+    "id": 1977,
+    "print": "surname",
+    "brlunicode": "⠎⠥⠗⠐⠝"
+  },
+  {
+    "id": 1978,
+    "print": "sweden",
+    "brlunicode": "⠎⠺⠫⠢"
+  },
+  {
+    "id": 1979,
+    "print": "swedish",
+    "brlunicode": "⠎⠺⠫⠊⠩"
+  },
+  {
+    "id": 1980,
+    "print": "sweet",
+    "brlunicode": "⠎⠺⠑⠑⠞"
+  },
+  {
+    "id": 1981,
+    "print": "swift",
+    "brlunicode": "⠎⠺⠊⠋⠞"
+  },
+  {
+    "id": 1982,
+    "print": "swing",
+    "brlunicode": "⠎⠺⠬"
+  },
+  {
+    "id": 1983,
+    "print": "swiss",
+    "brlunicode": "⠎⠺⠊⠎⠎"
+  },
+  {
+    "id": 1984,
+    "print": "switch",
+    "brlunicode": "⠎⠺⠊⠞⠡"
+  },
+  {
+    "id": 1985,
+    "print": "sword",
+    "brlunicode": "⠎⠘⠺"
+  },
+  {
+    "id": 1986,
+    "print": "syria",
+    "brlunicode": "⠎⠽⠗⠊⠁"
+  },
+  {
+    "id": 1987,
+    "print": "system",
+    "brlunicode": "⠎⠽⠌⠑⠍"
+  },
+  {
+    "id": 1988,
+    "print": "table",
+    "brlunicode": "⠞⠁⠃⠇⠑"
+  },
+  {
+    "id": 1989,
+    "print": "tagged",
+    "brlunicode": "⠞⠁⠶⠫"
+  },
+  {
+    "id": 1990,
+    "print": "taken",
+    "brlunicode": "⠞⠁⠅⠢"
+  },
+  {
+    "id": 1991,
+    "print": "taking",
+    "brlunicode": "⠞⠁⠅⠬"
+  },
+  {
+    "id": 1992,
+    "print": "talent",
+    "brlunicode": "⠞⠁⠇⠢⠞"
+  },
+  {
+    "id": 1993,
+    "print": "talked",
+    "brlunicode": "⠞⠁⠇⠅⠫"
+  },
+  {
+    "id": 1994,
+    "print": "talking",
+    "brlunicode": "⠞⠁⠇⠅⠬"
+  },
+  {
+    "id": 1995,
+    "print": "talks",
+    "brlunicode": "⠞⠁⠇⠅⠎"
+  },
+  {
+    "id": 1996,
+    "print": "tamil",
+    "brlunicode": "⠞⠁⠍⠊⠇"
+  },
+  {
+    "id": 1997,
+    "print": "tampa",
+    "brlunicode": "⠞⠁⠍⠏⠁"
+  },
+  {
+    "id": 1998,
+    "print": "target",
+    "brlunicode": "⠞⠜⠛⠑⠞"
+  },
+  {
+    "id": 1999,
+    "print": "tariff",
+    "brlunicode": "⠞⠜⠊⠋⠋"
+  },
+  {
+    "id": 2000,
+    "print": "taste",
+    "brlunicode": "⠞⠁⠌⠑"
+  },
+  {
+    "id": 2001,
+    "print": "taught",
+    "brlunicode": "⠞⠁⠥⠣⠞"
+  },
+  {
+    "id": 2002,
+    "print": "teach",
+    "brlunicode": "⠞⠂⠡"
+  },
+  {
+    "id": 2003,
+    "print": "teacher",
+    "brlunicode": "⠞⠂⠡⠻"
+  },
+  {
+    "id": 2004,
+    "print": "teaching",
+    "brlunicode": "⠞⠂⠡⠬"
+  },
+  {
+    "id": 2005,
+    "print": "tears",
+    "brlunicode": "⠞⠑⠜⠎"
+  },
+  {
+    "id": 2006,
+    "print": "techno",
+    "brlunicode": "⠞⠑⠡⠝⠕"
+  },
+  {
+    "id": 2007,
+    "print": "teens",
+    "brlunicode": "⠞⠑⠢⠎"
+  },
+  {
+    "id": 2008,
+    "print": "teeth",
+    "brlunicode": "⠞⠑⠑⠹"
+  },
+  {
+    "id": 2009,
+    "print": "telling",
+    "brlunicode": "⠞⠑⠇⠇⠬"
+  },
+  {
+    "id": 2010,
+    "print": "tenant",
+    "brlunicode": "⠞⠢⠁⠝⠞"
+  },
+  {
+    "id": 2011,
+    "print": "tender",
+    "brlunicode": "⠞⠢⠙⠻"
+  },
+  {
+    "id": 2012,
+    "print": "tennis",
+    "brlunicode": "⠞⠢⠝⠊⠎"
+  },
+  {
+    "id": 2013,
+    "print": "tension",
+    "brlunicode": "⠞⠢⠨⠝"
+  },
+  {
+    "id": 2014,
+    "print": "terms",
+    "brlunicode": "⠞⠻⠍⠎"
+  },
+  {
+    "id": 2015,
+    "print": "terrain",
+    "brlunicode": "⠞⠻⠗⠁⠔"
+  },
+  {
+    "id": 2016,
+    "print": "terror",
+    "brlunicode": "⠞⠻⠗⠕⠗"
+  },
+  {
+    "id": 2017,
+    "print": "tested",
+    "brlunicode": "⠞⠑⠌⠫"
+  },
+  {
+    "id": 2018,
+    "print": "testing",
+    "brlunicode": "⠞⠑⠌⠬"
+  },
+  {
+    "id": 2019,
+    "print": "texas",
+    "brlunicode": "⠞⠑⠭⠁⠎"
+  },
+  {
+    "id": 2020,
+    "print": "thailand",
+    "brlunicode": "⠹⠁⠊⠇⠯"
+  },
+  {
+    "id": 2021,
+    "print": "thank",
+    "brlunicode": "⠹⠁⠝⠅"
+  },
+  {
+    "id": 2022,
+    "print": "thanks",
+    "brlunicode": "⠹⠁⠝⠅⠎"
+  },
+  {
+    "id": 2023,
+    "print": "theater",
+    "brlunicode": "⠮⠁⠞⠻"
+  },
+  {
+    "id": 2024,
+    "print": "theatre",
+    "brlunicode": "⠮⠁⠞⠗⠑"
+  },
+  {
+    "id": 2025,
+    "print": "theft",
+    "brlunicode": "⠮⠋⠞"
+  },
+  {
+    "id": 2026,
+    "print": "theme",
+    "brlunicode": "⠮⠍⠑"
+  },
+  {
+    "id": 2027,
+    "print": "theorem",
+    "brlunicode": "⠮⠕⠗⠑⠍"
+  },
+  {
+    "id": 2028,
+    "print": "theory",
+    "brlunicode": "⠮⠕⠗⠽"
+  },
+  {
+    "id": 2029,
+    "print": "therapy",
+    "brlunicode": "⠮⠗⠁⠏⠽"
+  },
+  {
+    "id": 2030,
+    "print": "there",
+    "brlunicode": "⠐⠮"
+  },
+  {
+    "id": 2031,
+    "print": "thereafter",
+    "brlunicode": "⠐⠮⠁⠋"
+  },
+  {
+    "id": 2032,
+    "print": "thereby",
+    "brlunicode": "⠐⠮⠃⠽"
+  },
+  {
+    "id": 2033,
+    "print": "therefore",
+    "brlunicode": "⠐⠮⠿⠑"
+  },
+  {
+    "id": 2034,
+    "print": "thereof",
+    "brlunicode": "⠐⠮⠷"
+  },
+  {
+    "id": 2035,
+    "print": "thermal",
+    "brlunicode": "⠮⠗⠍⠁⠇"
+  },
+  {
+    "id": 2036,
+    "print": "thesis",
+    "brlunicode": "⠮⠎⠊⠎"
+  },
+  {
+    "id": 2037,
+    "print": "thick",
+    "brlunicode": "⠹⠊⠉⠅"
+  },
+  {
+    "id": 2038,
+    "print": "thing",
+    "brlunicode": "⠹⠬"
+  },
+  {
+    "id": 2039,
+    "print": "things",
+    "brlunicode": "⠹⠬⠎"
+  },
+  {
+    "id": 2040,
+    "print": "think",
+    "brlunicode": "⠹⠔⠅"
+  },
+  {
+    "id": 2041,
+    "print": "thinking",
+    "brlunicode": "⠹⠔⠅⠬"
+  },
+  {
+    "id": 2042,
+    "print": "third",
+    "brlunicode": "⠹⠊⠗⠙"
+  },
+  {
+    "id": 2043,
+    "print": "thirty",
+    "brlunicode": "⠹⠊⠗⠞⠽"
+  },
+  {
+    "id": 2044,
+    "print": "thong",
+    "brlunicode": "⠹⠰⠛"
+  },
+  {
+    "id": 2045,
+    "print": "thorough",
+    "brlunicode": "⠹⠕⠗⠳⠣"
+  },
+  {
+    "id": 2046,
+    "print": "though",
+    "brlunicode": "⠹⠳⠣"
+  },
+  {
+    "id": 2047,
+    "print": "thought",
+    "brlunicode": "⠹⠐⠳"
+  },
+  {
+    "id": 2048,
+    "print": "thousand",
+    "brlunicode": "⠹⠳⠎⠯"
+  },
+  {
+    "id": 2049,
+    "print": "thread",
+    "brlunicode": "⠹⠗⠂⠙"
+  },
+  {
+    "id": 2050,
+    "print": "threaded",
+    "brlunicode": "⠹⠗⠂⠙⠫"
+  },
+  {
+    "id": 2051,
+    "print": "threads",
+    "brlunicode": "⠹⠗⠂⠙⠎"
+  },
+  {
+    "id": 2052,
+    "print": "threat",
+    "brlunicode": "⠹⠗⠂⠞"
+  },
+  {
+    "id": 2053,
+    "print": "three",
+    "brlunicode": "⠹⠗⠑⠑"
+  },
+  {
+    "id": 2054,
+    "print": "throat",
+    "brlunicode": "⠹⠗⠕⠁⠞"
+  },
+  {
+    "id": 2055,
+    "print": "through",
+    "brlunicode": "⠐⠹"
+  },
+  {
+    "id": 2056,
+    "print": "throughout",
+    "brlunicode": "⠐⠹⠳⠞"
+  },
+  {
+    "id": 2057,
+    "print": "throw",
+    "brlunicode": "⠹⠗⠪"
+  },
+  {
+    "id": 2058,
+    "print": "throwing",
+    "brlunicode": "⠹⠗⠪⠬"
+  },
+  {
+    "id": 2059,
+    "print": "thrown",
+    "brlunicode": "⠹⠗⠪⠝"
+  },
+  {
+    "id": 2060,
+    "print": "thumb",
+    "brlunicode": "⠹⠥⠍⠃"
+  },
+  {
+    "id": 2061,
+    "print": "thunder",
+    "brlunicode": "⠹⠐⠥"
+  },
+  {
+    "id": 2062,
+    "print": "tiger",
+    "brlunicode": "⠞⠊⠛⠻"
+  },
+  {
+    "id": 2063,
+    "print": "tigers",
+    "brlunicode": "⠞⠊⠛⠻⠎"
+  },
+  {
+    "id": 2064,
+    "print": "tight",
+    "brlunicode": "⠞⠊⠣⠞"
+  },
+  {
+    "id": 2065,
+    "print": "timber",
+    "brlunicode": "⠞⠊⠍⠃⠻"
+  },
+  {
+    "id": 2066,
+    "print": "timeline",
+    "brlunicode": "⠐⠞⠇⠔⠑"
+  },
+  {
+    "id": 2067,
+    "print": "timely",
+    "brlunicode": "⠐⠞⠇⠽"
+  },
+  {
+    "id": 2068,
+    "print": "timer",
+    "brlunicode": "⠐⠞⠗"
+  },
+  {
+    "id": 2069,
+    "print": "times",
+    "brlunicode": "⠐⠞⠎"
+  },
+  {
+    "id": 2070,
+    "print": "timing",
+    "brlunicode": "⠞⠊⠍⠬"
+  },
+  {
+    "id": 2071,
+    "print": "tired",
+    "brlunicode": "⠞⠊⠗⠫"
+  },
+  {
+    "id": 2072,
+    "print": "title",
+    "brlunicode": "⠞⠊⠞⠇⠑"
+  },
+  {
+    "id": 2073,
+    "print": "titled",
+    "brlunicode": "⠞⠊⠞⠇⠫"
+  },
+  {
+    "id": 2074,
+    "print": "today",
+    "brlunicode": "⠞⠙"
+  },
+  {
+    "id": 2075,
+    "print": "together",
+    "brlunicode": "⠞⠛⠗"
+  },
+  {
+    "id": 2076,
+    "print": "token",
+    "brlunicode": "⠞⠕⠅⠢"
+  },
+  {
+    "id": 2077,
+    "print": "tokyo",
+    "brlunicode": "⠞⠕⠅⠽⠕"
+  },
+  {
+    "id": 2078,
+    "print": "tomorrow",
+    "brlunicode": "⠞⠍"
+  },
+  {
+    "id": 2079,
+    "print": "toner",
+    "brlunicode": "⠞⠕⠝⠻"
+  },
+  {
+    "id": 2080,
+    "print": "tongue",
+    "brlunicode": "⠞⠰⠛⠥⠑"
+  },
+  {
+    "id": 2081,
+    "print": "tonight",
+    "brlunicode": "⠞⠝"
+  },
+  {
+    "id": 2082,
+    "print": "tooth",
+    "brlunicode": "⠞⠕⠕⠹"
+  },
+  {
+    "id": 2083,
+    "print": "topic",
+    "brlunicode": "⠞⠕⠏⠊⠉"
+  },
+  {
+    "id": 2084,
+    "print": "topless",
+    "brlunicode": "⠞⠕⠏⠨⠎"
+  },
+  {
+    "id": 2085,
+    "print": "total",
+    "brlunicode": "⠞⠕⠞⠁⠇"
+  },
+  {
+    "id": 2086,
+    "print": "touch",
+    "brlunicode": "⠞⠳⠡"
+  },
+  {
+    "id": 2087,
+    "print": "touched",
+    "brlunicode": "⠞⠳⠡⠫"
+  },
+  {
+    "id": 2088,
+    "print": "tough",
+    "brlunicode": "⠞⠳⠣"
+  },
+  {
+    "id": 2089,
+    "print": "touring",
+    "brlunicode": "⠞⠳⠗⠬"
+  },
+  {
+    "id": 2090,
+    "print": "tourist",
+    "brlunicode": "⠞⠳⠗⠊⠌"
+  },
+  {
+    "id": 2091,
+    "print": "tours",
+    "brlunicode": "⠞⠳⠗⠎"
+  },
+  {
+    "id": 2092,
+    "print": "tower",
+    "brlunicode": "⠞⠪⠻"
+  },
+  {
+    "id": 2093,
+    "print": "toxic",
+    "brlunicode": "⠞⠕⠭⠊⠉"
+  },
+  {
+    "id": 2094,
+    "print": "track",
+    "brlunicode": "⠞⠗⠁⠉⠅"
+  },
+  {
+    "id": 2095,
+    "print": "tract",
+    "brlunicode": "⠞⠗⠁⠉⠞"
+  },
+  {
+    "id": 2096,
+    "print": "trade",
+    "brlunicode": "⠞⠗⠁⠙⠑"
+  },
+  {
+    "id": 2097,
+    "print": "trader",
+    "brlunicode": "⠞⠗⠁⠙⠻"
+  },
+  {
+    "id": 2098,
+    "print": "trading",
+    "brlunicode": "⠞⠗⠁⠙⠬"
+  },
+  {
+    "id": 2099,
+    "print": "trail",
+    "brlunicode": "⠞⠗⠁⠊⠇"
+  },
+  {
+    "id": 2100,
+    "print": "train",
+    "brlunicode": "⠞⠗⠁⠔"
+  },
+  {
+    "id": 2101,
+    "print": "trained",
+    "brlunicode": "⠞⠗⠁⠔⠫"
+  },
+  {
+    "id": 2102,
+    "print": "trainer",
+    "brlunicode": "⠞⠗⠁⠔⠻"
+  },
+  {
+    "id": 2103,
+    "print": "training",
+    "brlunicode": "⠞⠗⠁⠔⠬"
+  },
+  {
+    "id": 2104,
+    "print": "trance",
+    "brlunicode": "⠞⠗⠨⠑"
+  },
+  {
+    "id": 2105,
+    "print": "trash",
+    "brlunicode": "⠞⠗⠁⠩"
+  },
+  {
+    "id": 2106,
+    "print": "treat",
+    "brlunicode": "⠞⠗⠂⠞"
+  },
+  {
+    "id": 2107,
+    "print": "treated",
+    "brlunicode": "⠞⠗⠂⠞⠫"
+  },
+  {
+    "id": 2108,
+    "print": "treating",
+    "brlunicode": "⠞⠗⠂⠞⠬"
+  },
+  {
+    "id": 2109,
+    "print": "treaty",
+    "brlunicode": "⠞⠗⠂⠞⠽"
+  },
+  {
+    "id": 2110,
+    "print": "trend",
+    "brlunicode": "⠞⠗⠢⠙"
+  },
+  {
+    "id": 2111,
+    "print": "trial",
+    "brlunicode": "⠞⠗⠊⠁⠇"
+  },
+  {
+    "id": 2112,
+    "print": "tribe",
+    "brlunicode": "⠞⠗⠊⠃⠑"
+  },
+  {
+    "id": 2113,
+    "print": "trick",
+    "brlunicode": "⠞⠗⠊⠉⠅"
+  },
+  {
+    "id": 2114,
+    "print": "tried",
+    "brlunicode": "⠞⠗⠊⠫"
+  },
+  {
+    "id": 2115,
+    "print": "trigger",
+    "brlunicode": "⠞⠗⠊⠶⠻"
+  },
+  {
+    "id": 2116,
+    "print": "trinity",
+    "brlunicode": "⠞⠗⠔⠰⠽"
+  },
+  {
+    "id": 2117,
+    "print": "trout",
+    "brlunicode": "⠞⠗⠳⠞"
+  },
+  {
+    "id": 2118,
+    "print": "truck",
+    "brlunicode": "⠞⠗⠥⠉⠅"
+  },
+  {
+    "id": 2119,
+    "print": "truly",
+    "brlunicode": "⠞⠗⠥⠇⠽"
+  },
+  {
+    "id": 2120,
+    "print": "trunk",
+    "brlunicode": "⠞⠗⠥⠝⠅"
+  },
+  {
+    "id": 2121,
+    "print": "trust",
+    "brlunicode": "⠞⠗⠥⠌"
+  },
+  {
+    "id": 2122,
+    "print": "trusted",
+    "brlunicode": "⠞⠗⠥⠌⠫"
+  },
+  {
+    "id": 2123,
+    "print": "truth",
+    "brlunicode": "⠞⠗⠥⠹"
+  },
+  {
+    "id": 2124,
+    "print": "trying",
+    "brlunicode": "⠞⠗⠽⠬"
+  },
+  {
+    "id": 2125,
+    "print": "tuition",
+    "brlunicode": "⠞⠥⠊⠰⠝"
+  },
+  {
+    "id": 2126,
+    "print": "tulsa",
+    "brlunicode": "⠞⠥⠇⠎⠁"
+  },
+  {
+    "id": 2127,
+    "print": "tumor",
+    "brlunicode": "⠞⠥⠍⠕⠗"
+  },
+  {
+    "id": 2128,
+    "print": "tuner",
+    "brlunicode": "⠞⠥⠝⠻"
+  },
+  {
+    "id": 2129,
+    "print": "tuning",
+    "brlunicode": "⠞⠥⠝⠬"
+  },
+  {
+    "id": 2130,
+    "print": "turned",
+    "brlunicode": "⠞⠥⠗⠝⠫"
+  },
+  {
+    "id": 2131,
+    "print": "turning",
+    "brlunicode": "⠞⠥⠗⠝⠬"
+  },
+  {
+    "id": 2132,
+    "print": "twenty",
+    "brlunicode": "⠞⠺⠢⠞⠽"
+  },
+  {
+    "id": 2133,
+    "print": "twice",
+    "brlunicode": "⠞⠺⠊⠉⠑"
+  },
+  {
+    "id": 2134,
+    "print": "twins",
+    "brlunicode": "⠞⠺⠔⠎"
+  },
+  {
+    "id": 2135,
+    "print": "twist",
+    "brlunicode": "⠞⠺⠊⠌"
+  },
+  {
+    "id": 2136,
+    "print": "twisted",
+    "brlunicode": "⠞⠺⠊⠌⠫"
+  },
+  {
+    "id": 2137,
+    "print": "typing",
+    "brlunicode": "⠞⠽⠏⠬"
+  },
+  {
+    "id": 2138,
+    "print": "uganda",
+    "brlunicode": "⠥⠛⠯⠁"
+  },
+  {
+    "id": 2139,
+    "print": "ultra",
+    "brlunicode": "⠥⠇⠞⠗⠁"
+  },
+  {
+    "id": 2140,
+    "print": "uncle",
+    "brlunicode": "⠥⠝⠉⠇⠑"
+  },
+  {
+    "id": 2141,
+    "print": "under",
+    "brlunicode": "⠐⠥"
+  },
+  {
+    "id": 2142,
+    "print": "underlying",
+    "brlunicode": "⠐⠥⠇⠽⠬"
+  },
+  {
+    "id": 2143,
+    "print": "understand",
+    "brlunicode": "⠐⠥⠌⠯"
+  },
+  {
+    "id": 2144,
+    "print": "understanding",
+    "brlunicode": "⠐⠥⠌⠯⠬"
+  },
+  {
+    "id": 2145,
+    "print": "underwear",
+    "brlunicode": "⠐⠥⠺⠑⠜"
+  },
+  {
+    "id": 2146,
+    "print": "uniform",
+    "brlunicode": "⠥⠝⠊⠿⠍"
+  },
+  {
+    "id": 2147,
+    "print": "union",
+    "brlunicode": "⠥⠝⠊⠕⠝"
+  },
+  {
+    "id": 2148,
+    "print": "united",
+    "brlunicode": "⠥⠝⠊⠞⠫"
+  },
+  {
+    "id": 2149,
+    "print": "unity",
+    "brlunicode": "⠥⠝⠰⠽"
+  },
+  {
+    "id": 2150,
+    "print": "unknown",
+    "brlunicode": "⠥⠝⠐⠅⠝"
+  },
+  {
+    "id": 2151,
+    "print": "unnecessary",
+    "brlunicode": "⠥⠝⠝⠑⠉"
+  },
+  {
+    "id": 2152,
+    "print": "upper",
+    "brlunicode": "⠥⠏⠏⠻"
+  },
+  {
+    "id": 2153,
+    "print": "upset",
+    "brlunicode": "⠥⠏⠎⠑⠞"
+  },
+  {
+    "id": 2154,
+    "print": "urgent",
+    "brlunicode": "⠥⠗⠛⠢⠞"
+  },
+  {
+    "id": 2155,
+    "print": "usage",
+    "brlunicode": "⠥⠎⠁⠛⠑"
+  },
+  {
+    "id": 2156,
+    "print": "useful",
+    "brlunicode": "⠥⠎⠑⠰⠇"
+  },
+  {
+    "id": 2157,
+    "print": "using",
+    "brlunicode": "⠥⠎⠬"
+  },
+  {
+    "id": 2158,
+    "print": "usual",
+    "brlunicode": "⠥⠎⠥⠁⠇"
+  },
+  {
+    "id": 2159,
+    "print": "vaccine",
+    "brlunicode": "⠧⠁⠒⠔⠑"
+  },
+  {
+    "id": 2160,
+    "print": "valid",
+    "brlunicode": "⠧⠁⠇⠊⠙"
+  },
+  {
+    "id": 2161,
+    "print": "value",
+    "brlunicode": "⠧⠁⠇⠥⠑"
+  },
+  {
+    "id": 2162,
+    "print": "valued",
+    "brlunicode": "⠧⠁⠇⠥⠫"
+  },
+  {
+    "id": 2163,
+    "print": "valve",
+    "brlunicode": "⠧⠁⠇⠧⠑"
+  },
+  {
+    "id": 2164,
+    "print": "variance",
+    "brlunicode": "⠧⠜⠊⠨⠑"
+  },
+  {
+    "id": 2165,
+    "print": "varied",
+    "brlunicode": "⠧⠜⠊⠫"
+  },
+  {
+    "id": 2166,
+    "print": "varies",
+    "brlunicode": "⠧⠜⠊⠑⠎"
+  },
+  {
+    "id": 2167,
+    "print": "various",
+    "brlunicode": "⠧⠜⠊⠳⠎"
+  },
+  {
+    "id": 2168,
+    "print": "varying",
+    "brlunicode": "⠧⠜⠽⠬"
+  },
+  {
+    "id": 2169,
+    "print": "vault",
+    "brlunicode": "⠧⠁⠥⠇⠞"
+  },
+  {
+    "id": 2170,
+    "print": "vendor",
+    "brlunicode": "⠧⠢⠙⠕⠗"
+  },
+  {
+    "id": 2171,
+    "print": "venice",
+    "brlunicode": "⠧⠢⠊⠉⠑"
+  },
+  {
+    "id": 2172,
+    "print": "venue",
+    "brlunicode": "⠧⠢⠥⠑"
+  },
+  {
+    "id": 2173,
+    "print": "verbal",
+    "brlunicode": "⠧⠻⠃⠁⠇"
+  },
+  {
+    "id": 2174,
+    "print": "verify",
+    "brlunicode": "⠧⠻⠊⠋⠽"
+  },
+  {
+    "id": 2175,
+    "print": "verse",
+    "brlunicode": "⠧⠻⠎⠑"
+  },
+  {
+    "id": 2176,
+    "print": "version",
+    "brlunicode": "⠧⠻⠨⠝"
+  },
+  {
+    "id": 2177,
+    "print": "vertex",
+    "brlunicode": "⠧⠻⠞⠑⠭"
+  },
+  {
+    "id": 2178,
+    "print": "video",
+    "brlunicode": "⠧⠊⠙⠑⠕"
+  },
+  {
+    "id": 2179,
+    "print": "vienna",
+    "brlunicode": "⠧⠊⠢⠝⠁"
+  },
+  {
+    "id": 2180,
+    "print": "viewed",
+    "brlunicode": "⠧⠊⠑⠺⠫"
+  },
+  {
+    "id": 2181,
+    "print": "viewer",
+    "brlunicode": "⠧⠊⠑⠺⠻"
+  },
+  {
+    "id": 2182,
+    "print": "viewing",
+    "brlunicode": "⠧⠊⠑⠺⠬"
+  },
+  {
+    "id": 2183,
+    "print": "viking",
+    "brlunicode": "⠧⠊⠅⠬"
+  },
+  {
+    "id": 2184,
+    "print": "villa",
+    "brlunicode": "⠧⠊⠇⠇⠁"
+  },
+  {
+    "id": 2185,
+    "print": "vinyl",
+    "brlunicode": "⠧⠔⠽⠇"
+  },
+  {
+    "id": 2186,
+    "print": "violin",
+    "brlunicode": "⠧⠊⠕⠇⠔"
+  },
+  {
+    "id": 2187,
+    "print": "viral",
+    "brlunicode": "⠧⠊⠗⠁⠇"
+  },
+  {
+    "id": 2188,
+    "print": "virus",
+    "brlunicode": "⠧⠊⠗⠥⠎"
+  },
+  {
+    "id": 2189,
+    "print": "vision",
+    "brlunicode": "⠧⠊⠨⠝"
+  },
+  {
+    "id": 2190,
+    "print": "visit",
+    "brlunicode": "⠧⠊⠎⠊⠞"
+  },
+  {
+    "id": 2191,
+    "print": "vista",
+    "brlunicode": "⠧⠊⠌⠁"
+  },
+  {
+    "id": 2192,
+    "print": "vital",
+    "brlunicode": "⠧⠊⠞⠁⠇"
+  },
+  {
+    "id": 2193,
+    "print": "vocal",
+    "brlunicode": "⠧⠕⠉⠁⠇"
+  },
+  {
+    "id": 2194,
+    "print": "voice",
+    "brlunicode": "⠧⠕⠊⠉⠑"
+  },
+  {
+    "id": 2195,
+    "print": "voted",
+    "brlunicode": "⠧⠕⠞⠫"
+  },
+  {
+    "id": 2196,
+    "print": "voting",
+    "brlunicode": "⠧⠕⠞⠬"
+  },
+  {
+    "id": 2197,
+    "print": "wages",
+    "brlunicode": "⠺⠁⠛⠑⠎"
+  },
+  {
+    "id": 2198,
+    "print": "wagner",
+    "brlunicode": "⠺⠁⠛⠝⠻"
+  },
+  {
+    "id": 2199,
+    "print": "wagon",
+    "brlunicode": "⠺⠁⠛⠕⠝"
+  },
+  {
+    "id": 2200,
+    "print": "waiting",
+    "brlunicode": "⠺⠁⠊⠞⠬"
+  },
+  {
+    "id": 2201,
+    "print": "waiver",
+    "brlunicode": "⠺⠁⠊⠧⠻"
+  },
+  {
+    "id": 2202,
+    "print": "wales",
+    "brlunicode": "⠺⠁⠇⠑⠎"
+  },
+  {
+    "id": 2203,
+    "print": "walked",
+    "brlunicode": "⠺⠁⠇⠅⠫"
+  },
+  {
+    "id": 2204,
+    "print": "walking",
+    "brlunicode": "⠺⠁⠇⠅⠬"
+  },
+  {
+    "id": 2205,
+    "print": "wanted",
+    "brlunicode": "⠺⠁⠝⠞⠫"
+  },
+  {
+    "id": 2206,
+    "print": "wanting",
+    "brlunicode": "⠺⠁⠝⠞⠬"
+  },
+  {
+    "id": 2207,
+    "print": "warming",
+    "brlunicode": "⠺⠜⠍⠬"
+  },
+  {
+    "id": 2208,
+    "print": "warned",
+    "brlunicode": "⠺⠜⠝⠫"
+  },
+  {
+    "id": 2209,
+    "print": "warning",
+    "brlunicode": "⠺⠜⠝⠬"
+  },
+  {
+    "id": 2210,
+    "print": "washer",
+    "brlunicode": "⠺⠁⠩⠻"
+  },
+  {
+    "id": 2211,
+    "print": "washing",
+    "brlunicode": "⠺⠁⠩⠬"
+  },
+  {
+    "id": 2212,
+    "print": "waste",
+    "brlunicode": "⠺⠁⠌⠑"
+  },
+  {
+    "id": 2213,
+    "print": "watch",
+    "brlunicode": "⠺⠁⠞⠡"
+  },
+  {
+    "id": 2214,
+    "print": "watched",
+    "brlunicode": "⠺⠁⠞⠡⠫"
+  },
+  {
+    "id": 2215,
+    "print": "watching",
+    "brlunicode": "⠺⠁⠞⠡⠬"
+  },
+  {
+    "id": 2216,
+    "print": "water",
+    "brlunicode": "⠺⠁⠞⠻"
+  },
+  {
+    "id": 2217,
+    "print": "waters",
+    "brlunicode": "⠺⠁⠞⠻⠎"
+  },
+  {
+    "id": 2218,
+    "print": "watts",
+    "brlunicode": "⠺⠁⠞⠞⠎"
+  },
+  {
+    "id": 2219,
+    "print": "wealth",
+    "brlunicode": "⠺⠂⠇⠹"
+  },
+  {
+    "id": 2220,
+    "print": "weapon",
+    "brlunicode": "⠺⠂⠏⠕⠝"
+  },
+  {
+    "id": 2221,
+    "print": "wearing",
+    "brlunicode": "⠺⠑⠜⠬"
+  },
+  {
+    "id": 2222,
+    "print": "weather",
+    "brlunicode": "⠺⠂⠮⠗"
+  },
+  {
+    "id": 2223,
+    "print": "wedding",
+    "brlunicode": "⠺⠫⠙⠬"
+  },
+  {
+    "id": 2224,
+    "print": "weight",
+    "brlunicode": "⠺⠑⠊⠣⠞"
+  },
+  {
+    "id": 2225,
+    "print": "weird",
+    "brlunicode": "⠺⠑⠊⠗⠙"
+  },
+  {
+    "id": 2226,
+    "print": "welding",
+    "brlunicode": "⠺⠑⠇⠙⠬"
+  },
+  {
+    "id": 2227,
+    "print": "western",
+    "brlunicode": "⠺⠑⠌⠻⠝"
+  },
+  {
+    "id": 2228,
+    "print": "whale",
+    "brlunicode": "⠱⠁⠇⠑"
+  },
+  {
+    "id": 2229,
+    "print": "whatever",
+    "brlunicode": "⠱⠁⠞⠐⠑"
+  },
+  {
+    "id": 2230,
+    "print": "wheat",
+    "brlunicode": "⠱⠂⠞"
+  },
+  {
+    "id": 2231,
+    "print": "wheel",
+    "brlunicode": "⠱⠑⠑⠇"
+  },
+  {
+    "id": 2232,
+    "print": "wherever",
+    "brlunicode": "⠱⠻⠐⠑"
+  },
+  {
+    "id": 2233,
+    "print": "while",
+    "brlunicode": "⠱⠊⠇⠑"
+  },
+  {
+    "id": 2234,
+    "print": "white",
+    "brlunicode": "⠱⠊⠞⠑"
+  },
+  {
+    "id": 2235,
+    "print": "whole",
+    "brlunicode": "⠱⠕⠇⠑"
+  },
+  {
+    "id": 2236,
+    "print": "wicked",
+    "brlunicode": "⠺⠊⠉⠅⠫"
+  },
+  {
+    "id": 2237,
+    "print": "wider",
+    "brlunicode": "⠺⠊⠙⠻"
+  },
+  {
+    "id": 2238,
+    "print": "width",
+    "brlunicode": "⠺⠊⠙⠹"
+  },
+  {
+    "id": 2239,
+    "print": "willing",
+    "brlunicode": "⠺⠊⠇⠇⠬"
+  },
+  {
+    "id": 2240,
+    "print": "window",
+    "brlunicode": "⠺⠔⠙⠪"
+  },
+  {
+    "id": 2241,
+    "print": "windows",
+    "brlunicode": "⠺⠔⠙⠪⠎"
+  },
+  {
+    "id": 2242,
+    "print": "wings",
+    "brlunicode": "⠺⠬⠎"
+  },
+  {
+    "id": 2243,
+    "print": "winner",
+    "brlunicode": "⠺⠔⠝⠻"
+  },
+  {
+    "id": 2244,
+    "print": "winning",
+    "brlunicode": "⠺⠔⠝⠬"
+  },
+  {
+    "id": 2245,
+    "print": "winter",
+    "brlunicode": "⠺⠔⠞⠻"
+  },
+  {
+    "id": 2246,
+    "print": "wired",
+    "brlunicode": "⠺⠊⠗⠫"
+  },
+  {
+    "id": 2247,
+    "print": "wiring",
+    "brlunicode": "⠺⠊⠗⠬"
+  },
+  {
+    "id": 2248,
+    "print": "witch",
+    "brlunicode": "⠺⠊⠞⠡"
+  },
+  {
+    "id": 2249,
+    "print": "within",
+    "brlunicode": "⠾⠔"
+  },
+  {
+    "id": 2250,
+    "print": "witness",
+    "brlunicode": "⠺⠊⠞⠰⠎"
+  },
+  {
+    "id": 2251,
+    "print": "wizard",
+    "brlunicode": "⠺⠊⠵⠜⠙"
+  },
+  {
+    "id": 2252,
+    "print": "woman",
+    "brlunicode": "⠺⠕⠍⠁⠝"
+  },
+  {
+    "id": 2253,
+    "print": "wonder",
+    "brlunicode": "⠺⠕⠝⠙⠻"
+  },
+  {
+    "id": 2254,
+    "print": "wooden",
+    "brlunicode": "⠺⠕⠕⠙⠢"
+  },
+  {
+    "id": 2255,
+    "print": "woods",
+    "brlunicode": "⠺⠕⠕⠙⠎"
+  },
+  {
+    "id": 2256,
+    "print": "words",
+    "brlunicode": "⠘⠺⠎"
+  },
+  {
+    "id": 2257,
+    "print": "worked",
+    "brlunicode": "⠐⠺⠫"
+  },
+  {
+    "id": 2258,
+    "print": "worker",
+    "brlunicode": "⠐⠺⠻"
+  },
+  {
+    "id": 2259,
+    "print": "workflow",
+    "brlunicode": "⠐⠺⠋⠇⠪"
+  },
+  {
+    "id": 2260,
+    "print": "workforce",
+    "brlunicode": "⠐⠺⠿⠉⠑"
+  },
+  {
+    "id": 2261,
+    "print": "working",
+    "brlunicode": "⠐⠺⠬"
+  },
+  {
+    "id": 2262,
+    "print": "workout",
+    "brlunicode": "⠐⠺⠳⠞"
+  },
+  {
+    "id": 2263,
+    "print": "works",
+    "brlunicode": "⠐⠺⠎"
+  },
+  {
+    "id": 2264,
+    "print": "workshop",
+    "brlunicode": "⠐⠺⠩⠕⠏"
+  },
+  {
+    "id": 2265,
+    "print": "world",
+    "brlunicode": "⠸⠺"
+  },
+  {
+    "id": 2266,
+    "print": "worry",
+    "brlunicode": "⠺⠕⠗⠗⠽"
+  },
+  {
+    "id": 2267,
+    "print": "worse",
+    "brlunicode": "⠺⠕⠗⠎⠑"
+  },
+  {
+    "id": 2268,
+    "print": "worst",
+    "brlunicode": "⠺⠕⠗⠌"
+  },
+  {
+    "id": 2269,
+    "print": "wound",
+    "brlunicode": "⠺⠨⠙"
+  },
+  {
+    "id": 2270,
+    "print": "wrist",
+    "brlunicode": "⠺⠗⠊⠌"
+  },
+  {
+    "id": 2271,
+    "print": "write",
+    "brlunicode": "⠺⠗⠊⠞⠑"
+  },
+  {
+    "id": 2272,
+    "print": "writer",
+    "brlunicode": "⠺⠗⠊⠞⠻"
+  },
+  {
+    "id": 2273,
+    "print": "writing",
+    "brlunicode": "⠺⠗⠊⠞⠬"
+  },
+  {
+    "id": 2274,
+    "print": "wrong",
+    "brlunicode": "⠺⠗⠰⠛"
+  },
+  {
+    "id": 2275,
+    "print": "wrote",
+    "brlunicode": "⠺⠗⠕⠞⠑"
+  },
+  {
+    "id": 2276,
+    "print": "wyoming",
+    "brlunicode": "⠺⠽⠕⠍⠬"
+  },
+  {
+    "id": 2277,
+    "print": "xanax",
+    "brlunicode": "⠭⠁⠝⠁⠭"
+  },
+  {
+    "id": 2278,
+    "print": "xerox",
+    "brlunicode": "⠭⠻⠕⠭"
+  },
+  {
+    "id": 2279,
+    "print": "yacht",
+    "brlunicode": "⠽⠁⠡⠞"
+  },
+  {
+    "id": 2280,
+    "print": "yahoo",
+    "brlunicode": "⠽⠁⠓⠕⠕"
+  },
+  {
+    "id": 2281,
+    "print": "yearly",
+    "brlunicode": "⠽⠑⠜⠇⠽"
+  },
+  {
+    "id": 2282,
+    "print": "years",
+    "brlunicode": "⠽⠑⠜⠎"
+  },
+  {
+    "id": 2283,
+    "print": "yeast",
+    "brlunicode": "⠽⠂⠌"
+  },
+  {
+    "id": 2284,
+    "print": "yellow",
+    "brlunicode": "⠽⠑⠇⠇⠪"
+  },
+  {
+    "id": 2285,
+    "print": "yemen",
+    "brlunicode": "⠽⠑⠍⠢"
+  },
+  {
+    "id": 2286,
+    "print": "yield",
+    "brlunicode": "⠽⠊⠑⠇⠙"
+  },
+  {
+    "id": 2287,
+    "print": "young",
+    "brlunicode": "⠐⠽"
+  },
+  {
+    "id": 2288,
+    "print": "younger",
+    "brlunicode": "⠐⠽⠻"
+  },
+  {
+    "id": 2289,
+    "print": "youth",
+    "brlunicode": "⠽⠳⠹"
+  },
+  {
+    "id": 2290,
+    "print": "yukon",
+    "brlunicode": "⠽⠥⠅⠕⠝"
+  },
+  {
+    "id": 2291,
+    "print": "zealand",
+    "brlunicode": "⠵⠂⠇⠯"
+  },
+  {
+    "id": 2292,
+    "print": "zoloft",
+    "brlunicode": "⠵⠕⠇⠷⠞"
+  },
+  {
+    "id": 2293,
+    "print": "zoning",
+    "brlunicode": "⠵⠕⠝⠬"
+  }
+]
