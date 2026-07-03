@@ -14,7 +14,7 @@ let gameOver = false;
 let correctDots = [];
 
 // End game custom Braille Unicode messaging
-const WIN_STATUS_MESSAGE = ”⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
+const WIN_STATUS_MESSAGE = "⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
 const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
 
 // Optimized 1-cell lower-sign prefixes (Numbers 1-6 dropped to bottom pins) for 20-cell display limits
