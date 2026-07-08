@@ -13,6 +13,7 @@ let gameOver = false;
 
 // Persistent metric tracking targets across rounds (Cumulative)
 let correctDots = [];
+let wrongDots = [];   // Cumulative union of "wrong" (guessed-but-not-in-target) dots across all guesses this game
 
 // End game custom Braille Unicode messaging
 const WIN_STATUS_MESSAGE = "⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
@@ -280,6 +281,7 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
 
   if (correctDots.length !== targetDots.length) {
     correctDots = Array(targetDots.length).fill(0);
+    wrongDots = Array(targetDots.length).fill(0);
   }
 
   const rowCorrectStrings = [];
@@ -290,10 +292,10 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
     const t = parseInt(targetDots[i], 2);
 
     correctDots[i] |= (g & t);
-    const currentWrongBits = (g & ~t);
+    wrongDots[i] |= (g & ~t);
 
     rowCorrectStrings.push(correctDots[i].toString(2).padStart(8, "0"));
-    rowWrongStrings.push(currentWrongBits.toString(2).padStart(8, "0"));
+    rowWrongStrings.push(wrongDots[i].toString(2).padStart(8, "0"));
   }
 
   renderRow(formatRow({
