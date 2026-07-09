@@ -59,6 +59,30 @@
       font-weight: bold; 
       outline: none; /* Removes the default browser focus ring when focused via JS */
     }
+
+    /* Inline "click to suggest" link that appears inside the status area */
+    .suggest-link-btn {
+      background: none;
+      border: none;
+      color: #FFC107;
+      text-decoration: underline;
+      font-family: sans-serif;
+      font-weight: normal;
+      font-size: 0.8em;
+      white-space: normal;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 0.4em;
+      vertical-align: baseline;
+    }
+    .suggest-link-btn:hover {
+      color: #ffd54f;
+    }
+    .suggest-link-btn:disabled {
+      color: #888888;
+      text-decoration: none;
+      cursor: default;
+    }
     
     /* THE GAME BOARD CONTAINER
        ======================================================================
@@ -127,6 +151,71 @@
       background-color: rgba(255, 193, 7, 0.15);
     }
 
+    /* Post-game "suggest words" form, revealed once the round ends */
+    #post-game-suggest {
+      margin-top: 2em;
+      padding-top: 1em;
+      border-top: 0.08rem solid #444444;
+      width: 100%;
+      text-align: center;
+    }
+
+    #suggest-heading {
+      font-size: 1em;
+      font-family: sans-serif;
+      margin: 0 0 0.5em;
+    }
+
+    #suggest-label {
+      display: block;
+      font-size: 0.8em;
+      font-family: sans-serif;
+      color: #cccccc;
+      margin-bottom: 0.5em;
+    }
+
+    #suggest-input {
+      width: 100%;
+      max-width: 28ch;
+      font-family: monospace;
+      font-size: 1rem;
+      background-color: #000000;
+      color: #ffffff;
+      border: 0.08rem solid #ffffff;
+      padding: 0.5em;
+      resize: vertical;
+    }
+
+    #suggest-submit-btn {
+      display: block;
+      margin: 0.6em auto 0;
+      font-family: sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      border: 0.125rem solid #FFC107;
+      padding: 0.3em 1em;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #suggest-submit-btn:hover {
+      background-color: rgba(255, 193, 7, 0.15);
+    }
+
+    #suggest-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    #suggest-feedback {
+      margin-top: 0.6em;
+      font-size: 0.8em;
+      font-family: sans-serif;
+      color: #FFC107;
+      min-height: 1em;
+    }
+
     #debug-log { 
       margin-top: 2em; 
       font-size: 0.6em; 
@@ -167,6 +256,23 @@
         autocapitalize="off" 
         spellcheck="false" />
       <button id="submit-btn" aria-label="submit" aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
+    </div>
+
+    <!-- Post-game suggestion form: hidden until the round ends (win or lose) -->
+    <div id="post-game-suggest" hidden>
+      <h2 id="suggest-heading">Suggest words for the game</h2>
+      <label id="suggest-label" for="suggest-input">
+        One or more words, separated by spaces or line breaks. 5+ characters each.
+      </label>
+      <textarea
+        id="suggest-input"
+        rows="4"
+        placeholder="e.g. planet ocean garden"
+        aria-label="Suggest words for the game"
+        autocapitalize="off"
+        spellcheck="false"></textarea>
+      <button id="suggest-submit-btn" type="button">Send suggestions</button>
+      <div id="suggest-feedback" role="status" aria-live="polite"></div>
     </div>
 
     <div id="debug-log"></div>
