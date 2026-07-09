@@ -5,7 +5,7 @@ const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 const STORAGE_KEY = "contractable_game_state";
 
 // TODO: replace with your real Formspree endpoint, e.g. "https://formspree.io/f/xxxxxxxx"
-const https://formspree.io/f/mwvdgkyj = "https://formspree.io/f/YOUR_FORM_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 
 let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
 let allWords = [];          // Array of objects from daily-word4.json
