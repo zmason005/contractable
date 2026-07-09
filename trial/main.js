@@ -2,6 +2,10 @@
 
 const MAX_GUESSES = 6;
 const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
+const STORAGE_KEY = "contractable_game_state";
+
+// TODO: replace with your real Formspree endpoint, e.g. "https://formspree.io/f/xxxxxxxx"
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 
 let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
 let allWords = [];          // Array of objects from daily-word4.json
@@ -12,10 +16,15 @@ let gameOver = false;
 
 // Persistent metric tracking targets across rounds (Cumulative)
 let correctDots = [];
+let wrongDots = [];   // Cumulative union of "wrong" (guessed-but-not-in-target) dots across all guesses this game
 
 // End game custom Braille Unicode messaging
 const WIN_STATUS_MESSAGE = "⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
 const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
+
+// Braille "blank cell" character — treated as a word separator alongside regular whitespace,
+// since suggested words may be entered as raw Unicode Braille rather than print letters.
+const BRAILLE_BLANK = "\u2800";
 
 // Optimized 1-cell lower-sign prefixes (Numbers 1-6 dropped to bottom pins) for 20-cell display limits
 const ROW_NUMERIC_PREFIXES = ["⠂", "⠆", "⠒", "⠲", "⠢", "⠖"];
@@ -101,7 +110,6 @@ function todayDayIndex() {
 
 async function loadDailyWords() {
   try {
-    // CHANGED: File path updated from daily-word2.json to daily-word4.json
     const response = await fetch("daily-word4.json");
     if (!response.ok) throw new Error("Could not find daily-word4.json");
     allWords = await response.json();
@@ -122,11 +130,9 @@ async function loadMapping() {
     data.forEach(item => {
       const fullBitmask = item.bitmask;
       
-      // Maps Computer Braille ASCII characters passed from iOS input stream
       if (item.printAscii) {
         asciiToDots[item.printAscii] = fullBitmask;
       }
-      // Maps literal Unicode Braille characters passed from iOS input stream
       if (item.unicodeChar) {
         asciiToDots[item.unicodeChar] = fullBitmask;
       }
@@ -138,13 +144,101 @@ async function loadMapping() {
   }
 }
 
+/* ── State Persistence Management ─────────────────────────────────────────── */
+
+function saveGameState(rawGuessesArray) {
+  const state = {
+    dayIndex: todayDayIndex(),
+    guesses: rawGuessesArray,
+    gameOver: gameOver
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function loadAndRestoreGameState() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+
+  try {
+    const state = JSON.parse(saved);
+    const currentDay = todayDayIndex();
+
+    // If the saved data matches today's game profile, reconstruct the state
+    if (state && state.dayIndex === currentDay) {
+      const input = document.getElementById("guess-input");
+      
+      // Programmatically process prior inputs to rebuild the interface metrics natively
+      if (Array.isArray(state.guesses)) {
+        state.guesses.forEach(guessValue => {
+          evaluateAndRenderGuess(guessValue, true);
+        });
+      }
+      
+      // If the recovered session profile marked the game finished, engage locking
+      if (state.gameOver) {
+        gameOver = true;
+        lockControls();
+        revealPostGameSuggestForm();
+      }
+    } else {
+      // Stale data from previous days is wiped cleanly
+      localStorage.removeItem(STORAGE_KEY);
+    }
+  } catch (e) {
+    mobileLog("State Restoration Error: " + e.message);
+  }
+}
+
+function lockControls() {
+  const input = document.getElementById("guess-input");
+  const button = document.getElementById("submit-btn");
+  if (input) input.disabled = true;
+  if (button) button.disabled = true;
+}
+
+function getStoredGuesses() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return [];
+  try {
+    const state = JSON.parse(saved);
+    if (state && state.dayIndex === todayDayIndex() && Array.isArray(state.guesses)) {
+      return state.guesses;
+    }
+  } catch(e) {}
+  return [];
+}
+
 /* ── UI & Game Logic ─────────────────────────────────────────────────────── */
 
 function setStatus(msg) {
   const status = document.getElementById("status");
   status.textContent = msg;
-  status.removeAttribute("hidden"); // Reveal the element smoothly to everyone
-  setTimeout(() => { status.focus(); }, 0); // Fire focus immediately to shift screen readers
+  status.removeAttribute("hidden"); 
+  setTimeout(() => { status.focus(); }, 0); 
+}
+
+// Renders "Not in word list." plus an inline "Should it be? Click to suggest."
+// button that fires a background suggestion for the exact guess the player typed.
+function setStatusWithSuggestLink(word) {
+  const status = document.getElementById("status");
+  status.textContent = "";
+
+  status.appendChild(document.createTextNode("Not in word list. "));
+
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "suggest-link-btn";
+  btn.textContent = "Should it be? Click to suggest.";
+  btn.addEventListener("click", () => submitSingleWordSuggestion(word, btn));
+
+  status.appendChild(btn);
+  status.removeAttribute("hidden");
+  setTimeout(() => { status.focus(); }, 0);
+}
+
+function revealPostGameSuggestForm() {
+  const section = document.getElementById("post-game-suggest");
+  if (section) section.hidden = false;
 }
 
 function updateGuessLabel() {
@@ -179,108 +273,166 @@ function renderRow(rowText) {
   row.focus();
 }
 
-function submitGuess() {
-  if (gameOver || !WORD_OF_THE_DAY) return;
+// A guess qualifies for the one-click "should it be?" suggestion only if it's a clean
+// standalone token: 5+ characters, and containing no regular whitespace or braille blanks
+// (which would mean the player typed something other than a single word).
+function isValidSingleSuggestion(rawGuess) {
+  if (!rawGuess) return false;
+  if (rawGuess.length < 5) return false;
+  if (/\s/.test(rawGuess)) return false;
+  if (rawGuess.indexOf(BRAILLE_BLANK) !== -1) return false;
+  return true;
+}
 
-  const input = document.getElementById("guess-input");
-  const rawGuess = input.value.trim();
-  if (!rawGuess) return;
+// Split raw textarea content into candidate words on either regular whitespace
+// or braille blank cells, since suggestions may be typed as print letters or
+// as raw Unicode Braille.
+function parseSuggestionWords(raw) {
+  return raw
+    .split(/[\s\u2800]+/)
+    .map(w => w.trim())
+    .filter(w => w.length > 0);
+}
 
-  // Clear previous non-game-over message records from viewport immediately upon a fresh submission
-  if (!gameOver) {
-    const statusDiv = document.getElementById("status");
-    statusDiv.setAttribute("hidden", "");
-    statusDiv.textContent = "";
-  }
-
-  let matchedWord = null;
-  let guessAsUnicode = "";
-  let isCheatValidationBypass = false;
-
-  /* ==========================================================================
-     ███████████████ DIAGNOSTIC CHEAT FEATURE GATEWAY ███████████████
-     ========================================================================== */
-  const CHEAT_MODE_ENABLED = true; // Toggle to false to fully deactivate
-
-  if (CHEAT_MODE_ENABLED && rawGuess === "=====") {
-    isCheatValidationBypass = true;
-    
-    // Inject a dummy structural object so it clears the list-existence validation gate
-    // Utilizing a non-matching 'print' value ensures it can never trigger a win state
-    matchedWord = { print: "_____ DIAGNOSTIC_OVERRIDE_NON_MATCHING _____" };
-    
-    // Force guess representation to 5 full-cell saturations (⠿⠿⠿⠿⠿ / 11111100 bitmasks)
-    guessAsUnicode = "⠿⠿⠿⠿⠿";
-  } 
-  /* ==========================================================================
-     ██████████████████████ END CHEAT GATEWAY ███████████████████████
-     ========================================================================== */
-  
-  // Proceed with normal parsing flows if the cheat override wasn't executed
-  if (!isCheatValidationBypass) {
-    // STANDARD PATHWAY: Regular expression to identify standard alphanumeric text (Contracted UEB output from iOS)
-    const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
-
-    if (isStandardPrint) {
-      // PATH 1: Text processed by iOS translation tables into standard print words
-      const lowerGuess = rawGuess.toLowerCase();
-      matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
-      
-      if (matchedWord) {
-        guessAsUnicode = matchedWord.brlunicode;
-      }
+function validateSuggestions(raw) {
+  const words = parseSuggestionWords(raw);
+  const valid = [];
+  const skipped = [];
+  words.forEach(w => {
+    if (w.length >= 5) {
+      valid.push(w);
     } else {
-      // PATH 2: Multi-table dot processing (Computer Braille ASCII, Braille ASCII, or Unicode Braille Patterns)
-      const guessDots = [];
-      for (const ch of rawGuess) {
-        guessDots.push(asciiToDots[ch] || "00000000"); 
-      }
-      
-      guessAsUnicode = dotsArrayToAsciiString(guessDots);
-      matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
+      skipped.push(w);
     }
-  }
+  });
+  return { valid, skipped };
+}
 
-  // Dictionary validation gate: Reject arbitrary length-mismatched or non-existent strings
-  if (!matchedWord) {
-    setStatus("Not in word list.");
+async function postSuggestion(payload) {
+  const response = await fetch(FORMSPREE_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+  return response.ok;
+}
+
+async function submitSingleWordSuggestion(word, btnEl) {
+  btnEl.disabled = true;
+  btnEl.textContent = "Sending...";
+
+  try {
+    const ok = await postSuggestion({ word: word, source: "single-click-suggest" });
+    btnEl.textContent = ok ? "Thanks, suggestion sent!" : "Couldn't send \u2014 try later.";
+    if (!ok) btnEl.disabled = false;
+  } catch (e) {
+    btnEl.textContent = "Couldn't send \u2014 try later.";
+    btnEl.disabled = false;
+  }
+}
+
+async function submitPostGameSuggestions() {
+  const textarea = document.getElementById("suggest-input");
+  const feedback = document.getElementById("suggest-feedback");
+  const btn = document.getElementById("suggest-submit-btn");
+
+  const { valid, skipped } = validateSuggestions(textarea.value);
+
+  if (valid.length === 0) {
+    feedback.textContent = skipped.length
+      ? `All ${skipped.length} word(s) were too short (need 5+ characters). Nothing sent.`
+      : "Enter at least one word first.";
     return;
   }
 
-  // Establish targets using today's true word lengths
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+
+  try {
+    const ok = await postSuggestion({ words: valid.join(", "), source: "post-game-form" });
+
+    if (ok) {
+      let msg = `Sent ${valid.length} word${valid.length === 1 ? "" : "s"}.`;
+      if (skipped.length > 0) {
+        msg += ` Skipped ${skipped.length} (too short): ${skipped.join(", ")}.`;
+      }
+      feedback.textContent = msg;
+      textarea.value = "";
+    } else {
+      feedback.textContent = "Couldn't send suggestions \u2014 try again later.";
+    }
+  } catch (e) {
+    feedback.textContent = "Couldn't send suggestions \u2014 try again later.";
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Send suggestions";
+  }
+}
+
+// Split out core processing logic so page reloader can pass values silently
+function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
+  let matchedWord = null;
+  let guessAsUnicode = "";
+
+  const isStandardPrint = /^[A-Za-z0-9]+$/.test(rawGuess);
+
+  if (isStandardPrint) {
+    const lowerGuess = rawGuess.toLowerCase();
+    matchedWord = allWords.find(word => word.print.toLowerCase() === lowerGuess);
+    if (matchedWord) {
+      guessAsUnicode = matchedWord.brlunicode;
+    }
+  } else {
+    const guessDots = [];
+    for (const ch of rawGuess) {
+      guessDots.push(asciiToDots[ch] || "00000000"); 
+    }
+    guessAsUnicode = dotsArrayToAsciiString(guessDots);
+    matchedWord = allWords.find(word => word.brlunicode === guessAsUnicode);
+  }
+
+  if (!matchedWord) {
+    if (!isRestoring) {
+      if (isValidSingleSuggestion(rawGuess)) {
+        setStatusWithSuggestLink(rawGuess);
+      } else {
+        setStatus("Not in word list.");
+      }
+    }
+    return false;
+  }
+
   const targetUnicode = WORD_OF_THE_DAY.brlunicode;
   const targetDots = [];
   for (const ch of targetUnicode) {
     targetDots.push(asciiToDots[ch] || "00000000");
   }
 
-  // Build current guess metrics array normalized to true bitmasks
   const guessDotsArray = [];
   for (const ch of guessAsUnicode) {
     guessDotsArray.push(asciiToDots[ch] || "00000000");
   }
 
-  // Dynamic initialization of persistent correct trackers to cleanly fit targeted cell array bounds
   if (correctDots.length !== targetDots.length) {
     correctDots = Array(targetDots.length).fill(0);
+    wrongDots = Array(targetDots.length).fill(0);
   }
 
   const rowCorrectStrings = [];
   const rowWrongStrings = [];
 
-  // Evaluate bits row-by-row up to the explicit structural size of the target word
   for (let i = 0; i < targetDots.length; i++) {
     const g = parseInt(guessDotsArray[i] || "00000000", 2);
     const t = parseInt(targetDots[i], 2);
 
-    // Correct bits build permanently over previous rounds
     correctDots[i] |= (g & t);
-
-    // Wrong bits are strictly isolated to this round's input discrepancies
-    const currentWrongBits = (g & ~t);
+    wrongDots[i] |= (g & ~t);
 
     rowCorrectStrings.push(correctDots[i].toString(2).padStart(8, "0"));
-    rowWrongStrings.push(currentWrongBits.toString(2).padStart(8, "0"));
+    rowWrongStrings.push(wrongDots[i].toString(2).padStart(8, "0"));
   }
 
   renderRow(formatRow({
@@ -291,18 +443,48 @@ function submitGuess() {
   }));
 
   currentGuess++;
-  input.value = "";
   updateGuessLabel();
 
-  // Validate match criteria using normalized print records from database
   const isMatch = (matchedWord.print.toLowerCase() === WORD_OF_THE_DAY.print.toLowerCase());
 
   if (isMatch) {
     setStatus(WIN_STATUS_MESSAGE);
     gameOver = true;
+    if (!isRestoring) lockControls();
+    revealPostGameSuggestForm();
   } else if (currentGuess >= MAX_GUESSES) {
     setStatus(LOSE_STATUS_MESSAGE);
     gameOver = true;
+    if (!isRestoring) lockControls();
+    revealPostGameSuggestForm();
+  }
+
+  return true;
+}
+
+function submitGuess() {
+  if (gameOver || !WORD_OF_THE_DAY) return;
+
+  const input = document.getElementById("guess-input");
+  const rawGuess = input.value.trim();
+  if (!rawGuess) return;
+
+  if (!gameOver) {
+    const statusDiv = document.getElementById("status");
+    statusDiv.setAttribute("hidden", "");
+    statusDiv.textContent = "";
+  }
+
+  // Evaluate the validation track
+  const success = evaluateAndRenderGuess(rawGuess, false);
+
+  if (success) {
+    // Commit the new entry to permanent storage records
+    const historicalGuesses = getStoredGuesses();
+    historicalGuesses.push(rawGuess);
+    saveGameState(historicalGuesses);
+    
+    input.value = "";
   }
 }
 
@@ -313,12 +495,16 @@ async function init() {
     WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
     const debugLog = document.getElementById("debug-log");
     if (debugLog) debugLog.textContent = ""; 
+    
+    // Core game state loading cycle runs immediately when dictionary data arrives
+    loadAndRestoreGameState();
   } else {
     mobileLog("Critical: No words loaded. Check JSON files.");
   }
 
   const input = document.getElementById("guess-input");
   const button = document.getElementById("submit-btn");
+  const suggestBtn = document.getElementById("suggest-submit-btn");
 
   button.addEventListener("click", submitGuess);
   input.addEventListener("keydown", (e) => {
@@ -328,8 +514,14 @@ async function init() {
     }
   });
 
+  if (suggestBtn) {
+    suggestBtn.addEventListener("click", submitPostGameSuggestions);
+  }
+
   updateGuessLabel();
-  input.focus();
+  if (!gameOver) {
+    input.focus();
+  }
 }
 
 init().catch(e => mobileLog("Init Error: " + e.message));
