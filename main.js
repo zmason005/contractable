@@ -4,6 +4,8 @@ const MAX_GUESSES = 6;
 const START_DATE_MS = 1774396800000; // Day 0 = 2026-03-25
 const STORAGE_KEY = "contractable_game_state";
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwvdgkyj";
+
 let WORD_OF_THE_DAY = null; // Stored as a complete object: { id, print, brlunicode }
 let allWords = [];          // Array of objects from daily-word4.json
 let asciiToDots = {};       // Maps both Computer Braille ASCII and Unicode Braille to 8-bit binary strings
@@ -19,6 +21,10 @@ let wrongDots = [];   // Cumulative union of "wrong" (guessed-but-not-in-target)
 const WIN_STATUS_MESSAGE = "⠠⠠⠽⠀⠠⠠⠺⠔⠖⠀⠀";
 const LOSE_STATUS_MESSAGE = "⠀⠠⠎⠕⠗⠗⠽⠂⠀⠛⠁⠍⠑⠀⠕⠧⠻⠲⠀";
 
+// Braille "blank cell" character — treated as a word separator alongside regular whitespace,
+// since suggested words may be entered as raw Unicode Braille rather than print letters.
+const BRAILLE_BLANK = "\u2800";
+
 // Optimized 1-cell lower-sign prefixes (Numbers 1-6 dropped to bottom pins) for 20-cell display limits
 const ROW_NUMERIC_PREFIXES = ["⠂", "⠆", "⠒", "⠲", "⠢", "⠖"];
 
@@ -29,7 +35,7 @@ function mobileLog(msg) {
   console.error(msg);
 }
 
-/* ── PRNG & Logic ────────────────────────────────────────────────────────── */
+/* ── PRNG & Logic ─────────────────────────────────────────────────────────[...]
 
 function mulberry32(seed) {
   seed = seed >>> 0;
@@ -99,7 +105,7 @@ function todayDayIndex() {
   return Math.floor((nowUTC - START_DATE_MS) / 86400000);
 }
 
-/* ── Loaders ──────────────────────────────────────────────────────────────── */
+/* ── Loaders ───────────────────────────────────────────────────────────[...]
 
 async function loadDailyWords() {
   try {
@@ -171,6 +177,7 @@ function loadAndRestoreGameState() {
       if (state.gameOver) {
         gameOver = true;
         lockControls();
+        revealPostGameSuggestForm();
       }
     } else {
       // Stale data from previous days is wiped cleanly
@@ -209,6 +216,30 @@ function setStatus(msg) {
   setTimeout(() => { status.focus(); }, 0); 
 }
 
+// Renders "Not in word list." plus an inline "Should it be? Click to suggest."
+// button that fires a background suggestion for the exact guess the player typed.
+function setStatusWithSuggestLink(word) {
+  const status = document.getElementById("status");
+  status.textContent = "";
+
+  status.appendChild(document.createTextNode("Not in word list. "));
+
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "suggest-link-btn";
+  btn.textContent = "Should it be? Click to suggest.";
+  btn.addEventListener("click", () => submitSingleWordSuggestion(word, btn));
+
+  status.appendChild(btn);
+  status.removeAttribute("hidden");
+  setTimeout(() => { status.focus(); }, 0);
+}
+
+function revealPostGameSuggestForm() {
+  const section = document.getElementById("post-game-suggest");
+  if (section) section.hidden = false;
+}
+
 function updateGuessLabel() {
   const label = document.getElementById("guess-label");
   label.textContent = (currentGuess === MAX_GUESSES - 1) ? "f9al guess" : "guess";
@@ -241,6 +272,105 @@ function renderRow(rowText) {
   row.focus();
 }
 
+// A guess qualifies for the one-click "should it be?" suggestion only if it's a clean
+// standalone token: 5+ characters, and containing no regular whitespace or braille blanks
+// (which would mean the player typed something other than a single word).
+function isValidSingleSuggestion(rawGuess) {
+  if (!rawGuess) return false;
+  if (rawGuess.length < 5) return false;
+  if (/\s/.test(rawGuess)) return false;
+  if (rawGuess.indexOf(BRAILLE_BLANK) !== -1) return false;
+  return true;
+}
+
+// Split raw textarea content into candidate words on either regular whitespace
+// or braille blank cells, since suggestions may be typed as print letters or
+// as raw Unicode Braille.
+function parseSuggestionWords(raw) {
+  return raw
+    .split(/[\s\u2800]+/)
+    .map(w => w.trim())
+    .filter(w => w.length > 0);
+}
+
+function validateSuggestions(raw) {
+  const words = parseSuggestionWords(raw);
+  const valid = [];
+  const skipped = [];
+  words.forEach(w => {
+    if (w.length >= 5) {
+      valid.push(w);
+    } else {
+      skipped.push(w);
+    }
+  });
+  return { valid, skipped };
+}
+
+async function postSuggestion(payload) {
+  const response = await fetch(FORMSPREE_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+  return response.ok;
+}
+
+async function submitSingleWordSuggestion(word, btnEl) {
+  btnEl.disabled = true;
+  btnEl.textContent = "Sending...";
+
+  try {
+    const ok = await postSuggestion({ word: word, source: "single-click-suggest" });
+    btnEl.textContent = ok ? "Thanks, suggestion sent!" : "Couldn't send \u2014 try later.";
+    if (!ok) btnEl.disabled = false;
+  } catch (e) {
+    btnEl.textContent = "Couldn't send \u2014 try later.";
+    btnEl.disabled = false;
+  }
+}
+
+async function submitPostGameSuggestions() {
+  const textarea = document.getElementById("suggest-input");
+  const feedback = document.getElementById("suggest-feedback");
+  const btn = document.getElementById("suggest-submit-btn");
+
+  const { valid, skipped } = validateSuggestions(textarea.value);
+
+  if (valid.length === 0) {
+    feedback.textContent = skipped.length
+      ? `All ${skipped.length} word(s) were too short (need 5+ characters). Nothing sent.`
+      : "Enter at least one word first.";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+
+  try {
+    const ok = await postSuggestion({ words: valid.join(", "), source: "post-game-form" });
+
+    if (ok) {
+      let msg = `Sent ${valid.length} word${valid.length === 1 ? "" : "s"}.`;
+      if (skipped.length > 0) {
+        msg += ` Skipped ${skipped.length} (too short): ${skipped.join(", ")}.`;
+      }
+      feedback.textContent = msg;
+      textarea.value = "";
+    } else {
+      feedback.textContent = "Couldn't send suggestions \u2014 try again later.";
+    }
+  } catch (e) {
+    feedback.textContent = "Couldn't send suggestions \u2014 try again later.";
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Send suggestions";
+  }
+}
+
 // Split out core processing logic so page reloader can pass values silently
 function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
   let matchedWord = null;
@@ -264,7 +394,13 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
   }
 
   if (!matchedWord) {
-    if (!isRestoring) setStatus("Not in word list.");
+    if (!isRestoring) {
+      if (isValidSingleSuggestion(rawGuess)) {
+        setStatusWithSuggestLink(rawGuess);
+      } else {
+        setStatus("Not in word list.");
+      }
+    }
     return false;
   }
 
@@ -314,10 +450,12 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
     setStatus(WIN_STATUS_MESSAGE);
     gameOver = true;
     if (!isRestoring) lockControls();
+    revealPostGameSuggestForm();
   } else if (currentGuess >= MAX_GUESSES) {
     setStatus(LOSE_STATUS_MESSAGE);
     gameOver = true;
     if (!isRestoring) lockControls();
+    revealPostGameSuggestForm();
   }
 
   return true;
@@ -365,6 +503,7 @@ async function init() {
 
   const input = document.getElementById("guess-input");
   const button = document.getElementById("submit-btn");
+  const suggestBtn = document.getElementById("suggest-submit-btn");
 
   button.addEventListener("click", submitGuess);
   input.addEventListener("keydown", (e) => {
@@ -373,6 +512,10 @@ async function init() {
       submitGuess();
     }
   });
+
+  if (suggestBtn) {
+    suggestBtn.addEventListener("click", submitPostGameSuggestions);
+  }
 
   updateGuessLabel();
   if (!gameOver) {
