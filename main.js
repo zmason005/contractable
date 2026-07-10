@@ -35,7 +35,7 @@ function mobileLog(msg) {
   console.error(msg);
 }
 
-/* ── PRNG & Logic ─────────────────────────────────────────────────────────[...]
+/* ── PRNG & Logic ────────────────────────────────────────────────────────── */
 
 function mulberry32(seed) {
   seed = seed >>> 0;
@@ -105,7 +105,7 @@ function todayDayIndex() {
   return Math.floor((nowUTC - START_DATE_MS) / 86400000);
 }
 
-/* ── Loaders ───────────────────────────────────────────────────────────[...]
+/* ── Loaders ──────────────────────────────────────────────────────────────── */
 
 async function loadDailyWords() {
   try {
@@ -308,13 +308,15 @@ function validateSuggestions(raw) {
 }
 
 async function postSuggestion(payload) {
+  const formData = new FormData();
+  Object.keys(payload).forEach(key => formData.append(key, payload[key]));
+
   const response = await fetch(FORMSPREE_ENDPOINT, {
     method: "POST",
     headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
+      "Accept": "application/json"
     },
-    body: JSON.stringify(payload)
+    body: formData
   });
   return response.ok;
 }
