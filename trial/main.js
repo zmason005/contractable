@@ -12,6 +12,7 @@ let asciiToDots = {};       // Maps both Computer Braille ASCII and Unicode Brai
 let dotsToAscii = {};       // Maps 8-bit binary strings to literal Unicode Braille characters
 let currentGuess = 0;
 let gameOver = false;
+let currentDayIndex = null; // Which local calendar day the active session was built for
 
 // Persistent metric tracking targets across rounds (Cumulative)
 let correctDots = [];
@@ -100,9 +101,20 @@ function getWordForDayIndex(dayIndex) {
   return cycle[position];
 }
 
+// Whole-day number for Day 0 (2026-03-25). START_DATE_MS lands exactly on a UTC
+// day boundary, so dividing it evenly gives a clean reference day count.
+const START_DAY_NUMBER = Math.floor(START_DATE_MS / 86400000);
+
+// Converts a Date's local calendar date (year/month/day as the device sees them)
+// into a stable whole-day counter. Built via Date.UTC so it's immune to Daylight
+// Saving Time shifts, which can otherwise make a local "day" 23 or 25 hours long.
+function localCalendarDayNumber(date) {
+  return Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
+}
+
+// Day index now rolls over at each player's own local midnight, rather than UTC midnight.
 function todayDayIndex() {
-  const nowUTC = Date.now();
-  return Math.floor((nowUTC - START_DATE_MS) / 86400000);
+  return localCalendarDayNumber(new Date()) - START_DAY_NUMBER;
 }
 
 /* ── Loaders ──────────────────────────────────────────────────────────────── */
@@ -207,6 +219,70 @@ function getStoredGuesses() {
   return [];
 }
 
+// Live re-check for whether the local calendar day has changed since this session
+// was built. Needed because a tab left open across midnight never naturally re-runs
+// init() on its own — nothing else in the page would otherwise notice the rollover.
+function checkForNewDay() {
+  const latestDayIndex = todayDayIndex();
+
+  if (currentDayIndex !== null && latestDayIndex !== currentDayIndex) {
+    resetGameForNewDay(latestDayIndex);
+    return true;
+  }
+
+  currentDayIndex = latestDayIndex;
+  return false;
+}
+
+// Full session reset when a new local day is detected: wipes storage, resets every
+// piece of in-memory game state (including the correct/wrong dot trackers, which
+// otherwise never re-trigger their own reset since every word is 5 cells), picks the
+// new word, clears the rendered board, and restores the controls to a fresh state.
+function resetGameForNewDay(newDayIndex) {
+  localStorage.removeItem(STORAGE_KEY);
+
+  currentGuess = 0;
+  gameOver = false;
+  correctDots = [];
+  wrongDots = [];
+  currentDayIndex = newDayIndex;
+
+  if (allWords.length > 0) {
+    WORD_OF_THE_DAY = getWordForDayIndex(currentDayIndex);
+  }
+
+  const board = document.getElementById("game-board");
+  if (board) {
+    board.querySelectorAll(".row").forEach(row => row.remove());
+  }
+
+  const status = document.getElementById("status");
+  if (status) {
+    status.textContent = "";
+    status.setAttribute("hidden", "");
+  }
+
+  const input = document.getElementById("guess-input");
+  if (input) {
+    input.disabled = false;
+    input.value = "";
+  }
+
+  const button = document.getElementById("submit-btn");
+  if (button) button.disabled = false;
+
+  const suggestSection = document.getElementById("post-game-suggest");
+  if (suggestSection) suggestSection.hidden = true;
+
+  const suggestFeedback = document.getElementById("suggest-feedback");
+  if (suggestFeedback) suggestFeedback.textContent = "";
+
+  const suggestInput = document.getElementById("suggest-input");
+  if (suggestInput) suggestInput.value = "";
+
+  updateGuessLabel();
+}
+
 /* ── UI & Game Logic ─────────────────────────────────────────────────────── */
 
 function setStatus(msg) {
@@ -308,13 +384,15 @@ function validateSuggestions(raw) {
 }
 
 async function postSuggestion(payload) {
+  const formData = new FormData();
+  Object.keys(payload).forEach(key => formData.append(key, payload[key]));
+
   const response = await fetch(FORMSPREE_ENDPOINT, {
     method: "POST",
     headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
+      "Accept": "application/json"
     },
-    body: JSON.stringify(payload)
+    body: formData
   });
   return response.ok;
 }
@@ -462,6 +540,8 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
 }
 
 function submitGuess() {
+  checkForNewDay();
+
   if (gameOver || !WORD_OF_THE_DAY) return;
 
   const input = document.getElementById("guess-input");
@@ -491,7 +571,8 @@ async function init() {
   await Promise.all([loadMapping(), loadDailyWords()]);
 
   if (allWords.length > 0) {
-    WORD_OF_THE_DAY = getWordForDayIndex(todayDayIndex());
+    currentDayIndex = todayDayIndex();
+    WORD_OF_THE_DAY = getWordForDayIndex(currentDayIndex);
     const debugLog = document.getElementById("debug-log");
     if (debugLog) debugLog.textContent = ""; 
     
@@ -516,6 +597,14 @@ async function init() {
   if (suggestBtn) {
     suggestBtn.addEventListener("click", submitPostGameSuggestions);
   }
+
+  // Catches the day rollover the moment a backgrounded/left-open tab is refocused,
+  // rather than waiting for the player to submit another guess.
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      checkForNewDay();
+    }
+  });
 
   updateGuessLabel();
   if (!gameOver) {
