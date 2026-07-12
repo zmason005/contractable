@@ -278,6 +278,38 @@
     <div id="debug-log"></div>
 
   </div>
+  
+  <!-- Instructions Toggle -->
+<button
+    id="instructionsBtn"
+    type="button"
+    aria-expanded="false"
+    aria-controls="instructions">
+    Show Instructions
+</button>
+
+<!-- Instructions -->
+<section id="instructions" hidden aria-labelledby="instructionsBtn">
+    <p>
+        Guess the daily Braille word in six tries. Enter a Braille word with the correct number of cells, then use the feedback from each guess to solve the puzzle. After every guess, only the correct dots in the correct positions remain, while incorrect dots disappear. Correct dots accumulate with each attempt, helping you uncover the answer.
+    </p>
+
+    <p><strong>Think in Braille dots—not letters.</strong></p>
+</section>
+
+<script>
+const button = document.getElementById("instructionsBtn");
+const instructions = document.getElementById("instructions");
+
+button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "false";
+
+    instructions.hidden = !expanded;
+    button.setAttribute("aria-expanded", expanded);
+    button.textContent = expanded ? "Hide Instructions" : "Show Instructions";
+});
+</script>
+
 
   <script src="main.js"></script>
 </body>
