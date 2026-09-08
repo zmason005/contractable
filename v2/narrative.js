@@ -1,4 +1,6 @@
-/* ── Narrative Feedback Engine ───────────────────────────────────────────── */
+/* ── Narrative Feedback Engine & Accessibility DOM Controller ───────────── */
+
+const BITMASK_DOT_ORDER = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const NarrativeEngine = {
   getDotNumbers(bitmaskStr) {
@@ -19,8 +21,12 @@ const NarrativeEngine = {
   },
 
   generateFeedback(guessUnicode, targetUnicode, guessNumber, isWin, isLoss) {
-    const guessBitmasks = unicodeStringToBitmasks(guessUnicode);
-    const targetBitmasks = unicodeStringToBitmasks(targetUnicode);
+    const guessBitmasks = typeof unicodeStringToBitmasks === "function" 
+      ? unicodeStringToBitmasks(guessUnicode) 
+      : [];
+    const targetBitmasks = typeof unicodeStringToBitmasks === "function" 
+      ? unicodeStringToBitmasks(targetUnicode) 
+      : [];
 
     let newlyFoundCount = 0;
     let newlyWrongCount = 0;
@@ -55,19 +61,24 @@ const NarrativeEngine = {
     if (isWin) {
       leadIn += "Perfect match! Target word identified.";
     } else if (isLoss) {
-      leadIn += `Game Over. Target word was ${WORD_OF_THE_DAY.print.toUpperCase()}.`;
+      const printWord = (typeof WORD_OF_THE_DAY !== "undefined" && WORD_OF_THE_DAY.print) 
+        ? WORD_OF_THE_DAY.print.toUpperCase() 
+        : "TARGET";
+      leadIn += `Game Over. Target word was ${printWord}.`;
     } else {
       leadIn += `Identified ${newlyFoundCount} correct cell group(s), ${newlyWrongCount} incorrect cell group(s).`;
     }
 
-    const summaryBraille = dotsArrayToAsciiString(
-      correctDots.map(val => val.toString(2).padStart(8, "0"))
-    );
+    const summaryBraille = targetUnicode;
+
+    const targetWordPrint = (typeof WORD_OF_THE_DAY !== "undefined" && WORD_OF_THE_DAY.print) 
+      ? WORD_OF_THE_DAY.print 
+      : "target word";
 
     const ariaText = isWin 
       ? `Congratulations! You solved the puzzle on guess ${guessNumber}.` 
       : isLoss 
-      ? `Game over. The correct word was ${WORD_OF_THE_DAY.print}.` 
+      ? `Game over. The correct word was ${targetWordPrint}.` 
       : `Guess ${guessNumber} recorded. ${newlyFoundCount} cells contain correct dots.`;
 
     return { leadIn, cellDetails, summaryBraille, ariaText };
@@ -94,7 +105,7 @@ function updateNarrativeStatus(guessUnicode, targetUnicode, guessNumber, isWin, 
     listEl.appendChild(li);
   });
 
-  summaryEl.textContent = `Target Cumulative: ${data.summaryBraille}`;
+  summaryEl.textContent = `Target Braille: ${data.summaryBraille}`;
   ariaEl.textContent = data.ariaText;
 
   region.removeAttribute("hidden");
