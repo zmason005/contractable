@@ -4,6 +4,7 @@ import random
 import subprocess
 import louis
 from better_profanity import profanity
+from proper_nouns import is_proper_noun
 
 random.seed()  # non-deterministic per run; change to a fixed seed for reproducibility
 
@@ -95,6 +96,8 @@ for word, rank in freq_rank.items():
         continue  # not a real dictionary word (drops typos/slang picked up from subtitles)
     if word in name_set:
         continue  # drops common first names (subtitle corpora are full of character names)
+    if is_proper_noun(word):
+        continue  # drops countries, demonyms, US states/capitals, common surnames
     if word in CONTRACTION_STEMS:
         continue  # drops broken contraction-fragment artifacts in the source dictionary
     if is_plural_form(word, dictionary_words):
