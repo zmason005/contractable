@@ -17,150 +17,588 @@
   <meta name="twitter:title" content="Contractable – A Daily Contracted Braille Word Game" />
   <meta name="twitter:description" content="A free daily word puzzle for Grade 2 UEB contracted braille. Wordle-style gameplay built for braille display and screen reader users." />
   <style>
-    /* Prevent arbitrary text zooming mechanics in iOS Safari */
+    /*
+      CONTRACTABLE BOARD GEOMETRY
+      ---------------------------
+      The game board uses 24 Braille character pitches as its horizontal
+      design coordinate system.
+
+      A pitch is 1/24 of the available board width. Every horizontal
+      measurement is derived from that master pitch rather than from
+      independent vw values. This keeps the Braille geometry proportional
+      as the viewport changes.
+
+      The board itself contains:
+        1 pitch  row ID
+        5 pitches CORRECT
+        1 pitch  separator
+        5 pitches GUESS
+        1 pitch  separator
+        5 pitches WRONG
+
+      The CORRECT heading therefore spans the row ID + five Correct cells.
+    */
+
     html {
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      /* Dynamic fluid baseline: scales smoothly with viewports */
-      font-size: calc(0.9rem + 0.3vw); 
       box-sizing: border-box;
     }
 
-    *, *:before, *:after {
+    *, *::before, *::after {
       box-sizing: inherit;
     }
 
-    /* Global Page Canvas Layout */
-    body { 
-      font-family: "Apple Braille", "Courier New", monospace; 
-      padding: 1.5vh 3vw; /* Fluid paddings bounded by viewport heights/widths */
-      background-color: #000000; /* Pure black background */
-      color: #ffffff;            /* Stark white global text */
+    body {
+      font-family: "Apple Braille", "Courier New", monospace;
+      background: #000000;
+      color: #ffffff;
       margin: 0;
+      padding: 1.5vh 3vw;
       width: 100%;
     }
 
-    /* THE MASTER APP CONTAINER
-       ======================================================================
-       Added 'text-align: center' here. This forces all inline children blocks 
-       (like headings, row text, and status blocks) to automatically align down 
-       the absolute central axis of the container across different viewports.
-    */
     .app-container {
       width: 100%;
-      max-width: 32ch; /* Safe maximum width bound mapped to character limits */
-      margin: 0 auto; /* Centers the block container horizontally on large screens */
-      font-size: clamp(1.3rem, 5vw, 1.75rem); /* Preserves large dots on small screens, limits upper range */
-      text-align: center; /* ALIGNMENT FIX: Centers headers, status text, and buttons down the central axis */
+      max-width: 32rem;
+      margin: 0 auto;
+      font-size: clamp(1.3rem, 5vw, 1.75rem);
+      text-align: center;
     }
-    
+
     h1 {
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
+      margin: 0.5em 0;
       font-size: 1.2em;
     }
 
-    /* Ensure hidden items are completely invisible to sighted and assistive tech alike */
     [hidden] {
       display: none !important;
     }
-    
-    #status { 
-      margin-top: 0.5em; 
-      white-space: pre; 
-      font-weight: bold; 
-      outline: none; /* Removes the default browser focus ring when focused via JS */
+
+    #status {
+      margin-top: 0.5em;
+      white-space: pre;
+      font-weight: bold;
+      outline: none;
     }
-    
-    /* THE GAME BOARD CONTAINER
-       ======================================================================
-       CRITICAL GAP FIX: Replaced 'white-space: pre-line' with modern vertical 
-       flexbox configuration. This eliminates hidden code-formatting indentation 
-       gaps entirely while keeping rows correctly isolated as straight lines.
+
+    .suggest-link-btn {
+      background: none;
+      border: none;
+      color: #FFC107;
+      text-decoration: underline;
+      font-family: sans-serif;
+      font-weight: normal;
+      font-size: 0.8em;
+      white-space: normal;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 0.4em;
+    }
+
+    .suggest-link-btn:hover {
+      color: #ffd54f;
+    }
+
+    .suggest-link-btn:disabled {
+      color: #888888;
+      text-decoration: none;
+      cursor: default;
+    }
+
+    /* ================================================================
+       MASTER BRAILLE PITCH SYSTEM
+       ================================================================
+       #game-board is declared as a CSS containment context (an
+       inline-size container). That's the fix for the old geometry bug:
+       "--pitch: calc(100% / 24)" looked like a single master value, but
+       a percentage inside a custom property re-resolves against
+       whatever element ends up using it — not against the element that
+       defined it. So the same var(--pitch) was quietly computing a
+       different number in a dot than it did in a row, depending on
+       nesting depth. Container query units (cqw) don't have that
+       problem: cqw always means "percent of the nearest container
+       ancestor," full stop, no matter how deep the element using it is
+       nested inside #game-board. One pitch, one true meaning,
+       everywhere below.
     */
-    #game-board { 
-      margin-top: 1em; 
+
+    #game-board {
+      container-type: inline-size;
+
+      /* One pitch = 1/24 of #game-board's own width. */
+      --pitch: calc(100cqw / 24);
+
+      /*
+        Everything below is proportional to that single pitch, so
+        resizing the board rescales the whole Braille geometry together
+        instead of each piece drifting independently.
+      */
+      --dot-size: calc(var(--pitch) * 0.30);
+      --dot-column-gap: calc(var(--pitch) * 0.10);
+      --dot-row-gap: calc(var(--pitch) * 0.12);
+
+      /* One complete Braille character pitch. */
+      --cell-width: var(--pitch);
+      --cell-height: calc(var(--cell-width) * 1.60);
+
+      /* One pitch separates the three five-cell groups. */
+      --group-gap: var(--pitch);
+
+      /*
+        First column = one row-ID pitch + five Correct-cell pitches.
+        The remaining two columns are five cells each.
+      */
+      --word-column-width: calc(5 * var(--pitch));
+      --correct-column-width: calc(var(--pitch) + var(--word-column-width));
+
+      width: 100%;
+      margin-top: 1em;
       display: flex;
       flex-direction: column;
       gap: 0.15em;
-      font-variant-numeric: tabular-nums; /* Keeps all numeric characters exactly uniform in width */
-      letter-spacing: 0; /* Lock letter spacing to preserve physical Braille tracking alignments */
-      padding: 0.1em 0; /* Tighter padding values to bring rows and header closer together */
-      width: 100%;
-      text-align: center; /* ALIGNMENT FIX: Forces dynamic rows injected inside to center standardly */
-    }
-    
-    .row { 
-      outline: none; 
-      margin-bottom: 0.15em; 
+      padding: 0.1em 0;
+      font-variant-numeric: tabular-nums;
       letter-spacing: 0;
-      white-space: nowrap;
     }
 
-    /* HEADER VISIBILITY FIX
-       ======================================================================
-       #header previously had no dedicated rule, so it fell back to normal
-       text wrapping. Braille Pattern Unicode characters (U+2800 block) are
-       treated by the browser as breakable almost anywhere, including
-       mid-word, so "correct" could wrap and get clipped by the centered
-       text alignment. Matching .row's nowrap/letter-spacing treatment
-       keeps the header on a single unbroken line, same as the data rows.
+    .row {
+      display: grid;
+      grid-template-columns:
+        var(--correct-column-width)
+        var(--word-column-width)
+        var(--word-column-width);
+      column-gap: var(--group-gap);
+      width: max-content;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+    }
+
+    .row {
+      margin-bottom: 1vh;
+    }
+
+    .row-label {
+      grid-column: 1;
+      grid-row: 1;
+      width: var(--pitch);
+      min-width: var(--pitch);
+      height: var(--cell-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6em;
+      font-family: sans-serif;
+      color: #999999;
+    }
+
+    /*
+      Targeted by the semantic classes main.js already assigns
+      (row-group-correct / row-group-guess / row-group-wrong) rather
+      than :nth-of-type. row-label and the three .row-group spans are
+      ALL <span> elements and direct siblings, so :nth-of-type counted
+      them together and silently shifted every column assignment by
+      one — row-group-correct ended up in the GUESS column, row-group-
+      guess ended up in the WRONG column, and row-group-wrong had no
+      matching rule at all. That mismatch, repeated on both #header and
+      every guess row, was the main source of the visual mess. Class
+      selectors don't depend on sibling order, so this can't recur even
+      if the DOM structure shifts later.
     */
-    #header {
-      white-space: nowrap;
-      letter-spacing: 0;
+    .row-group {
+      display: flex;
+      width: var(--word-column-width);
+      min-width: var(--word-column-width);
+      gap: 0;
+      justify-content: flex-start;
+      flex-shrink: 0;
     }
 
-    #controls { 
-      margin-top: 1.5em; 
+    .row-group-correct {
+      grid-column: 1;
+      grid-row: 1;
+      /* Shares column 1 with .row-label; this offset starts it right
+         after the row-ID pitch instead of underneath it. grid-row is
+         pinned explicitly (matching .row-label) because two items
+         sharing a column with no explicit row are NOT guaranteed to
+         overlap — CSS Grid auto-placement pushes the second one to a
+         new row instead, which silently broke this exact "share a
+         column, offset with margin" trick. */
+      margin-left: var(--pitch);
+    }
+
+    .row-group-guess {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .row-group-wrong {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    /* Checkmark icon replacing the truncated "correct" word in the header
+       (see buildCheckmarkGroup() in main.js). Sized/centered to match the
+       height and width of the 5-cell dot-grids beside it. */
+    .header-checkmark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--word-column-width);
+      height: var(--cell-height);
+      font-family: sans-serif;
+      font-size: calc(var(--cell-height) * 0.6);
+      line-height: 1;
+      color: #ffffff;
+    }
+
+    #controls {
+      margin-top: 1.5em;
       width: 100%;
     }
-    
-    #guess-label { 
-      display: block; 
-      margin-bottom: 0.5em; 
+
+    #guess-label {
+      display: block;
+      margin-bottom: 0.5em;
       font-size: 0.9em;
     }
-    
-    /* Text Input Box */
-    #guess-input { 
-      font-family: monospace; 
-      width: 10ch; 
-      /* Bypasses iOS auto-zoom constraints smoothly using rem sizing */
-      font-size: 1rem; 
-      background-color: #000000; 
-      color: #ffffff; 
-      border: 0.08rem solid #ffffff; 
+
+    #guess-input {
+      font-family: monospace;
+      width: 10ch;
+      font-size: 1rem;
+      background: #000000;
+      color: #ffffff;
+      border: 0.08rem solid #ffffff;
       padding: 0.4em;
       vertical-align: middle;
     }
-    
-    /* High-Contrast Amber Outlined Action Button */
-    #submit-btn {
-      font-family: sans-serif; 
-      background-color: #000000; 
-      color: #ffffff;            
-      border: 0.125rem solid #FFC107; 
+
+    #submit-btn,
+    #sixkey-submit-btn,
+    #suggest-submit-btn {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      border: 0.125rem solid #FFC107;
       padding: 0.3em 1em;
       font-weight: bold;
       cursor: pointer;
-      font-size: 1.1rem; 
+      font-size: 1rem;
+    }
+
+    #submit-btn {
+      font-size: 1.1rem;
       vertical-align: middle;
       margin-left: 0.4rem;
     }
 
-    #submit-btn:hover {
-      background-color: rgba(255, 193, 7, 0.15);
+    #submit-btn:hover,
+    #sixkey-submit-btn:hover,
+    #suggest-submit-btn:hover {
+      background: rgba(255, 193, 7, 0.15);
     }
 
-    #debug-log { 
-      margin-top: 2em; 
-      font-size: 0.6em; 
-      color: #ff4d4d; /* High-contrast crimson optimized for pitch black surfaces */
-      border-top: 0.08rem solid #ccc; 
+    #post-game-suggest {
+      margin-top: 2em;
+      padding-top: 1em;
+      border-top: 0.08rem solid #444444;
+      width: 100%;
+      text-align: center;
+    }
+
+    #suggest-heading {
+      font-size: 1em;
+      font-family: sans-serif;
+      margin: 0 0 0.5em;
+    }
+
+    #suggest-label {
+      display: block;
+      font-size: 0.8em;
+      font-family: sans-serif;
+      color: #cccccc;
+      margin-bottom: 0.5em;
+    }
+
+    #suggest-input {
+      width: 100%;
+      max-width: 28ch;
+      font-family: monospace;
+      font-size: 1rem;
+      background: #000000;
+      color: #ffffff;
+      border: 0.08rem solid #ffffff;
+      padding: 0.5em;
+      resize: vertical;
+    }
+
+    #suggest-submit-btn {
+      display: block;
+      margin: 0.6em auto 0;
+    }
+
+    #suggest-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    #suggest-feedback {
+      margin-top: 0.6em;
+      font-size: 0.8em;
+      font-family: sans-serif;
+      color: #FFC107;
+      min-height: 1em;
+    }
+
+    #suggest-feedback.error {
+      color: #ff4d4d;
+      font-weight: bold;
+    }
+
+    #debug-log {
+      margin-top: 2em;
+      font-size: 0.6em;
+      color: #ff4d4d;
+      border-top: 0.08rem solid #ccc;
       padding-top: 0.65rem;
       font-family: monospace;
       width: 100%;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    #mode-toggle-wrap {
+      margin-top: 1.5em;
+    }
+
+    #mode-toggle-btn {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      border: 0.1rem solid #666666;
+      padding: 0.35em 0.9em;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    #mode-toggle-btn:hover {
+      border-color: #999999;
+    }
+
+    #instructions-toggle-wrap {
+      margin: 0.3em 0 1em;
+    }
+
+    #instructions-btn {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      border: 0.1rem solid #666666;
+      padding: 0.35em 0.9em;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    #instructions-btn:hover {
+      border-color: #999999;
+    }
+
+    #instructions-panel {
+      text-align: left;
+      font-family: sans-serif;
+      font-size: 0.8em;
+      line-height: 1.4;
+      color: #dddddd;
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.08rem solid #444444;
+      padding: 0.8em 1em;
+      margin: 0.6em 0 1.2em;
+    }
+
+    #instructions-panel p {
+      margin: 0 0 0.7em;
+    }
+
+    #instructions-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ================================================================
+       BRAILLE CELL
+       ================================================================ */
+
+    .cell {
+      display: grid;
+      grid-template-columns: repeat(2, var(--dot-size));
+      grid-template-rows: repeat(3, var(--dot-size));
+      column-gap: var(--dot-column-gap);
+      row-gap: var(--dot-row-gap);
+      grid-template-areas:
+        "d1 d4"
+        "d2 d5"
+        "d3 d6";
+      width: var(--cell-width);
+      min-width: var(--cell-width);
+      height: var(--cell-height);
+      align-content: center;
+      justify-content: center;
+      flex: 0 0 var(--cell-width);
+    }
+
+    .cell.current-cell {
+      outline: 0.15em solid #FFC107;
+      outline-offset: 0.1em;
+    }
+
+    .dot {
+      width: var(--dot-size);
+      height: var(--dot-size);
+      border-radius: 50%;
+      background: #8b0000;
+      border: 1px solid #8b0000;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .cell.tappable .dot {
+      cursor: pointer;
+    }
+
+    .dot.on {
+      background: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .dot-label {
+      background: transparent;
+      border-color: transparent;
+    }
+
+    .dot-label.on {
+      background: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .dot.dot-1 { grid-area: d1; }
+    .dot.dot-2 { grid-area: d2; }
+    .dot.dot-3 { grid-area: d3; }
+    .dot.dot-4 { grid-area: d4; }
+    .dot.dot-5 { grid-area: d5; }
+    .dot.dot-6 { grid-area: d6; }
+
+    /* ================================================================
+       HEADING
+       ================================================================ */
+
+    #heading-cells {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.3em;
+      vertical-align: middle;
+    }
+
+    #heading-cells .cell {
+      width: 0.8em;
+      min-width: 0.8em;
+      height: 1.28em;
+      grid-template-columns: repeat(2, 0.24em);
+      grid-template-rows: repeat(3, 0.24em);
+      column-gap: 0.08em;
+      row-gap: 0.09em;
+    }
+
+    #heading-cells .dot {
+      width: 0.24em;
+      height: 0.24em;
+      border-width: 0.05em;
+    }
+
+    /* ================================================================
+       SIX-KEY ENTRY
+       ================================================================ */
+
+    #sixkey-controls {
+      margin-top: 1.5em;
+      width: 100%;
+    }
+
+    #sixkey-cells {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1vw;
+      width: 100%;
+      padding: 0.4em 0;
+    }
+
+    #sixkey-cells:focus {
+      outline: 0.12em dashed #FFC107;
+      outline-offset: 0.2em;
+    }
+
+    #sixkey-cells .cell {
+      width: auto;
+      min-width: 0;
+      height: auto;
+      flex: 1 1 0;
+      padding: 0.08em;
+      border-radius: 0.3em;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      column-gap: 1vw;
+      row-gap: 1vw;
+    }
+
+    #sixkey-cells .dot {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border: 0.09em solid #ffffff;
+    }
+
+    #sixkey-actions {
+      margin-top: 1em;
+      display: flex;
+      justify-content: center;
+      gap: 0.6em;
+    }
+
+    #sixkey-clear-btn {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      border: 0.125rem solid #666666;
+      padding: 0.3em 1em;
+      font-weight: normal;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #sixkey-clear-btn:hover {
+      border-color: #999999;
+    }
+
+    #sixkey-clear-btn:disabled,
+    #sixkey-submit-btn:disabled {
+      opacity: 0.5;
+      cursor: default;
     }
 
     /* ABOUT / SEO TEXT BLOCK
@@ -185,38 +623,158 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <div class="app-container">
 
-    <h1 aria-label="CONTRACTABLE" aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑">
-      <span aria-hidden="true">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</span>
+    <h1
+      aria-label="CONTRACTABLE"
+      aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑"
+    >
+      <span id="heading-cells" aria-hidden="true"></span>
     </h1>
 
+    <div id="instructions-toggle-wrap">
+      <button
+        id="instructions-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="instructions-panel"
+      >Show Instructions</button>
+    </div>
+
+    <section id="instructions-panel" hidden aria-labelledby="instructions-btn">
+      <p>
+        Guess the daily Braille word in six tries. Enter a Braille word with
+        the correct number of cells, then use the feedback from each guess to
+        solve the puzzle. After every guess, only the correct dots in the
+        correct positions remain, while incorrect dots disappear. Correct
+        dots accumulate with each attempt, helping you uncover the answer.
+      </p>
+      <p><strong>Think in Braille dots&mdash;not letters.</strong></p>
+    </section>
+
     <div id="game-board" aria-live="polite">
-      <div 
-        id="header" 
+      <div
+        id="header"
+        class="row"
         role="text"
         aria-label="correct, guess, wrong"
-        aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛"><span aria-hidden="true">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</span></div>
+        aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛"
+      ></div>
     </div>
 
     <div id="status" tabindex="-1" hidden></div>
 
     <div id="controls">
       <label id="guess-label" for="guess-input" aria-hidden="true">⠛⠥⠑⠎⠎</label>
-      <input 
-        id="guess-input" 
-        type="text" 
+
+      <input
+        id="guess-input"
+        type="text"
         aria-label="guess"
         aria-braillelabel="⠛⠥⠑⠎⠎"
-        autocomplete="off" 
-        autocapitalize="off" 
-        spellcheck="false" />
-      <button id="submit-btn" aria-label="submit" aria-braillelabel="⠎⠥⠃⠍⠊⠞">⠎⠥⠃⠍⠊⠞</button>
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+
+      <button
+        id="submit-btn"
+        aria-label="submit"
+        aria-braillelabel="⠎⠥⠃⠍⠊⠞"
+      >⠎⠥⠃⠍⠊⠞</button>
     </div>
 
-    <div id="debug-log"></div>
+    <div id="mode-toggle-wrap">
+      <button id="mode-toggle-btn" type="button">Switch to 6-key entry</button>
+    </div>
+
+    <div id="sixkey-controls" hidden>
+      <div
+        id="sixkey-cells"
+        role="group"
+        aria-label="Six key braille entry, five cells. Hold S D F and J K L together to set dots, release to commit a cell. Tap or click dots directly. Arrow keys or Tab move between cells."
+        tabindex="0"
+      >
+        <span class="cell tappable" data-cell="0">
+          <span class="dot dot-1" data-cell="0" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="0" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="0" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="0" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="0" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="0" data-dot="6"></span>
+        </span>
+
+        <span class="cell tappable" data-cell="1">
+          <span class="dot dot-1" data-cell="1" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="1" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="1" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="1" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="1" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="1" data-dot="6"></span>
+        </span>
+
+        <span class="cell tappable" data-cell="2">
+          <span class="dot dot-1" data-cell="2" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="2" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="2" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="2" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="2" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="2" data-dot="6"></span>
+        </span>
+
+        <span class="cell tappable" data-cell="3">
+          <span class="dot dot-1" data-cell="3" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="3" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="3" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="3" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="3" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="3" data-dot="6"></span>
+        </span>
+
+        <span class="cell tappable" data-cell="4">
+          <span class="dot dot-1" data-cell="4" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="4" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="4" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="4" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="4" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="4" data-dot="6"></span>
+        </span>
+      </div>
+
+      <div id="sixkey-live" class="sr-only" aria-live="polite"></div>
+
+      <div id="sixkey-actions">
+        <button id="sixkey-clear-btn" type="button">clear</button>
+        <button id="sixkey-submit-btn" type="button">submit</button>
+      </div>
+    </div>
+
+    <div id="post-game-suggest" hidden>
+      <h2 id="suggest-heading">Suggest words for the game</h2>
+
+      <label id="suggest-label" for="suggest-input">
+        One or more words, separated by spaces or line breaks. Each is checked
+        against Grade 2 UEB braille translation and only sent if it comes out
+        to exactly 5 cells.
+      </label>
+
+      <textarea
+        id="suggest-input"
+        rows="4"
+        placeholder="e.g. planet roughly spiritual"
+        aria-label="Suggest words for the game"
+        autocapitalize="off"
+        spellcheck="false"
+      ></textarea>
+
+      <button id="suggest-submit-btn" type="button">Send suggestions</button>
+
+      <div id="suggest-feedback" role="status" aria-live="polite"></div>
+    </div>
+
+    <div id="debug-log" role="log" aria-live="polite" aria-label="Diagnostics"></div>
 
     <section id="about">
       <h2>Contractable: A Daily Word Puzzle for Contracted Braille</h2>
@@ -225,7 +783,6 @@
       <p>The game is ideal for braille learners practicing Grade 2 contractions, teachers of the visually impaired (TVIs) looking for classroom warm-up activities, transcribers maintaining contraction fluency, and sighted developers curious how contracted braille compares to print English. Six guesses, one word a day, and immediate feedback on which contractions and cells are correct.</p>
       <p>Whether you're a longtime braille reader or just discovering how contracted braille works, Contractable offers a quick, engaging way to build contraction recognition skills one puzzle at a time.</p>
     </section>
-
   </div>
 
   <script src="main.js"></script>

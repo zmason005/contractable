@@ -2,8 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Contractable</title>
+  <title>Contractable – A Daily Contracted Braille Word Game</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Contractable is a free daily word puzzle for Grade 2 UEB contracted braille. Wordle-style gameplay built for braille display and screen reader users." />
+  <link rel="canonical" href="https://contractable.braillefirst.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contractable – A Daily Contracted Braille Word Game" />
+  <meta property="og:description" content="A free daily word puzzle for Grade 2 UEB contracted braille. Wordle-style gameplay built for braille display and screen reader users." />
+  <meta property="og:url" content="https://contractable.braillefirst.com/" />
+  <meta property="og:site_name" content="Contractable" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Contractable – A Daily Contracted Braille Word Game" />
+  <meta name="twitter:description" content="A free daily word puzzle for Grade 2 UEB contracted braille. Wordle-style gameplay built for braille display and screen reader users." />
   <style>
     /*
       CONTRACTABLE BOARD GEOMETRY
@@ -564,6 +576,27 @@
       opacity: 0.5;
       cursor: default;
     }
+
+    /* ABOUT / SEO TEXT BLOCK
+       ======================================================================
+       Visible static text for search engines and sighted visitors, describing
+       the game. Left-aligned (overriding .app-container's centered text) since
+       centered paragraph text is harder to read than centered short UI labels.
+    */
+    #about {
+      margin-top: 2.5em;
+      padding-top: 1.5em;
+      border-top: 0.08rem solid #333;
+      text-align: left;
+      font-family: "Courier New", monospace;
+      font-size: 0.65em;
+      line-height: 1.5;
+    }
+
+    #about h2 {
+      font-size: 1.1em;
+      margin-bottom: 0.6em;
+    }
   </style>
 </head>
 
@@ -718,6 +751,14 @@
     </div>
 
     <div id="debug-log" role="log" aria-live="polite" aria-label="Diagnostics"></div>
+
+    <section id="about">
+      <h2>Contractable: A Daily Word Puzzle for Contracted Braille</h2>
+      <p>Contractable is a free daily word game built for braille readers, inspired by Wordle but designed around Grade 2 Unified English Braille (UEB) — the contracted braille system used by fluent braille readers worldwide. Instead of guessing individual letters, players guess five-cell braille words using standard UEB contractions, the same shorthand symbols found in braille textbooks, signage, and everyday braille reading materials.</p>
+      <p>Each day brings a new contracted braille word to solve. Contractable works directly with refreshable braille displays and screen readers like VoiceOver, making it one of the few word games designed accessibility-first rather than retrofitted for accessibility afterward. Every interaction — from entering guesses to reading results — is built to work naturally for braille display users and screen reader users alike.</p>
+      <p>The game is ideal for braille learners practicing Grade 2 contractions, teachers of the visually impaired (TVIs) looking for classroom warm-up activities, transcribers maintaining contraction fluency, and sighted developers curious how contracted braille compares to print English. Six guesses, one word a day, and immediate feedback on which contractions and cells are correct.</p>
+      <p>Whether you're a longtime braille reader or just discovering how contracted braille works, Contractable offers a quick, engaging way to build contraction recognition skills one puzzle at a time.</p>
+    </section>
   </div>
 
   <script src="main.js"></script>

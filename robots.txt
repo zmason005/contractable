@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://contractable.braillefirst.com/sitemap.xml
