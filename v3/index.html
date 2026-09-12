@@ -184,7 +184,6 @@
 
     .row-label {
       grid-column: 1;
-      grid-row: 1;
       width: var(--pitch);
       min-width: var(--pitch);
       height: var(--cell-height);
@@ -220,40 +219,17 @@
 
     .row-group-correct {
       grid-column: 1;
-      grid-row: 1;
       /* Shares column 1 with .row-label; this offset starts it right
-         after the row-ID pitch instead of underneath it. grid-row is
-         pinned explicitly (matching .row-label) because two items
-         sharing a column with no explicit row are NOT guaranteed to
-         overlap — CSS Grid auto-placement pushes the second one to a
-         new row instead, which silently broke this exact "share a
-         column, offset with margin" trick. */
+         after the row-ID pitch instead of underneath it. */
       margin-left: var(--pitch);
     }
 
     .row-group-guess {
       grid-column: 2;
-      grid-row: 1;
     }
 
     .row-group-wrong {
       grid-column: 3;
-      grid-row: 1;
-    }
-
-    /* Checkmark icon replacing the truncated "correct" word in the header
-       (see buildCheckmarkGroup() in main.js). Sized/centered to match the
-       height and width of the 5-cell dot-grids beside it. */
-    .header-checkmark {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: var(--word-column-width);
-      height: var(--cell-height);
-      font-family: sans-serif;
-      font-size: calc(var(--cell-height) * 0.6);
-      line-height: 1;
-      color: #ffffff;
     }
 
     #controls {
