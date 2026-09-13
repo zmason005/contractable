@@ -241,19 +241,24 @@
       grid-row: 1;
     }
 
-    /* Checkmark icon replacing the truncated "correct" word in the header
-       (see buildCheckmarkGroup() in main.js). Sized/centered to match the
-       height and width of the 5-cell dot-grids beside it. */
-    .header-checkmark {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: var(--word-column-width);
-      height: var(--cell-height);
-      font-family: sans-serif;
-      font-size: calc(var(--cell-height) * 0.6);
-      line-height: 1;
-      color: #ffffff;
+    /* Header-only override: the real word "correct" needs 7 braille cells,
+       not the 5 every data column uses. Spanning grid-column 1/3 gives it
+       room to use track 1's 6 pitches plus the group-gap between tracks 1
+       and 2 (6 + 1 = 7 pitches total) without encroaching into "guess"'s
+       own track, which is placed independently via its own grid-column:2.
+       That fully consumes the group-gap though, leaving zero breathing
+       room before "guess" - so this is shifted one further pitch to the
+       left (past the shared rule's 1-pitch offset into negative margin)
+       to reclaim a visual gap. Tradeoff: "correct" now starts one cell to
+       the left of where the actual 5-cell data column begins beneath it,
+       rather than perfectly left-aligned with it. There's confirmed unused
+       space around the row (the container is sized for 24 pitches; this
+       row's tracks only use 18), so this doesn't risk clipping. */
+    #header .row-group-correct {
+      grid-column: 1 / 3;
+      margin-left: calc(-1 * var(--pitch));
+      width: calc(7 * var(--pitch));
+      justify-self: start;
     }
 
     #controls {

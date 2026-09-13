@@ -752,33 +752,17 @@ function buildHeaderCells() {
   rowLabel.setAttribute("aria-hidden", "true");
   header.appendChild(rowLabel);
 
-  const [, guessWord, wrongWord] = HEADER_BRAILLE.split("\u2800");
+  const [correctWord, guessWord, wrongWord] = HEADER_BRAILLE.split("\u2800");
 
-  // "correct" is 7 letters and can't be truncated to 5 cells without
-  // losing information (unlike "guess", which fits exactly, or "wrong",
-  // which only needs one blank pad cell) - see buildCheckmarkGroup().
-  header.appendChild(buildCheckmarkGroup("row-group-correct"));
+  // "correct" renders at its full, untruncated cell count (7 cells) rather
+  // than being padded/truncated to 5 - unlike "guess" (fits exactly) and
+  // "wrong" (just needs one blank pad cell), cutting "correct" down to 5
+  // cells would show a different, incorrect word. The wider column is
+  // handled purely in CSS (#header .row-group-correct), which keeps this
+  // left-aligned with the same 5-cell data column beneath it.
+  header.appendChild(buildRowGroup(unicodeStringToBitmasks(correctWord), "row-group-correct", "dot-label"));
   header.appendChild(buildRowGroup(padOrTruncateToFiveCells(unicodeStringToBitmasks(guessWord)), "row-group-guess", "dot-label"));
   header.appendChild(buildRowGroup(padOrTruncateToFiveCells(unicodeStringToBitmasks(wrongWord)), "row-group-wrong", "dot-label"));
-}
-
-// Builds a single centered checkmark icon spanning the same width/position
-// as a normal 5-cell row-group (same "row-group" + column class, so the
-// existing grid-column/grid-row/margin-left rules place it identically).
-// Used only for the header's "correct" column: aria-hidden, since the real
-// accessible label is #header's aria-label="correct, guess, wrong" - this
-// is purely a sighted-visual swap, VoiceOver output is unaffected.
-function buildCheckmarkGroup(groupClass) {
-  const group = document.createElement("span");
-  group.className = "row-group " + groupClass;
-  group.setAttribute("aria-hidden", "true");
-
-  const icon = document.createElement("span");
-  icon.className = "header-checkmark";
-  icon.textContent = "\u2713"; // ✓
-  group.appendChild(icon);
-
-  return group;
 }
 
 // Every board column is sized for exactly 5 braille cells (the fixed word

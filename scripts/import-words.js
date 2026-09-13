@@ -13,12 +13,42 @@
 
 const fs = require("fs");
 const path = require("path");
+const { isProperNoun } = require("./proper-nouns.js");
 
 const ROOT = path.resolve(__dirname, "..");
 const WORDS_TXT_PATH = path.join(ROOT, "new-words.txt");
 const DAILY_WORD_JSON_PATH = path.join(ROOT, "daily-word4.json");
 
 const BRAILLE_CELL_RE = /^[\u2800-\u28FF]{5}$/;
+
+/**
+ * True if `word` looks like the plural of a shorter word that's already
+ * in the bank (e.g. "cases" -> "case", "boxes" -> "box", "parties" ->
+ * "party"). This is a lighter-weight version of generate_words.py's
+ * is_plural_form(): the GitHub Action has no bundled dictionary, so it
+ * can only check against words already in the bank/batch rather than
+ * the full English lexicon. It won't catch every plural (e.g. "acres"
+ * when "acre" isn't in the bank yet), but it stops the exact failure
+ * mode that let the last bad batch through: an -s form landing right
+ * next to its already-present singular.
+ */
+function isPluralOfKnownWord(word, knownPrints) {
+  if (word.endsWith("ies") && word.length > 4) {
+    const singular = word.slice(0, -3) + "y";
+    if (knownPrints.has(singular)) return true;
+  }
+  if (word.endsWith("es") && word.length > 3) {
+    for (const cut of [1, 2]) {
+      const singular = word.slice(0, -cut);
+      if (singular !== word && knownPrints.has(singular)) return true;
+    }
+  }
+  if (word.endsWith("s") && !word.endsWith("ss") && word.length > 3) {
+    const singular = word.slice(0, -1);
+    if (singular !== word && knownPrints.has(singular)) return true;
+  }
+  return false;
+}
 
 function loadDailyWords() {
   const raw = fs.readFileSync(DAILY_WORD_JSON_PATH, "utf8");
@@ -85,6 +115,16 @@ function main() {
 
     if (existingBrl.has(brlunicode) || batchBrl.has(brlunicode)) {
       rejectedLines.push(`${raw}  # duplicate brlunicode`);
+      continue;
+    }
+
+    if (isProperNoun(printLower)) {
+      rejectedLines.push(`${raw}  # proper noun`);
+      continue;
+    }
+
+    if (isPluralOfKnownWord(printLower, existingPrints) || isPluralOfKnownWord(printLower, batchPrints)) {
+      rejectedLines.push(`${raw}  # plural of a word already in the bank`);
       continue;
     }
 

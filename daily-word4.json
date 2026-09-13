@@ -35,11 +35,6 @@
     "brlunicode": "⠁⠒⠥⠎⠫"
   },
   {
-    "id": 8,
-    "print": "acres",
-    "brlunicode": "⠁⠉⠗⠑⠎"
-  },
-  {
     "id": 9,
     "print": "actor",
     "brlunicode": "⠁⠉⠞⠕⠗"
@@ -160,11 +155,6 @@
     "brlunicode": "⠁⠇⠇⠪⠬"
   },
   {
-    "id": 33,
-    "print": "allows",
-    "brlunicode": "⠁⠇⠇⠪⠎"
-  },
-  {
     "id": 34,
     "print": "alloy",
     "brlunicode": "⠁⠇⠇⠕⠽"
@@ -208,11 +198,6 @@
     "id": 42,
     "print": "andorra",
     "brlunicode": "⠯⠕⠗⠗⠁"
-  },
-  {
-    "id": 43,
-    "print": "andrews",
-    "brlunicode": "⠯⠗⠑⠺⠎"
   },
   {
     "id": 44,
@@ -460,11 +445,6 @@
     "brlunicode": "⠃⠁⠝⠅⠬"
   },
   {
-    "id": 93,
-    "print": "banks",
-    "brlunicode": "⠃⠁⠝⠅⠎"
-  },
-  {
     "id": 94,
     "print": "banned",
     "brlunicode": "⠃⠁⠝⠝⠫"
@@ -565,11 +545,6 @@
     "brlunicode": "⠃⠑⠇⠇⠽"
   },
   {
-    "id": 114,
-    "print": "belongs",
-    "brlunicode": "⠆⠇⠰⠛⠎"
-  },
-  {
     "id": 115,
     "print": "better",
     "brlunicode": "⠃⠑⠞⠞⠻"
@@ -658,16 +633,6 @@
     "id": 132,
     "print": "bloom",
     "brlunicode": "⠃⠇⠕⠕⠍"
-  },
-  {
-    "id": 133,
-    "print": "blues",
-    "brlunicode": "⠃⠇⠥⠑⠎"
-  },
-  {
-    "id": 134,
-    "print": "boards",
-    "brlunicode": "⠃⠕⠜⠙⠎"
   },
   {
     "id": 135,
@@ -848,11 +813,6 @@
     "id": 170,
     "print": "burning",
     "brlunicode": "⠃⠥⠗⠝⠬"
-  },
-  {
-    "id": 171,
-    "print": "burns",
-    "brlunicode": "⠃⠥⠗⠝⠎"
   },
   {
     "id": 172,
@@ -1190,11 +1150,6 @@
     "brlunicode": "⠉⠇⠕⠎⠬"
   },
   {
-    "id": 239,
-    "print": "clothes",
-    "brlunicode": "⠉⠇⠕⠮⠎"
-  },
-  {
     "id": 240,
     "print": "clothing",
     "brlunicode": "⠉⠇⠕⠹⠬"
@@ -1345,11 +1300,6 @@
     "brlunicode": "⠒⠎⠊⠌⠬"
   },
   {
-    "id": 270,
-    "print": "consists",
-    "brlunicode": "⠒⠎⠊⠌⠎"
-  },
-  {
     "id": 271,
     "print": "console",
     "brlunicode": "⠒⠎⠕⠇⠑"
@@ -1388,16 +1338,6 @@
     "id": 278,
     "print": "containing",
     "brlunicode": "⠒⠞⠁⠔⠬"
-  },
-  {
-    "id": 279,
-    "print": "contains",
-    "brlunicode": "⠒⠞⠁⠔⠎"
-  },
-  {
-    "id": 280,
-    "print": "contents",
-    "brlunicode": "⠒⠞⠢⠞⠎"
   },
   {
     "id": 281,
@@ -1505,11 +1445,6 @@
     "brlunicode": "⠉⠕⠗⠝⠻"
   },
   {
-    "id": 302,
-    "print": "corps",
-    "brlunicode": "⠉⠕⠗⠏⠎"
-  },
-  {
     "id": 303,
     "print": "country",
     "brlunicode": "⠉⠨⠞⠗⠽"
@@ -1563,11 +1498,6 @@
     "id": 313,
     "print": "craft",
     "brlunicode": "⠉⠗⠁⠋⠞"
-  },
-  {
-    "id": 314,
-    "print": "craps",
-    "brlunicode": "⠉⠗⠁⠏⠎"
   },
   {
     "id": 315,
@@ -1920,11 +1850,6 @@
     "brlunicode": "⠙⠳⠃⠇⠑"
   },
   {
-    "id": 386,
-    "print": "dozens",
-    "brlunicode": "⠙⠕⠵⠢⠎"
-  },
-  {
     "id": 387,
     "print": "draft",
     "brlunicode": "⠙⠗⠁⠋⠞"
@@ -2005,11 +1930,6 @@
     "brlunicode": "⠑⠜⠇⠊⠻"
   },
   {
-    "id": 403,
-    "print": "earnings",
-    "brlunicode": "⠑⠜⠝⠬⠎"
-  },
-  {
     "id": 404,
     "print": "easier",
     "brlunicode": "⠑⠁⠎⠊⠻"
@@ -2023,11 +1943,6 @@
     "id": 406,
     "print": "editor",
     "brlunicode": "⠫⠊⠞⠕⠗"
-  },
-  {
-    "id": 407,
-    "print": "edwards",
-    "brlunicode": "⠫⠺⠜⠙⠎"
   },
   {
     "id": 408,
@@ -2200,19 +2115,9 @@
     "brlunicode": "⠑⠌⠁⠞⠑"
   },
   {
-    "id": 442,
-    "print": "ethics",
-    "brlunicode": "⠑⠹⠊⠉⠎"
-  },
-  {
     "id": 443,
     "print": "ethnic",
     "brlunicode": "⠑⠹⠝⠊⠉"
-  },
-  {
-    "id": 444,
-    "print": "evans",
-    "brlunicode": "⠑⠧⠁⠝⠎"
   },
   {
     "id": 445,
@@ -2248,11 +2153,6 @@
     "id": 451,
     "print": "existing",
     "brlunicode": "⠑⠭⠊⠌⠬"
-  },
-  {
-    "id": 452,
-    "print": "exists",
-    "brlunicode": "⠑⠭⠊⠌⠎"
   },
   {
     "id": 453,
@@ -2295,11 +2195,6 @@
     "brlunicode": "⠋⠁⠊⠇⠬"
   },
   {
-    "id": 461,
-    "print": "fails",
-    "brlunicode": "⠋⠁⠊⠇⠎"
-  },
-  {
     "id": 462,
     "print": "fairy",
     "brlunicode": "⠋⠁⠊⠗⠽"
@@ -2313,11 +2208,6 @@
     "id": 464,
     "print": "falling",
     "brlunicode": "⠋⠁⠇⠇⠬"
-  },
-  {
-    "id": 465,
-    "print": "falls",
-    "brlunicode": "⠋⠁⠇⠇⠎"
   },
   {
     "id": 466,
@@ -2425,16 +2315,6 @@
     "brlunicode": "⠋⠊⠇⠞⠻"
   },
   {
-    "id": 487,
-    "print": "finances",
-    "brlunicode": "⠋⠔⠨⠑⠎"
-  },
-  {
-    "id": 488,
-    "print": "findings",
-    "brlunicode": "⠋⠔⠙⠬⠎"
-  },
-  {
     "id": 489,
     "print": "finished",
     "brlunicode": "⠋⠔⠊⠩⠫"
@@ -2528,11 +2408,6 @@
     "id": 507,
     "print": "folding",
     "brlunicode": "⠋⠕⠇⠙⠬"
-  },
-  {
-    "id": 508,
-    "print": "folks",
-    "brlunicode": "⠋⠕⠇⠅⠎"
   },
   {
     "id": 509,
@@ -2638,11 +2513,6 @@
     "id": 529,
     "print": "funding",
     "brlunicode": "⠋⠥⠝⠙⠬"
-  },
-  {
-    "id": 530,
-    "print": "funds",
-    "brlunicode": "⠋⠥⠝⠙⠎"
   },
   {
     "id": 531,
@@ -2835,11 +2705,6 @@
     "brlunicode": "⠛⠗⠕⠎⠎"
   },
   {
-    "id": 569,
-    "print": "grounds",
-    "brlunicode": "⠛⠗⠨⠙⠎"
-  },
-  {
     "id": 570,
     "print": "guess",
     "brlunicode": "⠛⠥⠑⠎⠎"
@@ -2940,11 +2805,6 @@
     "brlunicode": "⠓⠂⠇⠹⠽"
   },
   {
-    "id": 590,
-    "print": "hearts",
-    "brlunicode": "⠓⠑⠜⠞⠎"
-  },
-  {
     "id": 591,
     "print": "height",
     "brlunicode": "⠓⠑⠊⠣⠞"
@@ -3043,11 +2903,6 @@
     "id": 610,
     "print": "houston",
     "brlunicode": "⠓⠳⠌⠕⠝"
-  },
-  {
-    "id": 611,
-    "print": "hughes",
-    "brlunicode": "⠓⠥⠣⠑⠎"
   },
   {
     "id": 612,
@@ -3310,11 +3165,6 @@
     "brlunicode": "⠚⠑⠺⠊⠩"
   },
   {
-    "id": 664,
-    "print": "johns",
-    "brlunicode": "⠚⠕⠓⠝⠎"
-  },
-  {
     "id": 665,
     "print": "judge",
     "brlunicode": "⠚⠥⠙⠛⠑"
@@ -3470,11 +3320,6 @@
     "brlunicode": "⠇⠁⠽⠳⠞"
   },
   {
-    "id": 696,
-    "print": "leaders",
-    "brlunicode": "⠇⠂⠙⠻⠎"
-  },
-  {
     "id": 697,
     "print": "league",
     "brlunicode": "⠇⠂⠛⠥⠑"
@@ -3565,11 +3410,6 @@
     "brlunicode": "⠇⠕⠁⠙⠬"
   },
   {
-    "id": 715,
-    "print": "loads",
-    "brlunicode": "⠇⠕⠁⠙⠎"
-  },
-  {
     "id": 716,
     "print": "local",
     "brlunicode": "⠇⠕⠉⠁⠇"
@@ -3598,11 +3438,6 @@
     "id": 721,
     "print": "logic",
     "brlunicode": "⠇⠕⠛⠊⠉"
-  },
-  {
-    "id": 722,
-    "print": "logos",
-    "brlunicode": "⠇⠕⠛⠕⠎"
   },
   {
     "id": 723,
@@ -3755,11 +3590,6 @@
     "brlunicode": "⠍⠜⠽⠇⠯"
   },
   {
-    "id": 753,
-    "print": "masters",
-    "brlunicode": "⠍⠁⠌⠻⠎"
-  },
-  {
     "id": 754,
     "print": "matched",
     "brlunicode": "⠍⠁⠞⠡⠫"
@@ -3863,11 +3693,6 @@
     "id": 774,
     "print": "miller",
     "brlunicode": "⠍⠊⠇⠇⠻"
-  },
-  {
-    "id": 775,
-    "print": "mills",
-    "brlunicode": "⠍⠊⠇⠇⠎"
   },
   {
     "id": 776,
@@ -4095,11 +3920,6 @@
     "brlunicode": "⠕⠒⠁⠨⠝"
   },
   {
-    "id": 821,
-    "print": "occurs",
-    "brlunicode": "⠕⠒⠥⠗⠎"
-  },
-  {
     "id": 822,
     "print": "offense",
     "brlunicode": "⠷⠋⠢⠎⠑"
@@ -4245,16 +4065,6 @@
     "brlunicode": "⠏⠁⠝⠊⠉"
   },
   {
-    "id": 851,
-    "print": "pants",
-    "brlunicode": "⠏⠁⠝⠞⠎"
-  },
-  {
-    "id": 852,
-    "print": "papers",
-    "brlunicode": "⠏⠁⠏⠻⠎"
-  },
-  {
     "id": 853,
     "print": "papua",
     "brlunicode": "⠏⠁⠏⠥⠁"
@@ -4368,11 +4178,6 @@
     "id": 875,
     "print": "performing",
     "brlunicode": "⠏⠻⠿⠍⠬"
-  },
-  {
-    "id": 876,
-    "print": "performs",
-    "brlunicode": "⠏⠻⠿⠍⠎"
   },
   {
     "id": 877,
@@ -4528,11 +4333,6 @@
     "id": 907,
     "print": "polish",
     "brlunicode": "⠏⠕⠇⠊⠩"
-  },
-  {
-    "id": 908,
-    "print": "polls",
-    "brlunicode": "⠏⠕⠇⠇⠎"
   },
   {
     "id": 909,
@@ -4700,11 +4500,6 @@
     "brlunicode": "⠟⠥⠜⠞⠻"
   },
   {
-    "id": 942,
-    "print": "queens",
-    "brlunicode": "⠟⠥⠑⠢⠎"
-  },
-  {
     "id": 943,
     "print": "queue",
     "brlunicode": "⠟⠥⠑⠥⠑"
@@ -4795,11 +4590,6 @@
     "brlunicode": "⠗⠜⠑⠇⠽"
   },
   {
-    "id": 961,
-    "print": "rates",
-    "brlunicode": "⠗⠁⠞⠑⠎"
-  },
-  {
     "id": 962,
     "print": "ratio",
     "brlunicode": "⠗⠁⠞⠊⠕"
@@ -4863,11 +4653,6 @@
     "id": 974,
     "print": "reducing",
     "brlunicode": "⠗⠫⠥⠉⠬"
-  },
-  {
-    "id": 975,
-    "print": "refers",
-    "brlunicode": "⠗⠑⠋⠻⠎"
   },
   {
     "id": 976,
@@ -4995,11 +4780,6 @@
     "brlunicode": "⠗⠊⠙⠛⠑"
   },
   {
-    "id": 1001,
-    "print": "roads",
-    "brlunicode": "⠗⠕⠁⠙⠎"
-  },
-  {
     "id": 1002,
     "print": "robot",
     "brlunicode": "⠗⠕⠃⠕⠞"
@@ -5028,16 +4808,6 @@
     "id": 1007,
     "print": "romance",
     "brlunicode": "⠗⠕⠍⠨⠑"
-  },
-  {
-    "id": 1008,
-    "print": "rooms",
-    "brlunicode": "⠗⠕⠕⠍⠎"
-  },
-  {
-    "id": 1009,
-    "print": "roots",
-    "brlunicode": "⠗⠕⠕⠞⠎"
   },
   {
     "id": 1010,
@@ -5100,11 +4870,6 @@
     "brlunicode": "⠎⠁⠇⠜⠽"
   },
   {
-    "id": 1022,
-    "print": "sales",
-    "brlunicode": "⠎⠁⠇⠑⠎"
-  },
-  {
     "id": 1023,
     "print": "salon",
     "brlunicode": "⠎⠁⠇⠕⠝"
@@ -5138,11 +4903,6 @@
     "id": 1029,
     "print": "saudi",
     "brlunicode": "⠎⠁⠥⠙⠊"
-  },
-  {
-    "id": 1030,
-    "print": "savings",
-    "brlunicode": "⠎⠁⠧⠬⠎"
   },
   {
     "id": 1031,
@@ -5250,11 +5010,6 @@
     "brlunicode": "⠎⠑⠑⠍⠫"
   },
   {
-    "id": 1052,
-    "print": "seems",
-    "brlunicode": "⠎⠑⠑⠍⠎"
-  },
-  {
     "id": 1053,
     "print": "segment",
     "brlunicode": "⠎⠑⠛⠰⠞"
@@ -5345,11 +5100,6 @@
     "brlunicode": "⠎⠑⠧⠻⠑"
   },
   {
-    "id": 1071,
-    "print": "shades",
-    "brlunicode": "⠩⠁⠙⠑⠎"
-  },
-  {
     "id": 1072,
     "print": "shelter",
     "brlunicode": "⠩⠑⠇⠞⠻"
@@ -5400,11 +5150,6 @@
     "brlunicode": "⠩⠕⠗⠞⠻"
   },
   {
-    "id": 1082,
-    "print": "shorts",
-    "brlunicode": "⠩⠕⠗⠞⠎"
-  },
-  {
     "id": 1083,
     "print": "shoulder",
     "brlunicode": "⠩⠳⠇⠙⠻"
@@ -5448,11 +5193,6 @@
     "id": 1091,
     "print": "silver",
     "brlunicode": "⠎⠊⠇⠧⠻"
-  },
-  {
-    "id": 1092,
-    "print": "singles",
-    "brlunicode": "⠎⠬⠇⠑⠎"
   },
   {
     "id": 1093,
@@ -5550,11 +5290,6 @@
     "brlunicode": "⠎⠕⠇⠧⠬"
   },
   {
-    "id": 1112,
-    "print": "sometimes",
-    "brlunicode": "⠐⠎⠐⠞⠎"
-  },
-  {
     "id": 1113,
     "print": "somewhat",
     "brlunicode": "⠐⠎⠱⠁⠞"
@@ -5610,16 +5345,6 @@
     "brlunicode": "⠎⠏⠂⠅⠬"
   },
   {
-    "id": 1124,
-    "print": "speaks",
-    "brlunicode": "⠎⠏⠂⠅⠎"
-  },
-  {
-    "id": 1125,
-    "print": "specs",
-    "brlunicode": "⠎⠏⠑⠉⠎"
-  },
-  {
     "id": 1126,
     "print": "speech",
     "brlunicode": "⠎⠏⠑⠑⠡"
@@ -5668,11 +5393,6 @@
     "id": 1135,
     "print": "sport",
     "brlunicode": "⠎⠏⠕⠗⠞"
-  },
-  {
-    "id": 1136,
-    "print": "spots",
-    "brlunicode": "⠎⠏⠕⠞⠎"
   },
   {
     "id": 1137,
@@ -5730,19 +5450,9 @@
     "brlunicode": "⠌⠁⠞⠊⠉"
   },
   {
-    "id": 1148,
-    "print": "stations",
-    "brlunicode": "⠌⠁⠰⠝⠎"
-  },
-  {
     "id": 1149,
     "print": "status",
     "brlunicode": "⠌⠁⠞⠥⠎"
-  },
-  {
-    "id": 1150,
-    "print": "stevens",
-    "brlunicode": "⠌⠑⠧⠢⠎"
   },
   {
     "id": 1151,
@@ -5753,11 +5463,6 @@
     "id": 1152,
     "print": "sticky",
     "brlunicode": "⠌⠊⠉⠅⠽"
-  },
-  {
-    "id": 1153,
-    "print": "stocks",
-    "brlunicode": "⠌⠕⠉⠅⠎"
   },
   {
     "id": 1154,
@@ -5985,11 +5690,6 @@
     "brlunicode": "⠞⠁⠇⠅⠬"
   },
   {
-    "id": 1199,
-    "print": "talks",
-    "brlunicode": "⠞⠁⠇⠅⠎"
-  },
-  {
     "id": 1200,
     "print": "tamil",
     "brlunicode": "⠞⠁⠍⠊⠇"
@@ -6055,11 +5755,6 @@
     "brlunicode": "⠹⠁⠊⠇⠯"
   },
   {
-    "id": 1213,
-    "print": "thanks",
-    "brlunicode": "⠹⠁⠝⠅⠎"
-  },
-  {
     "id": 1214,
     "print": "theatre",
     "brlunicode": "⠮⠁⠞⠗⠑"
@@ -6095,19 +5790,9 @@
     "brlunicode": "⠹⠗⠂⠙⠫"
   },
   {
-    "id": 1221,
-    "print": "threads",
-    "brlunicode": "⠹⠗⠂⠙⠎"
-  },
-  {
     "id": 1222,
     "print": "throat",
     "brlunicode": "⠹⠗⠕⠁⠞"
-  },
-  {
-    "id": 1223,
-    "print": "tigers",
-    "brlunicode": "⠞⠊⠛⠻⠎"
   },
   {
     "id": 1224,
@@ -6415,11 +6100,6 @@
     "brlunicode": "⠧⠜⠊⠨⠑"
   },
   {
-    "id": 1285,
-    "print": "varies",
-    "brlunicode": "⠧⠜⠊⠑⠎"
-  },
-  {
     "id": 1286,
     "print": "various",
     "brlunicode": "⠧⠜⠊⠳⠎"
@@ -6520,11 +6200,6 @@
     "brlunicode": "⠧⠕⠊⠉⠑"
   },
   {
-    "id": 1306,
-    "print": "wages",
-    "brlunicode": "⠺⠁⠛⠑⠎"
-  },
-  {
     "id": 1307,
     "print": "wagner",
     "brlunicode": "⠺⠁⠛⠝⠻"
@@ -6543,11 +6218,6 @@
     "id": 1310,
     "print": "waiver",
     "brlunicode": "⠺⠁⠊⠧⠻"
-  },
-  {
-    "id": 1311,
-    "print": "wales",
-    "brlunicode": "⠺⠁⠇⠑⠎"
   },
   {
     "id": 1312,
@@ -6578,16 +6248,6 @@
     "id": 1317,
     "print": "watching",
     "brlunicode": "⠺⠁⠞⠡⠬"
-  },
-  {
-    "id": 1318,
-    "print": "waters",
-    "brlunicode": "⠺⠁⠞⠻⠎"
-  },
-  {
-    "id": 1319,
-    "print": "watts",
-    "brlunicode": "⠺⠁⠞⠞⠎"
   },
   {
     "id": 1320,
@@ -6630,11 +6290,6 @@
     "brlunicode": "⠺⠊⠇⠇⠬"
   },
   {
-    "id": 1328,
-    "print": "windows",
-    "brlunicode": "⠺⠔⠙⠪⠎"
-  },
-  {
     "id": 1329,
     "print": "witness",
     "brlunicode": "⠺⠊⠞⠰⠎"
@@ -6658,11 +6313,6 @@
     "id": 1333,
     "print": "wooden",
     "brlunicode": "⠺⠕⠕⠙⠢"
-  },
-  {
-    "id": 1334,
-    "print": "woods",
-    "brlunicode": "⠺⠕⠕⠙⠎"
   },
   {
     "id": 1335,
@@ -6770,29 +6420,14 @@
     "brlunicode": "⠁⠺⠁⠅⠑"
   },
   {
-    "id": 1356,
-    "print": "balls",
-    "brlunicode": "⠃⠁⠇⠇⠎"
-  },
-  {
     "id": 1357,
     "print": "beeping",
     "brlunicode": "⠃⠑⠑⠏⠬"
   },
   {
-    "id": 1358,
-    "print": "birds",
-    "brlunicode": "⠃⠊⠗⠙⠎"
-  },
-  {
     "id": 1359,
     "print": "bleep",
     "brlunicode": "⠃⠇⠑⠑⠏"
-  },
-  {
-    "id": 1360,
-    "print": "books",
-    "brlunicode": "⠃⠕⠕⠅⠎"
   },
   {
     "id": 1361,
@@ -6805,44 +6440,14 @@
     "brlunicode": "⠃⠕⠽⠋⠗"
   },
   {
-    "id": 1363,
-    "print": "bucks",
-    "brlunicode": "⠃⠥⠉⠅⠎"
-  },
-  {
     "id": 1364,
     "print": "burned",
     "brlunicode": "⠃⠥⠗⠝⠫"
   },
   {
-    "id": 1365,
-    "print": "calls",
-    "brlunicode": "⠉⠁⠇⠇⠎"
-  },
-  {
-    "id": 1366,
-    "print": "cases",
-    "brlunicode": "⠉⠁⠎⠑⠎"
-  },
-  {
-    "id": 1367,
-    "print": "charges",
-    "brlunicode": "⠡⠜⠛⠑⠎"
-  },
-  {
     "id": 1368,
     "print": "chatter",
     "brlunicode": "⠡⠁⠞⠞⠻"
-  },
-  {
-    "id": 1369,
-    "print": "clears",
-    "brlunicode": "⠉⠇⠑⠜⠎"
-  },
-  {
-    "id": 1370,
-    "print": "comes",
-    "brlunicode": "⠉⠕⠍⠑⠎"
   },
   {
     "id": 1371,
@@ -6860,26 +6465,6 @@
     "brlunicode": "⠲⠛⠥⠌⠬"
   },
   {
-    "id": 1374,
-    "print": "doors",
-    "brlunicode": "⠙⠕⠕⠗⠎"
-  },
-  {
-    "id": 1375,
-    "print": "dreams",
-    "brlunicode": "⠙⠗⠂⠍⠎"
-  },
-  {
-    "id": 1376,
-    "print": "drinks",
-    "brlunicode": "⠙⠗⠔⠅⠎"
-  },
-  {
-    "id": 1377,
-    "print": "drugs",
-    "brlunicode": "⠙⠗⠥⠛⠎"
-  },
-  {
     "id": 1378,
     "print": "everyone",
     "brlunicode": "⠐⠑⠽⠐⠕"
@@ -6890,21 +6475,6 @@
     "brlunicode": "⠐⠑⠽⠹⠬"
   },
   {
-    "id": 1380,
-    "print": "faces",
-    "brlunicode": "⠋⠁⠉⠑⠎"
-  },
-  {
-    "id": 1381,
-    "print": "feels",
-    "brlunicode": "⠋⠑⠑⠇⠎"
-  },
-  {
-    "id": 1382,
-    "print": "flowers",
-    "brlunicode": "⠋⠇⠪⠻⠎"
-  },
-  {
     "id": 1383,
     "print": "forgive",
     "brlunicode": "⠿⠛⠊⠧⠑"
@@ -6913,26 +6483,6 @@
     "id": 1384,
     "print": "fortune",
     "brlunicode": "⠿⠞⠥⠝⠑"
-  },
-  {
-    "id": 1385,
-    "print": "games",
-    "brlunicode": "⠛⠁⠍⠑⠎"
-  },
-  {
-    "id": 1386,
-    "print": "gasps",
-    "brlunicode": "⠛⠁⠎⠏⠎"
-  },
-  {
-    "id": 1387,
-    "print": "girls",
-    "brlunicode": "⠛⠊⠗⠇⠎"
-  },
-  {
-    "id": 1388,
-    "print": "gives",
-    "brlunicode": "⠛⠊⠧⠑⠎"
   },
   {
     "id": 1389,
@@ -6970,16 +6520,6 @@
     "brlunicode": "⠛⠗⠯⠏⠁"
   },
   {
-    "id": 1396,
-    "print": "guards",
-    "brlunicode": "⠛⠥⠜⠙⠎"
-  },
-  {
-    "id": 1397,
-    "print": "guests",
-    "brlunicode": "⠛⠥⠑⠌⠎"
-  },
-  {
     "id": 1398,
     "print": "honour",
     "brlunicode": "⠓⠕⠝⠳⠗"
@@ -6988,11 +6528,6 @@
     "id": 1399,
     "print": "hurry",
     "brlunicode": "⠓⠥⠗⠗⠽"
-  },
-  {
-    "id": 1400,
-    "print": "hurts",
-    "brlunicode": "⠓⠥⠗⠞⠎"
   },
   {
     "id": 1401,
@@ -7010,11 +6545,6 @@
     "brlunicode": "⠚⠂⠇⠳⠎"
   },
   {
-    "id": 1404,
-    "print": "keeps",
-    "brlunicode": "⠅⠑⠑⠏⠎"
-  },
-  {
     "id": 1405,
     "print": "kicked",
     "brlunicode": "⠅⠊⠉⠅⠫"
@@ -7025,79 +6555,14 @@
     "brlunicode": "⠅⠊⠙⠙⠬"
   },
   {
-    "id": 1407,
-    "print": "laughs",
-    "brlunicode": "⠇⠁⠥⠣⠎"
-  },
-  {
-    "id": 1408,
-    "print": "leaves",
-    "brlunicode": "⠇⠂⠧⠑⠎"
-  },
-  {
-    "id": 1409,
-    "print": "lights",
-    "brlunicode": "⠇⠊⠣⠞⠎"
-  },
-  {
-    "id": 1410,
-    "print": "likes",
-    "brlunicode": "⠇⠊⠅⠑⠎"
-  },
-  {
-    "id": 1411,
-    "print": "lives",
-    "brlunicode": "⠇⠊⠧⠑⠎"
-  },
-  {
-    "id": 1412,
-    "print": "looks",
-    "brlunicode": "⠇⠕⠕⠅⠎"
-  },
-  {
-    "id": 1413,
-    "print": "loves",
-    "brlunicode": "⠇⠕⠧⠑⠎"
-  },
-  {
     "id": 1414,
     "print": "madam",
     "brlunicode": "⠍⠁⠙⠁⠍"
   },
   {
-    "id": 1415,
-    "print": "makes",
-    "brlunicode": "⠍⠁⠅⠑⠎"
-  },
-  {
     "id": 1416,
     "print": "mayor",
     "brlunicode": "⠍⠁⠽⠕⠗"
-  },
-  {
-    "id": 1417,
-    "print": "months",
-    "brlunicode": "⠍⠕⠝⠹⠎"
-  },
-  {
-    "id": 1418,
-    "print": "moves",
-    "brlunicode": "⠍⠕⠧⠑⠎"
-  },
-  {
-    "id": 1419,
-    "print": "nights",
-    "brlunicode": "⠝⠊⠣⠞⠎"
-  },
-  {
-    "id": 1420,
-    "print": "notes",
-    "brlunicode": "⠝⠕⠞⠑⠎"
-  },
-  {
-    "id": 1421,
-    "print": "orders",
-    "brlunicode": "⠕⠗⠙⠻⠎"
   },
   {
     "id": 1422,
@@ -7110,54 +6575,14 @@
     "brlunicode": "⠏⠜⠙⠕⠝"
   },
   {
-    "id": 1424,
-    "print": "parents",
-    "brlunicode": "⠏⠜⠢⠞⠎"
-  },
-  {
-    "id": 1425,
-    "print": "pills",
-    "brlunicode": "⠏⠊⠇⠇⠎"
-  },
-  {
-    "id": 1426,
-    "print": "plans",
-    "brlunicode": "⠏⠇⠁⠝⠎"
-  },
-  {
-    "id": 1427,
-    "print": "plays",
-    "brlunicode": "⠏⠇⠁⠽⠎"
-  },
-  {
-    "id": 1428,
-    "print": "points",
-    "brlunicode": "⠏⠕⠔⠞⠎"
-  },
-  {
     "id": 1429,
     "print": "price",
     "brlunicode": "⠏⠗⠊⠉⠑"
   },
   {
-    "id": 1430,
-    "print": "rules",
-    "brlunicode": "⠗⠥⠇⠑⠎"
-  },
-  {
-    "id": 1431,
-    "print": "scoffs",
-    "brlunicode": "⠎⠉⠷⠋⠎"
-  },
-  {
     "id": 1432,
     "print": "scream",
     "brlunicode": "⠎⠉⠗⠂⠍"
-  },
-  {
-    "id": 1433,
-    "print": "sisters",
-    "brlunicode": "⠎⠊⠌⠻⠎"
   },
   {
     "id": 1434,
@@ -7168,46 +6593,6 @@
     "id": 1435,
     "print": "sooner",
     "brlunicode": "⠎⠕⠕⠝⠻"
-  },
-  {
-    "id": 1436,
-    "print": "states",
-    "brlunicode": "⠌⠁⠞⠑⠎"
-  },
-  {
-    "id": 1437,
-    "print": "takes",
-    "brlunicode": "⠞⠁⠅⠑⠎"
-  },
-  {
-    "id": 1438,
-    "print": "tells",
-    "brlunicode": "⠞⠑⠇⠇⠎"
-  },
-  {
-    "id": 1439,
-    "print": "thousands",
-    "brlunicode": "⠹⠳⠎⠯⠎"
-  },
-  {
-    "id": 1440,
-    "print": "tires",
-    "brlunicode": "⠞⠊⠗⠑⠎"
-  },
-  {
-    "id": 1441,
-    "print": "towards",
-    "brlunicode": "⠞⠪⠜⠙⠎"
-  },
-  {
-    "id": 1442,
-    "print": "trees",
-    "brlunicode": "⠞⠗⠑⠑⠎"
-  },
-  {
-    "id": 1443,
-    "print": "turns",
-    "brlunicode": "⠞⠥⠗⠝⠎"
   },
   {
     "id": 1444,
@@ -7225,24 +6610,9 @@
     "brlunicode": "⠺⠁⠊⠞⠫"
   },
   {
-    "id": 1447,
-    "print": "walls",
-    "brlunicode": "⠺⠁⠇⠇⠎"
-  },
-  {
     "id": 1448,
     "print": "wanna",
     "brlunicode": "⠺⠁⠝⠝⠁"
-  },
-  {
-    "id": 1449,
-    "print": "wants",
-    "brlunicode": "⠺⠁⠝⠞⠎"
-  },
-  {
-    "id": 1450,
-    "print": "weeks",
-    "brlunicode": "⠺⠑⠑⠅⠎"
   },
   {
     "id": 1451,
