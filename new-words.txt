@@ -1,5 +1,3 @@
-advised ⠁⠙⠧⠊⠎⠫
-advice ⠁⠙⠧⠊⠉⠑
-advise ⠁⠙⠧⠊⠎⠑
-motioned ⠍⠕⠰⠝⠫
-lucky ⠇⠥⠉⠅⠽
+advised ⠁⠙⠧⠊⠎⠫  # not 5 braille cells
+advice ⠁⠙⠧⠊⠉⠑  # not 5 braille cells
+advise ⠁⠙⠧⠊⠎⠑  # not 5 braille cells
