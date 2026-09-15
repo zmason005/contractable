@@ -198,19 +198,176 @@
 </head>
 <body>
 
-<div aria-label="title" aria-braillelabel="⠞⠊⠞⠇⠑">
-  <span aria-label=" " aria-braillelabel="">the</span>>
-  <span aria-label="false" aria-braillelabel="⠋">the</span>
-  <span aria-label="true" aria-braillelabel="⠞">the</span>
+<div class="app-container">
+
+  <h1 aria-label="CONTRACTABLE" aria-braillelabel="⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑">
+    <span aria-hidden="true">CONTRACTABLE</span>
+  </h1>
+  <h2>Nested-span dot rendering test</h2>
+
+  <div id="status">Testing iOS Safari rendering of nested span dot cells</div>
+
+  <!-- ── MOCK GAME BOARD: rows built the same way v2 will render them ── -->
+  <div id="game-board" aria-live="polite">
+
+    <div class="row" role="text"
+         aria-label="header"
+         aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛">
+      <span class="row-label" aria-hidden="true">header</span>
+      <span aria-hidden="true" style="font-family:'Apple Braille','Courier New',monospace;">⠉⠕⠗⠗⠑⠉⠞ ⠛⠥⠑⠎⠎ ⠺⠗⠰⠛</span>
+    </div>
+
+    <!-- Guess row 1: all dots off (empty word) -->
+    <div class="row" tabindex="-1"
+         aria-label="Row 1"
+         aria-braillelabel="⠀⠀⠀⠀⠀">
+      <span class="row-label" aria-hidden="true">row 1</span>
+      <span class="row-visual" aria-hidden="true" id="row1"></span>
+    </div>
+
+    <!-- Guess row 2: "apple" braille pattern, all dots on for visibility test -->
+    <div class="row" tabindex="-1"
+         aria-label="Row 2"
+         aria-braillelabel="⠁⠏⠏⠇⠑">
+      <span class="row-label" aria-hidden="true">row 2</span>
+      <span class="row-visual" aria-hidden="true" id="row2"></span>
+    </div>
+
+    <!-- Guess row 3: mixed pattern -->
+    <div class="row" tabindex="-1"
+         aria-label="Row 3"
+         aria-braillelabel="⠉⠕⠝⠞⠗⠕⠇">
+      <span class="row-label" aria-hidden="true">row 3</span>
+      <span class="row-visual" aria-hidden="true" id="row3"></span>
+    </div>
+
+  </div>
+
+  <!-- ── Simulated guess input + submit ── -->
+  <div id="controls">
+    <label id="guess-label" for="guess-input" aria-hidden="true">guess</label>
+    <input
+      id="guess-input"
+      type="text"
+      aria-label="guess"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      value="apple" />
+    <button id="submit-btn">submit</button>
+
+    <button id="add-row-btn" type="button">Add mock guess row</button>
+
+    <a href="#" class="test-link" id="mock-link">Suggest a word (test link)</a>
+  </div>
+
+  <!-- ── Live tappable dot grid: tests touch reliability on iOS ── -->
+  <div id="tap-section">
+    <h2>Tap dots to toggle (touch-target sizing test)</h2>
+    <div class="row" style="justify-content:center;">
+      <span class="cell tappable" id="tap-cell" aria-hidden="true">
+        <span class="dot dot-1" data-dot="1"></span>
+        <span class="dot dot-2" data-dot="2"></span>
+        <span class="dot dot-3" data-dot="3"></span>
+        <span class="dot dot-4" data-dot="4"></span>
+        <span class="dot dot-5" data-dot="5"></span>
+        <span class="dot dot-6" data-dot="6"></span>
+      </span>
+    </div>
+    <div id="tap-readout" style="margin-top:0.6em; font-family:sans-serif; font-size:0.8em; color:#cccccc;">
+      dots on: (none)
+    </div>
+  </div>
+
+  <div id="debug-log"></div>
+
 </div>
 
-<div aria-label="title" aria-braillelabel="⠞⠊⠞⠇⠑"><p> People. </p></div>
+<script>
+"use strict";
 
-<div>
-  <span aria-label=" " aria-braillelabel=“">the</span>>
-  <span aria-label="false" aria-braillelabel="⠋">the</span>
-  <span aria-label="true" aria-braillelabel="⠞">the</span>
-</div>
+function mobileLog(msg) {
+  const log = document.getElementById("debug-log");
+  if (log) log.textContent += msg + "\n";
+  console.error(msg);
+}
 
+// bitmask strings: 8 chars, dots 1-6 use positions 0-5 (matches brlunicode-mapping.json convention)
+function buildCell(bitmaskStr) {
+  const cell = document.createElement("span");
+  cell.className = "cell";
+  for (let i = 1; i <= 6; i++) {
+    const dot = document.createElement("span");
+    dot.className = "dot dot-" + i;
+    if (bitmaskStr[i - 1] === "1") dot.classList.add("on");
+    cell.appendChild(dot);
+  }
+  return cell;
+}
+
+function renderMockRow(containerId, bitmasks) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  bitmasks.forEach(bm => container.appendChild(buildCell(bm)));
+}
+
+try {
+  // Row 1: empty (all dots off) -- 5 cells
+  renderMockRow("row1", ["00000000","00000000","00000000","00000000","00000000"]);
+
+  // Row 2: "apple" = a p p l e -> 100000 111100 111100 011100 010000 (dots 1-6 only, padded to 8)
+  renderMockRow("row2", ["10000000","11110000","11110000","01110000","01010000"]);
+
+  // Row 3: "contro" mixed pattern (arbitrary, just needs varied on/off dots)
+  renderMockRow("row3", ["00011000","01010100","01011000","01110000","01010100","01110000"]);
+
+  // Tappable dot grid
+  const tapCell = document.getElementById("tap-cell");
+  const readout = document.getElementById("tap-readout");
+  tapCell.querySelectorAll(".dot").forEach(dot => {
+    dot.addEventListener("click", () => {
+      dot.classList.toggle("on");
+      const onDots = Array.from(tapCell.querySelectorAll(".dot.on"))
+        .map(d => d.dataset.dot);
+      readout.textContent = "dots on: " + (onDots.length ? onDots.join(", ") : "(none)");
+    });
+  });
+
+  document.getElementById("add-row-btn").addEventListener("click", () => {
+    const board = document.getElementById("game-board");
+    const row = document.createElement("div");
+    row.className = "row";
+    row.tabIndex = -1;
+    row.setAttribute("aria-label", "Added row");
+    row.setAttribute("aria-braillelabel", "⠞⠑⠌⠞");
+    const label = document.createElement("span");
+    label.className = "row-label";
+    label.setAttribute("aria-hidden", "true");
+    label.textContent = "new";
+    const visual = document.createElement("span");
+    visual.className = "row-visual";
+    visual.setAttribute("aria-hidden", "true");
+    row.appendChild(label);
+    row.appendChild(visual);
+    board.appendChild(row);
+    ["01100000","01000100","01101100","00010100","01101100","01110000"].forEach(bm => {
+      visual.appendChild(buildCell(bm));
+    });
+    row.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  document.getElementById("submit-btn").addEventListener("click", () => {
+    const val = document.getElementById("guess-input").value;
+    mobileLog("Mock submit fired with value: " + val);
+  });
+
+  document.getElementById("mock-link").addEventListener("click", (e) => {
+    e.preventDefault();
+    mobileLog("Mock link tapped.");
+  });
+} catch (e) {
+  mobileLog("Test script error: " + e.message);
+}
+</script>
 </body>
 </html>
