@@ -8138,5 +8138,505 @@
     "id": 1755,
     "print": "whisper",
     "brlunicode": "⠱⠊⠎⠏⠻"
+  },
+  {
+    "id": 1756,
+    "print": "agony",
+    "brlunicode": "⠁⠛⠕⠝⠽"
+  },
+  {
+    "id": 1757,
+    "print": "aisle",
+    "brlunicode": "⠁⠊⠎⠇⠑"
+  },
+  {
+    "id": 1758,
+    "print": "banker",
+    "brlunicode": "⠃⠁⠝⠅⠻"
+  },
+  {
+    "id": 1759,
+    "print": "behaving",
+    "brlunicode": "⠆⠓⠁⠧⠬"
+  },
+  {
+    "id": 1760,
+    "print": "bitten",
+    "brlunicode": "⠃⠊⠞⠞⠢"
+  },
+  {
+    "id": 1761,
+    "print": "boiling",
+    "brlunicode": "⠃⠕⠊⠇⠬"
+  },
+  {
+    "id": 1762,
+    "print": "bomber",
+    "brlunicode": "⠃⠕⠍⠃⠻"
+  },
+  {
+    "id": 1763,
+    "print": "bunker",
+    "brlunicode": "⠃⠥⠝⠅⠻"
+  },
+  {
+    "id": 1764,
+    "print": "caller",
+    "brlunicode": "⠉⠁⠇⠇⠻"
+  },
+  {
+    "id": 1765,
+    "print": "camel",
+    "brlunicode": "⠉⠁⠍⠑⠇"
+  },
+  {
+    "id": 1766,
+    "print": "careless",
+    "brlunicode": "⠉⠜⠑⠨⠎"
+  },
+  {
+    "id": 1767,
+    "print": "chatting",
+    "brlunicode": "⠡⠁⠞⠞⠬"
+  },
+  {
+    "id": 1768,
+    "print": "cheerful",
+    "brlunicode": "⠡⠑⠻⠰⠇"
+  },
+  {
+    "id": 1769,
+    "print": "clarke",
+    "brlunicode": "⠉⠇⠜⠅⠑"
+  },
+  {
+    "id": 1770,
+    "print": "clive",
+    "brlunicode": "⠉⠇⠊⠧⠑"
+  },
+  {
+    "id": 1771,
+    "print": "comet",
+    "brlunicode": "⠉⠕⠍⠑⠞"
+  },
+  {
+    "id": 1772,
+    "print": "convict",
+    "brlunicode": "⠒⠧⠊⠉⠞"
+  },
+  {
+    "id": 1773,
+    "print": "countless",
+    "brlunicode": "⠉⠨⠞⠨⠎"
+  },
+  {
+    "id": 1774,
+    "print": "crook",
+    "brlunicode": "⠉⠗⠕⠕⠅"
+  },
+  {
+    "id": 1775,
+    "print": "cunning",
+    "brlunicode": "⠉⠥⠝⠝⠬"
+  },
+  {
+    "id": 1776,
+    "print": "destined",
+    "brlunicode": "⠙⠑⠌⠔⠫"
+  },
+  {
+    "id": 1777,
+    "print": "dismiss",
+    "brlunicode": "⠲⠍⠊⠎⠎"
+  },
+  {
+    "id": 1778,
+    "print": "drift",
+    "brlunicode": "⠙⠗⠊⠋⠞"
+  },
+  {
+    "id": 1779,
+    "print": "exile",
+    "brlunicode": "⠑⠭⠊⠇⠑"
+  },
+  {
+    "id": 1780,
+    "print": "fainted",
+    "brlunicode": "⠋⠁⠔⠞⠫"
+  },
+  {
+    "id": 1781,
+    "print": "filmed",
+    "brlunicode": "⠋⠊⠇⠍⠫"
+  },
+  {
+    "id": 1782,
+    "print": "flirt",
+    "brlunicode": "⠋⠇⠊⠗⠞"
+  },
+  {
+    "id": 1783,
+    "print": "foreman",
+    "brlunicode": "⠿⠑⠍⠁⠝"
+  },
+  {
+    "id": 1784,
+    "print": "franz",
+    "brlunicode": "⠋⠗⠁⠝⠵"
+  },
+  {
+    "id": 1785,
+    "print": "gardener",
+    "brlunicode": "⠛⠜⠙⠢⠻"
+  },
+  {
+    "id": 1786,
+    "print": "gifted",
+    "brlunicode": "⠛⠊⠋⠞⠫"
+  },
+  {
+    "id": 1787,
+    "print": "gotham",
+    "brlunicode": "⠛⠕⠹⠁⠍"
+  },
+  {
+    "id": 1788,
+    "print": "grandchildren",
+    "brlunicode": "⠛⠗⠯⠡⠝"
+  },
+  {
+    "id": 1789,
+    "print": "grasp",
+    "brlunicode": "⠛⠗⠁⠎⠏"
+  },
+  {
+    "id": 1790,
+    "print": "grease",
+    "brlunicode": "⠛⠗⠂⠎⠑"
+  },
+  {
+    "id": 1791,
+    "print": "grove",
+    "brlunicode": "⠛⠗⠕⠧⠑"
+  },
+  {
+    "id": 1792,
+    "print": "grunt",
+    "brlunicode": "⠛⠗⠥⠝⠞"
+  },
+  {
+    "id": 1793,
+    "print": "hacked",
+    "brlunicode": "⠓⠁⠉⠅⠫"
+  },
+  {
+    "id": 1794,
+    "print": "heroic",
+    "brlunicode": "⠓⠻⠕⠊⠉"
+  },
+  {
+    "id": 1795,
+    "print": "humour",
+    "brlunicode": "⠓⠥⠍⠳⠗"
+  },
+  {
+    "id": 1796,
+    "print": "hunted",
+    "brlunicode": "⠓⠥⠝⠞⠫"
+  },
+  {
+    "id": 1797,
+    "print": "invested",
+    "brlunicode": "⠔⠧⠑⠌⠫"
+  },
+  {
+    "id": 1798,
+    "print": "irony",
+    "brlunicode": "⠊⠗⠕⠝⠽"
+  },
+  {
+    "id": 1799,
+    "print": "jammed",
+    "brlunicode": "⠚⠁⠍⠍⠫"
+  },
+  {
+    "id": 1800,
+    "print": "julien",
+    "brlunicode": "⠚⠥⠇⠊⠢"
+  },
+  {
+    "id": 1801,
+    "print": "karate",
+    "brlunicode": "⠅⠜⠁⠞⠑"
+  },
+  {
+    "id": 1802,
+    "print": "keeper",
+    "brlunicode": "⠅⠑⠑⠏⠻"
+  },
+  {
+    "id": 1803,
+    "print": "kneel",
+    "brlunicode": "⠅⠝⠑⠑⠇"
+  },
+  {
+    "id": 1804,
+    "print": "lizard",
+    "brlunicode": "⠇⠊⠵⠜⠙"
+  },
+  {
+    "id": 1805,
+    "print": "loosen",
+    "brlunicode": "⠇⠕⠕⠎⠢"
+  },
+  {
+    "id": 1806,
+    "print": "lordship",
+    "brlunicode": "⠐⠇⠩⠊⠏"
+  },
+  {
+    "id": 1807,
+    "print": "matty",
+    "brlunicode": "⠍⠁⠞⠞⠽"
+  },
+  {
+    "id": 1808,
+    "print": "momma",
+    "brlunicode": "⠍⠕⠍⠍⠁"
+  },
+  {
+    "id": 1809,
+    "print": "mourning",
+    "brlunicode": "⠍⠳⠗⠝⠬"
+  },
+  {
+    "id": 1810,
+    "print": "overtime",
+    "brlunicode": "⠕⠧⠻⠐⠞"
+  },
+  {
+    "id": 1811,
+    "print": "parrot",
+    "brlunicode": "⠏⠜⠗⠕⠞"
+  },
+  {
+    "id": 1812,
+    "print": "pause",
+    "brlunicode": "⠏⠁⠥⠎⠑"
+  },
+  {
+    "id": 1813,
+    "print": "popping",
+    "brlunicode": "⠏⠕⠏⠏⠬"
+  },
+  {
+    "id": 1814,
+    "print": "poppy",
+    "brlunicode": "⠏⠕⠏⠏⠽"
+  },
+  {
+    "id": 1815,
+    "print": "preacher",
+    "brlunicode": "⠏⠗⠂⠡⠻"
+  },
+  {
+    "id": 1816,
+    "print": "profound",
+    "brlunicode": "⠏⠗⠷⠨⠙"
+  },
+  {
+    "id": 1817,
+    "print": "proving",
+    "brlunicode": "⠏⠗⠕⠧⠬"
+  },
+  {
+    "id": 1818,
+    "print": "reign",
+    "brlunicode": "⠗⠑⠊⠛⠝"
+  },
+  {
+    "id": 1819,
+    "print": "restless",
+    "brlunicode": "⠗⠑⠌⠨⠎"
+  },
+  {
+    "id": 1820,
+    "print": "revving",
+    "brlunicode": "⠗⠑⠧⠧⠬"
+  },
+  {
+    "id": 1821,
+    "print": "righteous",
+    "brlunicode": "⠐⠗⠑⠳⠎"
+  },
+  {
+    "id": 1822,
+    "print": "risked",
+    "brlunicode": "⠗⠊⠎⠅⠫"
+  },
+  {
+    "id": 1823,
+    "print": "risking",
+    "brlunicode": "⠗⠊⠎⠅⠬"
+  },
+  {
+    "id": 1824,
+    "print": "rooster",
+    "brlunicode": "⠗⠕⠕⠌⠻"
+  },
+  {
+    "id": 1825,
+    "print": "ruthless",
+    "brlunicode": "⠗⠥⠹⠨⠎"
+  },
+  {
+    "id": 1826,
+    "print": "scrap",
+    "brlunicode": "⠎⠉⠗⠁⠏"
+  },
+  {
+    "id": 1827,
+    "print": "scrub",
+    "brlunicode": "⠎⠉⠗⠥⠃"
+  },
+  {
+    "id": 1828,
+    "print": "seized",
+    "brlunicode": "⠎⠑⠊⠵⠫"
+  },
+  {
+    "id": 1829,
+    "print": "shovel",
+    "brlunicode": "⠩⠕⠧⠑⠇"
+  },
+  {
+    "id": 1830,
+    "print": "shutting",
+    "brlunicode": "⠩⠥⠞⠞⠬"
+  },
+  {
+    "id": 1831,
+    "print": "slack",
+    "brlunicode": "⠎⠇⠁⠉⠅"
+  },
+  {
+    "id": 1832,
+    "print": "smashing",
+    "brlunicode": "⠎⠍⠁⠩⠬"
+  },
+  {
+    "id": 1833,
+    "print": "smiled",
+    "brlunicode": "⠎⠍⠊⠇⠫"
+  },
+  {
+    "id": 1834,
+    "print": "snuck",
+    "brlunicode": "⠎⠝⠥⠉⠅"
+  },
+  {
+    "id": 1835,
+    "print": "spicy",
+    "brlunicode": "⠎⠏⠊⠉⠽"
+  },
+  {
+    "id": 1836,
+    "print": "splash",
+    "brlunicode": "⠎⠏⠇⠁⠩"
+  },
+  {
+    "id": 1837,
+    "print": "spock",
+    "brlunicode": "⠎⠏⠕⠉⠅"
+  },
+  {
+    "id": 1838,
+    "print": "squeal",
+    "brlunicode": "⠎⠟⠥⠂⠇"
+  },
+  {
+    "id": 1839,
+    "print": "steele",
+    "brlunicode": "⠌⠑⠑⠇⠑"
+  },
+  {
+    "id": 1840,
+    "print": "sweaty",
+    "brlunicode": "⠎⠺⠂⠞⠽"
+  },
+  {
+    "id": 1841,
+    "print": "swept",
+    "brlunicode": "⠎⠺⠑⠏⠞"
+  },
+  {
+    "id": 1842,
+    "print": "taller",
+    "brlunicode": "⠞⠁⠇⠇⠻"
+  },
+  {
+    "id": 1843,
+    "print": "tango",
+    "brlunicode": "⠞⠁⠝⠛⠕"
+  },
+  {
+    "id": 1844,
+    "print": "tapping",
+    "brlunicode": "⠞⠁⠏⠏⠬"
+  },
+  {
+    "id": 1845,
+    "print": "tossed",
+    "brlunicode": "⠞⠕⠎⠎⠫"
+  },
+  {
+    "id": 1846,
+    "print": "traced",
+    "brlunicode": "⠞⠗⠁⠉⠫"
+  },
+  {
+    "id": 1847,
+    "print": "trump",
+    "brlunicode": "⠞⠗⠥⠍⠏"
+  },
+  {
+    "id": 1848,
+    "print": "unite",
+    "brlunicode": "⠥⠝⠊⠞⠑"
+  },
+  {
+    "id": 1849,
+    "print": "urban",
+    "brlunicode": "⠥⠗⠃⠁⠝"
+  },
+  {
+    "id": 1850,
+    "print": "vanish",
+    "brlunicode": "⠧⠁⠝⠊⠩"
+  },
+  {
+    "id": 1851,
+    "print": "waltz",
+    "brlunicode": "⠺⠁⠇⠞⠵"
+  },
+  {
+    "id": 1852,
+    "print": "whipped",
+    "brlunicode": "⠱⠊⠏⠏⠫"
+  },
+  {
+    "id": 1853,
+    "print": "whooping",
+    "brlunicode": "⠱⠕⠕⠏⠬"
+  },
+  {
+    "id": 1854,
+    "print": "yelled",
+    "brlunicode": "⠽⠑⠇⠇⠫"
+  },
+  {
+    "id": 1855,
+    "print": "yummy",
+    "brlunicode": "⠽⠥⠍⠍⠽"
   }
 ]
