@@ -1,0 +1,71 @@
+name: Generate & Import Words
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      # python3-louis is the real liblouis Grade-2 UEB binding, available
+      # only via apt (the "louis" package on PyPI is an unrelated placeholder).
+      # It installs into the system Python, so this job uses the runner's
+      # system python3 throughout rather than actions/setup-python, which
+      # would create an isolated interpreter that can't see it.
+      - name: Install liblouis (system Python bindings)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-louis liblouis-data
+
+      - name: Install profanity filter
+        run: sudo -H pip3 install --break-system-packages better-profanity
+
+      # generate_words.py opens these by plain relative filename, so they're
+      # fetched straight into the repo root (the job's working directory)
+      # rather than into tools/. None of these are committed back.
+      - name: Fetch word-list sources
+        run: |
+          curl -sL -o words_alpha.txt https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt
+          curl -sL -o en_freq.txt https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/en/en_50k.txt
+          curl -sL -o first_names.txt "https://raw.githubusercontent.com/smashew/NameDatabases/master/NamesDatabases/first%20names/us.txt"
+          curl -sL -o us_names.txt "https://raw.githubusercontent.com/smashew/NameDatabases/master/NamesDatabases/first%20names/us.txt"
+
+      - name: Generate candidate words
+        run: python3 tools/generate_words.py
+
+      - name: Stage candidates for import
+        run: mv import-words.txt new-words.txt
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run import script
+        id: import
+        run: node scripts/import-words.js
+
+      - name: Remove downloaded source files
+        run: rm -f words_alpha.txt en_freq.txt first_names.txt us_names.txt
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- daily-word4.json new-words.txt; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git add daily-word4.json new-words.txt
+          git commit -m "Generate & import ${{ steps.import.outputs.accepted_count }} word(s), reject ${{ steps.import.outputs.rejected_count }}"
+          git push
