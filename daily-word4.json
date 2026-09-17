@@ -7138,5 +7138,505 @@
     "id": 1555,
     "print": "worthy",
     "brlunicode": "⠺⠕⠗⠹⠽"
+  },
+  {
+    "id": 1556,
+    "print": "allah",
+    "brlunicode": "⠁⠇⠇⠁⠓"
+  },
+  {
+    "id": 1557,
+    "print": "anyhow",
+    "brlunicode": "⠁⠝⠽⠓⠪"
+  },
+  {
+    "id": 1558,
+    "print": "arriving",
+    "brlunicode": "⠜⠗⠊⠧⠬"
+  },
+  {
+    "id": 1559,
+    "print": "belonged",
+    "brlunicode": "⠆⠇⠰⠛⠫"
+  },
+  {
+    "id": 1560,
+    "print": "bloke",
+    "brlunicode": "⠃⠇⠕⠅⠑"
+  },
+  {
+    "id": 1561,
+    "print": "boarding",
+    "brlunicode": "⠃⠕⠜⠙⠬"
+  },
+  {
+    "id": 1562,
+    "print": "bully",
+    "brlunicode": "⠃⠥⠇⠇⠽"
+  },
+  {
+    "id": 1563,
+    "print": "burger",
+    "brlunicode": "⠃⠥⠗⠛⠻"
+  },
+  {
+    "id": 1564,
+    "print": "butcher",
+    "brlunicode": "⠃⠥⠞⠡⠻"
+  },
+  {
+    "id": 1565,
+    "print": "cellar",
+    "brlunicode": "⠉⠑⠇⠇⠜"
+  },
+  {
+    "id": 1566,
+    "print": "claus",
+    "brlunicode": "⠉⠇⠁⠥⠎"
+  },
+  {
+    "id": 1567,
+    "print": "confusing",
+    "brlunicode": "⠒⠋⠥⠎⠬"
+  },
+  {
+    "id": 1568,
+    "print": "crashed",
+    "brlunicode": "⠉⠗⠁⠩⠫"
+  },
+  {
+    "id": 1569,
+    "print": "crashing",
+    "brlunicode": "⠉⠗⠁⠩⠬"
+  },
+  {
+    "id": 1570,
+    "print": "crawl",
+    "brlunicode": "⠉⠗⠁⠺⠇"
+  },
+  {
+    "id": 1571,
+    "print": "creaking",
+    "brlunicode": "⠉⠗⠂⠅⠬"
+  },
+  {
+    "id": 1572,
+    "print": "creep",
+    "brlunicode": "⠉⠗⠑⠑⠏"
+  },
+  {
+    "id": 1573,
+    "print": "crushed",
+    "brlunicode": "⠉⠗⠥⠩⠫"
+  },
+  {
+    "id": 1574,
+    "print": "cursed",
+    "brlunicode": "⠉⠥⠗⠎⠫"
+  },
+  {
+    "id": 1575,
+    "print": "dearest",
+    "brlunicode": "⠙⠑⠜⠑⠌"
+  },
+  {
+    "id": 1576,
+    "print": "dentist",
+    "brlunicode": "⠙⠢⠞⠊⠌"
+  },
+  {
+    "id": 1577,
+    "print": "dizzy",
+    "brlunicode": "⠙⠊⠵⠵⠽"
+  },
+  {
+    "id": 1578,
+    "print": "drake",
+    "brlunicode": "⠙⠗⠁⠅⠑"
+  },
+  {
+    "id": 1579,
+    "print": "drawer",
+    "brlunicode": "⠙⠗⠁⠺⠻"
+  },
+  {
+    "id": 1580,
+    "print": "drowned",
+    "brlunicode": "⠙⠗⠪⠝⠫"
+  },
+  {
+    "id": 1581,
+    "print": "dunno",
+    "brlunicode": "⠙⠥⠝⠝⠕"
+  },
+  {
+    "id": 1582,
+    "print": "emotion",
+    "brlunicode": "⠑⠍⠕⠰⠝"
+  },
+  {
+    "id": 1583,
+    "print": "filming",
+    "brlunicode": "⠋⠊⠇⠍⠬"
+  },
+  {
+    "id": 1584,
+    "print": "fooled",
+    "brlunicode": "⠋⠕⠕⠇⠫"
+  },
+  {
+    "id": 1585,
+    "print": "fooling",
+    "brlunicode": "⠋⠕⠕⠇⠬"
+  },
+  {
+    "id": 1586,
+    "print": "forehead",
+    "brlunicode": "⠿⠑⠓⠂⠙"
+  },
+  {
+    "id": 1587,
+    "print": "forgiven",
+    "brlunicode": "⠿⠛⠊⠧⠢"
+  },
+  {
+    "id": 1588,
+    "print": "freaked",
+    "brlunicode": "⠋⠗⠂⠅⠫"
+  },
+  {
+    "id": 1589,
+    "print": "giggling",
+    "brlunicode": "⠛⠊⠶⠇⠬"
+  },
+  {
+    "id": 1590,
+    "print": "glove",
+    "brlunicode": "⠛⠇⠕⠧⠑"
+  },
+  {
+    "id": 1591,
+    "print": "goose",
+    "brlunicode": "⠛⠕⠕⠎⠑"
+  },
+  {
+    "id": 1592,
+    "print": "greedy",
+    "brlunicode": "⠛⠗⠑⠫⠽"
+  },
+  {
+    "id": 1593,
+    "print": "greet",
+    "brlunicode": "⠛⠗⠑⠑⠞"
+  },
+  {
+    "id": 1594,
+    "print": "groom",
+    "brlunicode": "⠛⠗⠕⠕⠍"
+  },
+  {
+    "id": 1595,
+    "print": "hardest",
+    "brlunicode": "⠓⠜⠙⠑⠌"
+  },
+  {
+    "id": 1596,
+    "print": "harmless",
+    "brlunicode": "⠓⠜⠍⠨⠎"
+  },
+  {
+    "id": 1597,
+    "print": "hatred",
+    "brlunicode": "⠓⠁⠞⠗⠫"
+  },
+  {
+    "id": 1598,
+    "print": "honesty",
+    "brlunicode": "⠓⠐⠕⠌⠽"
+  },
+  {
+    "id": 1599,
+    "print": "honking",
+    "brlunicode": "⠓⠕⠝⠅⠬"
+  },
+  {
+    "id": 1600,
+    "print": "insisted",
+    "brlunicode": "⠔⠎⠊⠌⠫"
+  },
+  {
+    "id": 1601,
+    "print": "instinct",
+    "brlunicode": "⠔⠌⠔⠉⠞"
+  },
+  {
+    "id": 1602,
+    "print": "inviting",
+    "brlunicode": "⠔⠧⠊⠞⠬"
+  },
+  {
+    "id": 1603,
+    "print": "jolly",
+    "brlunicode": "⠚⠕⠇⠇⠽"
+  },
+  {
+    "id": 1604,
+    "print": "judging",
+    "brlunicode": "⠚⠥⠙⠛⠬"
+  },
+  {
+    "id": 1605,
+    "print": "kindly",
+    "brlunicode": "⠅⠔⠙⠇⠽"
+  },
+  {
+    "id": 1606,
+    "print": "kindness",
+    "brlunicode": "⠅⠔⠙⠰⠎"
+  },
+  {
+    "id": 1607,
+    "print": "laughed",
+    "brlunicode": "⠇⠁⠥⠣⠫"
+  },
+  {
+    "id": 1608,
+    "print": "loudly",
+    "brlunicode": "⠇⠳⠙⠇⠽"
+  },
+  {
+    "id": 1609,
+    "print": "manny",
+    "brlunicode": "⠍⠁⠝⠝⠽"
+  },
+  {
+    "id": 1610,
+    "print": "mansion",
+    "brlunicode": "⠍⠁⠝⠨⠝"
+  },
+  {
+    "id": 1611,
+    "print": "mikey",
+    "brlunicode": "⠍⠊⠅⠑⠽"
+  },
+  {
+    "id": 1612,
+    "print": "misery",
+    "brlunicode": "⠍⠊⠎⠻⠽"
+  },
+  {
+    "id": 1613,
+    "print": "muffled",
+    "brlunicode": "⠍⠥⠖⠇⠫"
+  },
+  {
+    "id": 1614,
+    "print": "naive",
+    "brlunicode": "⠝⠁⠊⠧⠑"
+  },
+  {
+    "id": 1615,
+    "print": "nanny",
+    "brlunicode": "⠝⠁⠝⠝⠽"
+  },
+  {
+    "id": 1616,
+    "print": "offended",
+    "brlunicode": "⠷⠋⠢⠙⠫"
+  },
+  {
+    "id": 1617,
+    "print": "painter",
+    "brlunicode": "⠏⠁⠔⠞⠻"
+  },
+  {
+    "id": 1618,
+    "print": "parole",
+    "brlunicode": "⠏⠜⠕⠇⠑"
+  },
+  {
+    "id": 1619,
+    "print": "peanut",
+    "brlunicode": "⠏⠂⠝⠥⠞"
+  },
+  {
+    "id": 1620,
+    "print": "pervert",
+    "brlunicode": "⠏⠻⠧⠻⠞"
+  },
+  {
+    "id": 1621,
+    "print": "pistol",
+    "brlunicode": "⠏⠊⠌⠕⠇"
+  },
+  {
+    "id": 1622,
+    "print": "psycho",
+    "brlunicode": "⠏⠎⠽⠡⠕"
+  },
+  {
+    "id": 1623,
+    "print": "ranger",
+    "brlunicode": "⠗⠁⠝⠛⠻"
+  },
+  {
+    "id": 1624,
+    "print": "react",
+    "brlunicode": "⠗⠑⠁⠉⠞"
+  },
+  {
+    "id": 1625,
+    "print": "repay",
+    "brlunicode": "⠗⠑⠏⠁⠽"
+  },
+  {
+    "id": 1626,
+    "print": "risky",
+    "brlunicode": "⠗⠊⠎⠅⠽"
+  },
+  {
+    "id": 1627,
+    "print": "rumor",
+    "brlunicode": "⠗⠥⠍⠕⠗"
+  },
+  {
+    "id": 1628,
+    "print": "satan",
+    "brlunicode": "⠎⠁⠞⠁⠝"
+  },
+  {
+    "id": 1629,
+    "print": "scandal",
+    "brlunicode": "⠎⠉⠯⠁⠇"
+  },
+  {
+    "id": 1630,
+    "print": "scotch",
+    "brlunicode": "⠎⠉⠕⠞⠡"
+  },
+  {
+    "id": 1631,
+    "print": "shocking",
+    "brlunicode": "⠩⠕⠉⠅⠬"
+  },
+  {
+    "id": 1632,
+    "print": "shooter",
+    "brlunicode": "⠩⠕⠕⠞⠻"
+  },
+  {
+    "id": 1633,
+    "print": "shrimp",
+    "brlunicode": "⠩⠗⠊⠍⠏"
+  },
+  {
+    "id": 1634,
+    "print": "skinny",
+    "brlunicode": "⠎⠅⠔⠝⠽"
+  },
+  {
+    "id": 1635,
+    "print": "slice",
+    "brlunicode": "⠎⠇⠊⠉⠑"
+  },
+  {
+    "id": 1636,
+    "print": "smarter",
+    "brlunicode": "⠎⠍⠜⠞⠻"
+  },
+  {
+    "id": 1637,
+    "print": "smashed",
+    "brlunicode": "⠎⠍⠁⠩⠫"
+  },
+  {
+    "id": 1638,
+    "print": "snack",
+    "brlunicode": "⠎⠝⠁⠉⠅"
+  },
+  {
+    "id": 1639,
+    "print": "sorrow",
+    "brlunicode": "⠎⠕⠗⠗⠪"
+  },
+  {
+    "id": 1640,
+    "print": "spike",
+    "brlunicode": "⠎⠏⠊⠅⠑"
+  },
+  {
+    "id": 1641,
+    "print": "spill",
+    "brlunicode": "⠎⠏⠊⠇⠇"
+  },
+  {
+    "id": 1642,
+    "print": "spinning",
+    "brlunicode": "⠎⠏⠔⠝⠬"
+  },
+  {
+    "id": 1643,
+    "print": "spite",
+    "brlunicode": "⠎⠏⠊⠞⠑"
+  },
+  {
+    "id": 1644,
+    "print": "spoil",
+    "brlunicode": "⠎⠏⠕⠊⠇"
+  },
+  {
+    "id": 1645,
+    "print": "sucker",
+    "brlunicode": "⠎⠥⠉⠅⠻"
+  },
+  {
+    "id": 1646,
+    "print": "sweater",
+    "brlunicode": "⠎⠺⠂⠞⠻"
+  },
+  {
+    "id": 1647,
+    "print": "sweep",
+    "brlunicode": "⠎⠺⠑⠑⠏"
+  },
+  {
+    "id": 1648,
+    "print": "swell",
+    "brlunicode": "⠎⠺⠑⠇⠇"
+  },
+  {
+    "id": 1649,
+    "print": "swore",
+    "brlunicode": "⠎⠺⠕⠗⠑"
+  },
+  {
+    "id": 1650,
+    "print": "sworn",
+    "brlunicode": "⠎⠺⠕⠗⠝"
+  },
+  {
+    "id": 1651,
+    "print": "threaten",
+    "brlunicode": "⠹⠗⠂⠞⠢"
+  },
+  {
+    "id": 1652,
+    "print": "versus",
+    "brlunicode": "⠧⠻⠎⠥⠎"
+  },
+  {
+    "id": 1653,
+    "print": "wealthy",
+    "brlunicode": "⠺⠂⠇⠹⠽"
+  },
+  {
+    "id": 1654,
+    "print": "withdraw",
+    "brlunicode": "⠾⠙⠗⠁⠺"
+  },
+  {
+    "id": 1655,
+    "print": "wreck",
+    "brlunicode": "⠺⠗⠑⠉⠅"
   }
 ]
