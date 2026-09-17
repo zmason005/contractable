@@ -9138,5 +9138,505 @@
     "id": 1955,
     "print": "wheeler",
     "brlunicode": "⠱⠑⠑⠇⠻"
+  },
+  {
+    "id": 1956,
+    "print": "abort",
+    "brlunicode": "⠁⠃⠕⠗⠞"
+  },
+  {
+    "id": 1957,
+    "print": "ahold",
+    "brlunicode": "⠁⠓⠕⠇⠙"
+  },
+  {
+    "id": 1958,
+    "print": "amigo",
+    "brlunicode": "⠁⠍⠊⠛⠕"
+  },
+  {
+    "id": 1959,
+    "print": "annoy",
+    "brlunicode": "⠁⠝⠝⠕⠽"
+  },
+  {
+    "id": 1960,
+    "print": "apron",
+    "brlunicode": "⠁⠏⠗⠕⠝"
+  },
+  {
+    "id": 1961,
+    "print": "babbling",
+    "brlunicode": "⠃⠁⠆⠇⠬"
+  },
+  {
+    "id": 1962,
+    "print": "bailed",
+    "brlunicode": "⠃⠁⠊⠇⠫"
+  },
+  {
+    "id": 1963,
+    "print": "banged",
+    "brlunicode": "⠃⠁⠝⠛⠫"
+  },
+  {
+    "id": 1964,
+    "print": "batter",
+    "brlunicode": "⠃⠁⠞⠞⠻"
+  },
+  {
+    "id": 1965,
+    "print": "blinded",
+    "brlunicode": "⠃⠇⠔⠙⠫"
+  },
+  {
+    "id": 1966,
+    "print": "bombed",
+    "brlunicode": "⠃⠕⠍⠃⠫"
+  },
+  {
+    "id": 1967,
+    "print": "boone",
+    "brlunicode": "⠃⠕⠕⠝⠑"
+  },
+  {
+    "id": 1968,
+    "print": "bouncing",
+    "brlunicode": "⠃⠳⠝⠉⠬"
+  },
+  {
+    "id": 1969,
+    "print": "brute",
+    "brlunicode": "⠃⠗⠥⠞⠑"
+  },
+  {
+    "id": 1970,
+    "print": "buffet",
+    "brlunicode": "⠃⠥⠖⠑⠞"
+  },
+  {
+    "id": 1971,
+    "print": "bummer",
+    "brlunicode": "⠃⠥⠍⠍⠻"
+  },
+  {
+    "id": 1972,
+    "print": "caviar",
+    "brlunicode": "⠉⠁⠧⠊⠜"
+  },
+  {
+    "id": 1973,
+    "print": "cheeky",
+    "brlunicode": "⠡⠑⠑⠅⠽"
+  },
+  {
+    "id": 1974,
+    "print": "cheung",
+    "brlunicode": "⠡⠑⠥⠝⠛"
+  },
+  {
+    "id": 1975,
+    "print": "clearer",
+    "brlunicode": "⠉⠇⠑⠜⠻"
+  },
+  {
+    "id": 1976,
+    "print": "cloak",
+    "brlunicode": "⠉⠇⠕⠁⠅"
+  },
+  {
+    "id": 1977,
+    "print": "cobra",
+    "brlunicode": "⠉⠕⠃⠗⠁"
+  },
+  {
+    "id": 1978,
+    "print": "cocky",
+    "brlunicode": "⠉⠕⠉⠅⠽"
+  },
+  {
+    "id": 1979,
+    "print": "cocoa",
+    "brlunicode": "⠉⠕⠉⠕⠁"
+  },
+  {
+    "id": 1980,
+    "print": "consumed",
+    "brlunicode": "⠒⠎⠥⠍⠫"
+  },
+  {
+    "id": 1981,
+    "print": "crank",
+    "brlunicode": "⠉⠗⠁⠝⠅"
+  },
+  {
+    "id": 1982,
+    "print": "crate",
+    "brlunicode": "⠉⠗⠁⠞⠑"
+  },
+  {
+    "id": 1983,
+    "print": "crunch",
+    "brlunicode": "⠉⠗⠥⠝⠡"
+  },
+  {
+    "id": 1984,
+    "print": "crushing",
+    "brlunicode": "⠉⠗⠥⠩⠬"
+  },
+  {
+    "id": 1985,
+    "print": "cutie",
+    "brlunicode": "⠉⠥⠞⠊⠑"
+  },
+  {
+    "id": 1986,
+    "print": "cutter",
+    "brlunicode": "⠉⠥⠞⠞⠻"
+  },
+  {
+    "id": 1987,
+    "print": "darkest",
+    "brlunicode": "⠙⠜⠅⠑⠌"
+  },
+  {
+    "id": 1988,
+    "print": "dialing",
+    "brlunicode": "⠙⠊⠁⠇⠬"
+  },
+  {
+    "id": 1989,
+    "print": "diaper",
+    "brlunicode": "⠙⠊⠁⠏⠻"
+  },
+  {
+    "id": 1990,
+    "print": "dispose",
+    "brlunicode": "⠲⠏⠕⠎⠑"
+  },
+  {
+    "id": 1991,
+    "print": "doubled",
+    "brlunicode": "⠙⠳⠃⠇⠫"
+  },
+  {
+    "id": 1992,
+    "print": "doubted",
+    "brlunicode": "⠙⠳⠃⠞⠫"
+  },
+  {
+    "id": 1993,
+    "print": "emerge",
+    "brlunicode": "⠑⠍⠻⠛⠑"
+  },
+  {
+    "id": 1994,
+    "print": "eminence",
+    "brlunicode": "⠑⠍⠔⠰⠑"
+  },
+  {
+    "id": 1995,
+    "print": "froze",
+    "brlunicode": "⠋⠗⠕⠵⠑"
+  },
+  {
+    "id": 1996,
+    "print": "fuller",
+    "brlunicode": "⠋⠥⠇⠇⠻"
+  },
+  {
+    "id": 1997,
+    "print": "groan",
+    "brlunicode": "⠛⠗⠕⠁⠝"
+  },
+  {
+    "id": 1998,
+    "print": "guarded",
+    "brlunicode": "⠛⠥⠜⠙⠫"
+  },
+  {
+    "id": 1999,
+    "print": "gutter",
+    "brlunicode": "⠛⠥⠞⠞⠻"
+  },
+  {
+    "id": 2000,
+    "print": "heavier",
+    "brlunicode": "⠓⠂⠧⠊⠻"
+  },
+  {
+    "id": 2001,
+    "print": "heroine",
+    "brlunicode": "⠓⠻⠕⠔⠑"
+  },
+  {
+    "id": 2002,
+    "print": "inclined",
+    "brlunicode": "⠔⠉⠇⠔⠫"
+  },
+  {
+    "id": 2003,
+    "print": "inmate",
+    "brlunicode": "⠔⠍⠁⠞⠑"
+  },
+  {
+    "id": 2004,
+    "print": "invade",
+    "brlunicode": "⠔⠧⠁⠙⠑"
+  },
+  {
+    "id": 2005,
+    "print": "judas",
+    "brlunicode": "⠚⠥⠙⠁⠎"
+  },
+  {
+    "id": 2006,
+    "print": "jumper",
+    "brlunicode": "⠚⠥⠍⠏⠻"
+  },
+  {
+    "id": 2007,
+    "print": "lacking",
+    "brlunicode": "⠇⠁⠉⠅⠬"
+  },
+  {
+    "id": 2008,
+    "print": "legit",
+    "brlunicode": "⠇⠑⠛⠊⠞"
+  },
+  {
+    "id": 2009,
+    "print": "lonesome",
+    "brlunicode": "⠇⠐⠕⠐⠎"
+  },
+  {
+    "id": 2010,
+    "print": "manly",
+    "brlunicode": "⠍⠁⠝⠇⠽"
+  },
+  {
+    "id": 2011,
+    "print": "manning",
+    "brlunicode": "⠍⠁⠝⠝⠬"
+  },
+  {
+    "id": 2012,
+    "print": "mocking",
+    "brlunicode": "⠍⠕⠉⠅⠬"
+  },
+  {
+    "id": 2013,
+    "print": "paolo",
+    "brlunicode": "⠏⠁⠕⠇⠕"
+  },
+  {
+    "id": 2014,
+    "print": "pastry",
+    "brlunicode": "⠏⠁⠌⠗⠽"
+  },
+  {
+    "id": 2015,
+    "print": "pitcher",
+    "brlunicode": "⠏⠊⠞⠡⠻"
+  },
+  {
+    "id": 2016,
+    "print": "powerless",
+    "brlunicode": "⠏⠪⠻⠨⠎"
+  },
+  {
+    "id": 2017,
+    "print": "puerto",
+    "brlunicode": "⠏⠥⠻⠞⠕"
+  },
+  {
+    "id": 2018,
+    "print": "pumped",
+    "brlunicode": "⠏⠥⠍⠏⠫"
+  },
+  {
+    "id": 2019,
+    "print": "pupil",
+    "brlunicode": "⠏⠥⠏⠊⠇"
+  },
+  {
+    "id": 2020,
+    "print": "quack",
+    "brlunicode": "⠟⠥⠁⠉⠅"
+  },
+  {
+    "id": 2021,
+    "print": "regain",
+    "brlunicode": "⠗⠑⠛⠁⠔"
+  },
+  {
+    "id": 2022,
+    "print": "richest",
+    "brlunicode": "⠗⠊⠡⠑⠌"
+  },
+  {
+    "id": 2023,
+    "print": "rodeo",
+    "brlunicode": "⠗⠕⠙⠑⠕"
+  },
+  {
+    "id": 2024,
+    "print": "salty",
+    "brlunicode": "⠎⠁⠇⠞⠽"
+  },
+  {
+    "id": 2025,
+    "print": "sawyer",
+    "brlunicode": "⠎⠁⠺⠽⠻"
+  },
+  {
+    "id": 2026,
+    "print": "scenery",
+    "brlunicode": "⠎⠉⠢⠻⠽"
+  },
+  {
+    "id": 2027,
+    "print": "scram",
+    "brlunicode": "⠎⠉⠗⠁⠍"
+  },
+  {
+    "id": 2028,
+    "print": "sergei",
+    "brlunicode": "⠎⠻⠛⠑⠊"
+  },
+  {
+    "id": 2029,
+    "print": "serpent",
+    "brlunicode": "⠎⠻⠏⠢⠞"
+  },
+  {
+    "id": 2030,
+    "print": "shredder",
+    "brlunicode": "⠩⠗⠫⠙⠻"
+  },
+  {
+    "id": 2031,
+    "print": "siege",
+    "brlunicode": "⠎⠊⠑⠛⠑"
+  },
+  {
+    "id": 2032,
+    "print": "sinister",
+    "brlunicode": "⠎⠔⠊⠌⠻"
+  },
+  {
+    "id": 2033,
+    "print": "skate",
+    "brlunicode": "⠎⠅⠁⠞⠑"
+  },
+  {
+    "id": 2034,
+    "print": "sneaky",
+    "brlunicode": "⠎⠝⠂⠅⠽"
+  },
+  {
+    "id": 2035,
+    "print": "spinal",
+    "brlunicode": "⠎⠏⠔⠁⠇"
+  },
+  {
+    "id": 2036,
+    "print": "squash",
+    "brlunicode": "⠎⠟⠥⠁⠩"
+  },
+  {
+    "id": 2037,
+    "print": "squid",
+    "brlunicode": "⠎⠟⠥⠊⠙"
+  },
+  {
+    "id": 2038,
+    "print": "stunned",
+    "brlunicode": "⠌⠥⠝⠝⠫"
+  },
+  {
+    "id": 2039,
+    "print": "tapped",
+    "brlunicode": "⠞⠁⠏⠏⠫"
+  },
+  {
+    "id": 2040,
+    "print": "tavern",
+    "brlunicode": "⠞⠁⠧⠻⠝"
+  },
+  {
+    "id": 2041,
+    "print": "teller",
+    "brlunicode": "⠞⠑⠇⠇⠻"
+  },
+  {
+    "id": 2042,
+    "print": "telly",
+    "brlunicode": "⠞⠑⠇⠇⠽"
+  },
+  {
+    "id": 2043,
+    "print": "thanking",
+    "brlunicode": "⠹⠁⠝⠅⠬"
+  },
+  {
+    "id": 2044,
+    "print": "thudding",
+    "brlunicode": "⠹⠥⠙⠙⠬"
+  },
+  {
+    "id": 2045,
+    "print": "tighter",
+    "brlunicode": "⠞⠊⠣⠞⠻"
+  },
+  {
+    "id": 2046,
+    "print": "tonic",
+    "brlunicode": "⠞⠕⠝⠊⠉"
+  },
+  {
+    "id": 2047,
+    "print": "toughest",
+    "brlunicode": "⠞⠳⠣⠑⠌"
+  },
+  {
+    "id": 2048,
+    "print": "troll",
+    "brlunicode": "⠞⠗⠕⠇⠇"
+  },
+  {
+    "id": 2049,
+    "print": "truce",
+    "brlunicode": "⠞⠗⠥⠉⠑"
+  },
+  {
+    "id": 2050,
+    "print": "tummy",
+    "brlunicode": "⠞⠥⠍⠍⠽"
+  },
+  {
+    "id": 2051,
+    "print": "warfare",
+    "brlunicode": "⠺⠜⠋⠜⠑"
+  },
+  {
+    "id": 2052,
+    "print": "weasel",
+    "brlunicode": "⠺⠂⠎⠑⠇"
+  },
+  {
+    "id": 2053,
+    "print": "weeping",
+    "brlunicode": "⠺⠑⠑⠏⠬"
+  },
+  {
+    "id": 2054,
+    "print": "whooshing",
+    "brlunicode": "⠱⠕⠕⠩⠬"
+  },
+  {
+    "id": 2055,
+    "print": "wretch",
+    "brlunicode": "⠺⠗⠑⠞⠡"
   }
 ]
