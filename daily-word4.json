@@ -6628,5 +6628,15 @@
     "id": 1453,
     "print": "lucky",
     "brlunicode": "⠇⠥⠉⠅⠽"
+  },
+  {
+    "id": 1454,
+    "print": "rocky",
+    "brlunicode": "⠗⠕⠉⠅⠽"
+  },
+  {
+    "id": 1455,
+    "print": "agile",
+    "brlunicode": "⠁⠛⠊⠇⠑"
   }
 ]
