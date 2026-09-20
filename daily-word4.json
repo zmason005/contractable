@@ -12113,5 +12113,105 @@
     "id": 2550,
     "print": "zurich",
     "brlunicode": "⠵⠥⠗⠊⠡"
+  },
+  {
+    "id": 2551,
+    "print": "brawl",
+    "brlunicode": "⠃⠗⠁⠺⠇"
+  },
+  {
+    "id": 2552,
+    "print": "capone",
+    "brlunicode": "⠉⠁⠏⠐⠕"
+  },
+  {
+    "id": 2553,
+    "print": "confide",
+    "brlunicode": "⠒⠋⠊⠙⠑"
+  },
+  {
+    "id": 2554,
+    "print": "costly",
+    "brlunicode": "⠉⠕⠌⠇⠽"
+  },
+  {
+    "id": 2555,
+    "print": "departing",
+    "brlunicode": "⠙⠑⠐⠏⠬"
+  },
+  {
+    "id": 2556,
+    "print": "detain",
+    "brlunicode": "⠙⠑⠞⠁⠔"
+  },
+  {
+    "id": 2557,
+    "print": "entrust",
+    "brlunicode": "⠢⠞⠗⠥⠌"
+  },
+  {
+    "id": 2558,
+    "print": "eruption",
+    "brlunicode": "⠻⠥⠏⠰⠝"
+  },
+  {
+    "id": 2559,
+    "print": "exiled",
+    "brlunicode": "⠑⠭⠊⠇⠫"
+  },
+  {
+    "id": 2560,
+    "print": "fetus",
+    "brlunicode": "⠋⠑⠞⠥⠎"
+  },
+  {
+    "id": 2561,
+    "print": "lefty",
+    "brlunicode": "⠇⠑⠋⠞⠽"
+  },
+  {
+    "id": 2562,
+    "print": "nectar",
+    "brlunicode": "⠝⠑⠉⠞⠜"
+  },
+  {
+    "id": 2563,
+    "print": "outpost",
+    "brlunicode": "⠳⠞⠏⠕⠌"
+  },
+  {
+    "id": 2564,
+    "print": "painless",
+    "brlunicode": "⠏⠁⠔⠨⠎"
+  },
+  {
+    "id": 2565,
+    "print": "sexist",
+    "brlunicode": "⠎⠑⠭⠊⠌"
+  },
+  {
+    "id": 2566,
+    "print": "thieving",
+    "brlunicode": "⠹⠊⠑⠧⠬"
+  },
+  {
+    "id": 2567,
+    "print": "tidal",
+    "brlunicode": "⠞⠊⠙⠁⠇"
+  },
+  {
+    "id": 2568,
+    "print": "timid",
+    "brlunicode": "⠞⠊⠍⠊⠙"
+  },
+  {
+    "id": 2569,
+    "print": "unfit",
+    "brlunicode": "⠥⠝⠋⠊⠞"
+  },
+  {
+    "id": 2570,
+    "print": "winslow",
+    "brlunicode": "⠺⠔⠎⠇⠪"
   }
 ]
