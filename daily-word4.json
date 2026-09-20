@@ -10638,5 +10638,505 @@
     "id": 2255,
     "print": "weighing",
     "brlunicode": "⠺⠑⠊⠣⠬"
+  },
+  {
+    "id": 2256,
+    "print": "accounted",
+    "brlunicode": "⠁⠒⠨⠞⠫"
+  },
+  {
+    "id": 2257,
+    "print": "adios",
+    "brlunicode": "⠁⠙⠊⠕⠎"
+  },
+  {
+    "id": 2258,
+    "print": "adored",
+    "brlunicode": "⠁⠙⠕⠗⠫"
+  },
+  {
+    "id": 2259,
+    "print": "amuse",
+    "brlunicode": "⠁⠍⠥⠎⠑"
+  },
+  {
+    "id": 2260,
+    "print": "anarchy",
+    "brlunicode": "⠁⠝⠜⠡⠽"
+  },
+  {
+    "id": 2261,
+    "print": "awaken",
+    "brlunicode": "⠁⠺⠁⠅⠢"
+  },
+  {
+    "id": 2262,
+    "print": "baton",
+    "brlunicode": "⠃⠁⠞⠕⠝"
+  },
+  {
+    "id": 2263,
+    "print": "batting",
+    "brlunicode": "⠃⠁⠞⠞⠬"
+  },
+  {
+    "id": 2264,
+    "print": "breaker",
+    "brlunicode": "⠃⠗⠂⠅⠻"
+  },
+  {
+    "id": 2265,
+    "print": "budge",
+    "brlunicode": "⠃⠥⠙⠛⠑"
+  },
+  {
+    "id": 2266,
+    "print": "bundy",
+    "brlunicode": "⠃⠥⠝⠙⠽"
+  },
+  {
+    "id": 2267,
+    "print": "calmed",
+    "brlunicode": "⠉⠁⠇⠍⠫"
+  },
+  {
+    "id": 2268,
+    "print": "canary",
+    "brlunicode": "⠉⠁⠝⠜⠽"
+  },
+  {
+    "id": 2269,
+    "print": "canoe",
+    "brlunicode": "⠉⠁⠝⠕⠑"
+  },
+  {
+    "id": 2270,
+    "print": "caress",
+    "brlunicode": "⠉⠜⠑⠎⠎"
+  },
+  {
+    "id": 2271,
+    "print": "casper",
+    "brlunicode": "⠉⠁⠎⠏⠻"
+  },
+  {
+    "id": 2272,
+    "print": "cavity",
+    "brlunicode": "⠉⠁⠧⠰⠽"
+  },
+  {
+    "id": 2273,
+    "print": "cesare",
+    "brlunicode": "⠉⠑⠎⠜⠑"
+  },
+  {
+    "id": 2274,
+    "print": "charade",
+    "brlunicode": "⠡⠜⠁⠙⠑"
+  },
+  {
+    "id": 2275,
+    "print": "chateau",
+    "brlunicode": "⠡⠁⠞⠂⠥"
+  },
+  {
+    "id": 2276,
+    "print": "coaster",
+    "brlunicode": "⠉⠕⠁⠌⠻"
+  },
+  {
+    "id": 2277,
+    "print": "cramp",
+    "brlunicode": "⠉⠗⠁⠍⠏"
+  },
+  {
+    "id": 2278,
+    "print": "craving",
+    "brlunicode": "⠉⠗⠁⠧⠬"
+  },
+  {
+    "id": 2279,
+    "print": "cupid",
+    "brlunicode": "⠉⠥⠏⠊⠙"
+  },
+  {
+    "id": 2280,
+    "print": "cutest",
+    "brlunicode": "⠉⠥⠞⠑⠌"
+  },
+  {
+    "id": 2281,
+    "print": "dharma",
+    "brlunicode": "⠙⠓⠜⠍⠁"
+  },
+  {
+    "id": 2282,
+    "print": "earthly",
+    "brlunicode": "⠑⠜⠹⠇⠽"
+  },
+  {
+    "id": 2283,
+    "print": "eliot",
+    "brlunicode": "⠑⠇⠊⠕⠞"
+  },
+  {
+    "id": 2284,
+    "print": "enlisted",
+    "brlunicode": "⠢⠇⠊⠌⠫"
+  },
+  {
+    "id": 2285,
+    "print": "envious",
+    "brlunicode": "⠢⠧⠊⠳⠎"
+  },
+  {
+    "id": 2286,
+    "print": "famine",
+    "brlunicode": "⠋⠁⠍⠔⠑"
+  },
+  {
+    "id": 2287,
+    "print": "fearful",
+    "brlunicode": "⠋⠑⠜⠰⠇"
+  },
+  {
+    "id": 2288,
+    "print": "foremost",
+    "brlunicode": "⠿⠑⠍⠕⠌"
+  },
+  {
+    "id": 2289,
+    "print": "gavel",
+    "brlunicode": "⠛⠁⠧⠑⠇"
+  },
+  {
+    "id": 2290,
+    "print": "geese",
+    "brlunicode": "⠛⠑⠑⠎⠑"
+  },
+  {
+    "id": 2291,
+    "print": "ghastly",
+    "brlunicode": "⠣⠁⠌⠇⠽"
+  },
+  {
+    "id": 2292,
+    "print": "giggle",
+    "brlunicode": "⠛⠊⠶⠇⠑"
+  },
+  {
+    "id": 2293,
+    "print": "godmother",
+    "brlunicode": "⠛⠕⠙⠐⠍"
+  },
+  {
+    "id": 2294,
+    "print": "hallo",
+    "brlunicode": "⠓⠁⠇⠇⠕"
+  },
+  {
+    "id": 2295,
+    "print": "hangar",
+    "brlunicode": "⠓⠁⠝⠛⠜"
+  },
+  {
+    "id": 2296,
+    "print": "hiccup",
+    "brlunicode": "⠓⠊⠒⠥⠏"
+  },
+  {
+    "id": 2297,
+    "print": "infinity",
+    "brlunicode": "⠔⠋⠔⠰⠽"
+  },
+  {
+    "id": 2298,
+    "print": "inhale",
+    "brlunicode": "⠔⠓⠁⠇⠑"
+  },
+  {
+    "id": 2299,
+    "print": "insisting",
+    "brlunicode": "⠔⠎⠊⠌⠬"
+  },
+  {
+    "id": 2300,
+    "print": "johan",
+    "brlunicode": "⠚⠕⠓⠁⠝"
+  },
+  {
+    "id": 2301,
+    "print": "joyful",
+    "brlunicode": "⠚⠕⠽⠰⠇"
+  },
+  {
+    "id": 2302,
+    "print": "jumpy",
+    "brlunicode": "⠚⠥⠍⠏⠽"
+  },
+  {
+    "id": 2303,
+    "print": "lilith",
+    "brlunicode": "⠇⠊⠇⠊⠹"
+  },
+  {
+    "id": 2304,
+    "print": "lineup",
+    "brlunicode": "⠇⠔⠑⠥⠏"
+  },
+  {
+    "id": 2305,
+    "print": "lorry",
+    "brlunicode": "⠇⠕⠗⠗⠽"
+  },
+  {
+    "id": 2306,
+    "print": "mellow",
+    "brlunicode": "⠍⠑⠇⠇⠪"
+  },
+  {
+    "id": 2307,
+    "print": "moran",
+    "brlunicode": "⠍⠕⠗⠁⠝"
+  },
+  {
+    "id": 2308,
+    "print": "mystic",
+    "brlunicode": "⠍⠽⠌⠊⠉"
+  },
+  {
+    "id": 2309,
+    "print": "ninety",
+    "brlunicode": "⠝⠔⠑⠞⠽"
+  },
+  {
+    "id": 2310,
+    "print": "orson",
+    "brlunicode": "⠕⠗⠎⠕⠝"
+  },
+  {
+    "id": 2311,
+    "print": "overly",
+    "brlunicode": "⠕⠧⠻⠇⠽"
+  },
+  {
+    "id": 2312,
+    "print": "picard",
+    "brlunicode": "⠏⠊⠉⠜⠙"
+  },
+  {
+    "id": 2313,
+    "print": "picky",
+    "brlunicode": "⠏⠊⠉⠅⠽"
+  },
+  {
+    "id": 2314,
+    "print": "pillar",
+    "brlunicode": "⠏⠊⠇⠇⠜"
+  },
+  {
+    "id": 2315,
+    "print": "pluto",
+    "brlunicode": "⠏⠇⠥⠞⠕"
+  },
+  {
+    "id": 2316,
+    "print": "raided",
+    "brlunicode": "⠗⠁⠊⠙⠫"
+  },
+  {
+    "id": 2317,
+    "print": "recon",
+    "brlunicode": "⠗⠑⠉⠕⠝"
+  },
+  {
+    "id": 2318,
+    "print": "relic",
+    "brlunicode": "⠗⠑⠇⠊⠉"
+  },
+  {
+    "id": 2319,
+    "print": "renowned",
+    "brlunicode": "⠗⠢⠪⠝⠫"
+  },
+  {
+    "id": 2320,
+    "print": "rubble",
+    "brlunicode": "⠗⠥⠆⠇⠑"
+  },
+  {
+    "id": 2321,
+    "print": "sahib",
+    "brlunicode": "⠎⠁⠓⠊⠃"
+  },
+  {
+    "id": 2322,
+    "print": "saucer",
+    "brlunicode": "⠎⠁⠥⠉⠻"
+  },
+  {
+    "id": 2323,
+    "print": "scalp",
+    "brlunicode": "⠎⠉⠁⠇⠏"
+  },
+  {
+    "id": 2324,
+    "print": "scarce",
+    "brlunicode": "⠎⠉⠜⠉⠑"
+  },
+  {
+    "id": 2325,
+    "print": "shifted",
+    "brlunicode": "⠩⠊⠋⠞⠫"
+  },
+  {
+    "id": 2326,
+    "print": "shifting",
+    "brlunicode": "⠩⠊⠋⠞⠬"
+  },
+  {
+    "id": 2327,
+    "print": "shogun",
+    "brlunicode": "⠩⠕⠛⠥⠝"
+  },
+  {
+    "id": 2328,
+    "print": "shuffle",
+    "brlunicode": "⠩⠥⠖⠇⠑"
+  },
+  {
+    "id": 2329,
+    "print": "sliced",
+    "brlunicode": "⠎⠇⠊⠉⠫"
+  },
+  {
+    "id": 2330,
+    "print": "slimy",
+    "brlunicode": "⠎⠇⠊⠍⠽"
+  },
+  {
+    "id": 2331,
+    "print": "soaking",
+    "brlunicode": "⠎⠕⠁⠅⠬"
+  },
+  {
+    "id": 2332,
+    "print": "spade",
+    "brlunicode": "⠎⠏⠁⠙⠑"
+  },
+  {
+    "id": 2333,
+    "print": "speedy",
+    "brlunicode": "⠎⠏⠑⠫⠽"
+  },
+  {
+    "id": 2334,
+    "print": "spree",
+    "brlunicode": "⠎⠏⠗⠑⠑"
+  },
+  {
+    "id": 2335,
+    "print": "squared",
+    "brlunicode": "⠎⠟⠥⠜⠫"
+  },
+  {
+    "id": 2336,
+    "print": "squeak",
+    "brlunicode": "⠎⠟⠥⠂⠅"
+  },
+  {
+    "id": 2337,
+    "print": "starship",
+    "brlunicode": "⠌⠜⠩⠊⠏"
+  },
+  {
+    "id": 2338,
+    "print": "steward",
+    "brlunicode": "⠌⠑⠺⠜⠙"
+  },
+  {
+    "id": 2339,
+    "print": "strung",
+    "brlunicode": "⠌⠗⠥⠝⠛"
+  },
+  {
+    "id": 2340,
+    "print": "syringe",
+    "brlunicode": "⠎⠽⠗⠬⠑"
+  },
+  {
+    "id": 2341,
+    "print": "tainted",
+    "brlunicode": "⠞⠁⠔⠞⠫"
+  },
+  {
+    "id": 2342,
+    "print": "teamwork",
+    "brlunicode": "⠞⠂⠍⠐⠺"
+  },
+  {
+    "id": 2343,
+    "print": "tesla",
+    "brlunicode": "⠞⠑⠎⠇⠁"
+  },
+  {
+    "id": 2344,
+    "print": "thrive",
+    "brlunicode": "⠹⠗⠊⠧⠑"
+  },
+  {
+    "id": 2345,
+    "print": "tolling",
+    "brlunicode": "⠞⠕⠇⠇⠬"
+  },
+  {
+    "id": 2346,
+    "print": "trashed",
+    "brlunicode": "⠞⠗⠁⠩⠫"
+  },
+  {
+    "id": 2347,
+    "print": "twisting",
+    "brlunicode": "⠞⠺⠊⠌⠬"
+  },
+  {
+    "id": 2348,
+    "print": "unreal",
+    "brlunicode": "⠥⠝⠗⠂⠇"
+  },
+  {
+    "id": 2349,
+    "print": "vegan",
+    "brlunicode": "⠧⠑⠛⠁⠝"
+  },
+  {
+    "id": 2350,
+    "print": "whacked",
+    "brlunicode": "⠱⠁⠉⠅⠫"
+  },
+  {
+    "id": 2351,
+    "print": "wheezing",
+    "brlunicode": "⠱⠑⠑⠵⠬"
+  },
+  {
+    "id": 2352,
+    "print": "wiggle",
+    "brlunicode": "⠺⠊⠶⠇⠑"
+  },
+  {
+    "id": 2353,
+    "print": "witty",
+    "brlunicode": "⠺⠊⠞⠞⠽"
+  },
+  {
+    "id": 2354,
+    "print": "wraith",
+    "brlunicode": "⠺⠗⠁⠊⠹"
+  },
+  {
+    "id": 2355,
+    "print": "zebra",
+    "brlunicode": "⠵⠑⠃⠗⠁"
   }
 ]
