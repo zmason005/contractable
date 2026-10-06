@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Tutorial settings modal (test page)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  /* ── Test page only: mimics CONTRACTABLE's canvas ─────────────── */
+  html { -webkit-text-size-adjust: 100%; font-size: calc(0.9rem + 0.3vw); }
+  body { background:#000; color:#fff; font-family:"Apple Braille","Courier New",monospace; margin:0; padding:1.5vh 3vw; text-align:center; }
+
+  /* ── PASTE INTO YOUR CSS ───────────────────────────────────────── */
+  :root {
+    --amber: #FFC107;
+    --focus-width: 4px;
+    --focus-offset: 2px;
+  }
+
+  /* Shared high-visibility focus ring (4px, 2px offset) */
+  :focus-visible {
+    outline: var(--focus-width) solid var(--amber);
+    outline-offset: var(--focus-offset);
+  }
+
+  /* Buttons that open/close the modal */
+  .tut-btn {
+    font-family: sans-serif; font-weight: bold; font-size: 1.1rem;
+    background:#000; color:#fff;
+    border: 0.125rem solid var(--amber);
+    padding: 0.4em 1em; cursor: pointer;
+    min-height: 44px; /* comfortable touch target */
+  }
+  .tut-btn:hover { background: rgba(255,193,7,0.15); }
+
+  /* The dialog itself */
+  #tutorial-settings {
+    background:#000; color:#fff;
+    border: 0.15rem solid #fff;
+    padding: 1em 1.2em;
+    width: min(92vw, 30rem);
+    max-height: 90vh; overflow-y: auto;
+    font-family: sans-serif; font-size: 1.1rem;
+    text-align: left;
+  }
+  #tutorial-settings::backdrop { background: rgba(0,0,0,0.85); }
+
+  #tutorial-settings h2 { margin: 0 0 0.6em; font-size: 1.3em; }
+  #tutorial-settings fieldset { border: 0; margin: 0; padding: 0; }
+  #tutorial-settings legend { font-weight: bold; padding: 0; margin-bottom: 0.4em; }
+
+  /* One row per setting: checkbox + label + hint */
+  .setting { display: flex; gap: 0.75em; align-items: flex-start;
+             padding: 0.6em 0; border-top: 1px solid #555; }
+  .setting input[type="checkbox"] {
+    flex: none; width: 1.6em; height: 1.6em; margin: 0.1em 0 0;
+    accent-color: var(--amber);
+  }
+  .setting label { cursor: pointer; }
+  .setting .hint { display:block; font-size: 0.85em; color:#ccc; margin-top: 0.15em; }
+
+  .dialog-actions { margin-top: 1em; text-align: right; }
+
+  /* Respect reduced motion (nothing animates here, but keep the rule for later) */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  /* High-contrast mode hook: JS toggles this class on <html> */
+  html.high-contrast #tutorial-settings { border-color: var(--amber); }
+  html.high-contrast .setting .hint { color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- ── PASTE INTO YOUR HTML (anywhere in <body>) ──────────────────── -->
+
+<button id="open-tutorial-settings" class="tut-btn"
+        type="button" aria-haspopup="dialog">Tutorial settings</button>
+
+<dialog id="tutorial-settings" aria-labelledby="tut-settings-title">
+  <h2 id="tut-settings-title">Tutorial settings</h2>
+
+  <form method="dialog" id="tutorial-settings-form">
+    <fieldset>
+      <legend>Choose how the tutorial reaches you</legend>
+
+      <div class="setting">
+        <input type="checkbox" id="opt-audio" name="audio" checked />
+        <label for="opt-audio">Audio narration
+          <span class="hint">Play the recorded human voice for each step.</span></label>
+      </div>
+
+      <div class="setting">
+        <input type="checkbox" id="opt-captions" name="captions" checked />
+        <label for="opt-captions">Text captions
+          <span class="hint">Show and announce the caption for each step.</span></label>
+      </div>
+
+      <div class="setting">
+        <input type="checkbox" id="opt-contrast" name="contrast" />
+        <label for="opt-contrast">High contrast
+          <span class="hint">Stronger outlines and colorblind-safe colors.</span></label>
+      </div>
+
+      <div class="setting">
+        <input type="checkbox" id="opt-snap" name="snap" />
+        <label for="opt-snap">Braille snapping
+          <span class="hint">Move focus to the braille for each step as it changes.</span></label>
+      </div>
+
+      <div class="setting">
+        <input type="checkbox" id="opt-manual" name="manual" checked />
+        <label for="opt-manual">Manual pacing
+          <span class="hint">Wait for Next Step instead of advancing automatically.</span></label>
+      </div>
+    </fieldset>
+
+    <div class="dialog-actions">
+      <!-- value="done" in a method="dialog" form closes the dialog natively -->
+      <button class="tut-btn" value="done" autofocus>Done</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- ── PASTE INTO YOUR JS (minimal wiring; controller comes next) ─── -->
+<script>
+  const settingsDialog = document.getElementById("tutorial-settings");
+  document.getElementById("open-tutorial-settings")
+    .addEventListener("click", () => settingsDialog.showModal());
+  // Esc and the Done button both close it; the browser returns focus
+  // to the opener button automatically.
+</script>
+</body>
+</html>
