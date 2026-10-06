@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CONTRACTABLE Tutorial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; font-size: calc(0.9rem + 0.3vw); box-sizing: border-box; }
+    *, *:before, *:after { box-sizing: inherit; }
+    :root { --amber: #FFC107; }
+
+    body { font-family: "Apple Braille", "Courier New", monospace; padding: 1.5vh 3vw; background: #000; color: #fff; margin: 0; width: 100%; }
+    .app-container { width: 100%; max-width: 32ch; margin: 0 auto; font-size: clamp(1.3rem, 5vw, 1.75rem); text-align: center; }
+    h1 { margin: 0.5em 0; font-size: 1.2em; }
+    [hidden] { display: none !important; }
+
+    /* Demo board: same look as the real game */
+    #game-board { margin-top: 1em; display: flex; flex-direction: column; gap: 0.15em; letter-spacing: 0; padding: 0.1em 0; width: 100%; text-align: center; }
+    #controls { margin-top: 1.5em; width: 100%; }
+    #guess-label { display: block; margin-bottom: 0.5em; font-size: 0.9em; }
+    #guess-input { font-family: monospace; width: 10ch; font-size: 1rem; background: #000; color: #fff; border: 0.08rem solid #fff; padding: 0.4em; vertical-align: middle; }
+    #submit-btn { font-family: sans-serif; background: #000; color: #fff; border: 0.125rem solid var(--amber); padding: 0.3em 1em; font-weight: bold; font-size: 1.1rem; vertical-align: middle; margin-left: 0.4rem; }
+
+    /* Tutorial UI */
+    :focus-visible { outline: 4px solid var(--amber); outline-offset: 2px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .tut-highlight { outline: 4px solid var(--amber); outline-offset: 2px; }
+
+    .tut-btn { font-family: sans-serif; font-weight: bold; font-size: 1.1rem; background: #000; color: #fff; border: 0.125rem solid var(--amber); padding: 0.4em 1em; cursor: pointer; min-height: 44px; }
+    .tut-btn:hover { background: rgba(255,193,7,0.15); }
+    .tut-btn[aria-pressed="true"] { background: var(--amber); color: #000; }
+
+    #demo-note { font-family: sans-serif; font-size: 0.6em; color: #ccc; margin-top: 0.5em; }
+    #tutorial-panel { margin-top: 1.5em; border-top: 1px solid #555; padding-top: 1em; }
+    #tutorial-caption { font-family: sans-serif; font-size: 1.1rem; line-height: 1.4; border: 0.1rem solid #fff; padding: 0.75em; margin: 0 0 0.75em; text-align: left; }
+    #tutorial-controls { display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: center; font-size: 1rem; }
+
+    #tutorial-settings { background: #000; color: #fff; border: 0.15rem solid #fff; padding: 1em 1.2em; width: min(92vw, 30rem); max-height: 90vh; overflow-y: auto; font-family: sans-serif; font-size: 1.1rem; text-align: left; }
+    #tutorial-settings::backdrop { background: rgba(0,0,0,0.85); }
+    #tutorial-settings h2 { margin: 0 0 0.6em; font-size: 1.3em; }
+    #tutorial-settings fieldset { border: 0; margin: 0; padding: 0; }
+    #tutorial-settings legend { font-weight: bold; padding: 0; margin-bottom: 0.4em; }
+    .setting { display: flex; gap: 0.75em; align-items: flex-start; padding: 0.6em 0; border-top: 1px solid #555; }
+    .setting input[type="checkbox"] { flex: none; width: 1.6em; height: 1.6em; margin: 0.1em 0 0; accent-color: var(--amber); }
+    .setting label { cursor: pointer; }
+    .setting .hint { display: block; font-size: 0.85em; color: #ccc; margin-top: 0.15em; }
+    .dialog-actions { margin-top: 1em; text-align: right; }
+
+    html.high-contrast #tutorial-caption, html.high-contrast #tutorial-settings { border-color: var(--amber); }
+    html.high-contrast .setting .hint, html.high-contrast #demo-note { color: #fff; }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+
+    <h1 aria-label="CONTRACTABLE tutorial"><span aria-hidden="true">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠀</span></h1>
+
+    <!-- Static demo board: only here so the steps have something to point at -->
+    <div id="game-board">
+      <div id="header" role="text" aria-label="correct, guess, wrong"
+           aria-braillelabel="⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛"><span aria-hidden="true">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</span></div>
+    </div>
+
+    <div id="controls">
+      <label id="guess-label" for="guess-input" aria-hidden="true">⠛⠥⠑⠎⠎</label>
+      <input id="guess-input" type="text" aria-label="guess (demo)" disabled />
+      <button id="submit-btn" aria-label="submit (demo)" disabled>⠎⠥⠃⠍⠊⠞</button>
+    </div>
+    <p id="demo-note">Demo only. The game itself is on the main page.</p>
+
+    <!-- Empty on purpose: JS injects a fresh child for every announcement -->
+    <div id="tutorial-live-region" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+
+    <button id="start-tutorial" class="tut-btn" type="button">Start tutorial</button>
+
+    <section id="tutorial-panel" aria-label="Tutorial" hidden>
+      <div id="tutorial-caption" tabindex="-1"></div>
+      <div id="tutorial-controls" role="group" aria-label="Tutorial controls">
+        <button id="tut-prev"   class="tut-btn" type="button">Previous step</button>
+        <button id="tut-replay" class="tut-btn" type="button">Replay step</button>
+        <button id="tut-next"   class="tut-btn" type="button">Next step</button>
+        <button id="tut-auto"   class="tut-btn" type="button" aria-pressed="false">Auto-advance</button>
+        <button id="open-tutorial-settings" class="tut-btn" type="button" aria-haspopup="dialog">Tutorial settings</button>
+      </div>
+    </section>
+
+  </div>
+
+  <dialog id="tutorial-settings" aria-labelledby="tut-settings-title">
+    <h2 id="tut-settings-title">Tutorial settings</h2>
+    <form method="dialog">
+      <fieldset>
+        <legend>Choose how the tutorial reaches you</legend>
+        <div class="setting"><input type="checkbox" id="opt-audio" checked />
+          <label for="opt-audio">Audio narration<span class="hint">Play the recorded human voice for each step.</span></label></div>
+        <div class="setting"><input type="checkbox" id="opt-captions" checked />
+          <label for="opt-captions">Text captions<span class="hint">Show and announce the caption for each step.</span></label></div>
+        <div class="setting"><input type="checkbox" id="opt-contrast" />
+          <label for="opt-contrast">High contrast<span class="hint">Stronger outlines and colorblind-safe colors.</span></label></div>
+        <div class="setting"><input type="checkbox" id="opt-snap" />
+          <label for="opt-snap">Braille snapping<span class="hint">Move focus to the braille for each step as it changes.</span></label></div>
+        <div class="setting"><input type="checkbox" id="opt-manual" checked />
+          <label for="opt-manual">Manual pacing<span class="hint">Wait for Next Step instead of advancing automatically.</span></label></div>
+      </fieldset>
+      <div class="dialog-actions"><button class="tut-btn" value="done" autofocus>Done</button></div>
+    </form>
+  </dialog>
+
+  <!-- Same folder as this file -->
+  <script src="tutorial-controller.js"></script>
+  <script>
+    /* Braille drafts: confirm with your UEB engine before shipping.
+       Audio paths are relative to this page (tutorial/index.html). */
+    const GAME_STEPS = [
+      { id: "step_01_intro",   title: "Step 1: Welcome",           audioSrc: "assets/audio/tut_step1.mp3",
+        captionText: "Welcome to CONTRACTABLE.", brailleUnicode: "⠠⠺⠑⠇⠉⠕⠍⠑⠀⠞⠕⠀⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑⠲", highlightElementId: "game-board" },
+      { id: "step_02_columns", title: "Step 2: The three columns", audioSrc: "assets/audio/tut_step2.mp3",
+        captionText: "Correct, guess, wrong.",   brailleUnicode: "⠠⠉⠕⠗⠗⠑⠉⠞⠂⠀⠛⠥⠑⠎⠎⠂⠀⠺⠗⠰⠛⠲", highlightElementId: "header" },
+      { id: "step_03_type",    title: "Step 3: Enter a guess",     audioSrc: "assets/audio/tut_step3.mp3",
+        captionText: "Type a guess.",            brailleUnicode: "⠠⠞⠽⠏⠑⠀⠁⠀⠛⠥⠑⠎⠎⠲", highlightElementId: "guess-input" },
+      { id: "step_04_submit",  title: "Step 4: Submit",            audioSrc: "assets/audio/tut_step4.mp3",
+        captionText: "Press submit.",            brailleUnicode: "⠠⠏⠗⠑⠎⠎⠀⠎⠥⠃⠍⠊⠞⠲", highlightElementId: "submit-btn" },
+    ];
+
+    const tutorial = new SegmentedTutorialController(GAME_STEPS);
+    const $ = id => document.getElementById(id);
+
+    $("start-tutorial").addEventListener("click", () => {
+      $("tutorial-panel").hidden = false;
+      $("start-tutorial").hidden = true;
+      tutorial.start();
+    });
+    $("tut-next").addEventListener("click",   () => tutorial.next());
+    $("tut-prev").addEventListener("click",   () => tutorial.prev());
+    $("tut-replay").addEventListener("click", () => tutorial.replay());
+    $("open-tutorial-settings").addEventListener("click", () => $("tutorial-settings").showModal());
+
+    // Auto-advance button and "Manual pacing" checkbox are one setting
+    const manualBox = $("opt-manual"), autoBtn = $("tut-auto");
+    const syncAutoBtn = () => autoBtn.setAttribute("aria-pressed", String(!manualBox.checked));
+    autoBtn.addEventListener("click", () => {
+      manualBox.checked = !manualBox.checked;
+      manualBox.dispatchEvent(new Event("change"));
+    });
+    manualBox.addEventListener("change", syncAutoBtn);
+    syncAutoBtn();
+  </script>
+</body>
+</html>
