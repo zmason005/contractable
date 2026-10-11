@@ -443,6 +443,16 @@
       margin-bottom: 0;
     }
 
+    #instructions-panel h2 {
+      font-size: 1.1em;
+      margin: 1em 0 0.4em;
+    }
+
+    #instructions-panel ul {
+      margin: 0 0 0.7em;
+      padding-left: 1.3em;
+    }
+
     /* ================================================================
        BRAILLE CELL
        ================================================================ */
@@ -650,13 +660,54 @@
 
     <section id="instructions-panel" hidden aria-labelledby="instructions-btn">
       <p>
-        Guess the daily Braille word in six tries. Enter a Braille word with
-        the correct number of cells, then use the feedback from each guess to
-        solve the puzzle. After every guess, only the correct dots in the
-        correct positions remain, while incorrect dots disappear. Correct
-        dots accumulate with each attempt, helping you uncover the answer.
+        Guess the daily Braille word in six tries. Enter a 5-cell Braille word,
+        then use the feedback from each guess to solve the puzzle. You can type
+        letters or braille.
       </p>
-      <p><strong>Think in Braille dots&mdash;not letters.</strong></p>
+      <p>
+        Each row on the gameboard shows three groups:
+      </p>
+      <ul>
+        <li><span aria-hidden="true">⠉⠕⠗⠗⠑⠉⠞</span> correct: dots that are in the answer</li>
+        <li><span aria-hidden="true">⠛⠥</span> guess: your guess</li>
+        <li><span aria-hidden="true">⠺⠗⠰⠛</span> wrong: dots that are not in the answer</li>
+      </ul>
+      <p>
+        The correct and wrong groups build up across guesses. Your guess does not.
+      </p>
+      <p>
+        Think in Braille dots, not letters.
+      </p>
+
+      <h2>Valid word types</h2>
+      <ul>
+        <li>Common nouns: anchor, garlic, pillow</li>
+        <li>Base-form verbs: adopt, solve, switch</li>
+        <li>Adjectives: angry, silent, sticky</li>
+        <li>Words ending in -ed: learned, trained</li>
+        <li>Words ending in -ing: running, writing</li>
+        <li>Comparatives and superlatives: closer, biggest</li>
+        <li>Adverbs ending in -ly: slowly, rarely</li>
+        <li>Words for a person who does something: player, actor</li>
+      </ul>
+
+      <h2>Invalid word types</h2>
+      <ul>
+        <li>Plurals ending in -s or -es</li>
+        <li>Verbs ending in -s: allows, belongs</li>
+        <li>Proper nouns:
+          <ul>
+            <li>Places: boston, texas, tokyo</li>
+            <li>Surnames and first names: anderson, wagner, hoover</li>
+            <li>Days: monday, friday, sunday</li>
+            <li>Brand-like words: jaguar, casper</li>
+          </ul>
+        </li>
+        <li>Nationality, language, ethnic and religious labels: german, jewish, asian</li>
+        <li>Profanity and mild expletives</li>
+        <li>Violence, crime and hate terms</li>
+        <li>Names of medications: xanax, paxil, insulin</li>
+      </ul>
     </section>
 
     <div id="game-board" aria-live="polite">
