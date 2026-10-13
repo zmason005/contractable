@@ -1,1 +1,1 @@
-lengthen  # malformed line
+lengthen	⠇⠢⠛⠮⠝
