@@ -1,8 +1,2 @@
-watering ⠺⠁⠞⠻⠬
-watered ⠺⠁⠞⠻⠫
-waterer ⠺⠁⠞⠻⠻
-watery ⠺⠁⠞⠻⠽
-table ⠞⠁⠃⠇⠑
-tabled ⠞⠁⠃⠇⠫
-flowery ⠋⠇⠪⠻⠽
-flowered ⠋⠇⠪⠻⠫
+watering ⠺⠁⠞⠻⠬  # duplicate print
+table ⠞⠁⠃⠇⠑  # duplicate print
