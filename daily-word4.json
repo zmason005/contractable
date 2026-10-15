@@ -12258,5 +12258,20 @@
     "id": 2579,
     "print": "flowered",
     "brlunicode": "⠋⠇⠪⠻⠫"
+  },
+  {
+    "id": 2580,
+    "print": "fatter",
+    "brlunicode": "⠋⠁⠞⠞⠻"
+  },
+  {
+    "id": 2581,
+    "print": "clack",
+    "brlunicode": "⠉⠇⠁⠉⠅"
+  },
+  {
+    "id": 2582,
+    "print": "cluck",
+    "brlunicode": "⠉⠇⠥⠉⠅"
   }
 ]

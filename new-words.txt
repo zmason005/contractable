@@ -1,5 +1,2 @@
-fatter ⠋⠁⠞⠞⠻
-clack ⠉⠇⠁⠉⠅
-clock ⠉⠇⠕⠉⠅
-cluck ⠉⠇⠥⠉⠅
-click ⠉⠇⠊⠉⠅
+clock ⠉⠇⠕⠉⠅  # duplicate print
+click ⠉⠇⠊⠉⠅  # duplicate print
