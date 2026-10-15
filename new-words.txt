@@ -1,2 +1,0 @@
-clock ⠉⠇⠕⠉⠅  # duplicate print
-click ⠉⠇⠊⠉⠅  # duplicate print
