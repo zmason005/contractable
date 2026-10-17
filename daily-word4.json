@@ -12273,5 +12273,20 @@
     "id": 2582,
     "print": "cluck",
     "brlunicode": "⠉⠇⠥⠉⠅"
+  },
+  {
+    "id": 2583,
+    "print": "cleave",
+    "brlunicode": "⠉⠇⠂⠧⠑"
+  },
+  {
+    "id": 2584,
+    "print": "cleaved",
+    "brlunicode": "⠉⠇⠂⠧⠫"
+  },
+  {
+    "id": 2585,
+    "print": "cleaver",
+    "brlunicode": "⠉⠇⠂⠧⠻"
   }
 ]
