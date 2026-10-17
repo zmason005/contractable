@@ -82,6 +82,11 @@
       outline: none;
     }
 
+    #status.dismissible {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
     .suggest-link-btn {
       background: none;
       border: none;
@@ -409,7 +414,7 @@
       margin: 0.3em 0 1em;
     }
 
-    #instructions-btn {
+    .instructions-toggle {
       font-family: sans-serif;
       background: #000000;
       color: #ffffff;
@@ -419,8 +424,12 @@
       font-size: 0.9rem;
     }
 
-    #instructions-btn:hover {
+    .instructions-toggle:hover {
       border-color: #999999;
+    }
+
+    #instructions-panel .instructions-toggle {
+      margin-top: 1em;
     }
 
     #instructions-panel {
@@ -652,6 +661,7 @@
     <div id="instructions-toggle-wrap">
       <button
         id="instructions-btn"
+        class="instructions-toggle"
         type="button"
         aria-expanded="false"
         aria-controls="instructions-panel"
@@ -708,6 +718,13 @@
         <li>Violence, crime and hate terms</li>
         <li>Names of medications: xanax, paxil, insulin</li>
       </ul>
+
+      <button
+        type="button"
+        class="instructions-toggle"
+        aria-expanded="true"
+        aria-controls="instructions-panel"
+      >Hide Instructions</button>
     </section>
 
     <div id="game-board" aria-live="polite">

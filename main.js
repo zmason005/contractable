@@ -707,11 +707,14 @@ function resetGameForNewDay(nowDayIndex) {
 
 /* ── UI & Game Logic ─────────────────────────────────────────────────────── */
 
-function setStatus(msg) {
+function setStatus(msg, dismissible = false) {
   const status = document.getElementById("status");
   status.textContent = msg;
-  status.removeAttribute("hidden"); 
-  setTimeout(() => { status.focus(); }, 0); 
+  status.classList.toggle("dismissible", dismissible);
+  if (dismissible) status.setAttribute("role", "button");
+  else status.removeAttribute("role");
+  status.removeAttribute("hidden");
+  setTimeout(() => { status.focus(); }, 0);
 }
 
 function updateGuessLabel() {
@@ -880,7 +883,7 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
   }
 
   if (!matchedWord) {
-    if (!isRestoring) setStatus("Not in word list.");
+    if (!isRestoring) setStatus("Not in word list.", true);
     return false;
   }
 
@@ -985,19 +988,51 @@ function submitGuess() {
   }
 }
 
-// Wires the Show/Hide Instructions button. Purely additive: doesn't touch
-// input handling, guess evaluation, or any other game state.
-function initInstructionsToggle() {
-  const btn = document.getElementById("instructions-btn");
-  const panel = document.getElementById("instructions-panel");
-  if (!btn || !panel) return;
+// Tap (or Enter/Space) on a dismissible status message hides it and
+// returns focus to whichever guess entry is active.
+function initStatusDismiss() {
+  const status = document.getElementById("status");
+  if (!status) return;
 
-  btn.addEventListener("click", () => {
-    const expanded = btn.getAttribute("aria-expanded") === "false";
-    panel.hidden = !expanded;
-    btn.setAttribute("aria-expanded", expanded);
-    btn.textContent = expanded ? "Hide Instructions" : "Show Instructions";
+  const dismiss = () => {
+    if (!status.classList.contains("dismissible")) return;
+    status.setAttribute("hidden", "");
+    status.textContent = "";
+    status.classList.remove("dismissible");
+    status.removeAttribute("role");
+    const target = (inputMode === "sixkey")
+      ? document.getElementById("sixkey-cells")
+      : document.getElementById("guess-input");
+    if (target) target.focus();
+  };
+
+  status.addEventListener("click", dismiss);
+  status.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      dismiss();
+    }
   });
+}
+
+// Wires the Show/Hide Instructions buttons (top and bottom share the
+// .instructions-toggle class). Purely additive: doesn't touch input
+// handling, guess evaluation, or any other game state.
+function initInstructionsToggle() {
+  const buttons = document.querySelectorAll(".instructions-toggle");
+  const topBtn = document.getElementById("instructions-btn");
+  const panel = document.getElementById("instructions-panel");
+  if (!buttons.length || !topBtn || !panel) return;
+
+  buttons.forEach(btn => btn.addEventListener("click", () => {
+    const opening = panel.hidden;
+    panel.hidden = !opening;
+    buttons.forEach(b => {
+      b.setAttribute("aria-expanded", opening);
+      b.textContent = opening ? "Hide Instructions" : "Show Instructions";
+    });
+    if (!opening) topBtn.focus(); // closing: return focus to the top button
+  }));
 }
 
 async function init() {
@@ -1067,6 +1102,7 @@ async function init() {
   }
 
   initInstructionsToggle();
+  initStatusDismiss();
 
   applyInputMode();
 
