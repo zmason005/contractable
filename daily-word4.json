@@ -12228,5 +12228,50 @@
     "id": 2573,
     "print": "lengthen",
     "brlunicode": "⠇⠢⠛⠮⠝"
+  },
+  {
+    "id": 2574,
+    "print": "watered",
+    "brlunicode": "⠺⠁⠞⠻⠫"
+  },
+  {
+    "id": 2575,
+    "print": "waterer",
+    "brlunicode": "⠺⠁⠞⠻⠻"
+  },
+  {
+    "id": 2576,
+    "print": "watery",
+    "brlunicode": "⠺⠁⠞⠻⠽"
+  },
+  {
+    "id": 2577,
+    "print": "tabled",
+    "brlunicode": "⠞⠁⠃⠇⠫"
+  },
+  {
+    "id": 2578,
+    "print": "flowery",
+    "brlunicode": "⠋⠇⠪⠻⠽"
+  },
+  {
+    "id": 2579,
+    "print": "flowered",
+    "brlunicode": "⠋⠇⠪⠻⠫"
+  },
+  {
+    "id": 2580,
+    "print": "fatter",
+    "brlunicode": "⠋⠁⠞⠞⠻"
+  },
+  {
+    "id": 2581,
+    "print": "clack",
+    "brlunicode": "⠉⠇⠁⠉⠅"
+  },
+  {
+    "id": 2582,
+    "print": "cluck",
+    "brlunicode": "⠉⠇⠥⠉⠅"
   }
 ]
