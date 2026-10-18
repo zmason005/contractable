@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contractable Demo Recorder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: inherit; }
+    [hidden] { display: none !important; }
+
+    body {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      margin: 0;
+      padding: 1.5vh 3vw;
+    }
+
+    /* Visible only to screen readers and braille displays; still focusable. */
+    .demo-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .demo-panel {
+      max-width: 32rem;
+      margin: 0 auto;
+      padding: 1em 0;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    .demo-panel h1 { font-size: 1.4em; margin: 0.4em 0; }
+    .demo-panel p { margin: 0 0 1em; color: #dddddd; }
+    .demo-panel label { display: block; margin: 1em 0 0.3em; font-weight: bold; }
+    .demo-hint { font-size: 0.85em; color: #cccccc; margin: 0 0 0.4em; }
+
+    .demo-panel input[type="text"],
+    .demo-panel textarea {
+      width: 100%;
+      font-family: monospace;
+      font-size: 1.1rem;
+      background: #000000;
+      color: #ffffff;
+      border: 0.08rem solid #ffffff;
+      padding: 0.5em;
+    }
+
+    .demo-btn {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      border: 0.125rem solid #FFC107;
+      padding: 0.4em 1.1em;
+      font-weight: bold;
+      font-size: 1.05rem;
+      cursor: pointer;
+      margin: 0.8em 0.6em 0 0;
+    }
+    .demo-btn:hover { background: rgba(255, 193, 7, 0.15); }
+    .demo-btn:disabled { opacity: 0.5; cursor: default; }
+
+    #setup-error, #results-status { color: #FFC107; min-height: 1.4em; margin-top: 0.8em; }
+    #results-text { height: 50vh; font-size: 0.85rem; }
+  </style>
+</head>
+
+<body>
+
+  <!-- Screen 1: choose the answer, then start -->
+  <main id="setup-screen" class="demo-panel">
+    <h1>Contractable demo recorder</h1>
+    <p>
+      Pick the answer for your tutorial. The game opens with this word as the
+      word of the day and plays exactly like the real game. Nothing here
+      touches your real daily progress or sends suggestions anywhere.
+    </p>
+
+    <form id="setup-form" novalidate>
+      <label for="demo-word">Word of the day (letters)</label>
+      <p class="demo-hint" id="word-hint">The word you will type to solve it, for example: planet</p>
+      <input id="demo-word" type="text" autocomplete="off" autocapitalize="off"
+             spellcheck="false" aria-describedby="word-hint" />
+
+      <label for="demo-braille">Braille for that word (optional)</label>
+      <p class="demo-hint" id="braille-hint">
+        Leave blank to translate automatically (Grade 2 UEB, needs internet).
+        Or paste exactly 5 braille cells.
+      </p>
+      <input id="demo-braille" type="text" autocomplete="off" autocapitalize="off"
+             spellcheck="false" aria-describedby="braille-hint" />
+
+      <button id="start-recording-btn" class="demo-btn" type="submit">Start recording</button>
+      <div id="setup-error" role="alert"></div>
+    </form>
+  </main>
+
+  <!-- Screen 2: the real game markup is copied in here from ../index.html -->
+  <div id="game-host" hidden></div>
+
+  <!-- Screen 3: shown after End Recording -->
+  <section id="results" class="demo-panel" hidden aria-labelledby="results-heading">
+    <h1 id="results-heading" tabindex="-1">Recording finished</h1>
+    <p>
+      The timeline below is plain text. Paste it into ChatGPT, ElevenLabs, or
+      any AI tool to write narration. Times count from the moment you pressed
+      Start recording.
+    </p>
+    <button id="download-md-btn" class="demo-btn" type="button">Download timeline</button>
+    <button id="download-json-btn" class="demo-btn" type="button">Download JSON</button>
+    <button id="copy-md-btn" class="demo-btn" type="button">Copy timeline</button>
+    <div id="results-status" role="status" aria-live="polite"></div>
+    <label for="results-text" class="demo-sr-only">Timeline text</label>
+    <textarea id="results-text" readonly></textarea>
+  </section>
+
+  <div id="demo-live" class="demo-sr-only" role="status" aria-live="polite"></div>
+
+  <!-- Keep this the last visible element in the body. -->
+  <button id="end-recording-btn" class="demo-sr-only" type="button" hidden>End Recording</button>
+
+  <script src="recorder.js"></script>
+  <script src="demo.js"></script>
+</body>
+</html>
