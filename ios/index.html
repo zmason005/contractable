@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contractable – A Daily Contracted Braille Word Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Contractable is a free daily word puzzle for Grade 2 UEB contracted braille. Wordle-style gameplay built for braille display and screen reader users." />
+  <link rel="canonical" href="https://contractable.braillefirst.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contractable – A Daily Contracted Braille Word Game" />
+  <meta property="og:description" content="A free daily word puzzle for Grade 2 UEB contracted braille. Wordle-style gameplay built for braille display and screen reader users." />
+  <meta property="og:url" content="https://contractable.braillefirst.com/" />
+  <meta property="og:site_name" content="Contractable" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Contractable – A Daily Contracted Braille Word Game" />
+  <meta name="twitter:description" content="A free daily word puzzle for Grade 2 UEB contracted braille. Wordle-style gameplay built for braille display and screen reader users." />
+  <style>
+    /*
+      CONTRACTABLE BOARD GEOMETRY
+      The board uses 24 braille-cell pitches as its horizontal coordinate
+      system. One pitch = 1/24 of #game-board's width (via cqw).
+      Row layout: 1 row ID + 5 CORRECT | gap | 5 GUESS | gap | 5 WRONG.
+    */
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      box-sizing: border-box;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
+    body {
+      font-family: "Apple Braille", "Courier New", monospace;
+      background: #000000;
+      color: #ffffff;
+      margin: 0;
+      padding: 1.5vh 3vw;
+      width: 100%;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 32rem;
+      margin: 0 auto;
+      font-size: clamp(1.3rem, 5vw, 1.75rem);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0.5em 0;
+      font-size: 1.2em;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    #status {
+      margin-top: 0.5em;
+      white-space: pre;
+      font-weight: bold;
+      outline: none;
+    }
+
+    #status.dismissible {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .suggest-link-btn {
+      background: none;
+      border: none;
+      color: #FFC107;
+      text-decoration: underline;
+      font-family: sans-serif;
+      font-weight: normal;
+      font-size: 0.8em;
+      white-space: normal;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 0.4em;
+    }
+
+    .suggest-link-btn:hover {
+      color: #ffd54f;
+    }
+
+    .suggest-link-btn:disabled {
+      color: #888888;
+      text-decoration: none;
+      cursor: default;
+    }
+
+    /* MASTER BRAILLE PITCH SYSTEM
+       #game-board is an inline-size container, so cqw always means
+       "percent of #game-board's width" for every descendant. */
+
+    #game-board {
+      container-type: inline-size;
+
+      --pitch: calc(100cqw / 24);
+
+      --dot-size: calc(var(--pitch) * 0.30);
+      --dot-column-gap: calc(var(--pitch) * 0.10);
+      --dot-row-gap: calc(var(--pitch) * 0.12);
+
+      --cell-width: var(--pitch);
+      --cell-height: calc(var(--cell-width) * 1.60);
+
+      --group-gap: var(--pitch);
+
+      --word-column-width: calc(5 * var(--pitch));
+      --correct-column-width: calc(var(--pitch) + var(--word-column-width));
+
+      width: 100%;
+      margin-top: 1em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15em;
+      padding: 0.1em 0;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns:
+        var(--correct-column-width)
+        var(--word-column-width)
+        var(--word-column-width);
+      column-gap: var(--group-gap);
+      width: max-content;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1vh;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      position: relative; /* anchors the .sr-only braille text inside each row */
+    }
+
+    .row-label {
+      grid-column: 1;
+      grid-row: 1;
+      width: var(--pitch);
+      min-width: var(--pitch);
+      height: var(--cell-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6em;
+      font-family: sans-serif;
+      color: #999999;
+    }
+
+    /* Columns are assigned by class, not :nth-of-type, so sibling order
+       (label + three groups are all <span>s) can never shift them. */
+    .row-group {
+      display: flex;
+      width: var(--word-column-width);
+      min-width: var(--word-column-width);
+      gap: 0;
+      justify-content: flex-start;
+      flex-shrink: 0;
+    }
+
+    .row-group-correct {
+      grid-column: 1;
+      grid-row: 1;
+      margin-left: var(--pitch);
+    }
+
+    .row-group-guess {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .row-group-wrong {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    /* Header only: the word "correct" needs 7 cells, not 5. */
+    #header .row-group-correct {
+      grid-column: 1 / 3;
+      margin-left: calc(-1 * var(--pitch));
+      width: calc(7 * var(--pitch));
+      justify-self: start;
+    }
+
+    #controls {
+      margin-top: 1.5em;
+      width: 100%;
+    }
+
+    #guess-label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-size: 0.9em;
+    }
+
+    #guess-input {
+      font-family: monospace;
+      width: 10ch;
+      font-size: 1rem;
+      background: #000000;
+      color: #ffffff;
+      border: 0.08rem solid #ffffff;
+      padding: 0.4em;
+      vertical-align: middle;
+    }
+
+    #submit-btn,
+    #sixkey-submit-btn,
+    #suggest-submit-btn {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      border: 0.125rem solid #FFC107;
+      padding: 0.3em 1em;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #submit-btn {
+      font-size: 1.1rem;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+    }
+
+    #submit-btn:hover,
+    #sixkey-submit-btn:hover,
+    #suggest-submit-btn:hover {
+      background: rgba(255, 193, 7, 0.15);
+    }
+
+    #post-game-suggest {
+      margin-top: 2em;
+      padding-top: 1em;
+      border-top: 0.08rem solid #444444;
+      width: 100%;
+      text-align: center;
+    }
+
+    #suggest-heading {
+      font-size: 1em;
+      font-family: sans-serif;
+      margin: 0 0 0.5em;
+    }
+
+    #suggest-label {
+      display: block;
+      font-size: 0.8em;
+      font-family: sans-serif;
+      color: #cccccc;
+      margin-bottom: 0.5em;
+    }
+
+    #suggest-input {
+      width: 100%;
+      max-width: 28ch;
+      font-family: monospace;
+      font-size: 1rem;
+      background: #000000;
+      color: #ffffff;
+      border: 0.08rem solid #ffffff;
+      padding: 0.5em;
+      resize: vertical;
+    }
+
+    #suggest-submit-btn {
+      display: block;
+      margin: 0.6em auto 0;
+    }
+
+    #suggest-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    #suggest-feedback {
+      margin-top: 0.6em;
+      font-size: 0.8em;
+      font-family: sans-serif;
+      color: #FFC107;
+      min-height: 1em;
+    }
+
+    #suggest-feedback.error {
+      color: #ff4d4d;
+      font-weight: bold;
+    }
+
+    #debug-log {
+      margin-top: 2em;
+      font-size: 0.6em;
+      color: #ff4d4d;
+      border-top: 0.08rem solid #ccc;
+      padding-top: 0.65rem;
+      font-family: monospace;
+      width: 100%;
+    }
+
+    /* Visually hidden but still in the accessibility tree and on the
+       braille display. Never use display:none for this. */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    #mode-toggle-wrap {
+      margin-top: 1.5em;
+    }
+
+    #mode-toggle-btn {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      border: 0.1rem solid #666666;
+      padding: 0.35em 0.9em;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    #mode-toggle-btn:hover {
+      border-color: #999999;
+    }
+
+    #instructions-toggle-wrap {
+      margin: 0.3em 0 1em;
+    }
+
+    .instructions-toggle {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      border: 0.1rem solid #666666;
+      padding: 0.35em 0.9em;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .instructions-toggle:hover {
+      border-color: #999999;
+    }
+
+    #instructions-panel .instructions-toggle {
+      margin-top: 1em;
+    }
+
+    #instructions-panel {
+      text-align: left;
+      font-family: sans-serif;
+      font-size: 0.8em;
+      line-height: 1.4;
+      color: #dddddd;
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.08rem solid #444444;
+      padding: 0.8em 1em;
+      margin: 0.6em 0 1.2em;
+    }
+
+    #instructions-panel p {
+      margin: 0 0 0.7em;
+    }
+
+    #instructions-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    #instructions-panel h2 {
+      font-size: 1.1em;
+      margin: 1em 0 0.4em;
+    }
+
+    #instructions-panel ul {
+      margin: 0 0 0.7em;
+      padding-left: 1.3em;
+    }
+
+    /* BRAILLE CELL */
+
+    .cell {
+      display: grid;
+      grid-template-columns: repeat(2, var(--dot-size));
+      grid-template-rows: repeat(3, var(--dot-size));
+      column-gap: var(--dot-column-gap);
+      row-gap: var(--dot-row-gap);
+      grid-template-areas:
+        "d1 d4"
+        "d2 d5"
+        "d3 d6";
+      width: var(--cell-width);
+      min-width: var(--cell-width);
+      height: var(--cell-height);
+      align-content: center;
+      justify-content: center;
+      flex: 0 0 var(--cell-width);
+    }
+
+    .cell.current-cell {
+      outline: 0.15em solid #FFC107;
+      outline-offset: 0.1em;
+    }
+
+    .dot {
+      width: var(--dot-size);
+      height: var(--dot-size);
+      border-radius: 50%;
+      background: #8b0000;
+      border: 1px solid #8b0000;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .cell.tappable .dot {
+      cursor: pointer;
+    }
+
+    .dot.on {
+      background: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .dot-label {
+      background: transparent;
+      border-color: transparent;
+    }
+
+    .dot-label.on {
+      background: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .dot.dot-1 { grid-area: d1; }
+    .dot.dot-2 { grid-area: d2; }
+    .dot.dot-3 { grid-area: d3; }
+    .dot.dot-4 { grid-area: d4; }
+    .dot.dot-5 { grid-area: d5; }
+    .dot.dot-6 { grid-area: d6; }
+
+    /* HEADING */
+
+    #heading-cells {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.3em;
+      vertical-align: middle;
+    }
+
+    #heading-cells .cell {
+      width: 0.8em;
+      min-width: 0.8em;
+      height: 1.28em;
+      grid-template-columns: repeat(2, 0.24em);
+      grid-template-rows: repeat(3, 0.24em);
+      column-gap: 0.08em;
+      row-gap: 0.09em;
+    }
+
+    #heading-cells .dot {
+      width: 0.24em;
+      height: 0.24em;
+      border-width: 0.05em;
+    }
+
+    /* SIX-KEY ENTRY */
+
+    #sixkey-controls {
+      margin-top: 1.5em;
+      width: 100%;
+    }
+
+    #sixkey-cells {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1vw;
+      width: 100%;
+      padding: 0.4em 0;
+    }
+
+    #sixkey-cells:focus {
+      outline: 0.12em dashed #FFC107;
+      outline-offset: 0.2em;
+    }
+
+    #sixkey-cells .cell {
+      width: auto;
+      min-width: 0;
+      height: auto;
+      flex: 1 1 0;
+      padding: 0.08em;
+      border-radius: 0.3em;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      column-gap: 1vw;
+      row-gap: 1vw;
+    }
+
+    #sixkey-cells .dot {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border: 0.09em solid #ffffff;
+    }
+
+    #sixkey-actions {
+      margin-top: 1em;
+      display: flex;
+      justify-content: center;
+      gap: 0.6em;
+    }
+
+    #sixkey-clear-btn {
+      font-family: sans-serif;
+      background: #000000;
+      color: #ffffff;
+      border: 0.125rem solid #666666;
+      padding: 0.3em 1em;
+      font-weight: normal;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #sixkey-clear-btn:hover {
+      border-color: #999999;
+    }
+
+    #sixkey-clear-btn:disabled,
+    #sixkey-submit-btn:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    /* ABOUT / SEO TEXT BLOCK */
+    #about {
+      margin-top: 2.5em;
+      padding-top: 1.5em;
+      border-top: 0.08rem solid #333;
+      text-align: left;
+      font-family: "Courier New", monospace;
+      font-size: 0.65em;
+      line-height: 1.5;
+    }
+
+    #about h2 {
+      font-size: 1.1em;
+      margin-bottom: 0.6em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!--
+      BRAILLE DISPLAY STRATEGY (iOS 27.0.1)
+      aria-braillelabel is removed everywhere: on this iOS version it
+      blanks the display. Instead each element keeps its aria-label
+      (speech) and contains real braille Unicode in a visually hidden
+      .sr-only span (braille display). Visual dot-cells are aria-hidden.
+    -->
+
+    <h1 aria-label="CONTRACTABLE">
+      <span id="heading-cells" aria-hidden="true"></span>
+      <span class="sr-only">⠠⠠⠒⠞⠗⠁⠉⠞⠁⠃⠇⠑</span>
+    </h1>
+
+    <div id="instructions-toggle-wrap">
+      <button
+        id="instructions-btn"
+        class="instructions-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="instructions-panel"
+      >Show Instructions</button>
+    </div>
+
+    <section id="instructions-panel" hidden aria-label="Instructions">
+      <p>
+        Guess the daily Braille word in six tries. Enter a 5-cell Braille word,
+        then use the feedback from each guess to solve the puzzle. You can type
+        letters or braille.
+      </p>
+      <p>
+        Each row on the gameboard shows three groups:
+      </p>
+      <ul>
+        <li><span aria-hidden="true">⠉⠕⠗⠗⠑⠉⠞</span> correct: dots that are in the answer</li>
+        <li><span aria-hidden="true">⠛⠥⠑⠎⠎</span> guess: your guess</li>
+        <li><span aria-hidden="true">⠺⠗⠰⠛</span> wrong: dots that are not in the answer</li>
+      </ul>
+      <p>
+        The correct and wrong groups build up across guesses. Your guess does not.
+      </p>
+      <p>
+        Think in Braille dots, not letters.
+      </p>
+
+      <h2>Valid word types</h2>
+      <ul>
+        <li>Common nouns: anchor, garlic, pillow</li>
+        <li>Base-form verbs: adopt, solve, switch</li>
+        <li>Adjectives: angry, silent, sticky</li>
+        <li>Words ending in -ed: learned, trained</li>
+        <li>Words ending in -ing: running, writing</li>
+        <li>Comparatives and superlatives: closer, biggest</li>
+        <li>Adverbs ending in -ly: slowly, rarely</li>
+        <li>Words for a person who does something: player, actor</li>
+      </ul>
+
+      <h2>Invalid word types</h2>
+      <ul>
+        <li>Plurals ending in -s or -es</li>
+        <li>Verbs ending in -s: allows, belongs</li>
+        <li>Proper nouns:
+          <ul>
+            <li>Places: boston, texas, tokyo</li>
+            <li>Surnames and first names: anderson, wagner, hoover</li>
+            <li>Days: monday, friday, sunday</li>
+            <li>Brand-like words: jaguar, casper</li>
+          </ul>
+        </li>
+        <li>Nationality, language, ethnic and religious labels: german, jewish, asian</li>
+        <li>Profanity and mild expletives</li>
+        <li>Violence, crime and hate terms</li>
+        <li>Names of medications: xanax, paxil, insulin</li>
+      </ul>
+
+      <button
+        type="button"
+        class="instructions-toggle"
+        aria-expanded="true"
+        aria-controls="instructions-panel"
+      >Hide Instructions</button>
+    </section>
+
+    <div id="game-board" aria-live="polite">
+      <div
+        id="header"
+        class="row"
+        role="text"
+        aria-label="correct, guess, wrong"
+      ><span class="sr-only">⠉⠕⠗⠗⠑⠉⠞⠀⠛⠥⠑⠎⠎⠀⠺⠗⠰⠛</span></div>
+    </div>
+
+    <div id="status" tabindex="-1" hidden></div>
+
+    <div id="controls">
+      <label id="guess-label" for="guess-input" aria-hidden="true">⠛⠥⠑⠎⠎</label>
+
+      <input
+        id="guess-input"
+        type="text"
+        aria-label="guess"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+
+      <button
+        id="submit-btn"
+        type="button"
+        aria-label="submit"
+      >⠎⠥⠃⠍⠊⠞</button>
+    </div>
+
+    <div id="mode-toggle-wrap">
+      <button id="mode-toggle-btn" type="button">Switch to 6-key entry</button>
+    </div>
+
+    <div id="sixkey-controls" hidden>
+      <div
+        id="sixkey-cells"
+        role="group"
+        aria-label="Six key braille entry, five cells. Hold S D F and J K L together to set dots, release to commit a cell. Tap or click dots directly. Arrow keys or Tab move between cells."
+        tabindex="0"
+      >
+        <span class="cell tappable" data-cell="0">
+          <span class="dot dot-1" data-cell="0" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="0" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="0" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="0" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="0" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="0" data-dot="6"></span>
+        </span>
+
+        <span class="cell tappable" data-cell="1">
+          <span class="dot dot-1" data-cell="1" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="1" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="1" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="1" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="1" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="1" data-dot="6"></span>
+        </span>
+
+        <span class="cell tappable" data-cell="2">
+          <span class="dot dot-1" data-cell="2" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="2" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="2" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="2" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="2" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="2" data-dot="6"></span>
+        </span>
+
+        <span class="cell tappable" data-cell="3">
+          <span class="dot dot-1" data-cell="3" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="3" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="3" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="3" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="3" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="3" data-dot="6"></span>
+        </span>
+
+        <span class="cell tappable" data-cell="4">
+          <span class="dot dot-1" data-cell="4" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="4" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="4" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="4" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="4" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="4" data-dot="6"></span>
+        </span>
+      </div>
+
+      <div id="sixkey-live" class="sr-only" aria-live="polite"></div>
+
+      <div id="sixkey-actions">
+        <button id="sixkey-clear-btn" type="button">clear</button>
+        <button id="sixkey-submit-btn" type="button">submit</button>
+      </div>
+    </div>
+
+    <div id="post-game-suggest" hidden>
+      <h2 id="suggest-heading">Suggest words for the game</h2>
+
+      <label id="suggest-label" for="suggest-input">
+        One or more words, separated by spaces or line breaks. Each is checked
+        against Grade 2 UEB braille translation and only sent if it comes out
+        to exactly 5 cells.
+      </label>
+
+      <textarea
+        id="suggest-input"
+        rows="4"
+        placeholder="e.g. planet roughly spiritual"
+        aria-label="Suggest words for the game"
+        autocapitalize="off"
+        spellcheck="false"
+      ></textarea>
+
+      <button id="suggest-submit-btn" type="button">Send suggestions</button>
+
+      <div id="suggest-feedback" role="status" aria-live="polite"></div>
+    </div>
+
+    <div id="debug-log" role="log" aria-live="polite" aria-label="Diagnostics"></div>
+
+    <section id="about">
+      <h2>Contractable: A Daily Word Puzzle for Contracted Braille</h2>
+      <p>Contractable is a free daily word game built for braille readers, inspired by Wordle but designed around Grade 2 Unified English Braille (UEB) — the contracted braille system used by fluent braille readers worldwide. Instead of guessing individual letters, players guess five-cell braille words using standard UEB contractions, the same shorthand symbols found in braille textbooks, signage, and everyday braille reading materials.</p>
+      <p>Each day brings a new contracted braille word to solve. Contractable works directly with refreshable braille displays and screen readers like VoiceOver, making it one of the few word games designed accessibility-first rather than retrofitted for accessibility afterward. Every interaction — from entering guesses to reading results — is built to work naturally for braille display users and screen reader users alike.</p>
+      <p>The game is ideal for braille learners practicing Grade 2 contractions, teachers of the visually impaired (TVIs) looking for classroom warm-up activities, transcribers maintaining contraction fluency, and sighted developers curious how contracted braille compares to print English. Six guesses, one word a day, and immediate feedback on which contractions and cells are correct.</p>
+      <p>Whether you're a longtime braille reader or just discovering how contracted braille works, Contractable offers a quick, engaging way to build contraction recognition skills one puzzle at a time.</p>
+    </section>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
