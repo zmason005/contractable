@@ -1,0 +1,35 @@
+name: Daily Facebook post
+
+on:
+  schedule:
+    - cron: "10 0 * * *"   # 00:10 UTC, just after the game rolls to a new word
+  workflow_dispatch:        # lets you run it by hand from the Actions tab
+    inputs:
+      mode:
+        description: "What to do"
+        type: choice
+        default: dry-run
+        options:
+          - dry-run
+          - check-token
+          - post
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run
+        env:
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          MODE: ${{ github.event_name == 'schedule' && 'post' || inputs.mode }}
+        run: |
+          case "$MODE" in
+            post)        node scripts/post-yesterday.mjs --post ;;
+            check-token) node scripts/post-yesterday.mjs --check ;;
+            *)           node scripts/post-yesterday.mjs ;;
+          esac
