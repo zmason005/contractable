@@ -320,9 +320,8 @@ function handleSixKeyDotClick(e) {
 
   sixKeyCells[cellIndex][dotNum - 1] = !sixKeyCells[cellIndex][dotNum - 1];
   currentCellIndex = cellIndex;
-  // Manual tapping takes over from the keyboard-driven "current cell" flow,
-  // so the highlight steps back until a chord key is pressed again.
-  currentCellHighlightVisible = false;
+  // Tapping a dot makes its cell the one being worked on, so the box follows it.
+  currentCellHighlightVisible = true;
   renderSixKeyCells();
   announceSixKey("Dot " + dotNum + (sixKeyCells[cellIndex][dotNum - 1] ? " raised" : " not raised"));
 }
@@ -1110,6 +1109,13 @@ async function init() {
     sixkeyCellsEl.addEventListener("click", handleSixKeyDotClick);
     sixkeyCellsEl.addEventListener("keydown", handleSixKeyKeydown);
     sixkeyCellsEl.addEventListener("keyup", handleSixKeyKeyup);
+    sixkeyCellsEl.addEventListener("focusin", (e) => {
+      const dotEl = e.target.closest(".dot");
+      if (!dotEl || gameOver) return;
+      currentCellIndex = parseInt(dotEl.dataset.cell, 10);
+      currentCellHighlightVisible = true;
+      renderSixKeyCells();
+    });
     // If focus leaves the widget mid-chord (e.g. switching apps on mobile),
     // don't leave a phantom chord state hanging around.
     sixkeyCellsEl.addEventListener("blur", () => {
