@@ -231,6 +231,23 @@ function announceSixKey(msg) {
   if (live) live.textContent = msg;
 }
 
+// Adds the accessibility semantics the static markup doesn't carry:
+// each cell becomes a labeled group ("Cell n of 5") and each dot becomes a
+// button. Dots get tabindex -1 so VoiceOver swipe/tap can reach them while
+// keyboard users keep the single-tab-stop model on #sixkey-cells.
+// Each dot's raised/not-raised label is applied in renderSixKeyCells().
+function decorateSixKeyCells() {
+  document.querySelectorAll("#sixkey-cells .cell").forEach(cellEl => {
+    const idx = parseInt(cellEl.dataset.cell, 10);
+    cellEl.setAttribute("role", "group");
+    cellEl.setAttribute("aria-label", "Cell " + (idx + 1) + " of 5");
+    cellEl.querySelectorAll(".dot").forEach(dotEl => {
+      dotEl.setAttribute("role", "button");
+      dotEl.setAttribute("tabindex", "-1");
+    });
+  });
+}
+
 function renderSixKeyCells(livePreview = false) {
   const cellEls = document.querySelectorAll("#sixkey-cells .cell");
   cellEls.forEach(cellEl => {
@@ -243,7 +260,9 @@ function renderSixKeyCells(livePreview = false) {
       const dotNum = parseInt(dotEl.dataset.dot, 10);
       const committed = sixKeyCells[idx][dotNum - 1];
       const preview = livePreview && idx === currentCellIndex && chordDotsPressed.has(dotNum);
-      dotEl.classList.toggle("on", committed || preview);
+      const isOn = committed || preview;
+      dotEl.classList.toggle("on", isOn);
+      dotEl.setAttribute("aria-label", "Dot " + dotNum + (isOn ? ", raised" : ", not raised"));
     });
   });
 }
@@ -305,11 +324,21 @@ function handleSixKeyDotClick(e) {
   // so the highlight steps back until a chord key is pressed again.
   currentCellHighlightVisible = false;
   renderSixKeyCells();
+  announceSixKey("Dot " + dotNum + (sixKeyCells[cellIndex][dotNum - 1] ? " raised" : " not raised"));
 }
 
 function handleSixKeyKeydown(e) {
   if (gameOver) return;
   const key = e.key.toLowerCase();
+
+  // Enter/Space on a focused dot toggles it (like a native button) instead
+  // of falling through to the container's Enter = submit behavior.
+  const focusedDot = e.target.closest(".dot");
+  if (focusedDot && (key === "enter" || key === " ")) {
+    e.preventDefault();
+    focusedDot.click();
+    return;
+  }
 
   if (Object.prototype.hasOwnProperty.call(CHORD_KEY_TO_DOT, key)) {
     e.preventDefault();
@@ -626,6 +655,7 @@ function lockControls() {
   if (sixkeySubmit) sixkeySubmit.disabled = true;
   if (sixkeyClear) sixkeyClear.disabled = true;
   if (sixkeyCells) sixkeyCells.setAttribute("aria-disabled", "true");
+  document.querySelectorAll("#sixkey-cells .dot").forEach(d => d.setAttribute("aria-disabled", "true"));
 }
 
 function getStoredGuesses() {
@@ -695,6 +725,7 @@ function resetGameForNewDay(nowDayIndex) {
   if (sixkeySubmit) sixkeySubmit.disabled = false;
   if (sixkeyClear) sixkeyClear.disabled = false;
   if (sixkeyCellsEl) sixkeyCellsEl.removeAttribute("aria-disabled");
+  document.querySelectorAll("#sixkey-cells .dot").forEach(d => d.removeAttribute("aria-disabled"));
   clearAllSixKey();
 
   updateGuessLabel();
@@ -1104,6 +1135,7 @@ async function init() {
   initInstructionsToggle();
   initStatusDismiss();
 
+  decorateSixKeyCells();
   applyInputMode();
 
   document.addEventListener("visibilitychange", () => {

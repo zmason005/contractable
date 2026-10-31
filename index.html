@@ -509,6 +509,13 @@
       border-color: #ffffff;
     }
 
+    /* Visible focus ring for keyboard users on the six-key dots
+       (VoiceOver draws its own focus ring). */
+    .dot:focus-visible {
+      outline: 0.15em solid #FFC107;
+      outline-offset: 0.1em;
+    }
+
     .dot-label {
       background: transparent;
       border-color: transparent;
@@ -767,7 +774,8 @@
       <div
         id="sixkey-cells"
         role="group"
-        aria-label="Six key braille entry, five cells. Hold S D F and J K L together to set dots, release to commit a cell. Tap or click dots directly. Arrow keys or Tab move between cells."
+        aria-label="Six-key braille entry"
+        aria-describedby="sixkey-help"
         tabindex="0"
       >
         <span class="cell tappable" data-cell="0">
@@ -815,6 +823,8 @@
           <span class="dot dot-6" data-cell="4" data-dot="6"></span>
         </span>
       </div>
+
+      <div id="sixkey-help" class="sr-only">Five cells. Swipe to a dot and double tap to raise or lower it. With a keyboard, hold S D F and J K L together to set dots, release to commit a cell. Arrow keys or Tab move between cells.</div>
 
       <div id="sixkey-live" class="sr-only" aria-live="polite"></div>
 
