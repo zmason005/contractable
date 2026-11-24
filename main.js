@@ -58,6 +58,16 @@ function mobileLog(msg) {
   console.error(msg);
 }
 
+// Anonymous usage analytics (Umami). Never sends guesses or any player text.
+// Safe if the script is blocked or hasn't loaded: it simply does nothing.
+function track(eventName, data) {
+  try {
+    if (window.umami && typeof window.umami.track === "function") {
+      window.umami.track(eventName, data);
+    }
+  } catch (e) { /* analytics must never break the game */ }
+}
+
 /* ── PRNG & Logic ────────────────────────────────────────────────────────── */
 
 function mulberry32(seed) {
@@ -913,7 +923,10 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
   }
 
   if (!matchedWord) {
-    if (!isRestoring) setStatus("Not in word list.", true);
+    if (!isRestoring) {
+      setStatus("Not in word list.", true);
+      track("not_in_list"); // count only; the guess itself is never sent
+    }
     return false;
   }
 
@@ -960,6 +973,11 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
     wrongBitmasks: rowWrongStrings,
   });
 
+  if (!isRestoring) {
+    if (currentGuess === 0) track("game_started");
+    track("guess_submitted", { input: isStandardPrint ? "print" : "braille" });
+  }
+
   currentGuess++;
   updateGuessLabel();
 
@@ -968,11 +986,13 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
   if (isMatch) {
     setStatus(WIN_STATUS_MESSAGE);
     gameOver = true;
+    if (!isRestoring) track("game_won", { guesses: currentGuess });
     showPostGameSuggestForm();
     if (!isRestoring) lockControls();
   } else if (currentGuess >= MAX_GUESSES) {
     setStatus(LOSE_STATUS_MESSAGE);
     gameOver = true;
+    if (!isRestoring) track("game_lost");
     showPostGameSuggestForm();
     if (!isRestoring) lockControls();
   }
