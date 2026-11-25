@@ -26,12 +26,24 @@ let wrongDots = [];   // Cumulative union of "wrong" (guessed-but-not-in-target)
 /* ── Six-key entry mode state ────────────────────────────────────────────── */
 
 const INPUT_MODE_KEY = "contractable_input_mode";
-let inputMode = "standard"; // "standard" | "sixkey"
+const INPUT_MODE_MIGRATED_KEY = "contractable_input_mode_v2";
+let inputMode = "standard"; // "standard" | "sixkey" | "tappable"
+
+// One row per entry mode: which container to show and which element gets focus.
+const INPUT_MODES = {
+  standard: { controlsId: "controls",        focusId: "guess-input" },
+  sixkey:   { controlsId: "sixkey-controls", focusId: "sixkey-cells" },
+  tappable: { controlsId: "tapdot-controls", focusId: "tapdot-cells" }
+};
 
 // 5 cells x 6 booleans. Index 0 = dot 1 ... index 5 = dot 6.
 let sixKeyCells = Array.from({ length: 5 }, () => [false, false, false, false, false, false]);
 let currentCellIndex = 0;
 let currentCellHighlightVisible = true;
+
+// Tappable dot mode has its own, separate state.
+let tapCells = Array.from({ length: 5 }, () => [false, false, false, false, false, false]);
+let tapCurrentCellIndex = 0;
 
 // Bitmask string position -> dot number, matching brlunicode-mapping.json's
 // convention (verified against the data: bit index 0 = dot 7, 1 = dot 3,
@@ -188,74 +200,61 @@ async function loadMapping() {
   }
 }
 
-/* ── Six-Key Entry Mode ───────────────────────────────────────────────────── */
+/* ── Entry Mode Switching (standard | sixkey | tappable) ──────────────────── */
 
 function loadInputModePreference() {
-  const saved = localStorage.getItem(INPUT_MODE_KEY);
-  inputMode = (saved === "sixkey") ? "sixkey" : "standard";
+  let saved = localStorage.getItem(INPUT_MODE_KEY);
+
+  // One-time migration: before the split, "sixkey" covered both chord entry
+  // and tapping dots. On a touch device a saved "sixkey" almost certainly
+  // meant tapping, so move it to "tappable" rather than strand the player
+  // in a mode with no tappable dots. Keyboards keep 6-key.
+  if (localStorage.getItem(INPUT_MODE_MIGRATED_KEY) !== "1") {
+    const isTouch = !!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+    if (saved === "sixkey" && isTouch) saved = "tappable";
+    localStorage.setItem(INPUT_MODE_MIGRATED_KEY, "1");
+    if (saved) localStorage.setItem(INPUT_MODE_KEY, saved);
+  }
+
+  inputMode = Object.prototype.hasOwnProperty.call(INPUT_MODES, saved) ? saved : "standard";
 }
 
 function saveInputModePreference() {
   localStorage.setItem(INPUT_MODE_KEY, inputMode);
 }
 
-function applyInputMode() {
-  const standardControls = document.getElementById("controls");
-  const sixkeyControls = document.getElementById("sixkey-controls");
-  const toggleBtn = document.getElementById("mode-toggle-btn");
-
-  if (inputMode === "sixkey") {
-    if (standardControls) standardControls.hidden = true;
-    if (sixkeyControls) sixkeyControls.hidden = false;
-    if (toggleBtn) {
-      toggleBtn.textContent = "Switch to standard input";
-      toggleBtn.setAttribute("aria-label", "Switch to standard text input");
-    }
-    renderSixKeyCells();
-    if (!gameOver) {
-      const cellsEl = document.getElementById("sixkey-cells");
-      if (cellsEl) cellsEl.focus();
-    }
-  } else {
-    if (sixkeyControls) sixkeyControls.hidden = true;
-    if (standardControls) standardControls.hidden = false;
-    if (toggleBtn) {
-      toggleBtn.textContent = "Switch to 6-key entry";
-      toggleBtn.setAttribute("aria-label", "Switch to six-key braille entry");
-    }
-    if (!gameOver) {
-      const input = document.getElementById("guess-input");
-      if (input) input.focus();
-    }
-  }
+// Every "send focus to whatever entry control is active" goes through here.
+function focusActiveEntry() {
+  const el = document.getElementById(INPUT_MODES[inputMode].focusId);
+  if (el) el.focus();
 }
 
-function toggleInputMode() {
-  inputMode = (inputMode === "sixkey") ? "standard" : "sixkey";
+function applyInputMode() {
+  Object.keys(INPUT_MODES).forEach(mode => {
+    const el = document.getElementById(INPUT_MODES[mode].controlsId);
+    if (el) el.hidden = (mode !== inputMode);
+  });
+  document.querySelectorAll(".mode-btn").forEach(btn => {
+    btn.setAttribute("aria-pressed", String(btn.dataset.mode === inputMode));
+  });
+  if (inputMode === "sixkey") renderSixKeyCells();
+  if (inputMode === "tappable") renderTapDotCells();
+  if (!gameOver) focusActiveEntry();
+}
+
+function setInputMode(mode) {
+  if (!Object.prototype.hasOwnProperty.call(INPUT_MODES, mode) || mode === inputMode) return;
+  inputMode = mode;
   saveInputModePreference();
   applyInputMode();
 }
 
+/* ── 6-Key Mode (keyboard / braille-display chords) ───────────────────────── */
+// The on-screen cells are a read-only preview; input comes from the chord keys.
+
 function announceSixKey(msg) {
   const live = document.getElementById("sixkey-live");
   if (live) live.textContent = msg;
-}
-
-// Adds the accessibility semantics the static markup doesn't carry:
-// each cell becomes a labeled group ("Cell n of 5") and each dot becomes a
-// button. Dots get tabindex -1 so VoiceOver swipe/tap can reach them while
-// keyboard users keep the single-tab-stop model on #sixkey-cells.
-// Each dot's raised/not-raised label is applied in renderSixKeyCells().
-function decorateSixKeyCells() {
-  document.querySelectorAll("#sixkey-cells .cell").forEach(cellEl => {
-    const idx = parseInt(cellEl.dataset.cell, 10);
-    cellEl.setAttribute("role", "group");
-    cellEl.setAttribute("aria-label", "Cell " + (idx + 1) + " of 5");
-    cellEl.querySelectorAll(".dot").forEach(dotEl => {
-      dotEl.setAttribute("role", "button");
-      dotEl.setAttribute("tabindex", "-1");
-    });
-  });
 }
 
 function renderSixKeyCells(livePreview = false) {
@@ -270,9 +269,7 @@ function renderSixKeyCells(livePreview = false) {
       const dotNum = parseInt(dotEl.dataset.dot, 10);
       const committed = sixKeyCells[idx][dotNum - 1];
       const preview = livePreview && idx === currentCellIndex && chordDotsPressed.has(dotNum);
-      const isOn = committed || preview;
-      dotEl.classList.toggle("on", isOn);
-      dotEl.setAttribute("aria-label", "Dot " + dotNum + (isOn ? ", raised" : ", not raised"));
+      dotEl.classList.toggle("on", committed || preview);
     });
   });
 }
@@ -299,10 +296,12 @@ function clearAllSixKey() {
   renderSixKeyCells();
 }
 
+/* Shared cell helpers (used by both 6-key and tappable dot) */
+
 // Converts a single cell's boolean dot array into the same kind of 8-bit
 // bitmask string used throughout brlunicode-mapping.json, so it can be
 // looked up in dotsToAscii exactly like any other cell.
-function sixKeyCellToBitmaskString(cellDotsOnArray) {
+function dotArrayToBitmaskString(cellDotsOnArray) {
   const onDots = new Set();
   for (let i = 0; i < 6; i++) {
     if (cellDotsOnArray[i]) onDots.add(i + 1);
@@ -314,26 +313,10 @@ function sixKeyCellToBitmaskString(cellDotsOnArray) {
   return bits;
 }
 
-function sixKeyCellsToUnicodeGuess() {
-  return sixKeyCells
-    .map(cell => dotsToAscii[sixKeyCellToBitmaskString(cell)] ?? "\u2800")
+function cellsToUnicodeGuess(cells) {
+  return cells
+    .map(cell => dotsToAscii[dotArrayToBitmaskString(cell)] ?? "\u2800")
     .join("");
-}
-
-function handleSixKeyDotClick(e) {
-  if (gameOver) return;
-  const dotEl = e.target.closest(".dot");
-  if (!dotEl) return;
-
-  const cellIndex = parseInt(dotEl.dataset.cell, 10);
-  const dotNum = parseInt(dotEl.dataset.dot, 10);
-
-  sixKeyCells[cellIndex][dotNum - 1] = !sixKeyCells[cellIndex][dotNum - 1];
-  currentCellIndex = cellIndex;
-  // Tapping a dot makes its cell the one being worked on, so the box follows it.
-  currentCellHighlightVisible = true;
-  renderSixKeyCells();
-  announceSixKey("Dot " + dotNum + (sixKeyCells[cellIndex][dotNum - 1] ? " raised" : " not raised"));
 }
 
 function handleSixKeyKeydown(e) {
@@ -403,10 +386,74 @@ function handleSixKeyKeyup(e) {
 
 function submitSixKeyGuess() {
   if (gameOver) return;
-  const rawGuess = sixKeyCellsToUnicodeGuess();
-  const success = submitRawGuess(rawGuess);
+  const success = submitRawGuess(cellsToUnicodeGuess(sixKeyCells));
   if (success) {
     clearAllSixKey();
+  }
+}
+
+/* ── Tappable Dot Mode (touch / VoiceOver dot matrix) ─────────────────────── */
+// Each cell is a labeled group ("Cell n of 5") and each dot is a button whose
+// label reports raised / not raised. Dots get tabindex -1 so VoiceOver swipe
+// and tap can reach them, while keyboard users keep a single tab stop on
+// #tapdot-cells. This module shares no state with 6-key mode.
+
+function announceTapDot(msg) {
+  const live = document.getElementById("tapdot-live");
+  if (live) live.textContent = msg;
+}
+
+function decorateTapDotCells() {
+  document.querySelectorAll("#tapdot-cells .cell").forEach(cellEl => {
+    const idx = parseInt(cellEl.dataset.cell, 10);
+    cellEl.setAttribute("role", "group");
+    cellEl.setAttribute("aria-label", "Cell " + (idx + 1) + " of 5");
+    cellEl.querySelectorAll(".dot").forEach(dotEl => {
+      dotEl.setAttribute("role", "button");
+      dotEl.setAttribute("tabindex", "-1");
+    });
+  });
+}
+
+function renderTapDotCells() {
+  document.querySelectorAll("#tapdot-cells .cell").forEach(cellEl => {
+    const idx = parseInt(cellEl.dataset.cell, 10);
+    cellEl.classList.toggle("current-cell", idx === tapCurrentCellIndex);
+
+    cellEl.querySelectorAll(".dot").forEach(dotEl => {
+      const dotNum = parseInt(dotEl.dataset.dot, 10);
+      const isOn = tapCells[idx][dotNum - 1];
+      dotEl.classList.toggle("on", isOn);
+      dotEl.setAttribute("aria-label", "Dot " + dotNum + (isOn ? ", raised" : ", not raised"));
+    });
+  });
+}
+
+function clearAllTapDot() {
+  tapCells = Array.from({ length: 5 }, () => [false, false, false, false, false, false]);
+  tapCurrentCellIndex = 0;
+  renderTapDotCells();
+}
+
+function handleTapDotClick(e) {
+  if (gameOver) return;
+  const dotEl = e.target.closest(".dot");
+  if (!dotEl) return;
+
+  const cellIndex = parseInt(dotEl.dataset.cell, 10);
+  const dotNum = parseInt(dotEl.dataset.dot, 10);
+
+  tapCells[cellIndex][dotNum - 1] = !tapCells[cellIndex][dotNum - 1];
+  tapCurrentCellIndex = cellIndex;
+  renderTapDotCells();
+  announceTapDot("Dot " + dotNum + (tapCells[cellIndex][dotNum - 1] ? " raised" : " not raised"));
+}
+
+function submitTapDotGuess() {
+  if (gameOver) return;
+  const success = submitRawGuess(cellsToUnicodeGuess(tapCells));
+  if (success) {
+    clearAllTapDot();
   }
 }
 
@@ -573,7 +620,7 @@ async function submitWordSuggestions() {
   const formData = new FormData();
   formData.append("words", passedWords.join(" "));
   formData.append("wordCount", String(passedWords.length));
-  formData.append("source", "contractable v2 six-key/standard board");
+  formData.append("source", "contractable v2 standard/six-key/tappable board");
   formData.append("louisVerified", String(louisVerified));
   if (louisVerified && louisResults) {
     formData.append("brailleCellCounts", louisResults.map(r => `${r.word}:${r.cellCount}`).join(","));
@@ -654,17 +701,17 @@ function loadAndRestoreGameState() {
 }
 
 function lockControls() {
-  const input = document.getElementById("guess-input");
-  const button = document.getElementById("submit-btn");
-  const sixkeySubmit = document.getElementById("sixkey-submit-btn");
-  const sixkeyClear = document.getElementById("sixkey-clear-btn");
-  const sixkeyCells = document.getElementById("sixkey-cells");
-  if (input) input.disabled = true;
-  if (button) button.disabled = true;
-  if (sixkeySubmit) sixkeySubmit.disabled = true;
-  if (sixkeyClear) sixkeyClear.disabled = true;
-  if (sixkeyCells) sixkeyCells.setAttribute("aria-disabled", "true");
-  document.querySelectorAll("#sixkey-cells .dot").forEach(d => d.setAttribute("aria-disabled", "true"));
+  ["guess-input", "submit-btn",
+   "sixkey-submit-btn", "sixkey-clear-btn",
+   "tapdot-submit-btn", "tapdot-clear-btn"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.disabled = true;
+  });
+  ["sixkey-cells", "tapdot-cells"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute("aria-disabled", "true");
+  });
+  document.querySelectorAll("#tapdot-cells .dot").forEach(d => d.setAttribute("aria-disabled", "true"));
 }
 
 function getStoredGuesses() {
@@ -723,26 +770,25 @@ function resetGameForNewDay(nowDayIndex) {
   // Re-enable controls and clear any leftover input
   const input = document.getElementById("guess-input");
   const button = document.getElementById("submit-btn");
-  const sixkeySubmit = document.getElementById("sixkey-submit-btn");
-  const sixkeyClear = document.getElementById("sixkey-clear-btn");
-  const sixkeyCellsEl = document.getElementById("sixkey-cells");
   if (input) {
     input.disabled = false;
     input.value = "";
   }
   if (button) button.disabled = false;
-  if (sixkeySubmit) sixkeySubmit.disabled = false;
-  if (sixkeyClear) sixkeyClear.disabled = false;
-  if (sixkeyCellsEl) sixkeyCellsEl.removeAttribute("aria-disabled");
-  document.querySelectorAll("#sixkey-cells .dot").forEach(d => d.removeAttribute("aria-disabled"));
+  ["sixkey-submit-btn", "sixkey-clear-btn", "tapdot-submit-btn", "tapdot-clear-btn"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.disabled = false;
+  });
+  ["sixkey-cells", "tapdot-cells"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.removeAttribute("aria-disabled");
+  });
+  document.querySelectorAll("#tapdot-cells .dot").forEach(d => d.removeAttribute("aria-disabled"));
   clearAllSixKey();
+  clearAllTapDot();
 
   updateGuessLabel();
-  if (inputMode === "sixkey") {
-    if (sixkeyCellsEl) sixkeyCellsEl.focus();
-  } else if (input) {
-    input.focus();
-  }
+  focusActiveEntry();
 }
 
 /* ── UI & Game Logic ─────────────────────────────────────────────────────── */
@@ -1000,7 +1046,7 @@ function evaluateAndRenderGuess(rawGuess, isRestoring = false) {
   return true;
 }
 
-// Shared submission path for both standard text input and six-key entry.
+// Shared submission path for standard text input, six-key entry and tappable dot entry.
 // Takes either plain print text or a Unicode braille string (evaluateAndRenderGuess
 // already handles both). Returns true if the guess was valid and accepted.
 function submitRawGuess(rawGuess) {
@@ -1050,10 +1096,7 @@ function initStatusDismiss() {
     status.textContent = "";
     status.classList.remove("dismissible");
     status.removeAttribute("role");
-    const target = (inputMode === "sixkey")
-      ? document.getElementById("sixkey-cells")
-      : document.getElementById("guess-input");
-    if (target) target.focus();
+    focusActiveEntry();
   };
 
   status.addEventListener("click", dismiss);
@@ -1114,28 +1157,20 @@ async function init() {
     }
   });
 
-  // Six-key entry mode wiring
+  // Entry mode wiring (standard | sixkey | tappable)
   loadInputModePreference();
 
-  const modeToggleBtn = document.getElementById("mode-toggle-btn");
+  document.querySelectorAll(".mode-btn").forEach(btn => {
+    btn.addEventListener("click", () => setInputMode(btn.dataset.mode));
+  });
+
+  // 6-key module
   const sixkeyCellsEl = document.getElementById("sixkey-cells");
   const sixkeyClearBtn = document.getElementById("sixkey-clear-btn");
   const sixkeySubmitBtn = document.getElementById("sixkey-submit-btn");
-
-  if (modeToggleBtn) {
-    modeToggleBtn.addEventListener("click", toggleInputMode);
-  }
   if (sixkeyCellsEl) {
-    sixkeyCellsEl.addEventListener("click", handleSixKeyDotClick);
     sixkeyCellsEl.addEventListener("keydown", handleSixKeyKeydown);
     sixkeyCellsEl.addEventListener("keyup", handleSixKeyKeyup);
-    sixkeyCellsEl.addEventListener("focusin", (e) => {
-      const dotEl = e.target.closest(".dot");
-      if (!dotEl || gameOver) return;
-      currentCellIndex = parseInt(dotEl.dataset.cell, 10);
-      currentCellHighlightVisible = true;
-      renderSixKeyCells();
-    });
     // If focus leaves the widget mid-chord (e.g. switching apps on mobile),
     // don't leave a phantom chord state hanging around.
     sixkeyCellsEl.addEventListener("blur", () => {
@@ -1153,6 +1188,29 @@ async function init() {
     sixkeySubmitBtn.addEventListener("click", submitSixKeyGuess);
   }
 
+  // Tappable dot module
+  const tapCellsEl = document.getElementById("tapdot-cells");
+  const tapClearBtn = document.getElementById("tapdot-clear-btn");
+  const tapSubmitBtn = document.getElementById("tapdot-submit-btn");
+  if (tapCellsEl) {
+    tapCellsEl.addEventListener("click", handleTapDotClick);
+    tapCellsEl.addEventListener("focusin", (e) => {
+      const dotEl = e.target.closest(".dot");
+      if (!dotEl || gameOver) return;
+      tapCurrentCellIndex = parseInt(dotEl.dataset.cell, 10);
+      renderTapDotCells();
+    });
+  }
+  if (tapClearBtn) {
+    tapClearBtn.addEventListener("click", () => {
+      if (gameOver) return;
+      clearAllTapDot();
+    });
+  }
+  if (tapSubmitBtn) {
+    tapSubmitBtn.addEventListener("click", submitTapDotGuess);
+  }
+
   const suggestSubmitBtn = document.getElementById("suggest-submit-btn");
   if (suggestSubmitBtn) {
     suggestSubmitBtn.addEventListener("click", submitWordSuggestions);
@@ -1161,7 +1219,7 @@ async function init() {
   initInstructionsToggle();
   initStatusDismiss();
 
-  decorateSixKeyCells();
+  decorateTapDotCells();
   applyInputMode();
 
   document.addEventListener("visibilitychange", () => {

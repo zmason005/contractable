@@ -132,16 +132,87 @@
       >⠎⠥⠃⠍⠊⠞</button>
     </div>
 
-    <div id="mode-toggle-wrap">
-      <button id="mode-toggle-btn" type="button">Switch to 6-key entry</button>
+    <div id="mode-toggle-wrap" role="group" aria-label="Entry mode">
+      <button class="mode-btn" type="button" data-mode="standard" aria-pressed="true">Standard</button>
+      <button class="mode-btn" type="button" data-mode="sixkey" aria-pressed="false">6-key</button>
+      <button class="mode-btn" type="button" data-mode="tappable" aria-pressed="false">Tappable dot</button>
     </div>
 
+    <!-- 6-KEY MODE: keyboard / braille-display chord entry. The cells are a
+         read-only visual preview (aria-hidden); changes are announced
+         through #sixkey-live instead. -->
     <div id="sixkey-controls" hidden>
       <div
         id="sixkey-cells"
         role="group"
         aria-label="Six-key braille entry"
         aria-describedby="sixkey-help"
+        tabindex="0"
+      >
+        <span class="cell" data-cell="0" aria-hidden="true">
+          <span class="dot dot-1" data-cell="0" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="0" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="0" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="0" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="0" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="0" data-dot="6"></span>
+        </span>
+
+        <span class="cell" data-cell="1" aria-hidden="true">
+          <span class="dot dot-1" data-cell="1" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="1" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="1" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="1" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="1" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="1" data-dot="6"></span>
+        </span>
+
+        <span class="cell" data-cell="2" aria-hidden="true">
+          <span class="dot dot-1" data-cell="2" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="2" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="2" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="2" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="2" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="2" data-dot="6"></span>
+        </span>
+
+        <span class="cell" data-cell="3" aria-hidden="true">
+          <span class="dot dot-1" data-cell="3" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="3" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="3" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="3" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="3" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="3" data-dot="6"></span>
+        </span>
+
+        <span class="cell" data-cell="4" aria-hidden="true">
+          <span class="dot dot-1" data-cell="4" data-dot="1"></span>
+          <span class="dot dot-2" data-cell="4" data-dot="2"></span>
+          <span class="dot dot-3" data-cell="4" data-dot="3"></span>
+          <span class="dot dot-4" data-cell="4" data-dot="4"></span>
+          <span class="dot dot-5" data-cell="4" data-dot="5"></span>
+          <span class="dot dot-6" data-cell="4" data-dot="6"></span>
+        </span>
+      </div>
+
+      <div id="sixkey-help" class="sr-only">Five cells. Hold S D F and J K L together to set dots, release to commit a cell. Arrow keys or Tab move between cells. Backspace clears the current cell. Enter submits.</div>
+
+      <div id="sixkey-live" class="sr-only" aria-live="polite"></div>
+
+      <div id="sixkey-actions">
+        <button id="sixkey-clear-btn" type="button">clear</button>
+        <button id="sixkey-submit-btn" type="button">submit</button>
+      </div>
+    </div>
+
+    <!-- TAPPABLE DOT MODE: touch / VoiceOver dot matrix. main.js decorates
+         each cell as a labeled group and each dot as a button. -->
+    <div id="tapdot-controls" hidden>
+      <div
+        id="tapdot-cells"
+        role="group"
+        aria-label="Tappable dot braille entry"
+        aria-describedby="tapdot-help"
         tabindex="0"
       >
         <span class="cell tappable" data-cell="0">
@@ -190,13 +261,13 @@
         </span>
       </div>
 
-      <div id="sixkey-help" class="sr-only">Five cells. Swipe to a dot and double tap to raise or lower it. With a keyboard, hold S D F and J K L together to set dots, release to commit a cell. Arrow keys or Tab move between cells.</div>
+      <div id="tapdot-help" class="sr-only">Five cells. Swipe to a dot and double tap to raise or lower it. Then activate submit.</div>
 
-      <div id="sixkey-live" class="sr-only" aria-live="polite"></div>
+      <div id="tapdot-live" class="sr-only" aria-live="polite"></div>
 
-      <div id="sixkey-actions">
-        <button id="sixkey-clear-btn" type="button">clear</button>
-        <button id="sixkey-submit-btn" type="button">submit</button>
+      <div id="tapdot-actions">
+        <button id="tapdot-clear-btn" type="button">clear</button>
+        <button id="tapdot-submit-btn" type="button">submit</button>
       </div>
     </div>
 

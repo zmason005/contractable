@@ -10,7 +10,7 @@
   5. STANDARD INPUT           #controls, #guess-input, #submit-btn
   6. POST-GAME SUGGESTIONS    #post-game-suggest, #suggest-*
   7. UTILITIES                #debug-log, .sr-only
-  8. TOGGLES AND INSTRUCTIONS #mode-toggle-btn, .instructions-toggle,
+  8. TOGGLES AND INSTRUCTIONS .mode-btn, .instructions-toggle,
                               #instructions-panel
   9. BRAILLE CELL             .cell, .dot, .dot.on, .dot-label, dot grid areas
  10. HEADING                  #heading-cells (the CONTRACTABLE title cells)
@@ -291,6 +291,7 @@ h1 {
 
 #submit-btn,
 #sixkey-submit-btn,
+#tapdot-submit-btn,
 #suggest-submit-btn {
   font-family: sans-serif;
   background: #000000;
@@ -310,6 +311,7 @@ h1 {
 
 #submit-btn:hover,
 #sixkey-submit-btn:hover,
+#tapdot-submit-btn:hover,
 #suggest-submit-btn:hover {
   background: rgba(255, 193, 7, 0.15);
 }
@@ -395,9 +397,13 @@ h1 {
 
 #mode-toggle-wrap {
   margin-top: 1.5em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4em;
 }
 
-#mode-toggle-btn {
+.mode-btn {
   font-family: sans-serif;
   background: #000000;
   color: #ffffff;
@@ -407,8 +413,13 @@ h1 {
   font-size: 0.9rem;
 }
 
-#mode-toggle-btn:hover {
+.mode-btn:hover {
   border-color: #999999;
+}
+
+.mode-btn[aria-pressed="true"] {
+  border-color: #FFC107;
+  font-weight: bold;
 }
 
 #instructions-toggle-wrap {
@@ -563,15 +574,19 @@ h1 {
 }
 
 /* ================================================================
-   SIX-KEY ENTRY
+   SIX-KEY ENTRY and TAPPABLE DOT ENTRY
+   (two separate modules that share one look; every rule below
+   is applied to both the #sixkey-* and #tapdot-* IDs)
    ================================================================ */
 
-#sixkey-controls {
+#sixkey-controls,
+#tapdot-controls {
   margin-top: 1.5em;
   width: 100%;
 }
 
-#sixkey-cells {
+#sixkey-cells,
+#tapdot-cells {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -580,12 +595,14 @@ h1 {
   padding: 0.4em 0;
 }
 
-#sixkey-cells:focus {
+#sixkey-cells:focus,
+#tapdot-cells:focus {
   outline: 0.12em dashed #FFC107;
   outline-offset: 0.2em;
 }
 
-#sixkey-cells .cell {
+#sixkey-cells .cell,
+#tapdot-cells .cell {
   width: auto;
   min-width: 0;
   height: auto;
@@ -598,21 +615,24 @@ h1 {
   row-gap: 1vw;
 }
 
-#sixkey-cells .dot {
+#sixkey-cells .dot,
+#tapdot-cells .dot {
   width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
   border: 0.09em solid #ffffff;
 }
 
-#sixkey-actions {
+#sixkey-actions,
+#tapdot-actions {
   margin-top: 1em;
   display: flex;
   justify-content: center;
   gap: 0.6em;
 }
 
-#sixkey-clear-btn {
+#sixkey-clear-btn,
+#tapdot-clear-btn {
   font-family: sans-serif;
   background: #000000;
   color: #ffffff;
@@ -623,12 +643,15 @@ h1 {
   font-size: 1rem;
 }
 
-#sixkey-clear-btn:hover {
+#sixkey-clear-btn:hover,
+#tapdot-clear-btn:hover {
   border-color: #999999;
 }
 
 #sixkey-clear-btn:disabled,
-#sixkey-submit-btn:disabled {
+#sixkey-submit-btn:disabled,
+#tapdot-clear-btn:disabled,
+#tapdot-submit-btn:disabled {
   opacity: 0.5;
   cursor: default;
 }
